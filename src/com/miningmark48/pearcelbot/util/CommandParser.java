@@ -21,7 +21,7 @@ public class CommandParser {
         String[] args = new String[split.size() - 1];
         split.subList(1, split.size()).toArray(args);
 
-        //Relay Command Input
+        //Relay ICommand Input
         if (event.getGuild() != null && event.getTextChannel() != null && event.getAuthor() != null && event.getMessage() != null) {
             System.out.printf("[COMMAND LOG][%s][%s] %s: %s\n", event.getGuild().getName(), event.getTextChannel().getName(), event.getAuthor().getName(), event.getMessage().getContent());
         }

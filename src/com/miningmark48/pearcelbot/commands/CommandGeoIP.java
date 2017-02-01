@@ -1,14 +1,13 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.Command;
-import com.miningmark48.pearcelbot.messages.MessageGreetings;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSONParse;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandGeoIP implements Command {
+public class CommandGeoIP implements ICommand {
 
     public static final String desc = "Get Geographic information about an IP.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "geoip [arg-optional]";

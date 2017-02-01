@@ -1,7 +1,7 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSONParse;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -10,7 +10,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import java.awt.*;
 import java.text.DecimalFormat;
 
-public class CommandTwitchUser implements Command {
+public class CommandTwitchUser implements ICommand {
 
     public static final String desc = "Get information about a user on Twitch.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "twitchuser <arg>";

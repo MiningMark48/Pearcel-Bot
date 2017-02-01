@@ -2,7 +2,7 @@ package com.miningmark48.pearcelbot;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public interface Command {
+public interface ICommand {
 
     boolean called(String[] args, MessageReceivedEvent event);
     void action(String[] args, MessageReceivedEvent event);

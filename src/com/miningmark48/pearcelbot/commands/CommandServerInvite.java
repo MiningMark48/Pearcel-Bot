@@ -1,14 +1,13 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
-import java.sql.Ref;
 
-public class CommandServerInvite implements Command{
+public class CommandServerInvite implements ICommand {
 
     public static final String desc = "Get a link so you can invite " + Reference.botName + " to your server.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "serverinvite";

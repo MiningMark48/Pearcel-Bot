@@ -1,13 +1,13 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
-public class CommandRPS implements Command{
+public class CommandRPS implements ICommand {
 
     public static final String desc = "Play the classic Rock, Paper, Scissors with " + Reference.botName;
     public static final String usage = "USAGE: " + Reference.botCommandKey + "rps <arg:r/p/s>";

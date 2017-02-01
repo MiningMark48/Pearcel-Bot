@@ -1,12 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.Clock;
-import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandUptime implements Command{
+public class CommandUptime implements ICommand {
 
     public static final String desc = "View the bot's uptime.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "uptime";

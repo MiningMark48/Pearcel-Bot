@@ -1,15 +1,14 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
-import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
-public class CommandListBots implements Command{
+public class CommandListBots implements ICommand {
 
     public static final String desc = "Lists all the bots in the current guild.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "listbots";

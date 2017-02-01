@@ -1,10 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandGetDemServs implements Command{
+public class CommandGetDemServs implements ICommand {
 
     public static final String desc = "List all Guilds the bot is connected to.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "getdemservs";

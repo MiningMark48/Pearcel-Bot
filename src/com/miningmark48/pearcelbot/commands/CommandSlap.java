@@ -1,10 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandSlap implements Command{
+public class CommandSlap implements ICommand {
 
     public static final String desc = "Slap someone.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "slap <arg>";

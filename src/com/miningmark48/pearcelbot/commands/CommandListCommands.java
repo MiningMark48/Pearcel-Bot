@@ -2,17 +2,17 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSONParseFile;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.io.*;
+import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
-public class CommandListCommands implements Command{
+public class CommandListCommands implements ICommand {
 
     public static final String desc = "List all custom commands for the server.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "listcommands";
@@ -28,31 +28,29 @@ public class CommandListCommands implements Command{
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
-        event.getTextChannel().sendMessage("Disabled for revisions! Sorry for any inconvenience.").queue();
+        File file = new File(fileName);
 
-//        File file = new File(fileName);
-//
-//        if(file.exists()) {
-//
-//            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
-//            JsonObject jsonObjServ = jsonObj.getAsJsonObject(event.getGuild().getId());
-//            Set<Map.Entry<String, JsonElement>> entries = jsonObjServ.entrySet();
-//            MessageBuilder builder = new MessageBuilder();
-//            builder.append("\n**Commands for " + jsonObjServ.get("_comment_serverName_").getAsString() + ": ** ```");
-//
-//            for (Map.Entry<String, JsonElement> entry: entries){
-//                if(!entry.getKey().equalsIgnoreCase("_comment_serverName_")) {
-//                    builder.append("\n" + Reference.botCommandCustomKey + entry.getKey() + ": " + entry.getValue().getAsString() + "\n");
-//                }
-//            }
-//
-//            builder.append("\n```");
-//
-//            event.getTextChannel().sendMessage(event.getAuthor().getName() + ", Sending you a list of custom commands for *" + jsonObjServ.get("_comment_serverName_").getAsString() + "* now.").queue();
-//            event.getAuthor().openPrivateChannel().queue();
-//            event.getAuthor().getPrivateChannel().sendMessage(builder.build()).queue();
-//
-//        }
+        if(file.exists()) {
+
+            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
+            JsonObject jsonObjServ = jsonObj.getAsJsonObject(event.getGuild().getId());
+            Set<Map.Entry<String, JsonElement>> entries = jsonObjServ.entrySet();
+            MessageBuilder builder = new MessageBuilder();
+            builder.append("\n**Commands for " + jsonObjServ.get("_comment_serverName_").getAsString() + ": ** ```");
+
+            for (Map.Entry<String, JsonElement> entry: entries){
+                if(!entry.getKey().equalsIgnoreCase("_comment_serverName_")) {
+                    builder.append("\n" + Reference.botCommandCustomKey + entry.getKey() + ": " + entry.getValue().getAsString() + "\n");
+                }
+            }
+
+            builder.append("\n```");
+
+            event.getTextChannel().sendMessage(event.getAuthor().getName() + ", Sending you a list of custom commands for *" + jsonObjServ.get("_comment_serverName_").getAsString() + "* now.").queue();
+            event.getAuthor().openPrivateChannel().queue();
+            event.getAuthor().getPrivateChannel().sendMessage(builder.build()).queue();
+
+        }
     }
 
     @Override

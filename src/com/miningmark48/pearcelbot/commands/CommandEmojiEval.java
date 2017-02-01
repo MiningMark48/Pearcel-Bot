@@ -1,12 +1,12 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.entities.Emote;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.apache.commons.lang3.StringEscapeUtils;
 
-public class CommandEmojiEval implements Command{
+public class CommandEmojiEval implements ICommand {
 
     public static final String desc = "Evaluate an emoji.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "emojieval <arg>";

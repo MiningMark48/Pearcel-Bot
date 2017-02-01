@@ -1,10 +1,9 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
-import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.ICommand;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandVolume implements Command{
+public class CommandVolume implements ICommand {
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return false;

@@ -1,21 +1,15 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSONParse;
-import net.dv8tion.jda.client.managers.fields.EmoteField;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.entities.MessageEmbed;
-import net.dv8tion.jda.core.entities.impl.EmoteImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.requests.Route;
 
 import java.awt.*;
-import java.io.FileNotFoundException;
 
-public class CommandGithubUser implements Command {
+public class CommandGithubUser implements ICommand {
 
     public static final String desc = "Get information about a user on Github.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "githubuser <arg>";

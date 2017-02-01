@@ -4,7 +4,6 @@ import com.miningmark48.pearcelbot.commands.InitializeCommands;
 import com.miningmark48.pearcelbot.customcommands.GetCommand;
 import com.miningmark48.pearcelbot.messages.InitializeMessages;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.Clock;
 import com.miningmark48.pearcelbot.util.CommandParser;
 import com.miningmark48.pearcelbot.util.JSONRead;
 import com.miningmark48.pearcelbot.util.JSONWrite;
@@ -21,7 +20,7 @@ public class Main {
     public static JDA jda;
     static final CommandParser parser = new CommandParser();
 
-    public static HashMap<String, Command> commands = new HashMap<>();
+    public static HashMap<String, ICommand> commands = new HashMap<>();
 
     public static void main(String[] args){
 

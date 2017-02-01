@@ -1,13 +1,13 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
-public class Command8Ball implements Command{
+public class Command8Ball implements ICommand {
 
     public static final String desc = "Roll a magic 8 Ball";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "8ball [arg]";

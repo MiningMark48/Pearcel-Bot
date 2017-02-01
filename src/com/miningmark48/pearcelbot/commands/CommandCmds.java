@@ -1,6 +1,6 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class CommandCmds implements Command{
+public class CommandCmds implements ICommand {
 
     public static final String desc = "Returns a list of commands.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "cmds";
@@ -75,10 +75,9 @@ public class CommandCmds implements Command{
         messageBuilder2.append("```" + message2 + "```\n");
         messageBuilderPBC.append("**" + Reference.botCommanderRole + " Commands: **\n");
         messageBuilderPBC.append("```" + messagePBC + "```\n");
-        messageBuilderM.append("**Pearcel Bot's Music Commands were moved to DJ Pearcel Bot.** Click this link to get it: *[Coming Soon]*\n");
+        messageBuilderM.append("**Pearcel Bot's Music Commands were moved to DJ Pearcel Bot.** Click this link to get it: https://discordapp.com/oauth2/authorize?client_id=276447269417648138&scope=bot&permissions=3148800\n");
 
-        //Disabled.
-        //messageBuilderM.append("To use auto-response talking (Chat Bot), give *" + event.getJDA().getSelfUser().getName() + "* the role `" + Reference.botAutoResponseRole + "`.\n");
+        messageBuilderM.append("To use auto-response talking (Chat Bot), give *" + event.getJDA().getSelfUser().getName() + "* the role `" + Reference.botAutoResponseRole + "`.\n");
 
         event.getAuthor().getPrivateChannel().sendMessage(messageBuilder.build()).queue();
         //event.getAuthor().getPrivateChannel().sendMessage(messageBuilder2.build()).queue();

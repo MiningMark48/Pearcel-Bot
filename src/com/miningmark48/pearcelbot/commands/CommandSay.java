@@ -1,11 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.Command;
+import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.Logger;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandSay implements Command{
+public class CommandSay implements ICommand {
 
     public static final String desc = "Make the bot say something.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "say <arg>";
