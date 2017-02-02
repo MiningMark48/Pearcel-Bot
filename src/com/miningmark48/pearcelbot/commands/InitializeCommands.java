@@ -3,6 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
+import com.sun.org.apache.regexp.internal.RE;
 
 public class InitializeCommands {
 
@@ -38,6 +39,7 @@ public class InitializeCommands {
         Main.commands.put("selfinfo", new CommandSelfInfo());
         Main.commands.put("serverinvite", new CommandServerInvite());
         Main.commands.put("slap", new CommandSlap());
+        Main.commands.put("sourcecode", new CommandSourceCode());
         Main.commands.put("tobinary", new CommandToBinary());
         Main.commands.put("toromannum", new CommandToRomanNum());
         Main.commands.put("translate", new CommandTranslate());
@@ -75,6 +77,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("slap", CommandSlap.info);
         Reference.commandUsage.put("selfinfo", CommandSelfInfo.info);
         Reference.commandUsage.put("serverinvite", CommandServerInvite.info);
+        Reference.commandUsage.put("sourcecode", CommandSourceCode.info);
         Reference.commandUsage.put("tobinary", CommandToBinary.info);
         Reference.commandUsage.put("toromannum", CommandToRomanNum.info);
         Reference.commandUsage.put("translate", CommandTranslate.info);
