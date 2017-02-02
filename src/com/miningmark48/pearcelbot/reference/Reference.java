@@ -13,7 +13,7 @@ public class Reference {
     public static String botToken = JSONRead.botToken;
     public static String botName = JSONRead.botName;
     public static String botCommandKey = JSONRead.botCommandKey;
-    public static String botCommandCustomKey = "`";
+    public static String botCommandCustomKey = botCommandKey + "`";
     public static String botCommanderRole = JSONRead.botCommanderRole;
     public static String botAutoResponseRole = JSONRead.botAutoResponseRole;
     public static String botClientID = JSONRead.botClientID;
