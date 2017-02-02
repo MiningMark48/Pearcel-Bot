@@ -4,6 +4,7 @@ import com.miningmark48.pearcelbot.commands.InitializeCommands;
 import com.miningmark48.pearcelbot.customcommands.GetCommand;
 import com.miningmark48.pearcelbot.messages.InitializeMessages;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.Clock;
 import com.miningmark48.pearcelbot.util.CommandParser;
 import com.miningmark48.pearcelbot.util.JSONRead;
 import com.miningmark48.pearcelbot.util.JSONWrite;
@@ -32,7 +33,7 @@ public class Main {
             jda.setAutoReconnect(true);
             jda.getPresence().setGame(Game.of("Do ~cmds"));
             //Clock.runClockGame(jda);
-            //Clock.runClockUptime(jda);
+            Clock.runClockUptime(jda);
         }catch (Exception e){
             e.printStackTrace();
         }

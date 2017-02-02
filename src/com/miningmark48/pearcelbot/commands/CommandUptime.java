@@ -2,6 +2,8 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.Clock;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandUptime implements ICommand {
@@ -18,36 +20,34 @@ public class CommandUptime implements ICommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
-//        int seconds = Clock.uptimeSeconds;
-//        int minutes = Clock.uptimeMinutes;
-//        int hours = Clock.uptimeHours;
-//        int days = Clock.uptimeDays;
-//
-//        MessageBuilder builder = new MessageBuilder();
-//
-//        builder.append(String.format("`%sd:%sh:%sm:%ss`\t", days, hours, minutes, seconds));
-//
-//        builder.append("**" + event.getJDA().getSelfUser().getName() + "** has been running for ");
-//
-//        if (days != 0){
-//            builder.append("**" + days + "**" + (days == 1 ? " day, " : " days, "));
-//        }
-//        if (hours != 0){
-//            builder.append("**" + hours + "**" + (hours == 1 ? " hour, " : " hours, "));
-//        }
-//        if (minutes != 0){
-//            builder.append("**" + minutes + "**" + (minutes == 1 ? " minute, " : " minutes, "));
-//        }
-//        if (seconds != 0) {
-//            if (minutes != 0) {
-//                builder.append(" and ");
-//            }
-//            builder.append("**" + seconds + "**" + (seconds == 1 ? " second." : " seconds."));
-//        }
+        int seconds = Clock.uptimeSeconds;
+        int minutes = Clock.uptimeMinutes;
+        int hours = Clock.uptimeHours;
+        int days = Clock.uptimeDays;
 
-//        event.getTextChannel().sendMessage(builder.build()).queue();
+        MessageBuilder builder = new MessageBuilder();
 
-        event.getTextChannel().sendMessage("Currently disabled.").queue();
+        builder.append(String.format("`%sd:%sh:%sm:%ss`\t", days, hours, minutes, seconds));
+
+        builder.append("**" + event.getJDA().getSelfUser().getName() + "** has been running for ");
+
+        if (days != 0){
+            builder.append("**" + days + "**" + (days == 1 ? " day, " : " days, "));
+        }
+        if (hours != 0){
+            builder.append("**" + hours + "**" + (hours == 1 ? " hour, " : " hours, "));
+        }
+        if (minutes != 0){
+            builder.append("**" + minutes + "**" + (minutes == 1 ? " minute, " : " minutes, "));
+        }
+        if (seconds != 0) {
+            if (minutes != 0) {
+                builder.append(" and ");
+            }
+            builder.append("**" + seconds + "**" + (seconds == 1 ? " second." : " seconds."));
+        }
+
+        event.getTextChannel().sendMessage(builder.build()).queue();
 
     }
 
