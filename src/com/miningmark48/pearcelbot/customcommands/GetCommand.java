@@ -19,11 +19,11 @@ public class GetCommand {
 
             JsonObject jsonObj = JSONParseFile.JSONParse(CommandAddCommand.fileName);
             JsonObject jsonGuildCommands = null;
-            if (!jsonObj.isJsonNull()) {
+            if (jsonObj != null) {
                 jsonGuildCommands = jsonObj.get(event.getGuild().getId()).getAsJsonObject();
             }
 
-            if (!jsonGuildCommands.isJsonNull() && jsonGuildCommands.get(command) != null) {
+            if (jsonGuildCommands != null && jsonGuildCommands.get(command) != null) {
                 String commandResponse = jsonGuildCommands.get(command).getAsString();
 
                 event.getTextChannel().sendMessage(aliasReplace(commandResponse, event)).queue();
