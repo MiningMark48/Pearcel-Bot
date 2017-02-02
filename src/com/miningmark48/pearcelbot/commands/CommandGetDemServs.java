@@ -2,6 +2,8 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
+import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandGetDemServs implements ICommand {
@@ -19,9 +21,16 @@ public class CommandGetDemServs implements ICommand {
     public void action(String[] args, MessageReceivedEvent event) {
 
         if(event.getAuthor().getId().equalsIgnoreCase(Reference.botOwner)){
+            MessageBuilder builder = new MessageBuilder();
             event.getTextChannel().sendMessage("Check your PMs").queue();
             event.getAuthor().openPrivateChannel().queue();
-            event.getAuthor().getPrivateChannel().sendMessage(event.getJDA().getGuilds().toString()).queue();
+            builder.append("```");
+            for (Guild guild : event.getJDA().getGuilds()){
+                String guildName = guild.getName();
+                builder.append(guildName + "\n");
+            }
+            builder.append("```");
+            event.getAuthor().getPrivateChannel().sendMessage(builder.build()).queue();
         }else{
             event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.");
         }

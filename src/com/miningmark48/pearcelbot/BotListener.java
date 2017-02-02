@@ -3,6 +3,7 @@ package com.miningmark48.pearcelbot;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.chatlog.ChatLog;
 import com.miningmark48.pearcelbot.util.Logger;
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -19,6 +20,10 @@ public class BotListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
+        if (event.getJDA().getStatus() == JDA.Status.ATTEMPTING_TO_RECONNECT || event.getJDA().getStatus() == JDA.Status.CONNECTING_TO_WEBSOCKET){
+            return;
+        }
+
         if(event.getMessage().getContent().startsWith(Reference.botCommandKey) && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())){
             Main.handleCommand(Main.parser.parse(event.getMessage().getContent().toLowerCase(), event));
         }
@@ -41,7 +46,7 @@ public class BotListener extends ListenerAdapter {
             ChatLog.ChatLog(event);
         }
 
-        music(event);
+        music(event); //Temporary
 
     }
 
@@ -62,6 +67,7 @@ public class BotListener extends ListenerAdapter {
         Logger.log("status", "Logged in as: " + event.getJDA().getSelfUser().getName());
     }
 
+    //Temp
     private void music(MessageReceivedEvent event){
         if (!event.isFromType(ChannelType.TEXT))
             return;
@@ -134,6 +140,7 @@ public class BotListener extends ListenerAdapter {
 
     private void doAlert(MessageReceivedEvent event){
         event.getTextChannel().sendMessage("The music functionality has been moved to DJ Pearcel Bot. Click this link to add it: https://discordapp.com/oauth2/authorize?client_id=276447269417648138&scope=bot&permissions=3148800").queue();
+        event.getTextChannel().sendMessage("").queue();
     }
 
 }
