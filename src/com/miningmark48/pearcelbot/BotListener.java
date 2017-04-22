@@ -28,15 +28,15 @@ public class BotListener extends ListenerAdapter {
             Main.handleCommand(Main.parser.parse(event.getMessage().getContent().toLowerCase(), event));
         }
 
-        if (event.getJDA().getSelfUser() != null && event.getMember() != null) {
-            if(!event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())){
-                if (!event.getMember().getEffectiveName().equalsIgnoreCase(event.getJDA().getSelfUser().getName())) {
-                    if (event.getGuild().getMember(event.getJDA().getSelfUser()).getRoles().toString().contains(Reference.botAutoResponseRole)) {
-                        Main.handleMessage(event);
-                    }
-                }
-            }
-        }
+//        if (event.getJDA().getSelfUser() != null && event.getMember() != null) {
+//            if(!event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())){
+//                if (!event.getMember().getEffectiveName().equalsIgnoreCase(event.getJDA().getSelfUser().getName())) {
+//                    if (event.getGuild().getMember(event.getJDA().getSelfUser()).getRoles().toString().contains(Reference.botAutoResponseRole)) {
+//                        Main.handleMessage(event);
+//                    }
+//                }
+//            }
+//        }
 
         if(event.getMessage().getContent().startsWith(Reference.botCommandCustomKey) && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())){
             Main.handleCustom(event);

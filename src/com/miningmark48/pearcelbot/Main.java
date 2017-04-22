@@ -31,7 +31,7 @@ public class Main {
         try{
             jda = new JDABuilder(AccountType.BOT).addListener(new BotListener()).setToken(Reference.botToken).buildBlocking();
             jda.setAutoReconnect(true);
-            jda.getPresence().setGame(Game.of("Do ~cmds"));
+            jda.getPresence().setGame(Game.of(String.format("Do %scmds", Reference.botCommandKey)));
             //Clock.runClockGame(jda);
             Clock.runClockUptime(jda);
         }catch (Exception e){
