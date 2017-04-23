@@ -4,6 +4,7 @@ import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
 import com.sun.org.apache.regexp.internal.RE;
+import com.sun.webkit.graphics.Ref;
 
 public class InitializeCommands {
 
@@ -75,6 +76,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("lmgtfy", CommandLMGTFY.info);
         Reference.commandUsage.put("ping", CommandPing.info);
         Reference.commandUsage.put("poll", CommandPoll.info);
+        Reference.commandUsage.put("polln", CommandPollN.info);
         Reference.commandUsage.put("rps", CommandRPS.info);
         Reference.commandUsage.put("slap", CommandSlap.info);
         Reference.commandUsage.put("selfinfo", CommandSelfInfo.info);
