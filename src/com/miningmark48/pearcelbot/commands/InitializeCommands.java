@@ -30,6 +30,7 @@ public class InitializeCommands {
         Main.commands.put("guildinfo", new CommandGuildInfo());
         Main.commands.put("listbots", new CommandListBots());
         Main.commands.put("listcommands", new CommandListCommands());
+        Main.commands.put("lmgtfy", new CommandLMGTFY());
         Main.commands.put("nowplaying", new CommandNowPlaying());
         Main.commands.put("ping", new CommandPing());
         Main.commands.put("poll", new CommandPoll());
@@ -71,6 +72,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("guildinfo", CommandGuildInfo.info);
         Reference.commandUsage.put("listbots", CommandListBots.info);
         Reference.commandUsage.put("listcommands", CommandListCommands.info);
+        Reference.commandUsage.put("lmgtfy", CommandLMGTFY.info);
         Reference.commandUsage.put("ping", CommandPing.info);
         Reference.commandUsage.put("poll", CommandPoll.info);
         Reference.commandUsage.put("rps", CommandRPS.info);
