@@ -38,6 +38,9 @@ public class CommandTranslate implements ICommand {
             event.getTextChannel().sendMessage("Missing Arguments!").queue();
         }else{
             js = JSONParse.JSONParse("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160905T061211Z.a343ec6cd67c26fa.e72589fa4bb315cdd7d5b894e7b3ad76c50f2180&text=" + text + "&lang=" + languageCode);
+            if (event.getAuthor() != null){
+                event.getTextChannel().sendMessage(String.format("Here you go %s!", event.getAuthor().getAsMention())).queue();
+            }
             event.getTextChannel().sendMessage("**Translated**_\"" + message + "_ \" (**" + languageCode + "**) to:").queue();
             event.getTextChannel().sendMessage(js.get("text").getAsJsonArray().get(0).getAsString()).queue();
             event.getMessage().deleteMessage().queue();
