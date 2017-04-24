@@ -32,7 +32,6 @@ public class InitializeCommands {
         Main.commands.put("listbots", new CommandListBots());
         Main.commands.put("listcommands", new CommandListCommands());
         Main.commands.put("lmgtfy", new CommandLMGTFY());
-        Main.commands.put("nowplaying", new CommandNowPlaying());
         Main.commands.put("patreon", new CommandPatreon());
         Main.commands.put("ping", new CommandPing());
         Main.commands.put("poll", new CommandPoll());
@@ -48,8 +47,6 @@ public class InitializeCommands {
         Main.commands.put("translate", new CommandTranslate());
         Main.commands.put("twitchuser", new CommandTwitchUser());
         Main.commands.put("uptime", new CommandUptime());
-        Main.commands.put("volume", new CommandVolume());
-        Main.commands.put("voteskip", new CommandVoteSkip());
         Main.commands.put("youtubeuser", new CommandYoutubeUser());
 
         Main.commands.put("getdemservs", new CommandGetDemServs());
