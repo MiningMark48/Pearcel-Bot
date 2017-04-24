@@ -27,7 +27,7 @@ public class CommandUptime implements ICommand {
 
         MessageBuilder builder = new MessageBuilder();
 
-        builder.append(String.format("`%sd:%sh:%sm:%ss`\t", days, hours, minutes, seconds));
+        builder.append(String.format("\uD83D\uDD50 `%sd:%sh:%sm:%ss`\t", days, hours, minutes, seconds));
 
         builder.append("**" + event.getJDA().getSelfUser().getName() + "** has been running for ");
 
