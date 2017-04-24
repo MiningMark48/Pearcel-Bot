@@ -36,8 +36,8 @@ public class CommandBotInfo implements ICommand {
         embedBuilder.addField("Current Game", event.getJDA().getPresence().getGame().getName(), true);
         embedBuilder.addField("Status", StringUtils.capitalize(event.getJDA().getPresence().getStatus().name().toLowerCase()), true);
         embedBuilder.addField("Created On", event.getJDA().getSelfUser().getCreationTime().toString().substring(0, 10), true);
-        embedBuilder.addField("ICommand Key", Reference.botCommandKey, true);
-        embedBuilder.addField("Custom ICommand Key", Reference.botCommandCustomKey, true);
+        embedBuilder.addField("Command Key", Reference.botCommandKey, true);
+        embedBuilder.addField("Custom Command Key", Reference.botCommandCustomKey, true);
         embedBuilder.addField("Commander Role", Reference.botCommanderRole, true);
         embedBuilder.addField("Auto Response Role", Reference.botAutoResponseRole, true);
         embedBuilder.addField("Verified?", event.getJDA().getSelfUser().isVerified() ? "Yes" : "No", true);
