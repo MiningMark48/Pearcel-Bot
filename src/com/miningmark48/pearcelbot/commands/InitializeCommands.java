@@ -22,6 +22,7 @@ public class InitializeCommands {
         Main.commands.put("botinfo", new CommandBotInfo());
         Main.commands.put("cmds", new CommandCmds());
         Main.commands.put("coinflip", new CommandCoinFlip());
+        Main.commands.put("cursedata", new CommandCurseData());
         Main.commands.put("deletecommand", new CommandDeleteCommand());
         Main.commands.put("diceroll", new CommandDiceRoll());
         Main.commands.put("editcommand", new CommandEditCommand());
@@ -54,6 +55,7 @@ public class InitializeCommands {
         //Alias
         Main.commands.put("help", new CommandCmds());
         Main.commands.put("addcmd", new CommandAddCommand());
+        Main.commands.put("curseforge", new CommandCurseData());
         Main.commands.put("delcmd", new CommandDeleteCommand());
         Main.commands.put("listcmds", new CommandListCommands());
 
@@ -64,6 +66,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("botinfo", CommandBotInfo.info);
         Reference.commandUsage.put("cmds", CommandCmds.info);
         Reference.commandUsage.put("coinflip", CommandCoinFlip.info);
+        Reference.commandUsage.put("cursedata", CommandCurseData.info);
         Reference.commandUsage.put("diceroll", CommandDiceRoll.info);
         Reference.commandUsage.put("emojieval", CommandEmojiEval.info);
         Reference.commandUsage.put("geoip", CommandGeoIP.info);

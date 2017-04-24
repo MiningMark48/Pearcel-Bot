@@ -2,7 +2,7 @@ package com.miningmark48.pearcelbot.messages;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.util.JSONParseFile;
+import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.util.Random;

@@ -3,7 +3,7 @@ package com.miningmark48.pearcelbot.customcommands;
 import com.google.gson.JsonObject;
 import com.miningmark48.pearcelbot.commands.pbc.CommandAddCommand;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.JSONParseFile;
+import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class GetCommand {

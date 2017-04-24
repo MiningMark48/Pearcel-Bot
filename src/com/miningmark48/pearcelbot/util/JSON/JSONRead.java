@@ -1,7 +1,6 @@
-package com.miningmark48.pearcelbot.util;
+package com.miningmark48.pearcelbot.util.JSON;
 
 import com.google.gson.stream.JsonReader;
-import com.miningmark48.pearcelbot.reference.Reference;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

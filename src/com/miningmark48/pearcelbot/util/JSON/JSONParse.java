@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.util;
+package com.miningmark48.pearcelbot.util.JSON;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

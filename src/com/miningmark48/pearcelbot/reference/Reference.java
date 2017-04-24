@@ -1,6 +1,6 @@
 package com.miningmark48.pearcelbot.reference;
 
-import com.miningmark48.pearcelbot.util.JSONRead;
+import com.miningmark48.pearcelbot.util.JSON.JSONRead;
 
 import java.util.HashMap;
 
