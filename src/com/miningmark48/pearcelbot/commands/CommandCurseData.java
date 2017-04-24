@@ -97,9 +97,7 @@ public class CommandCurseData implements ICommand{
     }
 
     private static String toCurseURL(String projectName){
-        String curseBaseURL = "http://minecraft.curseforge.com/projects/";
-
-        return curseBaseURL + projectName.replaceAll(" ", "-");
+        return CurseData.PROJECT_URL + projectName.replaceAll(" ", "-");
     }
 
 }
