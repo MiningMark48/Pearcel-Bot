@@ -2,6 +2,7 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.CommandParser;
 import com.miningmark48.pearcelbot.util.Logger;
 import com.sun.org.apache.regexp.internal.RE;
 import com.sun.webkit.graphics.Ref;
@@ -13,6 +14,7 @@ public class InitializeCommands {
         Main.commands.clear();
         Reference.commandUsage.clear();
         Reference.commandUsage2.clear();
+        Reference.commandUsagePBC.clear();
 
         //Init
         Main.commands.put("8ball", new Command8Ball());
@@ -33,6 +35,7 @@ public class InitializeCommands {
         Main.commands.put("listcommands", new CommandListCommands());
         Main.commands.put("lmgtfy", new CommandLMGTFY());
         Main.commands.put("nowplaying", new CommandNowPlaying());
+        Main.commands.put("patreon", new CommandPatreon());
         Main.commands.put("ping", new CommandPing());
         Main.commands.put("poll", new CommandPoll());
         Main.commands.put("polln", new CommandPollN());
@@ -74,6 +77,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("listbots", CommandListBots.info);
         Reference.commandUsage.put("listcommands", CommandListCommands.info);
         Reference.commandUsage.put("lmgtfy", CommandLMGTFY.info);
+        Reference.commandUsage.put("patreon", CommandPatreon.info);
         Reference.commandUsage.put("ping", CommandPing.info);
         Reference.commandUsage.put("poll", CommandPoll.info);
         Reference.commandUsage.put("polln", CommandPollN.info);
