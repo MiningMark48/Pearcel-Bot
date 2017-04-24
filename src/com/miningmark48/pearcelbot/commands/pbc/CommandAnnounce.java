@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.pearcelbot.commands.pbc;
 
 import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
