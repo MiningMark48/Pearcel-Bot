@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class CommandCurseData implements ICommand{
 
-    public static final String desc = "Fetch Minecraft CurseForge data for a user";
+    public static final String desc = "Fetch Minecraft Curse data for a user";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "cursedata <arg>";
     public static final String info = desc + " " + usage;
 
@@ -33,20 +33,19 @@ public class CommandCurseData implements ICommand{
                 return;
             }
 
-            event.getTextChannel().sendMessage("\uD83D\uDD50 Fetching statistics...").queue();
+            event.getTextChannel().sendMessage(String.format("\uD83D\uDD50 Fetching statistics for %s.", Tools.formatText(Tools.FormatType.ITALIC, args[0]))).queue();
 
             final CurseData data = new CurseData(args[0]);
             final EmbedBuilder embed = new EmbedBuilder();
 
             if (!data.exists()) {
 
-                event.getTextChannel().sendMessage("No user could be found by the name of *" + StringUtils.capitalize(args[0]) + "*").queue();
+                event.getTextChannel().sendMessage("No user could be found by the name of " + Tools.formatText(Tools.FormatType.ITALIC, args[0])).queue();
                 return;
             }
-
             else if (!data.hasProjects()) {
 
-                event.getTextChannel().sendMessage("No projects found for *" + StringUtils.capitalize(args[0]) + "*").queue();
+                event.getTextChannel().sendMessage("No projects found for " + Tools.formatText(Tools.FormatType.ITALIC, args[0])).queue();
                 return;
             }
 
@@ -61,7 +60,7 @@ public class CommandCurseData implements ICommand{
                     continue;
                 }
 
-                embed.addField(set.getKey(), NumberFormat.getInstance().format(set.getValue()) + Tools.SEPERATOR + "[URL](" + toCurseURL(set.getKey()) + ")", true);
+                embed.addField(set.getKey(), NumberFormat.getInstance().format(set.getValue()) + " downloads" + Tools.SEPERATOR + "[URL](" + toCurseURL(set.getKey()) + ")", true);
                 addedProjects++;
             }
 
@@ -73,7 +72,7 @@ public class CommandCurseData implements ICommand{
                 embed.addField("Other Projects - " + (data.getProjectCount() - addedProjects), NumberFormat.getInstance().format(otherDLs), true);
 
             embed.setColor(Color.decode("#f05422"));
-            embed.setFooter("Data provided by Curse", null);
+            embed.setFooter(String.format("Data provided by Curse, Requested by %s", event.getAuthor().getName()), null);
             embed.setAuthor(StringUtils.capitalize(args[0]) + "'s Statistics", null, null);
 
             if (data.hasAvatar()) {

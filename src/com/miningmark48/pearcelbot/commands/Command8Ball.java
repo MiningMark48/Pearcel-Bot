@@ -2,6 +2,7 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.Tools;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -26,15 +27,15 @@ public class Command8Ball implements ICommand {
         event.getMessage().deleteMessage().queue();
         if (args.length != 0) {
             MessageBuilder builder = new MessageBuilder();
-            builder.append("**The Magic 8 Ball says...** \n");
+            builder.append(Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");
             for (int i = 0; i <= Integer.valueOf(args[0]) && i <= 25; i++) {
                 int num = rand.nextInt(responses.length);
-                builder.append("*" + responses[num] + "*\n");
+                builder.append(Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "\n");
             }
             event.getTextChannel().sendMessage(builder.build()).queue();
         }else{
             int num = rand.nextInt(responses.length);
-            event.getTextChannel().sendMessage("**The Magic 8 Ball says...** \n *" + responses[num] + "*").queue();
+            event.getTextChannel().sendMessage(Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "").queue();
         }
 
     }
