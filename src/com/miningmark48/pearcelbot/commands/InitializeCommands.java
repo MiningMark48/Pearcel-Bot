@@ -20,6 +20,7 @@ public class InitializeCommands {
         Main.commands.put("announce", new CommandAnnounce());
         Main.commands.put("bark", new CommandBark());
         Main.commands.put("botinfo", new CommandBotInfo());
+        Main.commands.put("botstats", new CommandBotStats());
         Main.commands.put("cmds", new CommandCmds());
         Main.commands.put("coinflip", new CommandCoinFlip());
         Main.commands.put("cursedata", new CommandCurseData());
@@ -64,6 +65,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("8ball", Command8Ball.info);
         Reference.commandUsage.put("bark", CommandBark.info);
         Reference.commandUsage.put("botinfo", CommandBotInfo.info);
+        Reference.commandUsage.put("botstats", CommandBotStats.info);
         Reference.commandUsage.put("cmds", CommandCmds.info);
         Reference.commandUsage.put("coinflip", CommandCoinFlip.info);
         Reference.commandUsage.put("cursedata", CommandCurseData.info);

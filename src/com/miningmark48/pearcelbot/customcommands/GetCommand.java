@@ -43,7 +43,7 @@ public class GetCommand {
         commandResponse = commandResponse.replace("{guild}", event.getGuild().getName());
         commandResponse = commandResponse.replace("{key}", Reference.botCommandCustomKey);
         commandResponse = commandResponse.replace("{owner}", event.getGuild().getOwner().getUser().getName());
-        commandResponse = commandResponse.replace("{role_command}", Reference.botCommanderRole);
+        commandResponse = commandResponse.replace("{role_commander}", Reference.botCommanderRole);
         commandResponse = commandResponse.replace("{role_auto_response}", Reference.botAutoResponseRole);
         commandResponse = commandResponse.replace("{server}", event.getGuild().getName());
         commandResponse = commandResponse.replace("{status}", event.getJDA().getPresence().getStatus().getKey());

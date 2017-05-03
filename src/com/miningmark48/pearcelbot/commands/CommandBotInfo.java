@@ -25,14 +25,14 @@ public class CommandBotInfo implements ICommand {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.decode("#A2F000"));
-        embedBuilder.setAuthor(event.getJDA().getSelfUser().getName(), "http://www.miningmark48.xyz/pearcelbot", event.getJDA().getSelfUser().getAvatarUrl());
+        embedBuilder.setAuthor(event.getJDA().getSelfUser().getName() + " Information", "http://www.miningmark48.xyz/pearcelbot", event.getJDA().getSelfUser().getAvatarUrl());
         embedBuilder.setThumbnail(event.getJDA().getSelfUser().getAvatarUrl());
 
         embedBuilder.addField("Name", event.getJDA().getSelfUser().getName(), true);
         embedBuilder.addField("ID", event.getJDA().getSelfUser().getId(), true);
         embedBuilder.addField("Author", Reference.botAuthor, true);
         embedBuilder.addField("Version", "N/A", true);
-        embedBuilder.addField("Library", JDAInfo.VERSION, true);
+        embedBuilder.addField("Library", "JDA - " + JDAInfo.VERSION, true);
         embedBuilder.addField("Current Game", event.getJDA().getPresence().getGame().getName(), true);
         embedBuilder.addField("Status", StringUtils.capitalize(event.getJDA().getPresence().getStatus().name().toLowerCase()), true);
         embedBuilder.addField("Created On", event.getJDA().getSelfUser().getCreationTime().toString().substring(0, 10), true);
@@ -41,14 +41,6 @@ public class CommandBotInfo implements ICommand {
         embedBuilder.addField("Commander Role", Reference.botCommanderRole, true);
         embedBuilder.addField("Auto Response Role", Reference.botAutoResponseRole, true);
         embedBuilder.addField("Verified?", event.getJDA().getSelfUser().isVerified() ? "Yes" : "No", true);
-
-        embedBuilder.addBlankField(false);
-        embedBuilder.addField("Stats", "----------", false);
-        embedBuilder.addField("Connected Servers", String.valueOf(event.getJDA().getGuilds().size()), true);
-        embedBuilder.addField("Text Channels", String.valueOf(event.getJDA().getTextChannels().size()), true);
-        embedBuilder.addField("Voice Channels", String.valueOf(event.getJDA().getVoiceChannels().size()), true);
-        embedBuilder.addField("Private Channels", String.valueOf(event.getJDA().getPrivateChannels().size()), true);
-        embedBuilder.addField("Visible Users", String.valueOf(event.getJDA().getUsers().size()), true);
 
         embedBuilder.addField("", "Report any issues or suggestions to MiningMark48#6817.", false);
 
