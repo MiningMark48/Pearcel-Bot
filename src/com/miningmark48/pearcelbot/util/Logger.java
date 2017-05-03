@@ -6,4 +6,16 @@ public class Logger{
         System.out.printf("[%s] %s\n", par1.toUpperCase(), message);
     }
 
+    public static void log(LogType type, String message){
+        System.out.printf("[%s] %s\n", type.name().toUpperCase(), message);
+    }
+
+    public enum LogType{
+        INFO,
+        DEBUG,
+        WARN,
+        FATAL,
+        STATUS
+    }
+
 }

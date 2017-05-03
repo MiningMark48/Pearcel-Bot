@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Reference {
 
-    public static String botVersion = "0.0.1";
+    public static String botVersion = "0.0.1";                                  //Not used at the moment
     public static String botAuthor = "MiningMark48";
     public static String botOwner = "138819223932633088";                       //Owner ID
 
