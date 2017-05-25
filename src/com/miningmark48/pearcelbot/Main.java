@@ -9,6 +9,7 @@ import com.miningmark48.pearcelbot.util.CommandParser;
 import com.miningmark48.pearcelbot.util.JSON.JSONRead;
 import com.miningmark48.pearcelbot.util.JSON.JSONWrite;
 import com.miningmark48.pearcelbot.util.Logger;
+import com.miningmark48.pearcelbot.util.enums.LogType;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -36,7 +37,7 @@ public class Main {
             //Clock.runClockGame(jda);
             Clock.runClockUptime(jda);
 
-            Logger.log(Logger.LogType.STATUS, "Bot started!");
+            Logger.log(LogType.INFO, "Bot started!");
 
         }catch (Exception e){
             e.printStackTrace();

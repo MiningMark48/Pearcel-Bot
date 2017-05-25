@@ -1,5 +1,7 @@
 package com.miningmark48.pearcelbot.util;
 
+import com.miningmark48.pearcelbot.util.enums.LogType;
+
 public class Logger{
 
     public static void log(String par1, String message){
@@ -10,12 +12,6 @@ public class Logger{
         System.out.printf("[%s] %s\n", type.name().toUpperCase(), message);
     }
 
-    public enum LogType{
-        INFO,
-        DEBUG,
-        WARN,
-        FATAL,
-        STATUS
-    }
+
 
 }
