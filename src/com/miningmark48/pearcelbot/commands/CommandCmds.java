@@ -27,9 +27,7 @@ public class CommandCmds implements ICommand {
             return;
         }
 
-        if (event.getAuthor().getPrivateChannel() == null) {
-            event.getAuthor().openPrivateChannel().queue();
-        }
+        event.getAuthor().openPrivateChannel().queue();
 
         if (event.getAuthor() == null) {
             event.getTextChannel().sendMessage("Sending you a list of commands now.").queue();
