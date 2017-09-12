@@ -5,6 +5,8 @@ import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
 
+import java.rmi.registry.Registry;
+
 public class InitializeCommands {
 
     public static void init(){
@@ -28,6 +30,7 @@ public class InitializeCommands {
         Main.commands.put("diceroll", new CommandDiceRoll());
         Main.commands.put("editcommand", new CommandEditCommand());
         Main.commands.put("emojieval", new CommandEmojiEval());
+        Main.commands.put("fizzbuzz", new CommandFizzbuzz());
         Main.commands.put("geoip", new CommandGeoIP());
         Main.commands.put("githubuser", new CommandGithubUser());
         Main.commands.put("guildinfo", new CommandGuildInfo());
@@ -71,6 +74,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("cursedata", CommandCurseData.info);
         Reference.commandUsage.put("diceroll", CommandDiceRoll.info);
         Reference.commandUsage.put("emojieval", CommandEmojiEval.info);
+        Reference.commandUsage.put("fizzbuzz", CommandFizzbuzz.info);
         Reference.commandUsage.put("geoip", CommandGeoIP.info);
         Reference.commandUsage.put("githubuser", CommandGithubUser.info);
         Reference.commandUsage.put("guildinfo", CommandGuildInfo.info);
