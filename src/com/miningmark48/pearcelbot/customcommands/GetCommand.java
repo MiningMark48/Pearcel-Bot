@@ -6,6 +6,18 @@ import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.sql.Time;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.TemporalAccessor;
+import java.time.zone.ZoneRulesException;
+import java.util.Date;
+import java.util.Random;
+import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class GetCommand {
 
     public static void init(MessageReceivedEvent event) {
@@ -48,8 +60,28 @@ public class GetCommand {
         commandResponse = commandResponse.replace("{server}", event.getGuild().getName());
         commandResponse = commandResponse.replace("{status}", event.getJDA().getPresence().getStatus().getKey());
 
+        commandResponse = aliasRand(commandResponse);
+
         return commandResponse;
 
+    }
+
+    private static String aliasRand(String message){
+        Random rand = new Random();
+        Pattern regex = Pattern.compile("\\{(rand:)(.*[0-9])}");
+        Matcher matcher = regex.matcher(message);
+
+        while (matcher.find()){
+            if (matcher.group().length() != 0){
+                try{
+                    message = message.replaceAll(regex.pattern(), String.valueOf(rand.nextInt(Integer.parseInt(matcher.group(2)))));
+                }catch (NumberFormatException e){
+                    message = "**ERROR:** NumberFormatException";
+                }
+            }
+        }
+
+        return message;
     }
 
 }

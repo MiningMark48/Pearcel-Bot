@@ -48,19 +48,23 @@ public class GuildJoinChat {
         message = message.replace(key + "id" + key, member.getUser().getId());
         message = message.replace(key + "vchannel" + key, member.getVoiceState().inVoiceChannel() ? member.getVoiceState().getChannel().getName() : "..");
 
-        message = aliasRand(message, key);
+        message = aliasRand(message);
 
         return message;
     }
 
-    private static String aliasRand(String message, char key){
+    private static String aliasRand(String message){
         Random rand = new Random();
-        Pattern regex = Pattern.compile(key + "(rand:)(.*[0-9])" + key);
+        Pattern regex = Pattern.compile("%(rand:)(.*[0-9])%");
         Matcher matcher = regex.matcher(message);
 
         while (matcher.find()){
             if (matcher.group().length() != 0){
-                message = message.replaceAll(regex.pattern(), String.valueOf(rand.nextInt(Integer.parseInt(matcher.group(2)))));
+                try{
+                    message = message.replaceAll(regex.pattern(), String.valueOf(rand.nextInt(Integer.parseInt(matcher.group(2)))));
+                }catch (NumberFormatException e){
+                    message = "**ERROR:** NumberFormatException";
+                }
             }
         }
 
