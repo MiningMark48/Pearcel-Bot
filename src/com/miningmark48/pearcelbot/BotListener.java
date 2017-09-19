@@ -1,6 +1,7 @@
 package com.miningmark48.pearcelbot;
 
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.GuildJoinChat;
 import com.miningmark48.pearcelbot.util.chatlog.ChatLog;
 import com.miningmark48.pearcelbot.util.Logger;
 import net.dv8tion.jda.core.JDA;
@@ -8,6 +9,7 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.exceptions.PermissionException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -65,4 +67,8 @@ public class BotListener extends ListenerAdapter {
         Logger.log("status", "Logged in as: " + event.getJDA().getSelfUser().getName());
     }
 
+    @Override
+    public void onGuildVoiceJoin(GuildVoiceJoinEvent event) {
+        GuildJoinChat.joinedVoice(event);
+    }
 }

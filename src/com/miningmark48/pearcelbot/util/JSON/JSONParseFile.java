@@ -14,9 +14,8 @@ public class JSONParseFile {
             JsonParser jp = new JsonParser();
             InputStream inputStream = new FileInputStream(file);
             JsonElement root = jp.parse(new InputStreamReader(inputStream));
-            JsonObject rootObj = root.getAsJsonObject();
 
-            return rootObj;
+            return root.getAsJsonObject();
 
         } catch (IOException e) {
             e.printStackTrace();

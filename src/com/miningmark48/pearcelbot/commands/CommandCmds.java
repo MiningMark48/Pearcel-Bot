@@ -73,9 +73,9 @@ public class CommandCmds implements ICommand {
         messageBuilder2.append("```" + message2 + "```\n");
         messageBuilderPBC.append("**" + Reference.botCommanderRole + " Commands: **\n");
         messageBuilderPBC.append("```" + messagePBC + "```\n");
-        messageBuilderM.append("**Pearcel Bot's Music Commands were moved to DJ Pearcel Bot.** Click this link to get it: https://discordapp.com/oauth2/authorize?client_id=276447269417648138&scope=bot&permissions=3148800\n");
+//        messageBuilderM.append("**Pearcel Bot's Music Commands were moved to DJ Pearcel Bot.** Click this link to get it: https://discordapp.com/oauth2/authorize?client_id=276447269417648138&scope=bot&permissions=3148800\n");
 
-        messageBuilderM.append("To use auto-response talking (Chat Bot), give *" + event.getJDA().getSelfUser().getName() + "* the role `" + Reference.botAutoResponseRole + "`.\n");
+//        messageBuilderM.append("To use auto-response talking (Chat Bot), give *" + event.getJDA().getSelfUser().getName() + "* the role `" + Reference.botAutoResponseRole + "`.\n");
 
         event.getAuthor().getPrivateChannel().sendMessage(messageBuilder.build()).queue();
         //event.getAuthor().getPrivateChannel().sendMessage(messageBuilder2.build()).queue();
