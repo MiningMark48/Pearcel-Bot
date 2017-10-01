@@ -43,7 +43,7 @@ public class CommandTranslate implements ICommand {
             }
             event.getTextChannel().sendMessage("**Translated**_\"" + message + "_ \" (**" + languageCode + "**) to:").queue();
             event.getTextChannel().sendMessage(js.get("text").getAsJsonArray().get(0).getAsString()).queue();
-            event.getMessage().deleteMessage().queue();
+            event.getMessage().delete().queue();
         }
 
 

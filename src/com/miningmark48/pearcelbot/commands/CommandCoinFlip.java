@@ -25,7 +25,7 @@ public class CommandCoinFlip implements ICommand {
 
         num = rand.nextInt(2);
 
-        event.getMessage().deleteMessage().queue();
+        event.getMessage().delete().queue();
         event.getTextChannel().sendMessage(String.format("\uD83D\uDCB0 **You flipped a coin and got...** *%s* \uD83D\uDCB0", num == 0 ? "Heads" : "Tails")).queue();
     }
 

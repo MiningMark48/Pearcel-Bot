@@ -20,7 +20,7 @@ public class CommandSay implements ICommand {
         String messageFinal = event.getMessage().getContent().substring(5);
 
         if (event.getMember().getRoles().contains(Reference.botCommanderRole) || event.getGuild().getOwner() == event.getMember() || event.getAuthor().getId().equals(Reference.botOwner)){
-            event.getMessage().deleteMessage().queue();
+            event.getMessage().delete().queue();
             event.getTextChannel().sendMessage(messageFinal).queue();
         }else{
             event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.").queue();

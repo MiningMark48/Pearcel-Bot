@@ -22,7 +22,7 @@ public class CommandGetDemServs implements ICommand {
 
         if(event.getAuthor().getId().equalsIgnoreCase(Reference.botOwner)){
             MessageBuilder builder = new MessageBuilder();
-            event.getTextChannel().sendMessage("Check your PMs").queue();
+            event.getTextChannel().sendMessage("Check your DMs").queue();
             event.getAuthor().openPrivateChannel().queue();
             builder.append("```");
             for (Guild guild : event.getJDA().getGuilds()){
@@ -30,7 +30,7 @@ public class CommandGetDemServs implements ICommand {
                 builder.append(guildName + "\n");
             }
             builder.append("```");
-            event.getAuthor().getPrivateChannel().sendMessage(builder.build()).queue();
+            event.getAuthor().openPrivateChannel().queue(chan -> chan.sendMessage(builder.build()).queue());
         }else{
             event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.");
         }

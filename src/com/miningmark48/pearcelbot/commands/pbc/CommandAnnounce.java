@@ -22,7 +22,7 @@ public class CommandAnnounce implements ICommand {
 
         if (event.getMember().getRoles().toString().contains(Reference.botCommanderRole) || event.getGuild().getOwner() == event.getMember() || event.getAuthor().getId().equals(Reference.botOwner)){
             event.getTextChannel().sendMessage("**-----Announcement-----**\n" + messageFinal + "\n**----------------------------**").queue();
-            event.getMessage().deleteMessage().queue();
+            event.getMessage().delete().queue();
         }else{
             event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.").queue();
         }

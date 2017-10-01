@@ -3,11 +3,14 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.requests.RestAction;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class CommandCmds implements ICommand {
 
@@ -27,7 +30,7 @@ public class CommandCmds implements ICommand {
             return;
         }
 
-        event.getAuthor().openPrivateChannel().queue();
+        RestAction<PrivateChannel> privateChannel = event.getAuthor().openPrivateChannel();
 
         if (event.getAuthor() == null) {
             event.getTextChannel().sendMessage("Sending you a list of commands now.").queue();
@@ -73,15 +76,15 @@ public class CommandCmds implements ICommand {
         messageBuilder2.append("```" + message2 + "```\n");
         messageBuilderPBC.append("**" + Reference.botCommanderRole + " Commands: **\n");
         messageBuilderPBC.append("```" + messagePBC + "```\n");
-//        messageBuilderM.append("**Pearcel Bot's Music Commands were moved to DJ Pearcel Bot.** Click this link to get it: https://discordapp.com/oauth2/authorize?client_id=276447269417648138&scope=bot&permissions=3148800\n");
 
-//        messageBuilderM.append("To use auto-response talking (Chat Bot), give *" + event.getJDA().getSelfUser().getName() + "* the role `" + Reference.botAutoResponseRole + "`.\n");
+        messageBuilderM.append("For music commands, do `~~help`");
 
-        event.getAuthor().getPrivateChannel().sendMessage(messageBuilder.build()).queue();
-        //event.getAuthor().getPrivateChannel().sendMessage(messageBuilder2.build()).queue();
-        event.getAuthor().getPrivateChannel().sendMessage(messageBuilderPBC.build()).queue();
-        event.getAuthor().getPrivateChannel().sendMessage(messageBuilderM.build()).queue();
-
+        privateChannel.queue(chan -> {
+            chan.sendMessage(messageBuilder.build()).queue();
+//            chan.sendMessage(messageBuilder2.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
+            chan.sendMessage(messageBuilderPBC.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
+            chan.sendMessage(messageBuilderM.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
+        });
 
     }
 

@@ -37,7 +37,7 @@ public class CommandDiceRoll implements ICommand {
             }
         }
 
-        event.getMessage().deleteMessage().queue();
+        event.getMessage().delete().queue();
     }
 
     @Override

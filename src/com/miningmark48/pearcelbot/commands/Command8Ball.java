@@ -24,7 +24,7 @@ public class Command8Ball implements ICommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         Random rand = new Random();
-        event.getMessage().deleteMessage().queue();
+        event.getMessage().delete().queue();
         if (args.length != 0) {
             MessageBuilder builder = new MessageBuilder();
             builder.append(Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");

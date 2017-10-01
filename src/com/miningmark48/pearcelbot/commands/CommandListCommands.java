@@ -47,8 +47,7 @@ public class CommandListCommands implements ICommand {
             builder.append("\n```");
 
             event.getTextChannel().sendMessage(event.getAuthor().getName() + ", Sending you a list of custom commands for *" + jsonObjServ.get("_comment_serverName_").getAsString() + "* now.").queue();
-            event.getAuthor().openPrivateChannel().queue();
-            event.getAuthor().getPrivateChannel().sendMessage(builder.build()).queue();
+            event.getAuthor().openPrivateChannel().queue(chan -> chan.sendMessage(builder.build()).queue());
 
         }
     }
