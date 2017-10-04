@@ -49,10 +49,6 @@ public class CommandMixerUser implements ICommand {
                     }
                 }
 
-                if (!userObject.get("bio").isJsonNull() && !userObject.get("bio").getAsString().equalsIgnoreCase("")){
-                    embedBuilder.addField("Bio", userObject.get("bio").getAsString(), false);
-                }
-
                 if (!channelObject.get("name").isJsonNull()){
                     embedBuilder.addField("Stream Title", channelObject.get("name").getAsString(), false);
                 }
@@ -109,6 +105,9 @@ public class CommandMixerUser implements ICommand {
                     embedBuilder.addField("Vods Enabled?", channelObject.get("vodsEnabled").getAsBoolean() ? "Yes" : "No", true);
                 }
 
+                if (!userObject.get("bio").isJsonNull() && !userObject.get("bio").getAsString().equalsIgnoreCase("")){
+                    embedBuilder.addField("Bio", userObject.get("bio").getAsString(), false);
+                }
 
                 event.getTextChannel().sendMessage(embedBuilder.build()).queue();
 
