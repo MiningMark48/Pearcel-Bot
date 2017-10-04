@@ -44,6 +44,7 @@ public class CommandMixerUser implements ICommand {
                 if (!userObject.get("username").isJsonNull()){
                     if (!userObject.get("avatarUrl").isJsonNull()) {
                         embedBuilder.setAuthor(userObject.get("username").getAsString(), "http://mixer.com/" + userObject.get("username").getAsString(), userObject.get("avatarUrl").getAsString());
+                        embedBuilder.setThumbnail(userObject.get("avatarUrl").getAsString());
                     }else{
                         embedBuilder.setAuthor(userObject.get("username").getAsString(), "http://mixer.com/" + userObject.get("username").getAsString(), "https://i.imgur.com/iznLTir.png");
                     }
