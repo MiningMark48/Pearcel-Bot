@@ -31,9 +31,11 @@ public class CommandMixerUser implements ICommand {
             try {
                 js = JSONParse.JSONParse("https://mixer.com/api/v1/channels/" + args[0]);
 
+                JsonObject typeObject = null;
+
                 JsonObject userObject = js.get("user").getAsJsonObject();
                 JsonObject channelObject = userObject.get("channel").getAsJsonObject();
-                JsonObject typeObject = js.get("type").getAsJsonObject();
+                if (!js.get("type").isJsonNull()) typeObject = js.get("type").getAsJsonObject();
 
                 EmbedBuilder embedBuilder = new EmbedBuilder();
                 embedBuilder.setColor(Color.decode("#20BAED"));
@@ -55,7 +57,7 @@ public class CommandMixerUser implements ICommand {
                     embedBuilder.addField("Stream Title", channelObject.get("name").getAsString(), false);
                 }
 
-                if (!typeObject.get("name").isJsonNull()){
+                if (typeObject != null && !typeObject.get("name").isJsonNull()){
                     embedBuilder.addField("Stream Type", typeObject.get("name").getAsString(), false);
                 }
 
