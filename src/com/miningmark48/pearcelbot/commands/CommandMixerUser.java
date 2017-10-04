@@ -58,7 +58,7 @@ public class CommandMixerUser implements ICommand {
                 }
 
                 if (typeObject != null && !typeObject.get("name").isJsonNull()){
-                    embedBuilder.addField("Stream Type", typeObject.get("name").getAsString(), false);
+                    embedBuilder.addField("Game", typeObject.get("name").getAsString(), false);
                 }
 
                 if (!channelObject.get("online").isJsonNull()){
