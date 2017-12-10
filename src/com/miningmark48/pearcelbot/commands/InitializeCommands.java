@@ -4,6 +4,7 @@ import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
+import com.sun.org.apache.regexp.internal.RE;
 
 import java.rmi.registry.Registry;
 
@@ -38,6 +39,7 @@ public class InitializeCommands {
         Main.commands.put("listcommands", new CommandListCommands());
         Main.commands.put("lmgtfy", new CommandLMGTFY());
         Main.commands.put("mixeruser", new CommandMixerUser());
+        Main.commands.put("numtoword", new CommandNumberToWords());
         Main.commands.put("patreon", new CommandPatreon());
         Main.commands.put("ping", new CommandPing());
         Main.commands.put("poll", new CommandPoll());
@@ -83,6 +85,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("listcommands", CommandListCommands.info);
         Reference.commandUsage.put("lmgtfy", CommandLMGTFY.info);
         Reference.commandUsage.put("mixeruser", CommandMixerUser.info);
+        Reference.commandUsage.put("numtoword", CommandNumberToWords.info);
         Reference.commandUsage.put("patreon", CommandPatreon.info);
         Reference.commandUsage.put("ping", CommandPing.info);
         Reference.commandUsage.put("poll", CommandPoll.info);
