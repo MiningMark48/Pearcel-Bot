@@ -81,9 +81,9 @@ public class CommandCmds implements ICommand {
 
         privateChannel.queue(chan -> {
             chan.sendMessage(messageBuilder.build()).queue();
-//            chan.sendMessage(messageBuilder2.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
-            chan.sendMessage(messageBuilderPBC.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
-            chan.sendMessage(messageBuilderM.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
+            chan.sendMessage(messageBuilder2.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
+            chan.sendMessage(messageBuilderPBC.build()).queueAfter(1750, TimeUnit.MILLISECONDS);
+            chan.sendMessage(messageBuilderM.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
         });
 
     }
