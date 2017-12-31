@@ -1,8 +1,11 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
+import com.miningmark48.pearcelbot.ICommandPrivate;
+import com.miningmark48.pearcelbot.messages.MessageGeneral;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.CurseData;
+import com.miningmark48.pearcelbot.util.MessageHelper;
 import com.miningmark48.pearcelbot.util.Tools;
 import com.sun.xml.internal.ws.util.StringUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -12,7 +15,7 @@ import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Map;
 
-public class CommandCurseData implements ICommand{
+public class CommandCurseData implements ICommand, ICommandPrivate {
 
     public static final String desc = "Fetch Minecraft Curse data for a user";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "cursedata <arg>";
@@ -25,27 +28,46 @@ public class CommandCurseData implements ICommand{
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        getData(args, event, false);
+    }
+
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        getData(args, event, true);
+    }
+
+    private static String toCurseURL(String projectName){
+        return CurseData.PROJECT_URL + projectName.replaceAll(" ", "-");
+    }
+
+    private static void getData(String[] args, MessageReceivedEvent event, boolean isPrivate) {
+
         if (args.length >= 1) {
 
             if (args[0].contains("@")) {
 
-                event.getTextChannel().sendMessage("This command uses names registered on Curse, not Discord!").queue();
+                MessageHelper.sendMessage(event, "This command uses names registered on Curse, not Discord!", isPrivate);
                 return;
             }
 
-            event.getTextChannel().sendMessage(String.format("\uD83D\uDD50 Fetching statistics for %s.", Tools.formatText(Tools.FormatType.ITALIC, args[0]))).queue();
+            MessageHelper.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", Tools.formatText(Tools.FormatType.ITALIC, args[0])), isPrivate);
 
             final CurseData data = new CurseData(args[0]);
             final EmbedBuilder embed = new EmbedBuilder();
 
             if (!data.exists()) {
 
-                event.getTextChannel().sendMessage("No user could be found by the name of " + Tools.formatText(Tools.FormatType.ITALIC, args[0])).queue();
+                MessageHelper.sendMessage(event, "No user could be found by the name of " + Tools.formatText(Tools.FormatType.ITALIC, args[0]), isPrivate);
                 return;
             }
             else if (!data.hasProjects()) {
 
-                event.getTextChannel().sendMessage("No projects found for " + Tools.formatText(Tools.FormatType.ITALIC, args[0])).queue();
+                MessageHelper.sendMessage(event, "No projects found for " + Tools.formatText(Tools.FormatType.ITALIC, args[0]), isPrivate);
                 return;
             }
 
@@ -81,22 +103,12 @@ public class CommandCurseData implements ICommand{
                 embed.setThumbnail("https://media-corp.cursecdn.com/attachments/0/201/logo4.png");
             }
 
-            event.getTextChannel().sendMessage(embed.build()).queue();
+            MessageHelper.sendMessage(event, embed.build(), isPrivate);
 
         }
         else {
-            event.getTextChannel().sendMessage("You must specify the name of a user that is registered on Curse!").queue();
+            MessageHelper.sendMessage(event, "You must specify the name of a user that is registered on Curse!", isPrivate);
         }
-
-    }
-
-    @Override
-    public void executed(boolean success, MessageReceivedEvent event) {
-
-    }
-
-    private static String toCurseURL(String projectName){
-        return CurseData.PROJECT_URL + projectName.replaceAll(" ", "-");
     }
 
 }
