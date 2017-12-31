@@ -1,6 +1,7 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
+import com.miningmark48.pearcelbot.ICommandPrivate;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.PrivateChannel;
@@ -12,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class CommandCmds implements ICommand {
+public class CommandCmds implements ICommand, ICommandPrivate {
 
     public static final String desc = "Returns a list of commands.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "cmds";
@@ -25,17 +26,32 @@ public class CommandCmds implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        getCmds(event, false);
+    }
 
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        getCmds(event, true);
+    }
+
+    private static void getCmds(MessageReceivedEvent event, boolean isPrivate) {
         if (event.getAuthor() == null) {
             return;
         }
 
         RestAction<PrivateChannel> privateChannel = event.getAuthor().openPrivateChannel();
 
-        if (event.getAuthor() == null) {
-            event.getTextChannel().sendMessage("Sending you a list of commands now.").queue();
-        }else {
-            event.getTextChannel().sendMessage("**" + event.getAuthor().getAsMention() + "**, Sending you a list of commands now.").queue();
+        if (!isPrivate) {
+            if (event.getAuthor() == null) {
+                event.getTextChannel().sendMessage("Sending you a list of commands now.").queue();
+            } else {
+                event.getTextChannel().sendMessage("**" + event.getAuthor().getAsMention() + "**, Sending you a list of commands now.").queue();
+            }
         }
 
         Set set = Reference.commandUsage.entrySet();
@@ -85,11 +101,6 @@ public class CommandCmds implements ICommand {
             chan.sendMessage(messageBuilderPBC.build()).queueAfter(1750, TimeUnit.MILLISECONDS);
             chan.sendMessage(messageBuilderM.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
         });
-
     }
 
-    @Override
-    public void executed(boolean success, MessageReceivedEvent event) {
-
-    }
 }

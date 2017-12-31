@@ -13,6 +13,7 @@ import com.miningmark48.pearcelbot.util.enums.LogType;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -52,7 +53,13 @@ public class Main {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
 
             if(safe){
-                commands.get(cmd.invoke).action(cmd.args, cmd.event);
+                if (cmd.event.getChannelType() == ChannelType.PRIVATE) {
+                    if (commands.get(cmd.invoke) instanceof ICommandPrivate) {
+                        ((ICommandPrivate) commands.get(cmd.invoke)).actionPrivate(cmd.args, cmd.event);
+                    }
+                } else {
+                    commands.get(cmd.invoke).action(cmd.args, cmd.event);
+                }
                 commands.get(cmd.invoke).executed(safe, cmd.event);
             }else{
                 commands.get(cmd.invoke).executed(safe, cmd.event);

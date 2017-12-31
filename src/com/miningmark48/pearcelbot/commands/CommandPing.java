@@ -1,12 +1,13 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
+import com.miningmark48.pearcelbot.ICommandPrivate;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.time.temporal.ChronoUnit;
 
-public class CommandPing implements ICommand {
+public class CommandPing implements ICommand, ICommandPrivate {
 
     public static final String desc = "Simple Ping, Pong.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "ping";
@@ -25,5 +26,10 @@ public class CommandPing implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
         return;
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        event.getPrivateChannel().sendMessage("\uD83C\uDFD3 **Pong! **...").queue(m -> m.editMessage("\uD83C\uDFD3 **Pong! **" + event.getMessage().getCreationTime().until(m.getCreationTime(), ChronoUnit.MILLIS) + "ms \uD83D\uDCF6").queue());
     }
 }
