@@ -2,15 +2,17 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.google.gson.JsonObject;
 import com.miningmark48.pearcelbot.ICommand;
+import com.miningmark48.pearcelbot.ICommandPrivate;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
+import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 import java.text.DecimalFormat;
 
-public class CommandTwitchUser implements ICommand {
+public class CommandTwitchUser implements ICommand, ICommandPrivate {
 
     public static final String desc = "Get information about a user on Twitch.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "twitchuser <arg>";
@@ -23,12 +25,25 @@ public class CommandTwitchUser implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        doCmd(event, args, false);
+    }
 
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        doCmd(event, args, true);
+    }
+
+    private static void doCmd(MessageReceivedEvent event, String[] args, boolean isPrivate) {
         JsonObject js;
         JsonObject js2;
 
         if (args.length <= 0){
-            event.getTextChannel().sendMessage("Missing Argument!");
+            MessageHelper.sendMessage(event, "Missing Argument!", isPrivate);
         }else{
             try {
                 js = JSONParse.JSONParseTwitch("https://api.twitch.tv/kraken/channels/" + args[0] + "?callback=foo&client_id=7fr372mwgdks9l4zb0ba2z0najhh84");
@@ -71,18 +86,13 @@ public class CommandTwitchUser implements ICommand {
                     embedBuilder.addField("Partnered?", js.get("partner").getAsBoolean() ? "Yes" : "No", true);
                 }
 
-                event.getTextChannel().sendMessage(embedBuilder.build()).queue();
+                MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
 
             }catch (NullPointerException e){
-                event.getTextChannel().sendMessage("Error: Could not retrieve user data.").queue();
+                MessageHelper.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
             }
 
         }
-
     }
 
-    @Override
-    public void executed(boolean success, MessageReceivedEvent event) {
-
-    }
 }

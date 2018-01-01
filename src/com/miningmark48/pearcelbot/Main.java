@@ -49,10 +49,10 @@ public class Main {
     }
 
     static void handleCommand(CommandParser.CommandContainer cmd){
-        if(commands.containsKey(cmd.invoke)){
+        if (commands.containsKey(cmd.invoke)) {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
 
-            if(safe){
+            if (safe){
                 if (cmd.event.getChannelType() == ChannelType.PRIVATE) {
                     if (commands.get(cmd.invoke) instanceof ICommandPrivate) {
                         ((ICommandPrivate) commands.get(cmd.invoke)).actionPrivate(cmd.args, cmd.event);
@@ -61,7 +61,7 @@ public class Main {
                     commands.get(cmd.invoke).action(cmd.args, cmd.event);
                 }
                 commands.get(cmd.invoke).executed(safe, cmd.event);
-            }else{
+            } else {
                 commands.get(cmd.invoke).executed(safe, cmd.event);
             }
 

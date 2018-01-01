@@ -1,13 +1,15 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
+import com.miningmark48.pearcelbot.ICommandPrivate;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandSelfInfo implements ICommand {
+public class CommandSelfInfo implements ICommand, ICommandPrivate {
 
     public static final String desc = "Get information about yourself on Discord.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "selfinfo";
@@ -20,6 +22,20 @@ public class CommandSelfInfo implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        doCmd(event, false);
+    }
+
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        doCmd(event, true);
+    }
+
+    private static void doCmd(MessageReceivedEvent event, boolean isPrivate) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.decode("#7289da"));
         embedBuilder.setAuthor(event.getAuthor().getName(), null, event.getAuthor().getAvatarUrl());
@@ -30,11 +46,7 @@ public class CommandSelfInfo implements ICommand {
         embedBuilder.addField("Created On", event.getAuthor().getCreationTime().toString().substring(0, 10), true);
         embedBuilder.addField("Is Bot?", event.getAuthor().isBot() ? "Yes" : "No", true);
 
-        event.getTextChannel().sendMessage(embedBuilder.build()).queue();
+        MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
     }
 
-    @Override
-    public void executed(boolean success, MessageReceivedEvent event) {
-
-    }
 }

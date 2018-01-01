@@ -3,8 +3,11 @@ package com.miningmark48.pearcelbot.commands;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.miningmark48.pearcelbot.ICommand;
+import com.miningmark48.pearcelbot.ICommandPrivate;
+import com.miningmark48.pearcelbot.messages.MessageGeneral;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
+import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -12,7 +15,7 @@ import java.awt.*;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 
-public class CommandYoutubeUser implements ICommand {
+public class CommandYoutubeUser implements ICommand, ICommandPrivate {
 
     public static final String desc = "Get information about a user on Info.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "youtubeuser <arg>";
@@ -25,12 +28,25 @@ public class CommandYoutubeUser implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        doCmd(event, args, false);
+    }
 
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        doCmd(event, args, true);
+    }
+
+    private static void doCmd(MessageReceivedEvent event, String[] args, boolean isPrivate) {
         JsonObject js;
 
-        if (args.length <= 0){
-            event.getTextChannel().sendMessage("Missing Argument!");
-        }else{
+        if (args.length <= 0) {
+            MessageHelper.sendMessage(event, "Missing Argument!", isPrivate);
+        } else {
             try {
                 js = JSONParse.JSONParse("https://www.googleapis.com/youtube/v3/channels?&key=AIzaSyBnt38rBPV1WAZGx6imcMvp0GuuQU15YKE&part=statistics,brandingSettings&forUsername=" + args[0]);
                 JsonElement js2 = js.get("items");
@@ -74,20 +90,13 @@ public class CommandYoutubeUser implements ICommand {
                     embedBuilder.addField("Description", jsonObject4.get("description").getAsString(), false);
                 }
 
-                event.getTextChannel().sendMessage(embedBuilder.build()).queue();
+                MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
 
-            }catch (NullPointerException e){
-                event.getTextChannel().sendMessage("Error: Could not retrieve user data, channel may be to small for detection.").queue();
-            }catch (IndexOutOfBoundsException e){
-                event.getTextChannel().sendMessage("Error: Could not retrieve user data, channel may be to small for detection.").queue();
+            } catch (NullPointerException | IndexOutOfBoundsException e) {
+                MessageHelper.sendMessage(event, "Error: Could not retrieve user data, channel may be to small for detection.", isPrivate);
             }
 
         }
-
     }
 
-    @Override
-    public void executed(boolean success, MessageReceivedEvent event) {
-
-    }
 }
