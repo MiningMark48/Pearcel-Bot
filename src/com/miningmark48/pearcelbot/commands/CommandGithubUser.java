@@ -2,14 +2,16 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.google.gson.JsonObject;
 import com.miningmark48.pearcelbot.ICommand;
+import com.miningmark48.pearcelbot.ICommandPrivate;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
+import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandGithubUser implements ICommand {
+public class CommandGithubUser implements ICommand, ICommandPrivate {
 
     public static final String desc = "Get information about a user on Github.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "githubuser <arg>";
@@ -22,12 +24,25 @@ public class CommandGithubUser implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        doCmd(event, args, false);
+    }
 
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        doCmd(event, args, true);
+    }
+
+    private static void doCmd(MessageReceivedEvent event, String[] args, boolean isPrivate) {
         JsonObject js;
 
         if (args.length <= 0){
-            event.getTextChannel().sendMessage("Missing Argument!");
-        }else{
+            MessageHelper.sendMessage(event, "Missing Argument!", isPrivate);
+        } else {
             try {
                 js = JSONParse.JSONParse("https://api.github.com/users/" + args[0]);
 
@@ -67,18 +82,13 @@ public class CommandGithubUser implements ICommand {
                     embedBuilder.addField("Joined", js.get("created_at").getAsString().substring(0, 10), true);
                 }
 
-                event.getTextChannel().sendMessage(embedBuilder.build()).queue();
+               MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
 
-            }catch (NullPointerException e){
-                event.getTextChannel().sendMessage("Error: Could not retrieve user data.").queue();
+            } catch (NullPointerException e) {
+                MessageHelper.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
             }
 
         }
-
     }
 
-    @Override
-    public void executed(boolean success, MessageReceivedEvent event) {
-
-    }
 }
