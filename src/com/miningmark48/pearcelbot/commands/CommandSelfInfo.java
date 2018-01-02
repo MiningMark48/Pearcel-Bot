@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class CommandSelfInfo implements ICommand, ICommandPrivate {
 
-    public static final String desc = "Get information about yourself on Discord.";
+    public static final String desc = "✓ Get information about yourself on Discord.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "selfinfo";
     public static final String info = desc + " " + usage;
 

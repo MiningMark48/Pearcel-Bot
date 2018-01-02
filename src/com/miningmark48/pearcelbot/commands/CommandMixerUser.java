@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class CommandMixerUser implements ICommand, ICommandPrivate {
 
-    public static final String desc = "Get information about a user on Mixer.";
+    public static final String desc = "✓ Get information about a user on Mixer.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "mixeruser <arg>";
     public static final String info = desc + " " + usage;
 

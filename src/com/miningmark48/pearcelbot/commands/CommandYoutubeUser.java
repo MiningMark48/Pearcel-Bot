@@ -17,7 +17,7 @@ import java.text.DecimalFormat;
 
 public class CommandYoutubeUser implements ICommand, ICommandPrivate {
 
-    public static final String desc = "Get information about a user on Info.";
+    public static final String desc = "✓ Get information about a user on Info.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "youtubeuser <arg>";
     public static final String info = desc + " " + usage;
 

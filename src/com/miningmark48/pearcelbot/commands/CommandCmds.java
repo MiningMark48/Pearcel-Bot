@@ -93,7 +93,8 @@ public class CommandCmds implements ICommand, ICommandPrivate {
         messageBuilderPBC.append("**" + Reference.botCommanderRole + " Commands: **\n");
         messageBuilderPBC.append("```" + messagePBC + "```\n");
 
-        messageBuilderM.append("For music commands, do `~~help`");
+        messageBuilderM.append("For music commands, do `~~help`\n");
+        messageBuilderM.append("`✓` = Works in direct messages");
 
         privateChannel.queue(chan -> {
             chan.sendMessage(messageBuilder.build()).queue();

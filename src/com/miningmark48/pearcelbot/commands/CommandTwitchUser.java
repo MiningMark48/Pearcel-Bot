@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 
 public class CommandTwitchUser implements ICommand, ICommandPrivate {
 
-    public static final String desc = "Get information about a user on Twitch.";
+    public static final String desc = "✓ Get information about a user on Twitch.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "twitchuser <arg>";
     public static final String info = desc + " " + usage;
 

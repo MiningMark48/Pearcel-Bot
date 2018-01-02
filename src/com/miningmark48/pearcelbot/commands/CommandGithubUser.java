@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class CommandGithubUser implements ICommand, ICommandPrivate {
 
-    public static final String desc = "Get information about a user on Github.";
+    public static final String desc = "✓ Get information about a user on Github.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "githubuser <arg>";
     public static final String info = desc + " " + usage;
 
