@@ -2,9 +2,6 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.ICommand;
-import com.miningmark48.pearcelbot.ICommandPrivate;
-import com.miningmark48.pearcelbot.messages.MessageGeneral;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
 import com.miningmark48.pearcelbot.util.MessageHelper;

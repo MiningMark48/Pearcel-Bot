@@ -1,5 +1,7 @@
 package com.miningmark48.pearcelbot;
 
+import com.miningmark48.pearcelbot.commands.ICommand;
+import com.miningmark48.pearcelbot.commands.ICommandPrivate;
 import com.miningmark48.pearcelbot.commands.InitializeCommands;
 import com.miningmark48.pearcelbot.customcommands.GetCommand;
 import com.miningmark48.pearcelbot.messages.InitializeMessages;
@@ -8,8 +10,8 @@ import com.miningmark48.pearcelbot.util.Clock;
 import com.miningmark48.pearcelbot.util.CommandParser;
 import com.miningmark48.pearcelbot.util.JSON.JSONRead;
 import com.miningmark48.pearcelbot.util.JSON.JSONWrite;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.miningmark48.pearcelbot.util.enums.LogType;
+import com.miningmark48.pearcelbot.util.logging.Logger;
+import com.miningmark48.pearcelbot.util.logging.LogType;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;

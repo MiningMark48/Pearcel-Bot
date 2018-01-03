@@ -1,7 +1,5 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.ICommand;
-import com.miningmark48.pearcelbot.ICommandPrivate;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.EmbedBuilder;

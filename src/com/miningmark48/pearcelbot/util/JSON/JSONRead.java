@@ -1,8 +1,6 @@
 package com.miningmark48.pearcelbot.util.JSON;
 
 import com.google.gson.stream.JsonReader;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.miningmark48.pearcelbot.util.enums.LogType;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,13 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.NumberToWords;
 import com.miningmark48.pearcelbot.util.Tools;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.apache.commons.lang3.text.WordUtils;
-
-import java.time.temporal.ChronoUnit;
 
 public class CommandNumberToWords implements ICommand {
 

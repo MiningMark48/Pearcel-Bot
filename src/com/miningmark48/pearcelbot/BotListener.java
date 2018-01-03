@@ -1,20 +1,16 @@
 package com.miningmark48.pearcelbot;
 
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.GuildJoinChat;
+import com.miningmark48.pearcelbot.messages.GuildJoinChat;
 import com.miningmark48.pearcelbot.util.chatlog.ChatLog;
-import com.miningmark48.pearcelbot.util.Logger;
+import com.miningmark48.pearcelbot.util.logging.Logger;
 import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.exceptions.PermissionException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-
-import java.util.Queue;
 
 public class BotListener extends ListenerAdapter {
 

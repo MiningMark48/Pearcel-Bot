@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.util.enums;
+package com.miningmark48.pearcelbot.util.logging;
 
 public enum LogType{
     INFO,

@@ -3,10 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.sun.org.apache.regexp.internal.RE;
-
-import java.rmi.registry.Registry;
+import com.miningmark48.pearcelbot.util.logging.Logger;
 
 public class InitializeCommands {
 
