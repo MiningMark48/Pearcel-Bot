@@ -48,7 +48,7 @@ public class Clock {
         thread.start();
     }
 
-    public static void runClockUptime(JDA jda){
+    public static void runClockUptime(){
         Thread thread = new Thread(() -> {
 
             Logger.log("status", "Uptime clock started!");
