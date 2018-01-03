@@ -49,45 +49,42 @@ public class Clock {
     }
 
     public static void runClockUptime(JDA jda){
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
+        Thread thread = new Thread(() -> {
 
-                Logger.log("status", "Uptime clock started!");
+            Logger.log("status", "Uptime clock started!");
 
-                uptimeSeconds = 0;
-                uptimeMinutes = 0;
-                uptimeHours = 0;
-                uptimeDays = 0;
+            uptimeSeconds = 0;
+            uptimeMinutes = 0;
+            uptimeHours = 0;
+            uptimeDays = 0;
 
-                while (true) {
+            while (true) {
 
-                    uptimeSeconds += 1;
-                    uptimeMinutes = uptimeMinutes + uptimeSeconds / 60;
-                    uptimeHours = uptimeHours + uptimeMinutes / 60;
-                    uptimeDays = uptimeDays + uptimeHours / 24;
+                uptimeSeconds += 1;
+                uptimeMinutes = uptimeMinutes + uptimeSeconds / 60;
+                uptimeHours = uptimeHours + uptimeMinutes / 60;
+                uptimeDays = uptimeDays + uptimeHours / 24;
 
-                    if(uptimeSeconds == 60){
-                        uptimeSeconds = 0;
-                    }
-
-                    if(uptimeMinutes == 60){
-                        uptimeMinutes = 0;
-                    }
-
-                    if(uptimeHours == 24){
-                        uptimeHours = 0;
-                    }
-
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                if (uptimeSeconds == 60) {
+                    uptimeSeconds = 0;
                 }
 
+                if (uptimeMinutes == 60) {
+                    uptimeMinutes = 0;
+                }
+
+                if (uptimeHours == 24) {
+                    uptimeHours = 0;
+                }
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        };
+
+        });
 
         thread.start();
     }
