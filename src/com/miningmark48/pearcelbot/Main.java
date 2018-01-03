@@ -37,7 +37,7 @@ public class Main {
             jda = new JDABuilder(AccountType.BOT).addEventListener(new BotListener()).setToken(Reference.botToken).buildBlocking();
             jda.setAutoReconnect(true);
             jda.getPresence().setGame(Game.of(String.format("Do %scmds", Reference.botCommandKey)));
-            //Clock.runClockGame(jda);
+            Clock.runClockGame(jda);
             Clock.runClockUptime(jda);
 
             Logger.log(LogType.INFO, "Bot started!");

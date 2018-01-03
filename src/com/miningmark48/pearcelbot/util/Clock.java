@@ -9,13 +9,9 @@ import java.util.Random;
 
 public class Clock {
 
-    public static String sourcePrev = "";
-    public static boolean isPlaying = false;
-//    public static AudioSource sourceCurrent;
-
-    public static int tempNum = 0;
-
-    public static int timeoutSeconds = 30;
+    private static int timeoutSeconds = 15;
+    private static int prevNum = 0;
+    private static final String[] games = {"Do " + Reference.botCommandCustomKey + "cmds", "Pearcel Mod", "sick music", "the banjo", "with your mom", "Minecraft", "Overwatch"};
 
     public static int uptimeSeconds = 50;
     public static int uptimeMinutes = 59;
@@ -23,50 +19,31 @@ public class Clock {
     public static int uptimeDays = 0;
 
     public static void runClockGame(JDA jda){
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
+        Thread thread = new Thread(() -> {
 
-                while (true){
+            while (true){
 
-                    Random rand = new Random();
-                    int randAmount = 3;
-                    int randNum = rand.nextInt(randAmount);
-                    if(tempNum == randNum){
-                        randNum = rand.nextInt(randAmount);
-                    }
+                Random rand = new Random();
+                int randAmount = games.length;
+                int randNum = rand.nextInt(randAmount);
 
-                    switch (randNum){
-                        default:
-                        case 0:
-                            jda.getPresence().setGame(Game.of("Do " + Reference.botCommandKey + "cmds"));
-                            tempNum = 0;
-                            break;
-                        case 1:
-                            jda.getPresence().setGame(Game.of("Pearcel Mod"));
-                            tempNum = 1;
-                            break;
-                        case 2:
-                            jda.getPresence().setGame(Game.of("sick music."));
-                            tempNum = 2;
-                            break;
-                        case 3:
-                            jda.getPresence().setGame(Game.of("The Banjo."));
-                            tempNum = 3;
-                            break;
-                    }
-
-                    try {
-                        Thread.sleep(timeoutSeconds * 1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
+                while (prevNum == randNum) {
+                    randNum = rand.nextInt(randAmount);
                 }
 
+                jda.getPresence().setGame(Game.of(games[randNum]));
+
+                prevNum = randNum;
+
+                try {
+                    Thread.sleep(timeoutSeconds * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
             }
-        };
+
+        });
 
         thread.start();
     }
