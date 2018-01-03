@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class CommandCurseData implements ICommand, ICommandPrivate {
 
-    public static final String desc = "✓ Fetch Minecraft Curse data for a user";
+    public static final String desc = "Fetch Minecraft Curse data for a user";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "cursedata <arg>";
     public static final String info = desc + " " + usage;
 

@@ -2,6 +2,7 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.ICommand;
 import com.miningmark48.pearcelbot.ICommandPrivate;
+import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.PrivateChannel;
@@ -69,12 +70,12 @@ public class CommandCmds implements ICommand, ICommandPrivate {
 
         while (i.hasNext()){
             Map.Entry me = (Map.Entry)i.next();
-            message = message + me.getKey() + ": " + me.getValue() + "\n";
+            message = message + (Main.commands.get(me.getKey().toString()) instanceof ICommandPrivate ? "✓ " : "") + me.getKey() + ": " + me.getValue() + "\n";
         }
 
         while (j.hasNext()){
             Map.Entry me2 = (Map.Entry)j.next();
-            message2 = message2 + me2.getKey() + ": " + me2.getValue() + "\n";
+            message2 = message2 + (Main.commands.get(me2.getKey().toString()) instanceof ICommandPrivate ? "✓ " : "") + me2.getKey() + ": " + me2.getValue() + "\n";
         }
 
         while (k.hasNext()){
