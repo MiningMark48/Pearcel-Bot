@@ -11,7 +11,7 @@ public class Clock {
 
     private static int timeoutSeconds = 15;
     private static int prevNum = 0;
-    private static final String[] games = {"Do " + Reference.botCommandCustomKey + "cmds", "Pearcel Mod", "sick music", "the banjo", "with your mom", "Minecraft", "Overwatch"};
+    private static final String[] games = {"Do " + Reference.botCommandKey + "cmds", "Pearcel Mod", "sick music", "the banjo", "with your mom", "Minecraft", "Overwatch"};
 
     public static int uptimeSeconds = 50;
     public static int uptimeMinutes = 59;
