@@ -2,10 +2,11 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Clock;
+import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandUptime implements ICommand {
+public class CommandUptime implements ICommand, ICommandPrivate {
 
     public static final String desc = "View the bot's uptime.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "uptime";
@@ -18,7 +19,20 @@ public class CommandUptime implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        doCmd(event, false);
+    }
 
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        doCmd(event, true);
+    }
+
+    private static void doCmd(MessageReceivedEvent event, boolean isPrivate) {
         int seconds = Clock.uptimeSeconds;
         int minutes = Clock.uptimeMinutes;
         int hours = Clock.uptimeHours;
@@ -46,12 +60,7 @@ public class CommandUptime implements ICommand {
             builder.append("**" + seconds + "**" + (seconds == 1 ? " second." : " seconds."));
         }
 
-        event.getTextChannel().sendMessage(builder.build()).queue();
-
+        MessageHelper.sendMessage(event, builder.build(), isPrivate);
     }
 
-    @Override
-    public void executed(boolean success, MessageReceivedEvent event) {
-
-    }
 }
