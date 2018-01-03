@@ -1,7 +1,5 @@
 package com.miningmark48.pearcelbot.messages;
 
-import com.miningmark48.pearcelbot.util.ChatBuilder;
-import com.miningmark48.pearcelbot.util.Logger;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
