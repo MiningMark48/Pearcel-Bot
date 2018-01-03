@@ -1,6 +1,6 @@
-package com.miningmark48.pearcelbot.util;
+package com.miningmark48.pearcelbot.util.logging;
 
-import com.miningmark48.pearcelbot.util.enums.LogType;
+import com.miningmark48.pearcelbot.util.logging.LogType;
 
 public class Logger{
 
