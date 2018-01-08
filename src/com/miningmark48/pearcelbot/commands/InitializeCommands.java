@@ -20,6 +20,7 @@ public class InitializeCommands {
         Main.commands.put("announce", new CommandAnnounce());
         Main.commands.put("bark", new CommandBark());
 //        Main.commands.put("bitcoin", new CommandBitcoin());
+        Main.commands.put("arblacklist", new CommandARBlacklist());
         Main.commands.put("botinfo", new CommandBotInfo());
         Main.commands.put("botstats", new CommandBotStats());
         Main.commands.put("cmds", new CommandCmds());
@@ -69,6 +70,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("8ball", Command8Ball.info);
         Reference.commandUsage.put("bark", CommandBark.info);
 //        Reference.commandUsage.put("bitcoin", CommandBitcoin.info);
+        Reference.commandUsage.put("arblacklist", CommandARBlacklist.info);
         Reference.commandUsage.put("botinfo", CommandBotInfo.info);
         Reference.commandUsage.put("botstats", CommandBotStats.info);
         Reference.commandUsage.put("cmds", CommandCmds.info);
