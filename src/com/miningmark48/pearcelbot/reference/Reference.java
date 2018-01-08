@@ -1,7 +1,5 @@
 package com.miningmark48.pearcelbot.reference;
 
-import com.miningmark48.pearcelbot.util.JSON.JSONRead;
-
 import java.util.HashMap;
 
 public class Reference {
@@ -10,14 +8,14 @@ public class Reference {
     public static String botAuthor = "MiningMark48";
     public static String botOwner = "138819223932633088";                       //Owner ID
 
-    public static String botToken = JSONRead.botToken;
-    public static String botName = JSONRead.botName;
-    public static String botCommandKey = JSONRead.botCommandKey;
+    public static String botToken;
+    public static String botName;
+    public static String botCommandKey;
     public static String botCommandCustomKey = botCommandKey + "`";
-    public static String botCommanderRole = JSONRead.botCommanderRole;
-    public static String botAutoResponseRole = JSONRead.botAutoResponseRole;
-    public static String botClientID = JSONRead.botClientID;
-    public static boolean doChatLog = JSONRead.doChatLog;
+    public static String botCommanderRole;
+    public static String botAutoResponseRole;
+    public static String botClientID;
+    public static boolean doChatLog;
 
     private static int perms = 70351936;                                        //Perms Int (Discord Calc)
     public static String joinLink = "https://discordapp.com/oauth2/authorize?&client_id="+ botClientID +"&scope=bot&permissions=" + String.valueOf(perms);

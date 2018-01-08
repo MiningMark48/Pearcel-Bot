@@ -1,5 +1,9 @@
 package com.miningmark48.pearcelbot;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
 import com.miningmark48.pearcelbot.commands.ICommand;
 import com.miningmark48.pearcelbot.commands.ICommandPrivate;
 import com.miningmark48.pearcelbot.commands.InitializeCommands;
@@ -8,8 +12,7 @@ import com.miningmark48.pearcelbot.messages.InitializeMessages;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Clock;
 import com.miningmark48.pearcelbot.util.CommandParser;
-import com.miningmark48.pearcelbot.util.JSON.JSONRead;
-import com.miningmark48.pearcelbot.util.JSON.JSONWrite;
+import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import com.miningmark48.pearcelbot.util.Logger;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -18,6 +21,7 @@ import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.io.*;
 import java.util.HashMap;
 
 public class Main {
@@ -27,10 +31,16 @@ public class Main {
 
     public static HashMap<String, ICommand> commands = new HashMap<>();
 
+    private static String configFile = "config.json";
+
     public static void main(String[] args){
 
-        JSONWrite.init();
-        JSONRead.init();
+//        JSONWrite.init();
+//        JSONRead.init();
+
+        if (!getConfigs()) {
+            return;
+        }
 
         try {
             jda = new JDABuilder(AccountType.BOT).addEventListener(new BotListener()).setToken(Reference.botToken).buildBlocking();
@@ -75,6 +85,82 @@ public class Main {
 
     static void handleCustom(MessageReceivedEvent event){
         GetCommand.init(event);
+    }
+
+    private static boolean getConfigs() {
+        Logger.log(Logger.LogType.STATUS, "Getting configs...");
+
+        try {
+            File file = new File(configFile);
+
+            if (!file.exists()) {
+                Writer writer = new OutputStreamWriter(new FileOutputStream(configFile), "UTF-8");
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                JsonWriter jw = gson.newJsonWriter(writer);
+
+                jw.beginObject();
+
+                    jw.name("bot");
+                    jw.beginObject();
+                        jw.name("botname").value("Bot Name");
+                        jw.name("token").value("bot.token");
+                        jw.name("key").value("bot.key");
+                        jw.name("client id").value("bot.id");
+                    jw.endObject();
+
+                    jw.name("roles");
+                    jw.beginObject();
+                        jw.name("commander").value("PBC");
+                        jw.name("autoresponse").value("PBAR");
+                    jw.endObject();
+
+                    jw.name("other");
+                    jw.beginObject();
+                        jw.name("do chat log").value(true);
+                    jw.endObject();
+
+                jw.endObject();
+
+                writer.close();
+
+                Logger.log(Logger.LogType.STATUS, "Config file was created, must be filled in. Turning off...");
+                return false;
+            } else {
+
+                try {
+                    JsonObject jsonObject = JSONParseFile.JSONParse(configFile);
+                    if (jsonObject != null) {
+                        JsonObject jsonObjectBot = jsonObject.getAsJsonObject("bot");
+                        JsonObject jsonObjectRoles = jsonObject.getAsJsonObject("roles");
+                        JsonObject jsonObjectOther = jsonObject.getAsJsonObject("other");
+
+                        Reference.botName = jsonObjectBot.get("botname").getAsString();
+                        Reference.botToken = jsonObjectBot.get("token").getAsString();
+                        Reference.botCommandKey = jsonObjectBot.get("key").getAsString();
+                        Reference.botClientID = jsonObjectBot.get("client id").getAsString();
+
+                        Reference.botCommanderRole = jsonObjectRoles.get("commander").getAsString();
+                        Reference.botAutoResponseRole = jsonObjectRoles.get("autoresponse").getAsString();
+
+                        Reference.doChatLog = jsonObjectOther.get("do chat log").getAsBoolean();
+
+                    } else {
+                        throw new NullPointerException();
+                    }
+
+                } catch (NullPointerException e) {
+                    Logger.log(Logger.LogType.FATAL, "Configs were unable to be fetched, stopping...");
+                    e.printStackTrace();
+                    return false;
+                }
+
+                Logger.log(Logger.LogType.STATUS, "Configs were fetched, continuing...");
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }
