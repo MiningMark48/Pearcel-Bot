@@ -3,7 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.logging.Logger;
+import com.miningmark48.pearcelbot.util.Logger;
 
 public class InitializeCommands {
 
