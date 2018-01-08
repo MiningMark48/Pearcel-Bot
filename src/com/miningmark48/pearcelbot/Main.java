@@ -123,7 +123,7 @@ public class Main {
 
                 writer.close();
 
-                Logger.log(Logger.LogType.STATUS, "Config file was created, must be filled in. Turning off...");
+                Logger.log(Logger.LogType.STATUS, "Config file was created and must be filled in, stopping bot.");
                 return false;
             } else {
 
@@ -149,12 +149,12 @@ public class Main {
                     }
 
                 } catch (NullPointerException e) {
-                    Logger.log(Logger.LogType.FATAL, "Configs were unable to be fetched, stopping...");
+                    Logger.log(Logger.LogType.FATAL, "Configs were unable to be loaded, stopping bot.");
                     e.printStackTrace();
                     return false;
                 }
 
-                Logger.log(Logger.LogType.STATUS, "Configs were fetched, continuing...");
+                Logger.log(Logger.LogType.STATUS, "Configs were loaded, continuing.");
                 return true;
             }
         } catch (IOException e) {
