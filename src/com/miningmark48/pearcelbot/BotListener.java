@@ -3,13 +3,11 @@ package com.miningmark48.pearcelbot;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.miningmark48.pearcelbot.commands.CommandARBlacklist;
-import com.miningmark48.pearcelbot.commands.pbc.CommandAddCommand;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.messages.GuildJoinChat;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import com.miningmark48.pearcelbot.util.chatlog.ChatLog;
-import com.miningmark48.pearcelbot.util.logging.LogType;
-import com.miningmark48.pearcelbot.util.logging.Logger;
+import com.miningmark48.pearcelbot.util.Logger;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -17,12 +15,6 @@ import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
 
 public class BotListener extends ListenerAdapter {
 
@@ -70,7 +62,7 @@ public class BotListener extends ListenerAdapter {
     @Override
     public void onReady(ReadyEvent event){
         //event.getJDA().getAccountManager().update();
-        Logger.log("status", "Logged in as: " + event.getJDA().getSelfUser().getName());
+        Logger.log(Logger.LogType.STATUS, "Logged in as: " + event.getJDA().getSelfUser().getName());
     }
 
     @Override

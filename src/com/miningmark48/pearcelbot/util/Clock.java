@@ -1,7 +1,6 @@
 package com.miningmark48.pearcelbot.util;
 
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.logging.Logger;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
 
@@ -51,7 +50,7 @@ public class Clock {
     public static void runClockUptime(){
         Thread thread = new Thread(() -> {
 
-            Logger.log("status", "Uptime clock started!");
+            Logger.log(Logger.LogType.STATUS, "Uptime clock started!");
 
             uptimeSeconds = 0;
             uptimeMinutes = 0;

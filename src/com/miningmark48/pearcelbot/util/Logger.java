@@ -1,6 +1,4 @@
-package com.miningmark48.pearcelbot.util.logging;
-
-import com.miningmark48.pearcelbot.util.logging.LogType;
+package com.miningmark48.pearcelbot.util;
 
 public class Logger{
 
@@ -12,6 +10,12 @@ public class Logger{
         System.out.printf("[%s] %s\n", type.name().toUpperCase(), message);
     }
 
-
+    public enum LogType{
+        INFO,
+        DEBUG,
+        WARN,
+        FATAL,
+        STATUS
+    }
 
 }

@@ -52,7 +52,7 @@ public class CommandToRomanNum implements ICommand {
                     }
                 }catch (StackOverflowError e){
                     event.getTextChannel().sendMessage("Error!").queue();
-                    Logger.log("error", e.toString());
+                    Logger.log(Logger.LogType.FATAL, e.toString());
                 }
 
             }else{

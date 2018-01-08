@@ -109,7 +109,7 @@ public class InitializeCommands {
         Reference.commandUsagePBC.put("editcommand", CommandEditCommand.info);
         Reference.commandUsagePBC.put("say", CommandSay.info);
 
-        Logger.log("status", "Commands Initialized.");
+        Logger.log(Logger.LogType.STATUS, "Commands Initialized.");
 
     }
 
