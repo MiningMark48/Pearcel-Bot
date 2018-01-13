@@ -33,10 +33,7 @@ public class Main {
 
     private static String configFile = "config.json";
 
-    public static void main(String[] args){
-
-//        JSONWrite.init();
-//        JSONRead.init();
+    public static void main(String[] args) {
 
         if (!getConfigs()) {
             return;
