@@ -18,7 +18,7 @@ public class CommandRepeatOnce implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (!event.getAuthor().getJDA().getRoles().toString().contains(Reference.botNoMusicRole)) {
+        if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
             AudioHandler.repeat(event.getTextChannel(), true);
         } else {
             event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();

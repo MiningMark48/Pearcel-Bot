@@ -19,7 +19,7 @@ public class CommandPlaySearchRand implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (!event.getAuthor().getJDA().getRoles().toString().contains(Reference.botNoMusicRole)) {
+        if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
             String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.RANDOM);
             if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
         } else {

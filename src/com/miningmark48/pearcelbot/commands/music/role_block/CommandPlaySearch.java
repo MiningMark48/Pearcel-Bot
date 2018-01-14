@@ -19,8 +19,12 @@ public class CommandPlaySearch implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.NORMAL);
-        if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
+        if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
+            String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.NORMAL);
+            if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
+        } else {
+            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
+        }
     }
 
     @Override
