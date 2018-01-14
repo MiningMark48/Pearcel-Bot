@@ -50,7 +50,7 @@ public class TrackScheduler extends AudioEventAdapter {
     /**
     * Start the next track, stopping the current one if it is playing.
     */
-    public void nextTrack() {
+    public boolean nextTrack() {
         // Start the next track, regardless of if something is already playing or not. In case queue was empty, we are
         // giving null to startTrack, which is a valid argument and will simply stop the player.
         try {
@@ -68,10 +68,13 @@ public class TrackScheduler extends AudioEventAdapter {
                 AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.bold("Now Playing: "), track.getInfo().title)).queue();
             } catch (NullPointerException e) {
                 Logger.log(Logger.LogType.INFO, "No track available.");
+                return false;
             }
             player.startTrack(track, false);
+            return true;
         } catch (NullPointerException e){
             Logger.log(Logger.LogType.INFO, "No track found next in queue!");
+            return false;
         }
     }
 

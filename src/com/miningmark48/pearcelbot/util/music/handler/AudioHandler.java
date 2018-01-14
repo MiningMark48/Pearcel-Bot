@@ -97,7 +97,9 @@ public class AudioHandler {
     public static void skipTrack(TextChannel channel) {
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
 
-        musicManager.scheduler.nextTrack();
+        if (!musicManager.scheduler.nextTrack()) {
+            channel.sendMessage("There is nothing next in the queue!").queue();
+        }
 
     }
 
