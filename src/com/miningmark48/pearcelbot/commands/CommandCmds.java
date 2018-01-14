@@ -62,9 +62,13 @@ public class CommandCmds implements ICommand, ICommandPrivate {
         Set setPBC = Reference.commandUsagePBC.entrySet();
         Iterator k = setPBC.iterator();
 
+        Set setMusic = Reference.commandUsageMusic.entrySet();
+        Iterator l = setMusic.iterator();
+
         String message = "";
         String message2 = "";
         String messagePBC = "";
+        String messageMusic = "";
 
         while (i.hasNext()){
             Map.Entry me = (Map.Entry)i.next();
@@ -81,9 +85,15 @@ public class CommandCmds implements ICommand, ICommandPrivate {
             messagePBC = messagePBC + mePBC.getKey() + ": " + mePBC.getValue() + "\n";
         }
 
+        while (l.hasNext()){
+            Map.Entry meMusic = (Map.Entry)l.next();
+            messageMusic = messageMusic + meMusic.getKey() + ": " + meMusic.getValue() + "\n";
+        }
+
         MessageBuilder messageBuilder = new MessageBuilder();
         MessageBuilder messageBuilder2 = new MessageBuilder();
         MessageBuilder messageBuilderPBC = new MessageBuilder();
+        MessageBuilder messageBuilderMusic = new MessageBuilder();
         MessageBuilder messageBuilderM = new MessageBuilder();
 
         messageBuilder.append("**Regular Commands: **\n");
@@ -92,14 +102,17 @@ public class CommandCmds implements ICommand, ICommandPrivate {
         messageBuilderPBC.append("**" + Reference.botCommanderRole + " Commands: **\n");
         messageBuilderPBC.append("```" + messagePBC + "```\n");
 
-        messageBuilderM.append("For music commands, do `~~help`\n");
+        messageBuilderMusic.append("** Music Commands: **\n");
+        messageBuilderMusic.append("```" + messageMusic + "```\n");
+
         messageBuilderM.append("`✓` = Works in direct messages");
 
         privateChannel.queue(chan -> {
             chan.sendMessage(messageBuilder.build()).queue();
             chan.sendMessage(messageBuilder2.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
             chan.sendMessage(messageBuilderPBC.build()).queueAfter(1750, TimeUnit.MILLISECONDS);
-            chan.sendMessage(messageBuilderM.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
+            chan.sendMessage(messageBuilderMusic.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
+            chan.sendMessage(messageBuilderM.build()).queueAfter(2250, TimeUnit.MILLISECONDS);
         });
     }
 

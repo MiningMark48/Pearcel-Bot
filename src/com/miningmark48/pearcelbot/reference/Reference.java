@@ -22,5 +22,6 @@ public class Reference {
     public static HashMap<String, String> commandUsage = new HashMap<>();
     public static HashMap<String, String> commandUsage2 = new HashMap<>();
     public static HashMap<String, String> commandUsagePBC = new HashMap<>();
+    public static HashMap<String, String> commandUsageMusic = new HashMap<>();
 
 }

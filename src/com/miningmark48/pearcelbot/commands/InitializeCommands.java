@@ -130,6 +130,25 @@ public class InitializeCommands {
         Reference.commandUsagePBC.put("editcommand", CommandEditCommand.info);
         Reference.commandUsagePBC.put("say", CommandSay.info);
 
+        //Music
+        Reference.commandUsageMusic.put("lyrics", CommandLyrics.info);
+        Reference.commandUsageMusic.put("nowplaying", CommandNowPlaying.info);
+        Reference.commandUsageMusic.put("pause", CommandPause.info);
+        Reference.commandUsageMusic.put("play", CommandPlay.info);
+        Reference.commandUsageMusic.put("playnext", CommandPlayNext.info);
+        Reference.commandUsageMusic.put("pplay", CommandPlayPlaylist.info);
+        Reference.commandUsageMusic.put("splay", CommandPlaySearch.info);
+        Reference.commandUsageMusic.put("splayrand", CommandPlaySearchRand.info);
+        Reference.commandUsageMusic.put("splayremix", CommandPlaySearchRemix.info);
+        Reference.commandUsageMusic.put("queue", CommandQueue.info);
+        Reference.commandUsageMusic.put("remove", CommandRemove.info);
+        Reference.commandUsageMusic.put("repeat", CommandRepeat.info);
+        Reference.commandUsageMusic.put("repeatonce", CommandRepeatOnce.info);
+        Reference.commandUsageMusic.put("resume", CommandResume.info);
+        Reference.commandUsageMusic.put("shuffle", CommandShuffle.info);
+        Reference.commandUsageMusic.put("skip", CommandSkip.info);
+        Reference.commandUsageMusic.put("stop", CommandStop.info);
+
         Logger.log(Logger.LogType.STATUS, "Commands Initialized.");
 
     }
