@@ -87,6 +87,8 @@ public class InitializeCommands {
         Main.commands.put("curseforge", new CommandCurseData());
         Main.commands.put("delcmd", new CommandDeleteCommand());
         Main.commands.put("listcmds", new CommandListCommands());
+            //Music
+        Main.commands.put("np", new CommandNowPlaying());
 
         //Cmd Info
             //Normal
