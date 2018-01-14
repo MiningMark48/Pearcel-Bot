@@ -278,7 +278,7 @@ public class AudioHandler {
         }
     }
 
-    private static synchronized GuildMusicManager getGuildAudioPlayer(Guild guild) {
+    public static synchronized GuildMusicManager getGuildAudioPlayer(Guild guild) {
         long guildId = Long.parseLong(guild.getId());
         GuildMusicManager musicManager = musicManagers.get(guildId);
 

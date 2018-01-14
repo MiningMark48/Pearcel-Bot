@@ -8,11 +8,16 @@ import com.miningmark48.pearcelbot.messages.GuildJoinChat;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import com.miningmark48.pearcelbot.util.chatlog.ChatLog;
 import com.miningmark48.pearcelbot.util.Logger;
+import com.miningmark48.pearcelbot.util.music.AudioPlayerSendHandler;
+import com.miningmark48.pearcelbot.util.music.GuildMusicManager;
+import com.miningmark48.pearcelbot.util.music.TrackScheduler;
+import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
+import net.dv8tion.jda.core.events.guild.voice.GuildVoiceLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -67,7 +72,25 @@ public class BotListener extends ListenerAdapter {
 
     @Override
     public void onGuildVoiceJoin(GuildVoiceJoinEvent event) {
-        GuildJoinChat.joinedVoice(event);
+//        GuildJoinChat.joinedVoice(event);
+        if (event.getGuild().getAudioManager().isConnected() && event.getChannelJoined() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
+            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() > 1) {
+                if (AudioHandler.getGuildAudioPlayer(event.getGuild()).player.isPaused()) {
+                    AudioHandler.getGuildAudioPlayer(event.getGuild()).player.setPaused(false);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onGuildVoiceLeave(GuildVoiceLeaveEvent event) {
+        if (event.getGuild().getAudioManager().isConnected() && event.getChannelLeft() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
+            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() <= 1) {
+                if (!AudioHandler.getGuildAudioPlayer(event.getGuild()).player.isPaused()) {
+                    AudioHandler.getGuildAudioPlayer(event.getGuild()).player.setPaused(true);
+                }
+            }
+        }
     }
 
     private static boolean isBlacklisted(String id) {
