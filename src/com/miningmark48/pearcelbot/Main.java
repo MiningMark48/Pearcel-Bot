@@ -14,6 +14,8 @@ import com.miningmark48.pearcelbot.util.Clock;
 import com.miningmark48.pearcelbot.util.CommandParser;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import com.miningmark48.pearcelbot.util.Logger;
+import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
+import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -51,6 +53,9 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        AudioSourceManagers.registerRemoteSources(AudioHandler.playerManager);
+        AudioSourceManagers.registerLocalSource(AudioHandler.playerManager);
 
         InitializeCommands.init();
 

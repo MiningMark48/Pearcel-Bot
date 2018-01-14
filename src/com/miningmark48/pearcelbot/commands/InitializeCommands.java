@@ -1,6 +1,7 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.Main;
+import com.miningmark48.pearcelbot.commands.music.*;
 import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
@@ -56,7 +57,27 @@ public class InitializeCommands {
         Main.commands.put("uptime", new CommandUptime());
         Main.commands.put("youtubeuser", new CommandYoutubeUser());
 
+        //Me only
         Main.commands.put("getdemservs", new CommandGetDemServs());
+
+        //Music
+        Main.commands.put("play", new CommandPlay());
+        Main.commands.put("pplay", new CommandPlayPlaylist());
+        Main.commands.put("splay", new CommandPlaySearch());
+        Main.commands.put("splayrand", new CommandPlaySearchRand());
+        Main.commands.put("splayremix", new CommandPlaySearchRemix());
+        Main.commands.put("skip", new CommandSkip());
+        Main.commands.put("stop", new CommandStop());
+        Main.commands.put("queue", new CommandQueue());
+        Main.commands.put("pause", new CommandPause());
+        Main.commands.put("playnext", new CommandPlayNext());
+        Main.commands.put("remove", new CommandRemove());
+        Main.commands.put("repeat", new CommandRepeat());
+        Main.commands.put("repeatonce", new CommandRepeatOnce());
+        Main.commands.put("resume", new CommandResume());
+        Main.commands.put("nowplaying", new CommandNowPlaying());
+        Main.commands.put("shuffle", new CommandShuffle());
+        Main.commands.put("lyrics", new CommandLyrics());
 
         //Alias
         Main.commands.put("help", new CommandCmds());
