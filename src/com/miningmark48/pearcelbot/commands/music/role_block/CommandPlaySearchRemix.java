@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.commands.music;
+package com.miningmark48.pearcelbot.commands.music.role_block;
 
 import com.miningmark48.pearcelbot.commands.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
@@ -20,8 +20,12 @@ public class CommandPlaySearchRemix implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.REMIX);
-        if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
+        if (!event.getAuthor().getJDA().getRoles().toString().contains(Reference.botNoMusicRole)) {
+            String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.REMIX);
+            if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
+        } else {
+            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
+        }
     }
 
     @Override

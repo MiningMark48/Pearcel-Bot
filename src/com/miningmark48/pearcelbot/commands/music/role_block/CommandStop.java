@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.commands.music;
+package com.miningmark48.pearcelbot.commands.music.role_block;
 
 import com.miningmark48.pearcelbot.commands.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
@@ -18,7 +18,11 @@ public class CommandStop implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        AudioHandler.stop(event.getTextChannel());
+        if (!event.getAuthor().getJDA().getRoles().toString().contains(Reference.botNoMusicRole)) {
+            AudioHandler.stop(event.getTextChannel());
+        } else {
+            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
+        }
     }
 
     @Override

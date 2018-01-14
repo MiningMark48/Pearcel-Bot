@@ -114,6 +114,7 @@ public class Main {
                     jw.beginObject();
                         jw.name("commander").value("PBC");
                         jw.name("autoresponse").value("PBAR");
+                        jw.name("nomusic").value("PB-NoMusic");
                     jw.endObject();
 
                     jw.name("other");
@@ -143,6 +144,7 @@ public class Main {
 
                         Reference.botCommanderRole = jsonObjectRoles.get("commander").getAsString();
                         Reference.botAutoResponseRole = jsonObjectRoles.get("autoresponse").getAsString();
+                        Reference.botNoMusicRole = jsonObjectRoles.get("nomusic").getAsString();
 
                         Reference.doChatLog = jsonObjectOther.get("do chat log").getAsBoolean();
 

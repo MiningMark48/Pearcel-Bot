@@ -59,7 +59,7 @@ public class CurseData {
 
                 for (String line = reader.readLine(); line != null; line = reader.readLine())
                     // Find avatar
-                    if (!foundAvatar && line.contains("<div class=\"avatar avatar-100 user user-role-curse-premium\">")) {
+                    if (!foundAvatar && line.contains("<div class=\"avatar avatar-100 user user-role_block-curse-premium\">")) {
 
                         reader.readLine();
                         final String imageLine = reader.readLine();
