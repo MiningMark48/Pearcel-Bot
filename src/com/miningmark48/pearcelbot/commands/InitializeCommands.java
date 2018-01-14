@@ -7,6 +7,8 @@ import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
 
+import java.sql.Ref;
+
 public class InitializeCommands {
 
     public static void init(){
@@ -80,6 +82,7 @@ public class InitializeCommands {
         Main.commands.put("nowplaying", new CommandNowPlaying());
         Main.commands.put("shuffle", new CommandShuffle());
         Main.commands.put("lyrics", new CommandLyrics());
+        Main.commands.put("restart", new CommandRestart());
 
         //Alias
         Main.commands.put("help", new CommandCmds());
@@ -153,6 +156,7 @@ public class InitializeCommands {
         Reference.commandUsageMusic.put("shuffle", CommandShuffle.info);
         Reference.commandUsageMusic.put("skip", CommandSkip.info);
         Reference.commandUsageMusic.put("stop", CommandStop.info);
+        Reference.commandUsageMusic.put("restart", CommandRestart.info);
 
         Logger.log(Logger.LogType.STATUS, "Commands Initialized.");
 

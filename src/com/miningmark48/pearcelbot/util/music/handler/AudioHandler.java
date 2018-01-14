@@ -252,6 +252,15 @@ public class AudioHandler {
         }
     }
 
+    public static void restart(TextChannel channel) {
+        GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
+        if (musicManager.player.getPlayingTrack() != null) {
+            channel.sendMessage("Restarting track!").queue();
+            musicManager.scheduler.repeat(true);
+            musicManager.scheduler.nextTrack();
+        }
+    }
+
     private static void connectVoiceChannel(AudioManager audioManager, User user) {
         if (!audioManager.isConnected() && !audioManager.isAttemptingToConnect()) {
             int i = 0;
