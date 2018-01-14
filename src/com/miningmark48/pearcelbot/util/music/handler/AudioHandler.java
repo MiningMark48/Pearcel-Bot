@@ -215,7 +215,7 @@ public class AudioHandler {
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
         AudioTrack track = musicManager.player.getPlayingTrack();
         if (track != null){
-            channel.sendMessage("**Currently playing:** \n**[** " + MathUtil.getTimeFromLongNoFormat(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormat(track.getDuration()) + " **]** " + track.getInfo().title).queue();
+            channel.sendMessage("**Currently playing:** \n**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]** " + track.getInfo().title).queue();
         }else{
             channel.sendMessage("Nothing is currently playing!").queue();
         }
