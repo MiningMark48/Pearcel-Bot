@@ -46,7 +46,6 @@ public class InitializeCommands {
         Main.commands.put("patreon", new CommandPatreon());
         Main.commands.put("ping", new CommandPing());
         Main.commands.put("poll", new CommandPoll());
-        Main.commands.put("polln", new CommandPollN());
         Main.commands.put("roles", new CommandRoles());
         Main.commands.put("rps", new CommandRPS());
         Main.commands.put("say", new CommandSay());
@@ -118,7 +117,6 @@ public class InitializeCommands {
         Reference.commandUsage.put("patreon", CommandPatreon.info);
         Reference.commandUsage2.put("ping", CommandPing.info);
         Reference.commandUsage2.put("poll", CommandPoll.info);
-        Reference.commandUsage2.put("polln", CommandPollN.info);
         Reference.commandUsage2.put("roles", CommandRoles.info);
         Reference.commandUsage2.put("rps", CommandRPS.info);
         Reference.commandUsage2.put("slap", CommandSlap.info);
