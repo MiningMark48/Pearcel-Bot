@@ -1,13 +1,14 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.MessageHelper;
 import com.miningmark48.pearcelbot.util.Tools;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
-public class Command8Ball implements ICommand {
+public class Command8Ball implements ICommand, ICommandPrivate {
 
     public static final String desc = "Roll a magic 8 Ball";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "8ball [arg]";
@@ -22,25 +23,38 @@ public class Command8Ball implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        Random rand = new Random();
-        event.getMessage().delete().queue();
-        if (args.length != 0) {
-            MessageBuilder builder = new MessageBuilder();
-            builder.append(Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");
-            for (int i = 0; i <= Integer.valueOf(args[0]) && i <= 25; i++) {
-                int num = rand.nextInt(responses.length);
-                builder.append(Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "\n");
-            }
-            event.getTextChannel().sendMessage(builder.build()).queue();
-        }else{
-            int num = rand.nextInt(responses.length);
-            event.getTextChannel().sendMessage(Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "").queue();
-        }
-
+        doCmd(event, args, false);
     }
 
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
     }
+
+    @Override
+    public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        doCmd(event, args, true);
+    }
+
+    private static void doCmd(MessageReceivedEvent event, String[] args, boolean isPrivate) {
+        Random rand = new Random();
+        if (!isPrivate) event.getMessage().delete().queue();
+        if (args.length != 0) {
+            MessageBuilder builder = new MessageBuilder();
+            builder.append(Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");
+            try {
+                for (int i = 0; i <= Integer.valueOf(args[0]) && i <= 25; i++) {
+                    int num = rand.nextInt(responses.length);
+                    builder.append(Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "\n");
+                }
+                MessageHelper.sendMessage(event, builder.build(), isPrivate);
+            } catch (NumberFormatException e) {
+                MessageHelper.sendMessage(event, "**Error:** *" + args[0] + "* is not a valid argument. Argument must be an int.", isPrivate);
+            }
+        } else {
+            int num = rand.nextInt(responses.length);
+            MessageHelper.sendMessage(event, Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "", isPrivate);
+        }
+    }
+
 }
