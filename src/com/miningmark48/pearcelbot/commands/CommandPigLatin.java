@@ -21,7 +21,7 @@ public class CommandPigLatin implements ICommand {
 
         JsonObject js;
 
-        String message = event.getMessage().getContent().substring(10);
+        String message = event.getMessage().getContentRaw().substring(10);
         String text = message.replace(" ", "+");
 
         if (args.length <= 0){

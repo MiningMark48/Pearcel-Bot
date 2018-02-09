@@ -37,7 +37,7 @@ public class JSONMessageGreetings {
         JsonArray greetings = js.get("greetings").getAsJsonArray();
 
         for (int i = 0; i <= greetings.size() - 1; i++){
-            if (!flag && message.getContent().toLowerCase().contains(greetings.get(i).getAsString().toLowerCase())){
+            if (!flag && message.getContentRaw().toLowerCase().contains(greetings.get(i).getAsString().toLowerCase())){
                 flag = true;
             }
         }

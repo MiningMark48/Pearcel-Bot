@@ -55,22 +55,22 @@ public class JSONMessageReplies {
         JsonArray repliesDoing = js.get("doing").getAsJsonArray();
 
         for (int i = 0; i <= repliesGood.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesGood.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesGood.get(i).getAsString().toLowerCase())){
                 flag = true;
             }
         }
         for (int i = 0; i <= repliesSoso.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesSoso.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesSoso.get(i).getAsString().toLowerCase())){
                 flag = true;
             }
         }
         for (int i = 0; i <= repliesBad.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesBad.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesBad.get(i).getAsString().toLowerCase())){
                 flag = true;
             }
         }
         for (int i = 0; i <= repliesDoing.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesDoing.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesDoing.get(i).getAsString().toLowerCase())){
                 flag = true;
             }
         }
@@ -94,25 +94,25 @@ public class JSONMessageReplies {
         JsonArray repliesDoing = js.get("doing").getAsJsonArray();
 
         for (int i = 0; i <= repliesGood.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesGood.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesGood.get(i).getAsString().toLowerCase())){
                 flag = true;
                 type = 0;
             }
         }
         for (int i = 0; i <= repliesSoso.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesSoso.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesSoso.get(i).getAsString().toLowerCase())){
                 flag = true;
                 type = 1;
             }
         }
         for (int i = 0; i <= repliesBad.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesBad.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesBad.get(i).getAsString().toLowerCase())){
                 flag = true;
                 type = 2;
             }
         }
         for (int i = 0; i <= repliesDoing.size() - 1 && !flag; i++){
-            if (message.getContent().toLowerCase().contains(repliesDoing.get(i).getAsString().toLowerCase())){
+            if (message.getContentRaw().toLowerCase().contains(repliesDoing.get(i).getAsString().toLowerCase())){
                 flag = true;
                 type = 3;
             }

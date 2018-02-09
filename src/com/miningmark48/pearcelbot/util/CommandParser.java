@@ -23,7 +23,7 @@ public class CommandParser {
 
         //Relay Command Input
         if (event.getGuild() != null && event.getTextChannel() != null && event.getAuthor() != null && event.getMessage() != null) {
-            System.out.printf("[COMMAND LOG][%s][%s] %s: %s\n", event.getGuild().getName(), event.getTextChannel().getName(), event.getAuthor().getName(), event.getMessage().getContent());
+            System.out.printf("[COMMAND LOG][%s][%s] %s: %s\n", event.getGuild().getName(), event.getTextChannel().getName(), event.getAuthor().getName(), event.getMessage().getContentRaw());
         }
 
 

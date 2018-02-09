@@ -13,7 +13,7 @@ public class JSONMessageGeneral {
         JsonObject js;
         String msg = "";
         String content;
-        content = message.getContent().toLowerCase();
+        content = message.getContentRaw().toLowerCase();
 
         js = JSONParseFile.JSONParse(file);
 

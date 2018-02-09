@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class GetCommand {
 
     public static void init(MessageReceivedEvent event) {
-        String message = event.getMessage().getContent().toLowerCase();
+        String message = event.getMessage().getContentRaw().toLowerCase();
 
         if (message.startsWith(Reference.botCommandCustomKey)) {
 

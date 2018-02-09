@@ -1,10 +1,12 @@
 package com.miningmark48.pearcelbot.util.chatlog;
 
 import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +23,7 @@ public class ChatLog {
         String guild = event.getGuild().getName();
         String channel = event.getTextChannel().getName();
         String user = event.getAuthor().getName();
-        String message = event.getMessage().getContent();
+        String message = event.getMessage().getContentRaw();
 
         if (!JSONChatLog.isChatlogBlacklist(event)) {
             if (!event.getChannel().getType().equals(ChannelType.PRIVATE)) {

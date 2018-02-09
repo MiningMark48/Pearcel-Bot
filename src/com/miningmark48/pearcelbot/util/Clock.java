@@ -30,7 +30,7 @@ public class Clock {
                     randNum = rand.nextInt(randAmount);
                 }
 
-                jda.getPresence().setGame(Game.of(games[randNum]));
+                jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, games[randNum]));
 
                 prevNum = randNum;
 

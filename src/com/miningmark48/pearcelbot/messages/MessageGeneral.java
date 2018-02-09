@@ -8,7 +8,7 @@ public class MessageGeneral {
 
     public static void init(MessageReceivedEvent event){
 
-        String message = event.getMessage().getContent().toLowerCase();
+        String message = event.getMessage().getContentRaw().toLowerCase();
 
         MessageBuilder builder = new MessageBuilder();
 

@@ -20,7 +20,7 @@ public class CommandPoll implements ICommand {
             event.getMessage().addReaction("\u2705").queue();
             event.getMessage().addReaction("\u274C").queue();
 
-            event.getTextChannel().sendMessage(String.format("**Click one of the reactions above to vote on the question:** \n     _%s_", event.getMessage().getContent().replace(Reference.botCommandKey + "poll ", ""))).queue();
+            event.getTextChannel().sendMessage(String.format("**Click one of the reactions above to vote on the question:** \n     _%s_", event.getMessage().getContentRaw().replace(Reference.botCommandKey + "poll ", ""))).queue();
         }
     }
 

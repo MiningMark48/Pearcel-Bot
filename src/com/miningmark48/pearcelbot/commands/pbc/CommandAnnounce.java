@@ -18,7 +18,7 @@ public class CommandAnnounce implements ICommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
-        String messageFinal = event.getMessage().getContent().substring(10);
+        String messageFinal = event.getMessage().getContentRaw().substring(10);
 
         if (event.getMember().getRoles().toString().contains(Reference.botCommanderRole) || event.getGuild().getOwner() == event.getMember() || event.getAuthor().getId().equals(Reference.botOwner)){
             event.getTextChannel().sendMessage("**-----Announcement-----**\n" + messageFinal + "\n**----------------------------**").queue();

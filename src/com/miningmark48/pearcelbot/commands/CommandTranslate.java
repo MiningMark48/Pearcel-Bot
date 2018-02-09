@@ -41,10 +41,10 @@ public class CommandTranslate implements ICommand, ICommandPrivate {
         String languageCode;
 
         if (args[0].contains("-") && args[0].length() == 5) {
-            message = event.getMessage().getContent().substring(16);
+            message = event.getMessage().getContentRaw().substring(16);
             languageCode = args[0];
         } else {
-            message = event.getMessage().getContent().substring(11);
+            message = event.getMessage().getContentRaw().substring(11);
             languageCode = "en-es";
         }
         String text = message.replace(" ", "+");
