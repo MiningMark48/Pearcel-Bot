@@ -2,6 +2,7 @@ package com.miningmark48.pearcelbot.util.music.handler;
 
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.FormatUtil;
+import com.miningmark48.pearcelbot.util.Logger;
 import com.miningmark48.pearcelbot.util.MathUtil;
 import com.miningmark48.pearcelbot.util.NumberToWords;
 import com.miningmark48.pearcelbot.util.music.GuildMusicManager;
@@ -160,9 +161,11 @@ public class AudioHandler {
 
         StringBuilder builder = new StringBuilder();
         String keyword;
-        Arrays.stream(keyword_query).forEach(builder::append);
+        Arrays.stream(keyword_query).forEach(q -> builder.append(q).append(" "));
 
         keyword = builder.toString();
+
+        Logger.log(Logger.LogType.DEBUG, keyword);
 
         channel.sendMessage(String.format("Searching queue for %s.", FormatUtil.italicize(keyword))).queue();
 
