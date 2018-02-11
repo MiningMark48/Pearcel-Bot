@@ -30,12 +30,14 @@ public class AudioHandler {
     public static AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
     private static Map<Long, GuildMusicManager> musicManagers =  new HashMap<>();
 
+    private static int default_volume = 15;
+
     public static Map<Guild, TextChannel> musicChannelRef = new HashMap<>();
 
     public static void loadAndPlay(final TextChannel channel, User user, final String trackUrl, final boolean isPlaylist) {
 
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
-        musicManager.player.setVolume(30);
+        musicManager.player.setVolume(default_volume);
         musicManager.scheduler.setGuildPlaying(channel.getGuild());
 
         playerManager.loadItemOrdered(musicManager, trackUrl, new AudioLoadResultHandler() {
