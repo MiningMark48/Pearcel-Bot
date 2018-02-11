@@ -190,7 +190,7 @@ public class AudioHandler {
 
         StringBuilder builder = new StringBuilder();
         String keyword;
-        Arrays.stream(keyword_query).forEach(builder::append);
+        Arrays.stream(keyword_query).forEach(q -> builder.append(q).append(" "));
 
         keyword = builder.toString();
 
