@@ -2,6 +2,8 @@ package com.miningmark48.pearcelbot.commands.music.role_block;
 
 import com.miningmark48.pearcelbot.commands.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.Tools;
+import com.miningmark48.pearcelbot.util.YoutubeSearch;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -19,7 +21,12 @@ public class CommandPlay implements ICommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
-            AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
+            if (Tools.isValid(args[0])) {
+                AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
+            } else {
+                String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.NORMAL);
+                if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
+            }
         } else {
             event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
         }

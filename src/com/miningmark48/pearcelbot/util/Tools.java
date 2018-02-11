@@ -3,6 +3,7 @@ package com.miningmark48.pearcelbot.util;
 import com.google.common.collect.Lists;
 import com.sun.istack.internal.Nullable;
 
+import java.net.URL;
 import java.util.*;
 
 public class Tools {
@@ -59,6 +60,17 @@ public class Tools {
         }
 
         return text;
+    }
+
+    /* Returns true if url is valid */
+    public static boolean isValid(String url)
+    {
+        try {
+            new URL(url).toURI();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public enum FormatType{

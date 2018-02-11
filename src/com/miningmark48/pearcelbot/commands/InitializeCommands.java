@@ -143,7 +143,6 @@ public class InitializeCommands {
         Reference.commandUsageMusic.put("play", CommandPlay.info);
         Reference.commandUsageMusic.put("playnext", CommandPlayNext.info);
         Reference.commandUsageMusic.put("pplay", CommandPlayPlaylist.info);
-        Reference.commandUsageMusic.put("splay", CommandPlaySearch.info);
         Reference.commandUsageMusic.put("splayrand", CommandPlaySearchRand.info);
         Reference.commandUsageMusic.put("splayremix", CommandPlaySearchRemix.info);
         Reference.commandUsageMusic.put("queue", CommandQueue.info);
