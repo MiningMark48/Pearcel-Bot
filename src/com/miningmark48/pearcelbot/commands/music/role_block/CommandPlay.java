@@ -9,8 +9,8 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandPlay implements ICommand {
 
-    public static final String desc = "Plays a track from a url.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "play <track url>";
+    public static final String desc = "Plays a track from a url or query.";
+    public static final String usage = "USAGE: " + Reference.botCommandKey + "play <track url> OR play <search query>";
     public static final String info = desc + " " + usage;
 
     @Override
