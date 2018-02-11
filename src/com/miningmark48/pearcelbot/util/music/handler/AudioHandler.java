@@ -125,7 +125,7 @@ public class AudioHandler {
 
             embedBuilder.setTitle("Current Queue (" + queue.size() + ") [" + (MathUtil.getTimeFromLong(queueTime) + "]:\n"));
             embedBuilder.setThumbnail("http://www.icons101.com/icon_png/size_512/id_78717/Music.png");
-            embedBuilder.setFooter("Provided by " + Reference.botName + ". Made by MiningMark48.", "http://miningmark48.xyz/img/mm48.png");
+            embedBuilder.setFooter("Provided by " + Reference.botName + ". Made by MiningMark48.", "http://miningmark48.xyz/img/logo/logo.png");
             embedBuilder.setColor(Color.decode("#a2f000"));
             int i = 1;
             for (AudioTrack track : queue) {
@@ -161,7 +161,7 @@ public class AudioHandler {
 
         StringBuilder builder = new StringBuilder();
         String keyword;
-        Arrays.stream(keyword_query).forEach(q -> builder.append(q).append(" "));
+        Arrays.stream(keyword_query).forEach(q -> builder.append(q).append(Arrays.asList(keyword_query).indexOf(q) == keyword_query.length - 1 ? "" : " "));
 
         keyword = builder.toString();
 
@@ -190,7 +190,7 @@ public class AudioHandler {
 
         StringBuilder builder = new StringBuilder();
         String keyword;
-        Arrays.stream(keyword_query).forEach(q -> builder.append(q).append(" "));
+        Arrays.stream(keyword_query).forEach(q -> builder.append(q).append(Arrays.asList(keyword_query).indexOf(q) == keyword_query.length - 1 ? "" : " "));
 
         keyword = builder.toString();
 
