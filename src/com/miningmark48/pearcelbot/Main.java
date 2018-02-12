@@ -7,6 +7,7 @@ import com.google.gson.stream.JsonWriter;
 import com.miningmark48.pearcelbot.commands.ICommand;
 import com.miningmark48.pearcelbot.commands.ICommandPrivate;
 import com.miningmark48.pearcelbot.commands.InitializeCommands;
+import com.miningmark48.pearcelbot.commands.music.soundboard.AudioHandlerSoundboard;
 import com.miningmark48.pearcelbot.customcommands.GetCommand;
 import com.miningmark48.pearcelbot.messages.InitializeMessages;
 import com.miningmark48.pearcelbot.reference.Reference;
@@ -56,6 +57,8 @@ public class Main {
 
         AudioSourceManagers.registerRemoteSources(AudioHandler.playerManager);
         AudioSourceManagers.registerLocalSource(AudioHandler.playerManager);
+        AudioSourceManagers.registerRemoteSources(AudioHandlerSoundboard.playerManager);
+        AudioSourceManagers.registerLocalSource(AudioHandlerSoundboard.playerManager);
 
         InitializeCommands.init();
 

@@ -3,6 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.commands.music.*;
 import com.miningmark48.pearcelbot.commands.music.role_block.*;
+import com.miningmark48.pearcelbot.commands.music.soundboard.CommandSoundboard;
 import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
@@ -82,6 +83,7 @@ public class InitializeCommands {
         Main.commands.put("shuffle", new CommandShuffle());
         Main.commands.put("lyrics", new CommandLyrics());
         Main.commands.put("restart", new CommandRestart());
+        Main.commands.put("soundboard", new CommandSoundboard());
 
         //Alias
         Main.commands.put("help", new CommandCmds());
@@ -91,6 +93,7 @@ public class InitializeCommands {
         Main.commands.put("listcmds", new CommandListCommands());
             //Music
         Main.commands.put("np", new CommandNowPlaying());
+        Main.commands.put("sb", new CommandSoundboard());
 
         //Cmd Info
             //Normal
@@ -154,6 +157,7 @@ public class InitializeCommands {
         Reference.commandUsageMusic.put("skip", CommandSkip.info);
         Reference.commandUsageMusic.put("stop", CommandStop.info);
         Reference.commandUsageMusic.put("restart", CommandRestart.info);
+        Reference.commandUsageMusic.put("soundboard", CommandSoundboard.info);
 
         Logger.log(Logger.LogType.STATUS, "Commands Initialized.");
 

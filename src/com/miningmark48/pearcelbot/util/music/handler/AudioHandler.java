@@ -25,6 +25,7 @@ import java.util.*;
 import java.util.List;
 import java.util.Queue;
 
+@SuppressWarnings("Duplicates")
 public class AudioHandler {
 
     public static AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
@@ -158,6 +159,13 @@ public class AudioHandler {
         }
     }
 
+    public static void pauseQuiet(Guild guild){
+        GuildMusicManager musicManager = getGuildAudioPlayer(guild);
+        if (!musicManager.player.isPaused()) {
+            musicManager.player.setPaused(true);
+        }
+    }
+
     public static void playNext(TextChannel channel, String[] keyword_query){
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
 
@@ -215,6 +223,13 @@ public class AudioHandler {
             channel.sendMessage("Resumed track.").queue();
         }else{
             channel.sendMessage("Track is already playing!").queue();
+        }
+    }
+
+    public static void resumeQuiet(Guild guild){
+        GuildMusicManager musicManager = getGuildAudioPlayer(guild);
+        if (musicManager.player.isPaused()) {
+            musicManager.player.setPaused(false);
         }
     }
 

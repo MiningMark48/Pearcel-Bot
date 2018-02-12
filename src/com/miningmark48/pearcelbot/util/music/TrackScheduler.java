@@ -1,5 +1,6 @@
 package com.miningmark48.pearcelbot.util.music;
 
+import com.miningmark48.pearcelbot.commands.music.soundboard.AudioHandlerSoundboard;
 import com.miningmark48.pearcelbot.util.FormatUtil;
 import com.miningmark48.pearcelbot.util.Logger;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
@@ -83,6 +84,7 @@ public class TrackScheduler extends AudioEventAdapter {
     // Only start the next track if the end reason is suitable for it (FINISHED or LOAD_FAILED)
         if (endReason.mayStartNext) {
           nextTrack();
+          AudioHandler.resumeQuiet(AudioHandlerSoundboard.audio_guild);
         }else{
 //            getGuildPlaying().getAudioManager().closeAudioConnection();
         }
