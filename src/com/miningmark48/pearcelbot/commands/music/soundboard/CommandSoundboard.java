@@ -63,6 +63,7 @@ public class CommandSoundboard implements ICommand {
                     default:
                         break;
                 }
+                event.getMessage().delete().queue();
             } else {
                 event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
             }
