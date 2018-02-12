@@ -2,7 +2,6 @@ package com.miningmark48.pearcelbot.commands.music.soundboard;
 
 import com.miningmark48.pearcelbot.commands.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -27,14 +26,23 @@ public class CommandSoundboard implements ICommand {
         if (args.length > 0) {
             if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
                 switch (args[0].toLowerCase()) {
+                    case "airhorn":
+                        AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "airhorn.mp3", false);
+                        break;
                     case "cena":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "john_cena.mp3", false);
+                        break;
+                    case "censor":
+                        AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "censor.mp3", false);
                         break;
                     case "china":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "china.mp3", false);
                         break;
                     case "correct":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "correct.mp3", false);
+                        break;
+                    case "could_you_not":
+                        AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "could_you_like_not.mp3", false);
                         break;
                     case "creeper":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "creeper.mp3", false);
@@ -44,6 +52,9 @@ public class CommandSoundboard implements ICommand {
                         break;
                     case "illuminati":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "illuminati.mp3", false);
+                        break;
+                    case "jeff":
+                        AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "jeff.mp3", false);
                         break;
                     case "ping":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "discord_ping.mp3", false);
@@ -72,12 +83,16 @@ public class CommandSoundboard implements ICommand {
             builder.setColor(Color.BLUE);
             builder.setFooter("soundboard <sound>", null);
             builder.setTitle("Available Sounds");
+            builder.addField("Airhorn", "Buuurrrppp!", true);
             builder.addField("Cena", "And his name is...", true);
+            builder.addField("Censor", "Shut the [BEEP] up!", true);
             builder.addField("China", "China!", true);
             builder.addField("Correct", "Ba-Ding!", true);
+            builder.addField("Could_You_Not", "Could you, like, not?", true);
             builder.addField("Creeper", "SSssssSSSsss", true);
             builder.addField("Easy", "That was easy!", true);
             builder.addField("Illuminati", "That was easy!", true);
+            builder.addField("Jeff", "Hi, this is Jeff.", true);
             builder.addField("Ping", "Boink!", true);
             builder.addField("Swamp", "...my swamp?!", true);
             builder.addField("Trombone", "Wah, wah, wah...", true);
