@@ -18,6 +18,10 @@ public class CommandSkip implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        if (event.getMember() == null) { //Webhook support
+            AudioHandler.skipTrack(event.getTextChannel());
+            return;
+        }
         if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
             AudioHandler.skipTrack(event.getTextChannel());
         } else {

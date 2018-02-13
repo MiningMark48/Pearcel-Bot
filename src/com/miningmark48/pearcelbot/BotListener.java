@@ -27,6 +27,7 @@ public class BotListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
+
         if (event.getJDA().getStatus() == JDA.Status.ATTEMPTING_TO_RECONNECT || event.getJDA().getStatus() == JDA.Status.CONNECTING_TO_WEBSOCKET){
             return;
         }
@@ -92,6 +93,8 @@ public class BotListener extends ListenerAdapter {
             }
         }
     }
+
+
 
     private static boolean isBlacklisted(String id) {
 

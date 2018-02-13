@@ -2,6 +2,7 @@ package com.miningmark48.pearcelbot.commands.music.role_block;
 
 import com.miningmark48.pearcelbot.commands.ICommand;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.YoutubeSearch;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -18,6 +19,10 @@ public class CommandPause implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        if (event.getMember() == null) { //Webhook support
+            AudioHandler.pause(event.getTextChannel());
+            return;
+        }
         if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
             AudioHandler.pause(event.getTextChannel());
         } else {

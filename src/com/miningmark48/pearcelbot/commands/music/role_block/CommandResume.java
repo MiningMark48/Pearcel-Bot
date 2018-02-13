@@ -18,6 +18,10 @@ public class CommandResume implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        if (event.getMember() == null) { //Webhook support
+            AudioHandler.resume(event.getTextChannel());
+            return;
+        }
         if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
             AudioHandler.resume(event.getTextChannel());
         } else {
