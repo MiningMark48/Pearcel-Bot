@@ -18,6 +18,7 @@ public class CommandQueue implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+        AudioHandler.nowPlaying(event.getTextChannel());
         AudioHandler.getQueue(event.getTextChannel());
     }
 

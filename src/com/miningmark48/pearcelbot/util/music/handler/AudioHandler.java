@@ -130,10 +130,15 @@ public class AudioHandler {
             embedBuilder.setThumbnail("http://www.icons101.com/icon_png/size_512/id_78717/Music.png");
             embedBuilder.setFooter("Provided by " + Reference.botName + ". Made by MiningMark48.", "http://miningmark48.xyz/img/logo/logo.png");
             embedBuilder.setColor(Color.decode("#a2f000"));
+
+            AudioTrack currentTrack = musicManager.player.getPlayingTrack();
+            embedBuilder.addField("Currently Playing", "**[** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getDuration()) + " **]** " + currentTrack.getInfo().title, false);
+            embedBuilder.addBlankField(false);
+
             int i = 1;
             for (AudioTrack track : queue) {
                 if (i <= 10){
-                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.makeURL("URL", track.getInfo().uri)), false);
+                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.makeURL("URL", track.getInfo().uri) + " - " + track.getInfo().author), false);
                 } else {
                     embedBuilder.addField("Plus " + (queue.size() - i) + " more.", "", false);
                     break;
