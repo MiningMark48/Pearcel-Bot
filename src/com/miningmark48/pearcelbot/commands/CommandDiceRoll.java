@@ -27,9 +27,10 @@ public class CommandDiceRoll implements ICommand {
             diceNum = rand.nextInt(diceNumDefault) + 1;
             event.getTextChannel().sendMessage("\uD83C\uDFB2 **Dice Roll:** " + diceNum + " \uD83C\uDFB2").queue();
         }else{
-            if (Integer.valueOf(args[0]) <= Integer.MAX_VALUE && Integer.valueOf(args[0]) >= 2) {
-                diceNum = rand.nextInt(Integer.valueOf(args[0])) + 1;
-                event.getTextChannel().sendMessage("\uD83C\uDFB2 **Dice Roll: (**" + args[0] + "**) :** " + diceNum + " \uD83C\uDFB2").queue();
+            int diceArg = Math.abs(Integer.valueOf(args[0]));
+            if (diceArg >= 2) {
+                diceNum = rand.nextInt(diceArg) + 1;
+                event.getTextChannel().sendMessage("\uD83C\uDFB2 **Dice Roll: (**" + diceArg + "**) :** " + diceNum + " \uD83C\uDFB2").queue();
             }else{
                 diceNum = diceNumDefault;
                 event.getTextChannel().sendMessage("Invalid, rolling to " + diceNum + ".").queue();
