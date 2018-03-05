@@ -47,6 +47,7 @@ public class InitializeCommands {
         Main.commands.put("patreon", new CommandPatreon());
         Main.commands.put("ping", new CommandPing());
         Main.commands.put("poll", new CommandPoll());
+        Main.commands.put("prune", new CommandPrune());
         Main.commands.put("roles", new CommandRoles());
         Main.commands.put("rps", new CommandRPS());
         Main.commands.put("say", new CommandSay());
@@ -137,6 +138,7 @@ public class InitializeCommands {
         Reference.commandUsagePBC.put("announce", CommandAnnounce.info);
         Reference.commandUsagePBC.put("deletecommand", CommandDeleteCommand.info);
         Reference.commandUsagePBC.put("editcommand", CommandEditCommand.info);
+        Reference.commandUsagePBC.put("prune", CommandPrune.info);
         Reference.commandUsagePBC.put("say", CommandSay.info);
 
         //Music
