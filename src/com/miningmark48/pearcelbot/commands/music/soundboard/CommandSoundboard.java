@@ -42,7 +42,7 @@ public class CommandSoundboard implements ICommand {
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "correct.mp3", false);
                         break;
                     case "could_you_not":
-                        AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "could_you_like_not.mp3", false);
+                        AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "could_you_not.mp3", false);
                         break;
                     case "creeper":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "creeper.mp3", false);
