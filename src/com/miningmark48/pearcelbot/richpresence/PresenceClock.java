@@ -24,8 +24,6 @@ public class PresenceClock {
                     randType = rand.nextInt(3);
                 }
 
-                Logger.log(Logger.LogType.DEBUG, randType + "");
-
                 prevNumCat = randType;
 
                 int randPresence;
