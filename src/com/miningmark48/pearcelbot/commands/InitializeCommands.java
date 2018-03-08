@@ -8,8 +8,6 @@ import com.miningmark48.pearcelbot.commands.pbc.*;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
 
-import java.sql.Ref;
-
 public class InitializeCommands {
 
     public static void init(){
@@ -39,6 +37,7 @@ public class InitializeCommands {
         Main.commands.put("geoip", new CommandGeoIP());
         Main.commands.put("githubuser", new CommandGithubUser());
         Main.commands.put("guildinfo", new CommandGuildInfo());
+        Main.commands.put("kickvoice", new CommandKickVoice());
         Main.commands.put("listbots", new CommandListBots());
         Main.commands.put("listcommands", new CommandListCommands());
         Main.commands.put("lmgtfy", new CommandLMGTFY());
@@ -113,6 +112,7 @@ public class InitializeCommands {
         Reference.commandUsage.put("geoip", CommandGeoIP.info);
         Reference.commandUsage.put("githubuser", CommandGithubUser.info);
         Reference.commandUsage.put("guildinfo", CommandGuildInfo.info);
+        Reference.commandUsage.put("kickvoice", CommandKickVoice.info);
         Reference.commandUsage.put("listbots", CommandListBots.info);
         Reference.commandUsage.put("listcommands", CommandListCommands.info);
         Reference.commandUsage.put("lmgtfy", CommandLMGTFY.info);
