@@ -7,7 +7,6 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.requests.RestAction;
 
-@SuppressWarnings("ALL")
 public class CommandKickVoice implements ICommand {
 
     public static final String desc = "Kick a user from a voice channel.";
