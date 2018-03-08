@@ -112,7 +112,6 @@ public class InitializeCommands {
         Reference.commandUsage.put("geoip", CommandGeoIP.info);
         Reference.commandUsage.put("githubuser", CommandGithubUser.info);
         Reference.commandUsage.put("guildinfo", CommandGuildInfo.info);
-        Reference.commandUsage.put("kickvoice", CommandKickVoice.info);
         Reference.commandUsage.put("listbots", CommandListBots.info);
         Reference.commandUsage.put("listcommands", CommandListCommands.info);
         Reference.commandUsage.put("lmgtfy", CommandLMGTFY.info);
@@ -138,6 +137,7 @@ public class InitializeCommands {
         Reference.commandUsagePBC.put("announce", CommandAnnounce.info);
         Reference.commandUsagePBC.put("deletecommand", CommandDeleteCommand.info);
         Reference.commandUsagePBC.put("editcommand", CommandEditCommand.info);
+        Reference.commandUsagePBC.put("kickvoice", CommandKickVoice.info);
         Reference.commandUsagePBC.put("prune", CommandPrune.info);
         Reference.commandUsagePBC.put("say", CommandSay.info);
 
