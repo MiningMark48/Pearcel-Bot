@@ -71,7 +71,7 @@ public class CommandKickVoice implements ICommand {
     private static boolean moveToVoice(Guild guild, User user) {
         try {
             VoiceChannel channel = guild.getVoiceChannelsByName("temp-kick", true).stream().findFirst().get();
-            guild.getController().moveVoiceMember(guild.getMember(user), channel).queue();
+            guild.getController().moveVoiceMember(guild.getMember(user), channel).complete();
             return true;
         } catch (Exception e) {
             return false;
