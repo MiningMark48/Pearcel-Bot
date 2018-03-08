@@ -83,7 +83,6 @@ public class InitializeCommands {
         Main.commands.put("shuffle", new CommandShuffle());
         Main.commands.put("lyrics", new CommandLyrics());
         Main.commands.put("restart", new CommandRestart());
-        Main.commands.put("soundboard", new CommandSoundboard());
 
         //Alias
         Main.commands.put("help", new CommandCmds());
@@ -159,7 +158,6 @@ public class InitializeCommands {
         Reference.commandUsageMusic.put("skip", CommandSkip.info);
         Reference.commandUsageMusic.put("stop", CommandStop.info);
         Reference.commandUsageMusic.put("restart", CommandRestart.info);
-        Reference.commandUsageMusic.put("soundboard", CommandSoundboard.info);
 
         Logger.log(Logger.LogType.STATUS, "Commands Initialized.");
 
