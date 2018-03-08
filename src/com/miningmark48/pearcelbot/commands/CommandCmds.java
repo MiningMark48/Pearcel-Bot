@@ -44,7 +44,6 @@ public class CommandCmds implements ICommand, ICommandPrivate {
         }
 
         RestAction<PrivateChannel> privateChannel = event.getAuthor().openPrivateChannel();
-
         if (!isPrivate) {
             if (event.getAuthor() == null) {
                 event.getTextChannel().sendMessage("Sending you a list of commands now.").queue();
