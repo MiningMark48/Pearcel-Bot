@@ -1,51 +1,11 @@
 package com.miningmark48.pearcelbot.util;
 
-import com.miningmark48.pearcelbot.reference.Reference;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Game;
-
-import java.util.Random;
-
 public class Clock {
-
-    private static int timeoutSeconds = 15;
-    private static int prevNum = 0;
-    private static final String[] games = {"Do " + Reference.botCommandKey + "cmds", "Pearcel Mod", "sick music", "the banjo", "with your mom", "Minecraft", "Overwatch"};
 
     public static int uptimeSeconds = 50;
     public static int uptimeMinutes = 59;
     public static int uptimeHours = 23;
     public static int uptimeDays = 0;
-
-    public static void runClockGame(JDA jda){
-        Thread thread = new Thread(() -> {
-
-            while (true){
-
-                Random rand = new Random();
-                int randAmount = games.length;
-                int randNum = rand.nextInt(randAmount);
-
-                while (prevNum == randNum) {
-                    randNum = rand.nextInt(randAmount);
-                }
-
-                jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, games[randNum]));
-
-                prevNum = randNum;
-
-                try {
-                    Thread.sleep(timeoutSeconds * 1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        });
-
-        thread.start();
-    }
 
     public static void runClockUptime(){
         Thread thread = new Thread(() -> {

@@ -11,6 +11,7 @@ import com.miningmark48.pearcelbot.commands.music.soundboard.AudioHandlerSoundbo
 import com.miningmark48.pearcelbot.customcommands.GetCommand;
 import com.miningmark48.pearcelbot.messages.InitializeMessages;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.richpresence.PresenceClock;
 import com.miningmark48.pearcelbot.util.Clock;
 import com.miningmark48.pearcelbot.util.CommandParser;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
@@ -46,7 +47,7 @@ public class Main {
             jda = new JDABuilder(AccountType.BOT).addEventListener(new BotListener()).setToken(Reference.botToken).buildBlocking();
             jda.setAutoReconnect(true);
             jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, String.format("Do %scmds", Reference.botCommandKey)));
-            Clock.runClockGame(jda);
+            PresenceClock.runClockGame(jda);
             Clock.runClockUptime();
 
             Logger.log(Logger.LogType.STATUS, "Bot started!");
