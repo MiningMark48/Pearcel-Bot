@@ -8,11 +8,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.*;
 
-public class CommandARBlacklist implements ICommand {
-
-    public static final String desc = "Opt-in to be blacklisted from " + Reference.botName + "'s AutoResponse system";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "arblacklist";
-    public static final String info = desc + " " + usage;
+public class CommandARBlacklist implements ICommand, ICommandInfo {
 
     public static String fileName = "ar_blacklist.json";
     private BufferedWriter bufferedWriter = null;
@@ -95,4 +91,23 @@ public class CommandARBlacklist implements ICommand {
 
     }
 
+    @Override
+    public String getName() {
+        return "arblacklist";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Opt-in to be blacklisted from " + Reference.botName + "'s AutoResponse system";
+    }
+
+    @Override
+    public String getUsage() {
+        return "arblacklist";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

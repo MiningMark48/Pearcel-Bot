@@ -9,11 +9,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandGithubUser implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Get information about a user on Github.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "githubuser <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandGithubUser implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -89,4 +85,23 @@ public class CommandGithubUser implements ICommand, ICommandPrivate {
         }
     }
 
+    @Override
+    public String getName() {
+        return "githubuser";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get information about a user on Github.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "githubuser <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

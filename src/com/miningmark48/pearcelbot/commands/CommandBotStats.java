@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandBotStats implements ICommand{
+public class CommandBotStats implements ICommand, ICommandInfo {
 
     public static final String desc = "Returns bot stats.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "botstats";
@@ -41,4 +41,23 @@ public class CommandBotStats implements ICommand{
         return;
     }
 
+    @Override
+    public String getName() {
+        return "botstats";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Returns bot stats.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "botstats";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

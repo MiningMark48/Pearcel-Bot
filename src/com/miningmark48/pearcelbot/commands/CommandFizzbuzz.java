@@ -1,14 +1,9 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandFizzbuzz implements ICommand{
-
-    public static final String desc = "Fizzbuzz!";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "fizzbuzz <arg:int>";
-    public static final String info = desc + " " + usage;
+public class CommandFizzbuzz implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -48,4 +43,23 @@ public class CommandFizzbuzz implements ICommand{
         return;
     }
 
+    @Override
+    public String getName() {
+        return "fizzbuzz";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Fizzbuzz!";
+    }
+
+    @Override
+    public String getUsage() {
+        return "fizzbuzz <arg:int>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

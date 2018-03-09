@@ -6,11 +6,7 @@ import com.miningmark48.pearcelbot.util.JSON.JSONParse;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandGeoIP implements ICommand {
-
-    public static final String desc = "Get Geographic information about an IP.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "geoip [arg-optional]";
-    public static final String info = desc + " " + usage;
+public class CommandGeoIP implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -39,5 +35,25 @@ public class CommandGeoIP implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "geoip";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get geographic information about an IP.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "geoip [arg:IP|website]";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

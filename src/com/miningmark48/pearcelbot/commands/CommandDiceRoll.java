@@ -1,15 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
-public class CommandDiceRoll implements ICommand {
-
-    public static final String desc = "Rolls an imaginary dice.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "dice [arg]";
-    public static final String info = desc + " " + usage;
+public class CommandDiceRoll implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -44,4 +39,25 @@ public class CommandDiceRoll implements ICommand {
     public void executed(boolean success, MessageReceivedEvent event) {
 
     }
+
+    @Override
+    public String getName() {
+        return "diceroll";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Rolls an imaginary dice.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "diceroll [arg:int]";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
+
 }

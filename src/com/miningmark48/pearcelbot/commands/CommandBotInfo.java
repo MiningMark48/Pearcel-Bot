@@ -8,11 +8,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandBotInfo implements ICommand {
-
-    public static final String desc = "Returns bot information.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "botinfo";
-    public static final String info = desc + " " + usage;
+public class CommandBotInfo implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -51,5 +47,25 @@ public class CommandBotInfo implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
         return;
+    }
+
+    @Override
+    public String getName() {
+        return "botinfo";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Returns bot information.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "botinfo";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

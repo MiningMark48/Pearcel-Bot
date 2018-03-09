@@ -8,7 +8,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandBitcoin implements ICommand {
+public class CommandBitcoin implements ICommand, ICommandInfo {
 
     public static final String desc = "Get the [hourly] value of Bitcoin.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "bitcoin";
@@ -74,4 +74,23 @@ public class CommandBitcoin implements ICommand {
         return;
     }
 
+    @Override
+    public String getName() {
+        return "bitcoin";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get the [hourly] value of Bitcoin.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "bitcoin";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

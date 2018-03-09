@@ -5,11 +5,7 @@ import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandGetDemServs implements ICommand {
-
-    public static final String desc = "List all Guilds the bot is connected to.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "getdemservs";
-    public static final String info = desc + " " + usage;
+public class CommandGetDemServs implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -39,5 +35,25 @@ public class CommandGetDemServs implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "getdemservs";
+    }
+
+    @Override
+    public String getDesc() {
+        return "List all Guilds the bot is connected to.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "getdemservs";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

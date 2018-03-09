@@ -1,15 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.entities.Emote;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.apache.commons.lang3.StringEscapeUtils;
 
-public class CommandEmojiEval implements ICommand {
-
-    public static final String desc = "Evaluate an emoji.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "emojieval <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandEmojiEval implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -67,5 +62,25 @@ public class CommandEmojiEval implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "emojieval";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Evaluate an emoji.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "emojieval <arg:emoji>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

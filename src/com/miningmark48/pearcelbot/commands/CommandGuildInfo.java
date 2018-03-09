@@ -1,16 +1,11 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandGuildInfo implements ICommand {
-
-    public static final String desc = "Get information about a guild you're in on Discord.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "guildinfo";
-    public static final String info = desc + " " + usage;
+public class CommandGuildInfo implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -42,4 +37,25 @@ public class CommandGuildInfo implements ICommand {
     public void executed(boolean success, MessageReceivedEvent event) {
 
     }
+
+    @Override
+    public String getName() {
+        return "guildinfo";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get information about a guild you're in on Discord.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "guildinfo";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
+    
 }

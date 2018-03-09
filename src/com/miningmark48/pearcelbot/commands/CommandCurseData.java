@@ -1,6 +1,5 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.CurseData;
 import com.miningmark48.pearcelbot.util.MessageHelper;
 import com.miningmark48.pearcelbot.util.Tools;
@@ -12,11 +11,7 @@ import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Map;
 
-public class CommandCurseData implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Fetch Minecraft Curse data for a user";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "cursedata <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -106,6 +101,26 @@ public class CommandCurseData implements ICommand, ICommandPrivate {
         else {
             MessageHelper.sendMessage(event, "You must specify the name of a user that is registered on Curse!", isPrivate);
         }
+    }
+
+    @Override
+    public String getName() {
+        return "cursedata";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Fetch Minecraft Curse data for a user.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "cursedata";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 
 }

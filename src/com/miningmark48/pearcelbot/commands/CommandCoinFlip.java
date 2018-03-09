@@ -1,15 +1,10 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
-public class CommandCoinFlip implements ICommand {
-
-    public static final String desc = "Flip an imaginary coin.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "coin";
-    public static final String info = desc + " " + usage;
+public class CommandCoinFlip implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -31,5 +26,25 @@ public class CommandCoinFlip implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "coinflip";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Flip an imaginary coin.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "coinflip";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }
