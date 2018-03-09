@@ -1,15 +1,13 @@
 package com.miningmark48.pearcelbot.commands.music.role_block;
 
+import com.miningmark48.pearcelbot.commands.CommandType;
 import com.miningmark48.pearcelbot.commands.ICommand;
+import com.miningmark48.pearcelbot.commands.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandResume implements ICommand {
-
-    public static final String desc = "Resumes currently paused track.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "resume";
-    public static final String info = desc + " " + usage;
+public class CommandResume implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -33,4 +31,25 @@ public class CommandResume implements ICommand {
     public void executed(boolean success, MessageReceivedEvent event) {
 
     }
+
+    @Override
+    public String getName() {
+        return "resume";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Resumes currently paused track.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "resume";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.MUSIC;
+    }
+
 }

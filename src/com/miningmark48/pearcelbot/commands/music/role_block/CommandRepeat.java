@@ -1,15 +1,13 @@
 package com.miningmark48.pearcelbot.commands.music.role_block;
 
+import com.miningmark48.pearcelbot.commands.CommandType;
 import com.miningmark48.pearcelbot.commands.ICommand;
+import com.miningmark48.pearcelbot.commands.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandRepeat implements ICommand {
-
-    public static final String desc = "Repeats a currently playing track. Run again to disable.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "repeat";
-    public static final String info = desc + " " + usage;
+public class CommandRepeat implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -28,5 +26,25 @@ public class CommandRepeat implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "repeat";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Repeats a currently playing track. Run again to disable.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "repeat";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.MUSIC;
     }
 }

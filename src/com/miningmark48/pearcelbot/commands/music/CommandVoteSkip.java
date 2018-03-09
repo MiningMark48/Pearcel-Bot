@@ -1,6 +1,8 @@
 package com.miningmark48.pearcelbot.commands.music;
 
+import com.miningmark48.pearcelbot.commands.CommandType;
 import com.miningmark48.pearcelbot.commands.ICommand;
+import com.miningmark48.pearcelbot.commands.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.FormatUtil;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
@@ -8,7 +10,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
 
-public class CommandVoteSkip implements ICommand {
+public class CommandVoteSkip implements ICommand, ICommandInfo {
 
     public static final String desc = "Vote to skip a track.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "voteskip";
@@ -41,5 +43,25 @@ public class CommandVoteSkip implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "voteskip";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Vote to skip a track.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "voteskip";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.MUSIC;
     }
 }

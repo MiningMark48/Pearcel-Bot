@@ -1,15 +1,13 @@
 package com.miningmark48.pearcelbot.commands.music.role_block;
 
+import com.miningmark48.pearcelbot.commands.CommandType;
 import com.miningmark48.pearcelbot.commands.ICommand;
+import com.miningmark48.pearcelbot.commands.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandStop implements ICommand {
-
-    public static final String desc = "Stops currently playing track and clears the queue.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "stop";
-    public static final String info = desc + " " + usage;
+public class CommandStop implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -28,5 +26,25 @@ public class CommandStop implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "stop";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Stops currently playing track and clears the queue.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "stop";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.MUSIC;
     }
 }

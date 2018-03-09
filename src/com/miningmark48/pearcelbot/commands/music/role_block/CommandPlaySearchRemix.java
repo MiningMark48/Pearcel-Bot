@@ -1,12 +1,14 @@
 package com.miningmark48.pearcelbot.commands.music.role_block;
 
+import com.miningmark48.pearcelbot.commands.CommandType;
 import com.miningmark48.pearcelbot.commands.ICommand;
+import com.miningmark48.pearcelbot.commands.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.YoutubeSearch;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandPlaySearchRemix implements ICommand {
+public class CommandPlaySearchRemix implements ICommand, ICommandInfo {
 
     public static final String desc = "Searches and plays first remix of a track from a YouTube search query.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "splayremix <YouTube search query>";
@@ -31,5 +33,25 @@ public class CommandPlaySearchRemix implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "splayremix";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Searches and plays first remix of a track from a YouTube search query.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "splayremix <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.MUSIC;
     }
 }
