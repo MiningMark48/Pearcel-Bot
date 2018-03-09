@@ -1,0 +1,45 @@
+package com.miningmark48.pearcelbot.commands.music;
+
+import com.miningmark48.pearcelbot.commands.ICommand;
+import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.FormatUtil;
+import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import java.util.ArrayList;
+
+public class CommandVoteSkip implements ICommand {
+
+    public static final String desc = "Vote to skip a track.";
+    public static final String usage = "USAGE: " + Reference.botCommandKey + "voteskip";
+    public static final String info = desc + " " + usage;
+
+    private int voteSkipAmt = 0;
+    private int voteSkipAmtNeeded = 2;
+    private static ArrayList<String> usersVoted = new ArrayList<>();
+
+    @Override
+    public boolean called(String[] args, MessageReceivedEvent event) {
+        return true;
+    }
+
+    @Override
+    public void action(String[] args, MessageReceivedEvent event) {
+        if (!usersVoted.contains(event.getAuthor().getId())) {
+            voteSkipAmt++;
+            usersVoted.add(event.getAuthor().getId());
+            event.getTextChannel().sendMessage(FormatUtil.bold("[" + voteSkipAmt + "/" + voteSkipAmtNeeded + "]") + " Voted to skip currently playing track.").queue();
+            if (voteSkipAmt == voteSkipAmtNeeded) {
+                event.getTextChannel().sendMessage("Max votes received, skipped currently playing track.").queue();
+                AudioHandler.skipTrack(event.getTextChannel());
+                usersVoted.clear();
+                voteSkipAmt = 0;
+            }
+        }
+    }
+
+    @Override
+    public void executed(boolean success, MessageReceivedEvent event) {
+
+    }
+}
