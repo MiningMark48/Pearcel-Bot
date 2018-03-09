@@ -1,17 +1,11 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
-import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.time.temporal.ChronoUnit;
 
-public class CommandPing implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Simple Ping, Pong.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "ping";
-    public static final String info = desc + " " + usage;
+public class CommandPing implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -31,6 +25,26 @@ public class CommandPing implements ICommand, ICommandPrivate {
     @Override
     public void actionPrivate(String[] args, MessageReceivedEvent event) {
         event.getPrivateChannel().sendMessage("\uD83C\uDFD3 **Pong! **...").queue(m -> m.editMessage("\uD83C\uDFD3 **Pong! **" + event.getMessage().getCreationTime().until(m.getCreationTime(), ChronoUnit.MILLIS) + "ms \uD83D\uDCF6").queue());
+    }
+
+    @Override
+    public String getName() {
+        return "ping";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Simple Ping, Pong.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "ping";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 
     private DiscordMessage getMessage(String content) {

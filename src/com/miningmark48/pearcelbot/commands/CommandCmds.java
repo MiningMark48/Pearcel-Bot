@@ -2,21 +2,22 @@ package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.util.FormatUtil;
+import com.miningmark48.pearcelbot.util.Logger;
+import com.sun.deploy.trace.LoggerTraceListener;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.requests.RestAction;
 
+import java.awt.*;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class CommandCmds implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Returns a list of commands.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "cmds";
-    public static final String info = desc + " " + usage;
+public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -38,6 +39,26 @@ public class CommandCmds implements ICommand, ICommandPrivate {
         getCmds(event, true);
     }
 
+    @Override
+    public String getName() {
+        return "cmds";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Returns a list of commands.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "cmds";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
+
     private static void getCmds(MessageReceivedEvent event, boolean isPrivate) {
         if (event.getAuthor() == null) {
             return;
@@ -52,66 +73,48 @@ public class CommandCmds implements ICommand, ICommandPrivate {
             }
         }
 
-        Set set = Reference.commandUsage.entrySet();
-        Iterator i = set.iterator();
+        EmbedBuilder embedBuilderNormal = new EmbedBuilder();
+        EmbedBuilder embedBuilderPBC = new EmbedBuilder();
+        EmbedBuilder embedBuilderMusic = new EmbedBuilder();
+        EmbedBuilder embedBuilderOther = new EmbedBuilder();
 
-        Set set2 = Reference.commandUsage2.entrySet();
-        Iterator j = set2.iterator();
+        embedBuilderNormal.setTitle("Normal Commands");
+        embedBuilderNormal.setColor(Color.decode("#a2f000"));
+        embedBuilderPBC.setTitle("PBC Commands");
+        embedBuilderPBC.setColor(Color.decode("#a2f000"));
+        embedBuilderMusic.setTitle("Music Commands");
+        embedBuilderMusic.setColor(Color.decode("#a2f000"));
+        embedBuilderOther.setTitle("Other Commands");
+        embedBuilderOther.setColor(Color.decode("#a2f000"));
 
-        Set setPBC = Reference.commandUsagePBC.entrySet();
-        Iterator k = setPBC.iterator();
-
-        Set setMusic = Reference.commandUsageMusic.entrySet();
-        Iterator l = setMusic.iterator();
-
-        String message = "";
-        String message2 = "";
-        String messagePBC = "";
-        String messageMusic = "";
-
-        while (i.hasNext()){
-            Map.Entry me = (Map.Entry)i.next();
-            message = message + (Main.commands.get(me.getKey().toString()) instanceof ICommandPrivate ? "✓ " : "") + me.getKey() + ": " + me.getValue() + "\n";
-        }
-
-        while (j.hasNext()){
-            Map.Entry me2 = (Map.Entry)j.next();
-            message2 = message2 + (Main.commands.get(me2.getKey().toString()) instanceof ICommandPrivate ? "✓ " : "") + me2.getKey() + ": " + me2.getValue() + "\n";
-        }
-
-        while (k.hasNext()){
-            Map.Entry mePBC = (Map.Entry)k.next();
-            messagePBC = messagePBC + mePBC.getKey() + ": " + mePBC.getValue() + "\n";
-        }
-
-        while (l.hasNext()){
-            Map.Entry meMusic = (Map.Entry)l.next();
-            messageMusic = messageMusic + meMusic.getKey() + ": " + meMusic.getValue() + "\n";
-        }
-
-        MessageBuilder messageBuilder = new MessageBuilder();
-        MessageBuilder messageBuilder2 = new MessageBuilder();
-        MessageBuilder messageBuilderPBC = new MessageBuilder();
-        MessageBuilder messageBuilderMusic = new MessageBuilder();
-        MessageBuilder messageBuilderM = new MessageBuilder();
-
-        messageBuilder.append("**Regular Commands: **\n");
-        messageBuilder.append("```" + message + "```");
-        messageBuilder2.append("```" + message2 + "```\n");
-        messageBuilderPBC.append("**" + Reference.botCommanderRole + " Commands: **\n");
-        messageBuilderPBC.append("```" + messagePBC + "```\n");
-
-        messageBuilderMusic.append("** Music Commands: **\n");
-        messageBuilderMusic.append("```" + messageMusic + "```\n");
-
-        messageBuilderM.append("`✓` = Works in direct messages");
+        Main.commands.forEach((key, value) -> {
+            if (value instanceof ICommandInfo) {
+                ICommandInfo cmd = (ICommandInfo) value;
+                switch (cmd.getType()) {
+                    default:
+                        embedBuilderOther.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        break;
+                    case NORMAL:
+                        embedBuilderNormal.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        break;
+                    case PBC:
+                        embedBuilderPBC.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        break;
+                    case MUSIC:
+                        embedBuilderMusic.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        break;
+                }
+            } else {
+                embedBuilderOther.addField(key, "Missing Description", true);
+            }
+        });
 
         privateChannel.queue(chan -> {
-            chan.sendMessage(messageBuilder.build()).queue();
-            chan.sendMessage(messageBuilder2.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
-            chan.sendMessage(messageBuilderPBC.build()).queueAfter(1750, TimeUnit.MILLISECONDS);
-            chan.sendMessage(messageBuilderMusic.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
-            chan.sendMessage(messageBuilderM.build()).queueAfter(2250, TimeUnit.MILLISECONDS);
+            chan.sendMessage(FormatUtil.bold("Commands:")).queue();
+            if (!embedBuilderNormal.isEmpty()) chan.sendMessage(embedBuilderNormal.build()).queueAfter(500, TimeUnit.MILLISECONDS);
+            if (!embedBuilderPBC.isEmpty())chan.sendMessage(embedBuilderPBC.build()).queueAfter(1000, TimeUnit.MILLISECONDS);
+            if (!embedBuilderMusic.isEmpty())chan.sendMessage(embedBuilderMusic.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
+            if (!embedBuilderOther.isEmpty())chan.sendMessage(embedBuilderOther.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
         });
     }
 

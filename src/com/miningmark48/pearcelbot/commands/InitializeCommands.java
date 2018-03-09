@@ -86,80 +86,14 @@ public class InitializeCommands {
         Main.commands.put("voteskip", new CommandVoteSkip());
 
         //Alias
-        Main.commands.put("help", new CommandCmds());
-        Main.commands.put("addcmd", new CommandAddCommand());
-        Main.commands.put("curseforge", new CommandCurseData());
-        Main.commands.put("delcmd", new CommandDeleteCommand());
-        Main.commands.put("listcmds", new CommandListCommands());
-            //Music
-        Main.commands.put("np", new CommandNowPlaying());
-        Main.commands.put("sb", new CommandSoundboard());
-
-        //Cmd Info
-            //Normal
-        Reference.commandUsage.put("8ball", Command8Ball.info);
-        Reference.commandUsage.put("bark", CommandBark.info);
-//        Reference.commandUsage.put("bitcoin", CommandBitcoin.info);
-        Reference.commandUsage.put("arblacklist", CommandARBlacklist.info);
-        Reference.commandUsage.put("botinfo", CommandBotInfo.info);
-        Reference.commandUsage.put("botstats", CommandBotStats.info);
-        Reference.commandUsage.put("cmds", CommandCmds.info);
-        Reference.commandUsage.put("coinflip", CommandCoinFlip.info);
-        Reference.commandUsage.put("cursedata", CommandCurseData.info);
-        Reference.commandUsage.put("diceroll", CommandDiceRoll.info);
-        Reference.commandUsage.put("emojieval", CommandEmojiEval.info);
-        Reference.commandUsage.put("fizzbuzz", CommandFizzbuzz.info);
-        Reference.commandUsage.put("geoip", CommandGeoIP.info);
-        Reference.commandUsage.put("githubuser", CommandGithubUser.info);
-        Reference.commandUsage.put("guildinfo", CommandGuildInfo.info);
-        Reference.commandUsage.put("listbots", CommandListBots.info);
-        Reference.commandUsage.put("listcommands", CommandListCommands.info);
-        Reference.commandUsage.put("lmgtfy", CommandLMGTFY.info);
-        Reference.commandUsage.put("mixeruser", CommandMixerUser.info);
-        Reference.commandUsage.put("numtoword", CommandNumberToWords.info);
-        Reference.commandUsage.put("patreon", CommandPatreon.info);
-        Reference.commandUsage2.put("ping", CommandPing.info);
-        Reference.commandUsage2.put("poll", CommandPoll.info);
-        Reference.commandUsage2.put("roles", CommandRoles.info);
-        Reference.commandUsage2.put("rps", CommandRPS.info);
-        Reference.commandUsage2.put("slap", CommandSlap.info);
-        Reference.commandUsage2.put("selfinfo", CommandSelfInfo.info);
-        Reference.commandUsage2.put("serverinvite", CommandServerInvite.info);
-        Reference.commandUsage2.put("sourcecode", CommandSourceCode.info);
-        Reference.commandUsage2.put("tobinary", CommandToBinary.info);
-        Reference.commandUsage2.put("toromannum", CommandToRomanNum.info);
-        Reference.commandUsage2.put("translate", CommandTranslate.info);
-        Reference.commandUsage2.put("twitchuser", CommandTwitchUser.info);
-        Reference.commandUsage2.put("uptime", CommandUptime.info);
-        Reference.commandUsage2.put("youtubeuser", CommandYoutubeUser.info);
-            //PBC and Owner
-        Reference.commandUsagePBC.put("addcommand", CommandAddCommand.info);
-        Reference.commandUsagePBC.put("announce", CommandAnnounce.info);
-        Reference.commandUsagePBC.put("deletecommand", CommandDeleteCommand.info);
-        Reference.commandUsagePBC.put("editcommand", CommandEditCommand.info);
-        Reference.commandUsagePBC.put("kickvoice", CommandKickVoice.info);
-        Reference.commandUsagePBC.put("prune", CommandPrune.info);
-        Reference.commandUsagePBC.put("say", CommandSay.info);
-
-        //Music
-        Reference.commandUsageMusic.put("lyrics", CommandLyrics.info);
-        Reference.commandUsageMusic.put("nowplaying", CommandNowPlaying.info);
-        Reference.commandUsageMusic.put("pause", CommandPause.info);
-        Reference.commandUsageMusic.put("play", CommandPlay.info);
-        Reference.commandUsageMusic.put("playnext", CommandPlayNext.info);
-        Reference.commandUsageMusic.put("pplay", CommandPlayPlaylist.info);
-        Reference.commandUsageMusic.put("splayrand", CommandPlaySearchRand.info);
-        Reference.commandUsageMusic.put("splayremix", CommandPlaySearchRemix.info);
-        Reference.commandUsageMusic.put("queue", CommandQueue.info);
-        Reference.commandUsageMusic.put("remove", CommandRemove.info);
-        Reference.commandUsageMusic.put("repeat", CommandRepeat.info);
-        Reference.commandUsageMusic.put("repeatonce", CommandRepeatOnce.info);
-        Reference.commandUsageMusic.put("resume", CommandResume.info);
-        Reference.commandUsageMusic.put("shuffle", CommandShuffle.info);
-        Reference.commandUsageMusic.put("skip", CommandSkip.info);
-        Reference.commandUsageMusic.put("stop", CommandStop.info);
-        Reference.commandUsageMusic.put("restart", CommandRestart.info);
-        Reference.commandUsageMusic.put("voteskip", CommandVoteSkip.info);
+//        Main.commands.put("help", new CommandCmds());
+//        Main.commands.put("addcmd", new CommandAddCommand());
+//        Main.commands.put("curseforge", new CommandCurseData());
+//        Main.commands.put("delcmd", new CommandDeleteCommand());
+//        Main.commands.put("listcmds", new CommandListCommands());
+//            //Music
+//        Main.commands.put("np", new CommandNowPlaying());
+//        Main.commands.put("sb", new CommandSoundboard());
 
         Logger.log(Logger.LogType.STATUS, "Commands Initialized.");
 
