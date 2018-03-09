@@ -1,20 +1,17 @@
 package com.miningmark48.pearcelbot.commands;
 
 import com.miningmark48.pearcelbot.Main;
-import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.pearcelbot.commands.base.CommandType;
+import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
+import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
 import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.sun.deploy.trace.LoggerTraceListener;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.requests.RestAction;
 
 import java.awt.*;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {

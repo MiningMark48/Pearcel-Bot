@@ -1,8 +1,8 @@
 package com.miningmark48.pearcelbot.commands.music;
 
-import com.miningmark48.pearcelbot.commands.CommandType;
-import com.miningmark48.pearcelbot.commands.ICommand;
-import com.miningmark48.pearcelbot.commands.ICommandInfo;
+import com.miningmark48.pearcelbot.commands.base.CommandType;
+import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.FormatUtil;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;

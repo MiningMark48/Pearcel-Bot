@@ -1,6 +1,7 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.pearcelbot.commands.base;
 
 import com.miningmark48.pearcelbot.Main;
+import com.miningmark48.pearcelbot.commands.*;
 import com.miningmark48.pearcelbot.commands.music.*;
 import com.miningmark48.pearcelbot.commands.music.role_block.*;
 import com.miningmark48.pearcelbot.commands.music.soundboard.CommandSoundboard;

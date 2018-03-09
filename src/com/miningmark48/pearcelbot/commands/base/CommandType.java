@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.pearcelbot.commands.base;
 
 public enum CommandType {
 
