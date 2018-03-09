@@ -57,5 +57,5 @@ public class CommandGuildInfo implements ICommand, ICommandInfo {
     public CommandType getType() {
         return CommandType.NORMAL;
     }
-    
+
 }

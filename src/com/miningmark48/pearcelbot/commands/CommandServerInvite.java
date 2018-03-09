@@ -6,11 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandServerInvite implements ICommand {
-
-    public static final String desc = "Get a link so you can invite " + Reference.botName + " to your server.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "serverinvite";
-    public static final String info = desc + " " + usage;
+public class CommandServerInvite implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -31,5 +27,25 @@ public class CommandServerInvite implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "serverinvite";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get a link so you can invite " + Reference.botName + " to your server.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "serverinvite";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

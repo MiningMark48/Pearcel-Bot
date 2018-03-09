@@ -1,16 +1,11 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.NumberToWords;
 import com.miningmark48.pearcelbot.util.Tools;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.apache.commons.lang3.text.WordUtils;
 
-public class CommandNumberToWords implements ICommand {
-
-    public static final String desc = "Coverts a number to words.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "numtoword <int>";
-    public static final String info = desc + " " + usage;
+public class CommandNumberToWords implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -31,4 +26,23 @@ public class CommandNumberToWords implements ICommand {
         return;
     }
 
+    @Override
+    public String getName() {
+        return "numtoword";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Coverts a number to words.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "numtoword <arg:int>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

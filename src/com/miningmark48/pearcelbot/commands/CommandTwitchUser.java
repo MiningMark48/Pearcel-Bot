@@ -10,11 +10,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import java.awt.*;
 import java.text.DecimalFormat;
 
-public class CommandTwitchUser implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Get information about a user on Twitch.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "twitchuser <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandTwitchUser implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -93,4 +89,23 @@ public class CommandTwitchUser implements ICommand, ICommandPrivate {
         }
     }
 
+    @Override
+    public String getName() {
+        return "twitchuser";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get information about a user on Twitch.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "twitchuser <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

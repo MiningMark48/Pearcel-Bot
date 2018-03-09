@@ -7,11 +7,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandPatreon implements ICommand{
-
-    public static final String desc = "Support MiningMark48 on Patreon.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "patreon";
-    public static final String info = desc + " " + usage;
+public class CommandPatreon implements ICommand, ICommandInfo {
 
     private String pateronCreatorLink = "https://www.patreon.com/user?u=201693";
 
@@ -36,5 +32,25 @@ public class CommandPatreon implements ICommand{
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "patreon";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Support MiningMark48 on Patreon! ...or not.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "patreon";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

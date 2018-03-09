@@ -3,7 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandLMGTFY implements ICommand{
+public class CommandLMGTFY implements ICommand, ICommandInfo {
 
     public static final String desc = "Let me Google that for you.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "lmgtfy <arg>";
@@ -32,4 +32,23 @@ public class CommandLMGTFY implements ICommand{
         return;
     }
 
+    @Override
+    public String getName() {
+        return "lmgtfy";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Let me Google that for you.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "lmgtfy <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

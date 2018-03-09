@@ -12,11 +12,7 @@ import java.awt.*;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 
-public class CommandYoutubeUser implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Get information about a user on Info.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "youtubeuser <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandYoutubeUser implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -96,4 +92,23 @@ public class CommandYoutubeUser implements ICommand, ICommandPrivate {
         }
     }
 
+    @Override
+    public String getName() {
+        return "youtubeuser";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get information about a user on YouTube.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "youtubeuser <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

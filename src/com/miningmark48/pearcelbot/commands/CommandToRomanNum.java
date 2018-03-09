@@ -1,16 +1,11 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Logger;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.TreeMap;
 
-public class CommandToRomanNum implements ICommand {
-
-    public static final String desc = "Turn an integer to a roman numeral.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "toromannum <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandToRomanNum implements ICommand, ICommandInfo {
 
     private final static TreeMap<Integer, String> map = new TreeMap<Integer, String>();
 
@@ -78,5 +73,25 @@ public class CommandToRomanNum implements ICommand {
             return map.get(number);
         }
         return map.get(i) + toRoman(number - i);
+    }
+
+    @Override
+    public String getName() {
+        return "toromannum";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Turn an integer to a roman numeral.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "toromannum <arg:int>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

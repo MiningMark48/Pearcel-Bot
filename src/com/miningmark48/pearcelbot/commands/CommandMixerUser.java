@@ -9,11 +9,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandMixerUser implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Get information about a user on Mixer.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "mixeruser <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandMixerUser implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -132,4 +128,23 @@ public class CommandMixerUser implements ICommand, ICommandPrivate {
         }
     }
 
+    @Override
+    public String getName() {
+        return "mixeruser";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get information about a user on Mixer.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "mixeruser <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

@@ -1,17 +1,12 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
-public class CommandSelfInfo implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Get information about yourself on Discord.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "selfinfo";
-    public static final String info = desc + " " + usage;
+public class CommandSelfInfo implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -47,4 +42,23 @@ public class CommandSelfInfo implements ICommand, ICommandPrivate {
         MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
     }
 
+    @Override
+    public String getName() {
+        return "selfinfo";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Get information about yourself on Discord.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "selfinfo";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

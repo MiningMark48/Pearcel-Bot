@@ -6,11 +6,7 @@ import com.miningmark48.pearcelbot.util.JSON.JSONParse;
 import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandTranslate implements ICommand, ICommandPrivate {
-
-    public static final String desc = "Translate text";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "translate <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandTranslate implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -63,4 +59,23 @@ public class CommandTranslate implements ICommand, ICommandPrivate {
 
     }
 
+    @Override
+    public String getName() {
+        return "translate";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Translate text to another language.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "translate <arg:language-code>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

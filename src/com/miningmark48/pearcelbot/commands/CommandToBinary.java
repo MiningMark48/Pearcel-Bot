@@ -3,11 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandToBinary implements ICommand {
-
-    public static final String desc = "Convert a number to binary.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "tobinary <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandToBinary implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -44,4 +40,25 @@ public class CommandToBinary implements ICommand {
     public void executed(boolean success, MessageReceivedEvent event) {
 
     }
+
+    @Override
+    public String getName() {
+        return "tobinary";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Convert a number to binary.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "tobinary <arg:int>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
+
 }

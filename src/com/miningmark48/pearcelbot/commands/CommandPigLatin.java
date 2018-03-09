@@ -5,11 +5,7 @@ import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandPigLatin implements ICommand {
-
-    public static final String desc = "Convert text to Pig Latin!";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "piglatin <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandPigLatin implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -39,4 +35,23 @@ public class CommandPigLatin implements ICommand {
 
     }
 
+    @Override
+    public String getName() {
+        return "piglatin";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Convert text to Pig Latin!";
+    }
+
+    @Override
+    public String getUsage() {
+        return "piglatin <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

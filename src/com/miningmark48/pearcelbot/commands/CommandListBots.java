@@ -1,17 +1,12 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
-public class CommandListBots implements ICommand {
-
-    public static final String desc = "Lists all the bots in the current guild.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "listbots";
-    public static final String info = desc + " " + usage;
+public class CommandListBots implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -38,5 +33,25 @@ public class CommandListBots implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "listbots";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Lists all the bots in the current guild.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "listbots";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

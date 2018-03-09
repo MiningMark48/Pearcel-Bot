@@ -1,16 +1,11 @@
 package com.miningmark48.pearcelbot.commands;
 
-import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.Clock;
 import com.miningmark48.pearcelbot.util.MessageHelper;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandUptime implements ICommand, ICommandPrivate {
-
-    public static final String desc = "View the bot's uptime.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "uptime";
-    public static final String info = desc + " " + usage;
+public class CommandUptime implements ICommand, ICommandPrivate, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -63,4 +58,23 @@ public class CommandUptime implements ICommand, ICommandPrivate {
         MessageHelper.sendMessage(event, builder.build(), isPrivate);
     }
 
+    @Override
+    public String getName() {
+        return "uptime";
+    }
+
+    @Override
+    public String getDesc() {
+        return "View the bot's uptime.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "uptime";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }

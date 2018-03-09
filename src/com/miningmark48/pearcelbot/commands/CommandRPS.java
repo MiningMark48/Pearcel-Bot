@@ -6,11 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
-public class CommandRPS implements ICommand {
-
-    public static final String desc = "Play the classic Rock, Paper, Scissors with " + Reference.botName;
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "rps <arg:r/p/s>";
-    public static final String info = desc + " " + usage;
+public class CommandRPS implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -89,5 +85,25 @@ public class CommandRPS implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "rps";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Play the classic Rock, Paper, Scissors with " + Reference.botName;
+    }
+
+    @Override
+    public String getUsage() {
+        return "rps <arg:r|p|s>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

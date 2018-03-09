@@ -3,11 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandSlap implements ICommand {
-
-    public static final String desc = "Slap someone.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "slap <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandSlap implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -22,5 +18,25 @@ public class CommandSlap implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
         return;
+    }
+
+    @Override
+    public String getName() {
+        return "slap";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Slap someone.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "slap <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

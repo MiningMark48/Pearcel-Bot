@@ -3,11 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandPoll implements ICommand {
-
-    public static final String desc = "Ask a 2 option poll.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "poll <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandPoll implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -27,5 +23,25 @@ public class CommandPoll implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "poll";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Ask a 2 option poll.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "poll <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

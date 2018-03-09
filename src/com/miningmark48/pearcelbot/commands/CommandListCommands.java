@@ -11,11 +11,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
-public class CommandListCommands implements ICommand {
-
-    public static final String desc = "List all custom commands for the server.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "listcommands";
-    public static final String info = desc + " " + usage;
+public class CommandListCommands implements ICommand, ICommandInfo {
 
     public static String fileName = "custom_commands.json";
 
@@ -56,4 +52,23 @@ public class CommandListCommands implements ICommand {
 
     }
 
+    @Override
+    public String getName() {
+        return "listcommands";
+    }
+
+    @Override
+    public String getDesc() {
+        return "List all custom commands for the server.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "listcommands";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
+    }
 }
