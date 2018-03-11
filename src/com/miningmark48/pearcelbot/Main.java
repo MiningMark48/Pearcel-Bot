@@ -144,6 +144,7 @@ public class Main {
                         Reference.botName = jsonObjectBot.get("botname").getAsString();
                         Reference.botToken = jsonObjectBot.get("token").getAsString();
                         Reference.botCommandKey = jsonObjectBot.get("key").getAsString();
+                        Reference.botCommandCustomKey = Reference.botCommandKey + Reference.botCommandKey;
                         Reference.botClientID = jsonObjectBot.get("client id").getAsString();
 
                         Reference.botCommanderRole = jsonObjectRoles.get("commander").getAsString();

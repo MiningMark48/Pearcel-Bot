@@ -11,7 +11,7 @@ public class Reference {
     public static String botToken;
     public static String botName;
     public static String botCommandKey;
-    public static String botCommandCustomKey = botCommandKey + "`";
+    public static String botCommandCustomKey;
     public static String botCommanderRole;
     public static String botAutoResponseRole;
     public static String botNoMusicRole;
