@@ -14,9 +14,6 @@ public class InitializeCommands {
     public static void init(){
 
         Main.commands.clear();
-        Reference.commandUsage.clear();
-        Reference.commandUsage2.clear();
-        Reference.commandUsagePBC.clear();
 
         //Init
         Main.commands.put("8ball", new Command8Ball());
