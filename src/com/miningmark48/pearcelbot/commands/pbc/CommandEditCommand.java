@@ -1,18 +1,16 @@
 package com.miningmark48.pearcelbot.commands.pbc;
 
 import com.google.gson.JsonObject;
+import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.*;
 
-public class CommandEditCommand implements ICommand {
-
-    public static final String desc = "Edit a custom command that was previously added.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "editcommand <arg-command name> <arg-message>";
-    public static final String info = desc + " " + usage;
+public class CommandEditCommand implements ICommand, ICommandInfo {
 
     public static String fileName = "custom_commands.json";
 
@@ -23,6 +21,7 @@ public class CommandEditCommand implements ICommand {
         return true;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
@@ -90,5 +89,25 @@ public class CommandEditCommand implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "editcommand";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Edit a custom command that was previously added.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "editcommand <arg:string-command name> <arg:string-message>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.PBC;
     }
 }

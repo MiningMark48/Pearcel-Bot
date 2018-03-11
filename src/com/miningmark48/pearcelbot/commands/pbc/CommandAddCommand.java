@@ -4,18 +4,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
+import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.*;
 
-public class CommandAddCommand implements ICommand {
-
-    public static final String desc = "Add a custom command for your server.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "addcommand <arg-command name> <arg-message>";
-    public static final String info = desc + " " + usage;
+public class CommandAddCommand implements ICommand, ICommandInfo {
 
     public static String fileName = "custom_commands.json";
 
@@ -26,6 +24,7 @@ public class CommandAddCommand implements ICommand {
         return true;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
@@ -114,5 +113,25 @@ public class CommandAddCommand implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
 
+    }
+
+    @Override
+    public String getName() {
+        return "addcommand";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Add a custom command for your server.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "addcommand <arg:string-command name> <arg:string-message>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.PBC;
     }
 }

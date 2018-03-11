@@ -1,20 +1,18 @@
 package com.miningmark48.pearcelbot.commands.pbc;
 
 import com.google.gson.JsonObject;
+import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.*;
 
-public class CommandDeleteCommand implements ICommand {
+public class CommandDeleteCommand implements ICommand, ICommandInfo {
 
-    public static final String desc = "Delete a custom command for your server that was previously added.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "deletecommand <arg-command name>";
-    public static final String info = desc + " " + usage;
-
-    public static String fileName = "custom_commands.json";
+    private static String fileName = "custom_commands.json";
 
     BufferedWriter bufferedWriter = null;
 
@@ -79,4 +77,23 @@ public class CommandDeleteCommand implements ICommand {
 
     }
 
+    @Override
+    public String getName() {
+        return "deletecommand";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Delete a custom command for your server that was previously added.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "deletecommand <arg:string-command name>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.PBC;
+    }
 }

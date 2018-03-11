@@ -1,14 +1,12 @@
 package com.miningmark48.pearcelbot.commands.pbc;
 
+import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandAnnounce implements ICommand {
-
-    public static final String desc = "Announces to the channel.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "announce <arg>";
-    public static final String info = desc + " " + usage;
+public class CommandAnnounce implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -32,5 +30,25 @@ public class CommandAnnounce implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
         return;
+    }
+
+    @Override
+    public String getName() {
+        return "announce";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Announces a message to the channel.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "announce <arg:string>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.PBC;
     }
 }

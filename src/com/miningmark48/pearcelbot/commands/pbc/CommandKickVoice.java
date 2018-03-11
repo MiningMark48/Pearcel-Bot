@@ -1,17 +1,15 @@
 package com.miningmark48.pearcelbot.commands.pbc;
 
+import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.FormatUtil;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.requests.RestAction;
 
-public class CommandKickVoice implements ICommand {
-
-    public static final String desc = "Kick a user from a voice channel.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "kickvoice <arg:username>";
-    public static final String info = desc + " " + usage;
+public class CommandKickVoice implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -77,4 +75,23 @@ public class CommandKickVoice implements ICommand {
         }
     }
 
+    @Override
+    public String getName() {
+        return "kickvoice";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Kick a user from a voice channel.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "kickvoice <arg:string-username>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.PBC;
+    }
 }

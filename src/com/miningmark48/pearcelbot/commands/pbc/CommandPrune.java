@@ -1,15 +1,13 @@
 package com.miningmark48.pearcelbot.commands.pbc;
 
+import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
+import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandPrune implements ICommand {
-
-    public static final String desc = "Prune a chunk of messages.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "prune <arg:int>";
-    public static final String info = desc + " " + usage;
+public class CommandPrune implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -42,4 +40,23 @@ public class CommandPrune implements ICommand {
         return;
     }
 
+    @Override
+    public String getName() {
+        return "prune";
+    }
+
+    @Override
+    public String getDesc() {
+        return "Prune an amount of messages.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "prune <arg:int>";
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.PBC;
+    }
 }
