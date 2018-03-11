@@ -111,7 +111,7 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
             chan.sendMessage(embedBuilderNormal.build()).queueAfter(500, TimeUnit.MILLISECONDS);
             chan.sendMessage(embedBuilderPBC.build()).queueAfter(1000, TimeUnit.MILLISECONDS);
             chan.sendMessage(embedBuilderMusic.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
-            chan.sendMessage(embedBuilderOther.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
+//            chan.sendMessage(embedBuilderOther.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
         });
     }
 
