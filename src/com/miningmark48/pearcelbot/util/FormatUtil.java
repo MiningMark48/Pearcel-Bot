@@ -10,6 +10,18 @@ public class FormatUtil {
         return "*" + text + "*";
     }
 
+    public static String bold_italicize(String text) {
+        return bold(italicize(text));
+    }
+
+    public static String bold_underline(String text) {
+        return bold(underline(text));
+    }
+
+    public static String italicize_underline(String text) {
+        return italicize(underline(text));
+    }
+
     public static String strikethrough(String text){
         return "~~" + text + "~~";
     }
