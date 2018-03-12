@@ -138,7 +138,7 @@ public class AudioHandler {
             int i = 1;
             for (AudioTrack track : queue) {
                 if (i <= 10){
-                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.makeURL("URL", track.getInfo().uri) + " - " + track.getInfo().author), false);
+                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.makeURL(track.getInfo().author, track.getInfo().uri)), false);
                 } else {
                     embedBuilder.addField("Plus " + (queue.size() - i) + " more.", "", false);
                     break;
