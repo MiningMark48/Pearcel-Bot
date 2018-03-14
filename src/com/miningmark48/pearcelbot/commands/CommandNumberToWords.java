@@ -3,6 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
+import com.miningmark48.pearcelbot.util.FormatUtil;
 import com.miningmark48.pearcelbot.util.NumberToWords;
 import com.miningmark48.pearcelbot.util.Tools;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -20,7 +21,7 @@ public class CommandNumberToWords implements ICommand, ICommandInfo {
         if (args.length <= 0) {
             event.getTextChannel().sendMessage("Error, missing args! " + usage).queue();
         } else {
-            event.getTextChannel().sendMessage(Tools.formatText(Tools.FormatType.BOLD_UNDERLINE, args[0] + " as words: \n") + WordUtils.capitalize(NumberToWords.convert(Long.valueOf(args[0])))).queue();
+            event.getTextChannel().sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD_UNDERLINE, args[0] + " as words: \n") + WordUtils.capitalize(NumberToWords.convert(Long.valueOf(args[0])))).queue();
         }
     }
 

@@ -30,7 +30,7 @@ public class CommandVoteSkip implements ICommand, ICommandInfo {
         if (!usersVoted.contains(event.getAuthor().getId())) {
             voteSkipAmt++;
             usersVoted.add(event.getAuthor().getId());
-            event.getTextChannel().sendMessage(FormatUtil.bold("[" + voteSkipAmt + "/" + voteSkipAmtNeeded + "]") + " Voted to skip currently playing track.").queue();
+            event.getTextChannel().sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"[" + voteSkipAmt + "/" + voteSkipAmtNeeded + "]") + " Voted to skip currently playing track.").queue();
             if (voteSkipAmt == voteSkipAmtNeeded) {
                 event.getTextChannel().sendMessage("Max votes received, skipped currently playing track.").queue();
                 AudioHandler.skipTrack(event.getTextChannel());

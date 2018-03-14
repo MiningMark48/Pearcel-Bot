@@ -3,7 +3,8 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.util.Tools;
+import com.miningmark48.pearcelbot.util.FormatUtil;
+import com.miningmark48.pearcelbot.util.FormatUtil.FormatType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandBark implements ICommand, ICommandInfo {
@@ -16,7 +17,7 @@ public class CommandBark implements ICommand, ICommandInfo {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         event.getTextChannel().sendMessage("" +
-                Tools.formatText(Tools.FormatType.BOLD, "Bark, bark, bark.") + "\n" +
+                FormatUtil.formatText(FormatType.BOLD, "Bark, bark, bark.") + "\n" +
                 "─────────▄──────────────▄\n" +
                 "────────▌▒█───────────▄▀▒▌\n" +
                 "────────▌▒▒▀▄───────▄▀▒▒▒▐\n" +

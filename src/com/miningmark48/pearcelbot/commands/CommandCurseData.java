@@ -5,6 +5,7 @@ import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
 import com.miningmark48.pearcelbot.util.CurseData;
+import com.miningmark48.pearcelbot.util.FormatUtil;
 import com.miningmark48.pearcelbot.util.MessageHelper;
 import com.miningmark48.pearcelbot.util.Tools;
 import com.sun.xml.internal.ws.util.StringUtils;
@@ -51,19 +52,19 @@ public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo
                 return;
             }
 
-            MessageHelper.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", Tools.formatText(Tools.FormatType.ITALIC, args[0])), isPrivate);
+            MessageHelper.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])), isPrivate);
 
             final CurseData data = new CurseData(args[0]);
             final EmbedBuilder embed = new EmbedBuilder();
 
             if (!data.exists()) {
 
-                MessageHelper.sendMessage(event, "No user could be found by the name of " + Tools.formatText(Tools.FormatType.ITALIC, args[0]), isPrivate);
+                MessageHelper.sendMessage(event, "No user could be found by the name of " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0]), isPrivate);
                 return;
             }
             else if (!data.hasProjects()) {
 
-                MessageHelper.sendMessage(event, "No projects found for " + Tools.formatText(Tools.FormatType.ITALIC, args[0]), isPrivate);
+                MessageHelper.sendMessage(event, "No projects found for " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0]), isPrivate);
                 return;
             }
 

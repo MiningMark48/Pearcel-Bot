@@ -4,6 +4,7 @@ import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
+import com.miningmark48.pearcelbot.util.FormatUtil;
 import com.miningmark48.pearcelbot.util.MessageHelper;
 import com.miningmark48.pearcelbot.util.Tools;
 import net.dv8tion.jda.core.MessageBuilder;
@@ -40,11 +41,11 @@ public class Command8Ball implements ICommand, ICommandPrivate, ICommandInfo {
         if (!isPrivate) event.getMessage().delete().queue();
         if (args.length != 0) {
             MessageBuilder builder = new MessageBuilder();
-            builder.append(Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");
+            builder.append(FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");
             try {
                 for (int i = 0; i <= Integer.valueOf(args[0]) && i <= 25; i++) {
                     int num = rand.nextInt(responses.length);
-                    builder.append(Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "\n");
+                    builder.append(FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "\n");
                 }
                 MessageHelper.sendMessage(event, builder.build(), isPrivate);
             } catch (NumberFormatException e) {
@@ -52,7 +53,7 @@ public class Command8Ball implements ICommand, ICommandPrivate, ICommandInfo {
             }
         } else {
             int num = rand.nextInt(responses.length);
-            MessageHelper.sendMessage(event, Tools.formatText(Tools.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + Tools.formatText(Tools.FormatType.ITALIC, responses[num]) + "", isPrivate);
+            MessageHelper.sendMessage(event, FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "", isPrivate);
         }
     }
 

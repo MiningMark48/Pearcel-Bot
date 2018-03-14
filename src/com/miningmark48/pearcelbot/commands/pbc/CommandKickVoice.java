@@ -30,7 +30,7 @@ public class CommandKickVoice implements ICommand, ICommandInfo {
                     createVoice(guild);
                     moveToVoice(guild, user);
                     deleteVoice(guild);
-                    event.getTextChannel().sendMessage("Kicked " + FormatUtil.bold(user.getName()) + " from voice.").queue();
+                    event.getTextChannel().sendMessage("Kicked " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, user.getName()) + " from voice.").queue();
                     privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + event.getAuthor().getName() + ".").queue());
                 } else {
                     event.getTextChannel().sendMessage("Error, user not found!").queue();

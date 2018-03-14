@@ -2,6 +2,7 @@ package com.miningmark48.pearcelbot.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.miningmark48.pearcelbot.util.FormatUtil.FormatType;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -43,12 +44,12 @@ public class YoutubeSearch {
                 JsonObject jsonObjectID = jsonObject.get("id").getAsJsonObject();
 //                JsonObject jsonObjectSnippet = jsonObject.get("snippet").getAsJsonObject();
 
-                channel.sendMessage("\uD83D\uDD0D" + FormatUtil.italicize("Searching...")).queue();
+                channel.sendMessage("\uD83D\uDD0D" + FormatUtil.formatText(FormatType.ITALIC,"Searching...")).queue();
 
                 return url + jsonObjectID.get("videoId").getAsString();
 
             } catch (NullPointerException | IndexOutOfBoundsException e){
-                channel.sendMessage(FormatUtil.bold("Error: ") + "Could not retrieve data!").queue();
+                channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "Error: ") + "Could not retrieve data!").queue();
                 Logger.log(Logger.LogType.WARN, "Query: -- " + queryString + " --");
                 e.printStackTrace();
             }

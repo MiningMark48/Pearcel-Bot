@@ -1,10 +1,8 @@
 package com.miningmark48.pearcelbot.util.music.handler;
 
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.miningmark48.pearcelbot.util.MathUtil;
-import com.miningmark48.pearcelbot.util.NumberToWords;
+import com.miningmark48.pearcelbot.util.*;
+import com.miningmark48.pearcelbot.util.FormatUtil.FormatType;
 import com.miningmark48.pearcelbot.util.music.GuildMusicManager;
 import com.miningmark48.pearcelbot.util.music.TrackScheduler;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
@@ -59,11 +57,11 @@ public class AudioHandler {
                 }
 
                 if (isPlaylist){
-                    channel.sendMessage("Added " + FormatUtil.bold(String.valueOf(playlist.getTracks().size())) + " tracks to queue from playlist: " + playlist.getName()).queue();
+                    channel.sendMessage("Added " + FormatUtil.formatText(FormatType.BOLD, String.valueOf(playlist.getTracks().size())) + " tracks to queue from playlist: " + playlist.getName()).queue();
                     tracks.forEach(musicManager.scheduler::queue);
                     play(channel, channel.getGuild(), musicManager, firstTrack, user);
                 }else{
-                    channel.sendMessage(FormatUtil.bold("Added to queue: ") + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
+                    channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "Added to queue: ") + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
                     play(channel, channel.getGuild(), musicManager, firstTrack, user);
                 }
 
@@ -76,7 +74,7 @@ public class AudioHandler {
 
             @Override
             public void loadFailed(FriendlyException exception) {
-                channel.sendMessage("Could not play: " + FormatUtil.italicize(exception.getMessage())).queue();
+                channel.sendMessage("Could not play: " + FormatUtil.formatText(FormatType.ITALIC, exception.getMessage())).queue();
             }
         });
     }
@@ -87,7 +85,7 @@ public class AudioHandler {
         try {
             musicManager.scheduler.queue(track);
         }catch (FriendlyException e){
-            channel.sendMessage(FormatUtil.bold("An error occurred while trying to play that track!")).queue();
+            channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "An error occurred while trying to play that track!")).queue();
         }
 
         if (musicChannelRef.containsKey(guild)){
@@ -138,7 +136,7 @@ public class AudioHandler {
             int i = 1;
             for (AudioTrack track : queue) {
                 if (i <= 10){
-                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.makeURL(track.getInfo().author, track.getInfo().uri)), false);
+                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + Tools.makeURL(track.getInfo().author, track.getInfo().uri)), false);
                 } else {
                     embedBuilder.addField("Plus " + (queue.size() - i) + " more.", "", false);
                     break;
@@ -149,7 +147,7 @@ public class AudioHandler {
             channel.sendMessage(embedBuilder.build()).queue();
 
         }else {
-            channel.sendMessage(FormatUtil.bold("No songs currently in queue!")).queue();
+            channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "No songs currently in queue!")).queue();
         }
 
     }
@@ -182,7 +180,7 @@ public class AudioHandler {
 
         Logger.log(Logger.LogType.DEBUG, keyword);
 
-        channel.sendMessage(String.format("Searching queue for %s.", FormatUtil.italicize(keyword))).queue();
+        channel.sendMessage(String.format("Searching queue for %s.", FormatUtil.formatText(FormatType.ITALIC, keyword))).queue();
 
         try {
             AudioTrack track_to_remove = musicManager.scheduler.getQueue().stream().filter(audioTrack -> audioTrack.getInfo().title.toLowerCase().contains(keyword.toLowerCase())).findFirst().get();
@@ -193,9 +191,9 @@ public class AudioHandler {
 
             musicManager.scheduler.setQueue(deQueue);
 
-            channel.sendMessage(String.format("%s %s %s.", FormatUtil.bold("Playing "), track_to_remove.getInfo().title, FormatUtil.bold(" next."))).queue();
+            channel.sendMessage(String.format("%s %s %s.", FormatUtil.formatText(FormatType.BOLD,"Playing "), track_to_remove.getInfo().title, FormatUtil.formatText(FormatType.BOLD, " next."))).queue();
         }catch (NoSuchElementException e){
-            channel.sendMessage(FormatUtil.bold("Track not found.")).queue();
+            channel.sendMessage(FormatUtil.formatText(FormatType.BOLD,"Track not found.")).queue();
         }
 
     }
@@ -209,14 +207,14 @@ public class AudioHandler {
 
         keyword = builder.toString();
 
-        channel.sendMessage(String.format("Searching queue for %s.", FormatUtil.italicize(keyword))).queue();
+        channel.sendMessage(String.format("Searching queue for %s.", FormatUtil.formatText(FormatType.ITALIC, keyword))).queue();
 
         try {
             AudioTrack track_to_remove = musicManager.scheduler.getQueue().stream().filter(audioTrack -> audioTrack.getInfo().title.toLowerCase().contains(keyword.toLowerCase())).findFirst().get();
             musicManager.scheduler.getQueue().remove(track_to_remove);
-            channel.sendMessage(String.format("%s %s from the queue.", FormatUtil.bold("Removed: "), track_to_remove.getInfo().title)).queue();
+            channel.sendMessage(String.format("%s %s from the queue.", FormatUtil.formatText(FormatType.BOLD,"Removed: "), track_to_remove.getInfo().title)).queue();
         }catch (NoSuchElementException e){
-            channel.sendMessage(FormatUtil.bold("Track not found.")).queue();
+            channel.sendMessage(FormatUtil.formatText(FormatType.BOLD,"Track not found.")).queue();
         }
 
     }
@@ -269,7 +267,7 @@ public class AudioHandler {
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
         TrackScheduler.RepeatStatus status = musicManager.scheduler.repeat(once);
         if (status == TrackScheduler.RepeatStatus.SUCCESS){
-            channel.sendMessage((!once ? "\uD83D\uDD01" : "\uD83D\uDD02") + " Repeat enabled for: " + FormatUtil.bold(musicManager.player.getPlayingTrack().getInfo().title)).queue();
+            channel.sendMessage((!once ? "\uD83D\uDD01" : "\uD83D\uDD02") + " Repeat enabled for: " + FormatUtil.formatText(FormatType.BOLD,musicManager.player.getPlayingTrack().getInfo().title)).queue();
         } else if (status == TrackScheduler.RepeatStatus.TURNED_OFF){
             channel.sendMessage("Repeat disabled.").queue();
         } else if (status == TrackScheduler.RepeatStatus.ERROR) {

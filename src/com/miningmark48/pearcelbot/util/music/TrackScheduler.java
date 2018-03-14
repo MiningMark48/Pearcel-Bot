@@ -2,6 +2,7 @@ package com.miningmark48.pearcelbot.util.music;
 
 import com.miningmark48.pearcelbot.commands.music.soundboard.AudioHandlerSoundboard;
 import com.miningmark48.pearcelbot.util.FormatUtil;
+import com.miningmark48.pearcelbot.util.FormatUtil.FormatType;
 import com.miningmark48.pearcelbot.util.Logger;
 import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
@@ -66,7 +67,7 @@ public class TrackScheduler extends AudioEventAdapter {
                 }
             }
             try {
-                AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.bold("Now Playing: "), track.getInfo().title)).queue();
+                AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
             } catch (NullPointerException e) {
                 Logger.log(Logger.LogType.INFO, "No track available.");
                 return false;

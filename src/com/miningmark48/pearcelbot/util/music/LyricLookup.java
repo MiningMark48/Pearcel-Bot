@@ -55,7 +55,7 @@ public class LyricLookup {
         Logger.log(Logger.LogType.DEBUG, "Title: " + title);
 
         try {
-            channel.sendMessage(FormatUtil.bold(String.format("Lyrics for %s - %s:\n\n", artist.toUpperCase(), title.toUpperCase()))).queue();
+            channel.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,String.format("Lyrics for %s - %s:\n\n", artist.toUpperCase(), title.toUpperCase()))).queue();
 
             List lyrics = getSongLyrics(artist, title);
             StringBuilder lyricStringBuilder = new StringBuilder();
@@ -70,10 +70,10 @@ public class LyricLookup {
                 channel.sendMessage(messageBuilder.build()).queue();
             }
 
-            channel.sendMessage(FormatUtil.bold("Lyrics powered by SongLyrics.com")).queue();
+            channel.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"Lyrics powered by SongLyrics.com")).queue();
 
         } catch (IOException | NullPointerException e) {
-            channel.sendMessage(FormatUtil.bold("ERROR:") + " Lyrics not found.").queue();
+            channel.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"ERROR:") + " Lyrics not found.").queue();
         }
 
     }
