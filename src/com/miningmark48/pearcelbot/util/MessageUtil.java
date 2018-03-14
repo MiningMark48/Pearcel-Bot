@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class MessageHelper {
+public class MessageUtil {
 
     public static void sendMessage(MessageReceivedEvent event, String message, boolean isPrivate) {
         if (!isPrivate) {

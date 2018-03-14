@@ -1,6 +1,5 @@
 package com.miningmark48.pearcelbot.richpresence;
 
-import com.miningmark48.pearcelbot.util.Logger;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
 

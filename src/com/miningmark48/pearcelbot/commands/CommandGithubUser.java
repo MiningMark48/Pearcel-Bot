@@ -6,7 +6,7 @@ import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
-import com.miningmark48.pearcelbot.util.MessageHelper;
+import com.miningmark48.pearcelbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -38,7 +38,7 @@ public class CommandGithubUser implements ICommand, ICommandPrivate, ICommandInf
         JsonObject js;
 
         if (args.length <= 0){
-            MessageHelper.sendMessage(event, "Missing Argument!", isPrivate);
+            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate);
         } else {
             try {
                 js = JSONParse.JSONParse("https://api.github.com/users/" + args[0]);
@@ -79,10 +79,10 @@ public class CommandGithubUser implements ICommand, ICommandPrivate, ICommandInf
                     embedBuilder.addField("Joined", js.get("created_at").getAsString().substring(0, 10), true);
                 }
 
-               MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
+               MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
 
             } catch (NullPointerException e) {
-                MessageHelper.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
+                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
             }
 
         }

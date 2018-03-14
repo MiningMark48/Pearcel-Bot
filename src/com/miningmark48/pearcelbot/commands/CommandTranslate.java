@@ -6,7 +6,7 @@ import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
-import com.miningmark48.pearcelbot.util.MessageHelper;
+import com.miningmark48.pearcelbot.util.MessageUtil;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandTranslate implements ICommand, ICommandPrivate, ICommandInfo {
@@ -49,14 +49,14 @@ public class CommandTranslate implements ICommand, ICommandPrivate, ICommandInfo
         String text = message.replace(" ", "+");
 
         if (args.length <= 0) {
-            MessageHelper.sendMessage(event, "Missing Arguments!", isPrivate);
+            MessageUtil.sendMessage(event, "Missing Arguments!", isPrivate);
         } else {
             js = JSONParse.JSONParse("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160905T061211Z.a343ec6cd67c26fa.e72589fa4bb315cdd7d5b894e7b3ad76c50f2180&text=" + text + "&lang=" + languageCode);
             if (event.getAuthor() != null) {
-                MessageHelper.sendMessage(event, String.format("Here you go %s!", event.getAuthor().getAsMention()), isPrivate);
+                MessageUtil.sendMessage(event, String.format("Here you go %s!", event.getAuthor().getAsMention()), isPrivate);
             }
-            MessageHelper.sendMessage(event, "**Translated**_\"" + message + "_ \" (**" + languageCode + "**) to:", isPrivate);
-            MessageHelper.sendMessage(event, js.get("text").getAsJsonArray().get(0).getAsString(), isPrivate);
+            MessageUtil.sendMessage(event, "**Translated**_\"" + message + "_ \" (**" + languageCode + "**) to:", isPrivate);
+            MessageUtil.sendMessage(event, js.get("text").getAsJsonArray().get(0).getAsString(), isPrivate);
             event.getMessage().delete().queue();
         }
 

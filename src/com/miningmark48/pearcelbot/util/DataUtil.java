@@ -6,7 +6,7 @@ import com.sun.istack.internal.Nullable;
 import java.net.URL;
 import java.util.*;
 
-public class Tools {
+public class DataUtil {
 
     public static final String SEPERATOR = System.lineSeparator();
 

@@ -10,7 +10,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import java.util.Arrays;
 import java.util.Random;
 
-public class YoutubeSearch {
+public class YoutubeSearchUtil {
 
     public static String searchYoutube(String[] query, MessageReceivedEvent event, SearchType type){
         int resultNum = 0;
@@ -50,7 +50,7 @@ public class YoutubeSearch {
 
             } catch (NullPointerException | IndexOutOfBoundsException e){
                 channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "Error: ") + "Could not retrieve data!").queue();
-                Logger.log(Logger.LogType.WARN, "Query: -- " + queryString + " --");
+                LoggerUtil.log(LoggerUtil.LogType.WARN, "Query: -- " + queryString + " --");
                 e.printStackTrace();
             }
         }

@@ -4,14 +4,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.miningmark48.pearcelbot.commands.CommandARBlacklist;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.messages.GuildJoinChat;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
-import com.miningmark48.pearcelbot.util.chatlog.ChatLog;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.miningmark48.pearcelbot.util.music.AudioPlayerSendHandler;
-import com.miningmark48.pearcelbot.util.music.GuildMusicManager;
-import com.miningmark48.pearcelbot.util.music.TrackScheduler;
-import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
+import com.miningmark48.pearcelbot.util.features.chatlog.ChatLog;
+import com.miningmark48.pearcelbot.util.LoggerUtil;
+import com.miningmark48.pearcelbot.util.features.music.handler.AudioHandler;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -68,7 +64,7 @@ public class BotListener extends ListenerAdapter {
     @Override
     public void onReady(ReadyEvent event){
         //event.getJDA().getAccountManager().update();
-        Logger.log(Logger.LogType.STATUS, "Logged in as: " + event.getJDA().getSelfUser().getName());
+        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Logged in as: " + event.getJDA().getSelfUser().getName());
     }
 
     @Override

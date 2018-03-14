@@ -4,10 +4,8 @@ import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.commands.*;
 import com.miningmark48.pearcelbot.commands.music.*;
 import com.miningmark48.pearcelbot.commands.music.role_block.*;
-import com.miningmark48.pearcelbot.commands.music.soundboard.CommandSoundboard;
 import com.miningmark48.pearcelbot.commands.pbc.*;
-import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.Logger;
+import com.miningmark48.pearcelbot.util.LoggerUtil;
 
 public class InitializeCommands {
 
@@ -93,7 +91,7 @@ public class InitializeCommands {
 //        Main.commands.put("np", new CommandNowPlaying());
 //        Main.commands.put("sb", new CommandSoundboard());
 
-        Logger.log(Logger.LogType.STATUS, "Commands Initialized.");
+        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Commands Initialized.");
 
     }
 

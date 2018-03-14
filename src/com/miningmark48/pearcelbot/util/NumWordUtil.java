@@ -2,7 +2,7 @@ package com.miningmark48.pearcelbot.util;
 
 import java.text.DecimalFormat;
 
-public class NumberToWords {
+public class NumWordUtil {
 
     private static final String[] tensNames = {
         "",

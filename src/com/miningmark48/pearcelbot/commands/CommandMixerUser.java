@@ -6,7 +6,7 @@ import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
 import com.miningmark48.pearcelbot.util.JSON.JSONParse;
-import com.miningmark48.pearcelbot.util.MessageHelper;
+import com.miningmark48.pearcelbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -38,7 +38,7 @@ public class CommandMixerUser implements ICommand, ICommandPrivate, ICommandInfo
         JsonObject js;
 
         if (args.length <= 0){
-            MessageHelper.sendMessage(event, "Missing Argument!", isPrivate);
+            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate);
         } else {
             try {
                 js = JSONParse.JSONParse("https://mixer.com/api/v1/channels/" + args[0]);
@@ -121,10 +121,10 @@ public class CommandMixerUser implements ICommand, ICommandPrivate, ICommandInfo
                     embedBuilder.addField("Bio", userObject.get("bio").getAsString(), false);
                 }
 
-                MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
+                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
 
             }catch (NullPointerException e){
-                MessageHelper.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
+                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
                 e.printStackTrace();
             }
 

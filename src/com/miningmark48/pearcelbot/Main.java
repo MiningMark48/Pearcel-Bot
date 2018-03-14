@@ -12,11 +12,11 @@ import com.miningmark48.pearcelbot.customcommands.GetCommand;
 import com.miningmark48.pearcelbot.messages.InitializeMessages;
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.richpresence.PresenceClock;
-import com.miningmark48.pearcelbot.util.Clock;
-import com.miningmark48.pearcelbot.util.CommandParser;
+import com.miningmark48.pearcelbot.util.features.Clock;
+import com.miningmark48.pearcelbot.util.CmdParserUtil;
 import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
+import com.miningmark48.pearcelbot.util.LoggerUtil;
+import com.miningmark48.pearcelbot.util.features.music.handler.AudioHandler;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class Main {
 
     public static JDA jda;
-    static final CommandParser parser = new CommandParser();
+    static final CmdParserUtil parser = new CmdParserUtil();
 
     public static HashMap<String, ICommand> commands = new HashMap<>();
 
@@ -50,7 +50,7 @@ public class Main {
             PresenceClock.runClockGame(jda);
             Clock.runClockUptime();
 
-            Logger.log(Logger.LogType.STATUS, "Bot started!");
+            LoggerUtil.log(LoggerUtil.LogType.STATUS, "Bot started!");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class Main {
 
     }
 
-    static void handleCommand(CommandParser.CommandContainer cmd){
+    static void handleCommand(CmdParserUtil.CommandContainer cmd){
         if (commands.containsKey(cmd.invoke)) {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
 
@@ -94,7 +94,7 @@ public class Main {
     }
 
     private static boolean getConfigs() {
-        Logger.log(Logger.LogType.STATUS, "Getting configs...");
+        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Getting configs...");
 
         try {
             File file = new File(configFile);
@@ -130,7 +130,7 @@ public class Main {
 
                 writer.close();
 
-                Logger.log(Logger.LogType.STATUS, "Config file was created and must be filled in, stopping bot.");
+                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Config file was created and must be filled in, stopping bot.");
                 return false;
             } else {
 
@@ -158,12 +158,12 @@ public class Main {
                     }
 
                 } catch (NullPointerException e) {
-                    Logger.log(Logger.LogType.FATAL, "Configs were unable to be loaded, stopping bot.");
+                    LoggerUtil.log(LoggerUtil.LogType.FATAL, "Configs were unable to be loaded, stopping bot.");
                     e.printStackTrace();
                     return false;
                 }
 
-                Logger.log(Logger.LogType.STATUS, "Configs were loaded, continuing.");
+                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Configs were loaded, continuing.");
                 return true;
             }
         } catch (IOException e) {

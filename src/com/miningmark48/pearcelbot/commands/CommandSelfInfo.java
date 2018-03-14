@@ -4,7 +4,7 @@ import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
-import com.miningmark48.pearcelbot.util.MessageHelper;
+import com.miningmark48.pearcelbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -43,7 +43,7 @@ public class CommandSelfInfo implements ICommand, ICommandPrivate, ICommandInfo 
         embedBuilder.addField("Created On", event.getAuthor().getCreationTime().toString().substring(0, 10), true);
         embedBuilder.addField("Is Bot?", event.getAuthor().isBot() ? "Yes" : "No", true);
 
-        MessageHelper.sendMessage(event, embedBuilder.build(), isPrivate);
+        MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
     }
 
     @Override

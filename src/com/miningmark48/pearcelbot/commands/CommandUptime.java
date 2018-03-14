@@ -4,8 +4,8 @@ import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
-import com.miningmark48.pearcelbot.util.Clock;
-import com.miningmark48.pearcelbot.util.MessageHelper;
+import com.miningmark48.pearcelbot.util.features.Clock;
+import com.miningmark48.pearcelbot.util.MessageUtil;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -59,7 +59,7 @@ public class CommandUptime implements ICommand, ICommandPrivate, ICommandInfo {
             builder.append("**" + seconds + "**" + (seconds == 1 ? " second." : " seconds."));
         }
 
-        MessageHelper.sendMessage(event, builder.build(), isPrivate);
+        MessageUtil.sendMessage(event, builder.build(), isPrivate);
     }
 
     @Override

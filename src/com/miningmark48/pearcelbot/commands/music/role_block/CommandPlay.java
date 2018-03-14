@@ -4,9 +4,9 @@ import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.Tools;
-import com.miningmark48.pearcelbot.util.YoutubeSearch;
-import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
+import com.miningmark48.pearcelbot.util.DataUtil;
+import com.miningmark48.pearcelbot.util.YoutubeSearchUtil;
+import com.miningmark48.pearcelbot.util.features.music.handler.AudioHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandPlay implements ICommand, ICommandInfo {
@@ -19,15 +19,15 @@ public class CommandPlay implements ICommand, ICommandInfo {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (event.getMember() == null) { //Webhook support
-            String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.NORMAL);
+            String urlToPlay = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
             if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             return;
         }
         if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
-            if (Tools.isValid(args[0])) {
+            if (DataUtil.isValid(args[0])) {
                 AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
             } else {
-                String urlToPlay = YoutubeSearch.searchYoutube(args, event, YoutubeSearch.SearchType.NORMAL);
+                String urlToPlay = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
                 if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             }
         } else {

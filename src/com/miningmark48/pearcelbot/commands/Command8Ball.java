@@ -5,8 +5,7 @@ import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
 import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.MessageHelper;
-import com.miningmark48.pearcelbot.util.Tools;
+import com.miningmark48.pearcelbot.util.MessageUtil;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -47,13 +46,13 @@ public class Command8Ball implements ICommand, ICommandPrivate, ICommandInfo {
                     int num = rand.nextInt(responses.length);
                     builder.append(FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "\n");
                 }
-                MessageHelper.sendMessage(event, builder.build(), isPrivate);
+                MessageUtil.sendMessage(event, builder.build(), isPrivate);
             } catch (NumberFormatException e) {
-                MessageHelper.sendMessage(event, "**Error:** *" + args[0] + "* is not a valid argument. Argument must be an int.", isPrivate);
+                MessageUtil.sendMessage(event, "**Error:** *" + args[0] + "* is not a valid argument. Argument must be an int.", isPrivate);
             }
         } else {
             int num = rand.nextInt(responses.length);
-            MessageHelper.sendMessage(event, FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "", isPrivate);
+            MessageUtil.sendMessage(event, FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "", isPrivate);
         }
     }
 

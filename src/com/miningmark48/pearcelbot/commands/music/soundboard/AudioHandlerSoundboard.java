@@ -1,8 +1,8 @@
 package com.miningmark48.pearcelbot.commands.music.soundboard;
 
-import com.miningmark48.pearcelbot.util.Logger;
-import com.miningmark48.pearcelbot.util.music.GuildMusicManager;
-import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
+import com.miningmark48.pearcelbot.util.LoggerUtil;
+import com.miningmark48.pearcelbot.util.features.music.GuildMusicManager;
+import com.miningmark48.pearcelbot.util.features.music.handler.AudioHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
@@ -68,7 +68,7 @@ public class AudioHandlerSoundboard {
 
             @Override
             public void loadFailed(FriendlyException exception) {
-                Logger.log(Logger.LogType.FATAL, "Could not play track!");
+                LoggerUtil.log(LoggerUtil.LogType.FATAL, "Could not play track!");
                 exception.printStackTrace();
             }
         });

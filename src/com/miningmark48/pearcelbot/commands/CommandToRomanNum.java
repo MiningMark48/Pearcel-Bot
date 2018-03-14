@@ -3,7 +3,7 @@ package com.miningmark48.pearcelbot.commands;
 import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.util.Logger;
+import com.miningmark48.pearcelbot.util.LoggerUtil;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.TreeMap;
@@ -50,7 +50,7 @@ public class CommandToRomanNum implements ICommand, ICommandInfo {
                     }
                 }catch (StackOverflowError e){
                     event.getTextChannel().sendMessage("Error!").queue();
-                    Logger.log(Logger.LogType.FATAL, e.toString());
+                    LoggerUtil.log(LoggerUtil.LogType.FATAL, e.toString());
                 }
 
             }else{
