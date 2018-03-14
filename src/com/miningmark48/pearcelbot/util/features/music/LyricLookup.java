@@ -1,9 +1,9 @@
-package com.miningmark48.pearcelbot.util.music;
+package com.miningmark48.pearcelbot.util.features.music;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.Logger;
+import com.miningmark48.pearcelbot.util.LoggerUtil;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.jsoup.HttpStatusException;
@@ -51,8 +51,8 @@ public class LyricLookup {
         String artist = split[0];
         String title = split[1];
 
-        Logger.log(Logger.LogType.DEBUG, "Artist: " + artist);
-        Logger.log(Logger.LogType.DEBUG, "Title: " + title);
+        LoggerUtil.log(LoggerUtil.LogType.DEBUG, "Artist: " + artist);
+        LoggerUtil.log(LoggerUtil.LogType.DEBUG, "Title: " + title);
 
         try {
             channel.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,String.format("Lyrics for %s - %s:\n\n", artist.toUpperCase(), title.toUpperCase()))).queue();

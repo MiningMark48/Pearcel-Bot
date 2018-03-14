@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.util.chatlog;
+package com.miningmark48.pearcelbot.util.features.chatlog;
 
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;

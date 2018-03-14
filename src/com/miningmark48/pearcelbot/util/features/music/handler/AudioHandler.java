@@ -1,10 +1,10 @@
-package com.miningmark48.pearcelbot.util.music.handler;
+package com.miningmark48.pearcelbot.util.features.music.handler;
 
 import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.*;
 import com.miningmark48.pearcelbot.util.FormatUtil.FormatType;
-import com.miningmark48.pearcelbot.util.music.GuildMusicManager;
-import com.miningmark48.pearcelbot.util.music.TrackScheduler;
+import com.miningmark48.pearcelbot.util.features.music.GuildMusicManager;
+import com.miningmark48.pearcelbot.util.features.music.TrackScheduler;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
@@ -136,7 +136,7 @@ public class AudioHandler {
             int i = 1;
             for (AudioTrack track : queue) {
                 if (i <= 10){
-                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + Tools.makeURL(track.getInfo().author, track.getInfo().uri)), false);
+                    embedBuilder.addField(track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + DataUtil.makeURL(track.getInfo().author, track.getInfo().uri)), false);
                 } else {
                     embedBuilder.addField("Plus " + (queue.size() - i) + " more.", "", false);
                     break;
@@ -178,7 +178,7 @@ public class AudioHandler {
 
         keyword = builder.toString();
 
-        Logger.log(Logger.LogType.DEBUG, keyword);
+        LoggerUtil.log(LoggerUtil.LogType.DEBUG, keyword);
 
         channel.sendMessage(String.format("Searching queue for %s.", FormatUtil.formatText(FormatType.ITALIC, keyword))).queue();
 
@@ -257,7 +257,7 @@ public class AudioHandler {
             }
         }
         if (!musicManager.scheduler.getQueue().isEmpty()){
-            channel.sendMessage("Playlist was shuffled " + NumberToWords.convert(i) + " " + (i == 1 ? "time" : "times") + ".").queue();
+            channel.sendMessage("Playlist was shuffled " + NumWordUtil.convert(i) + " " + (i == 1 ? "time" : "times") + ".").queue();
         } else {
             channel.sendMessage("Playlist is empty!").queue();
         }

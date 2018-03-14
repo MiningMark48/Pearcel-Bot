@@ -1,10 +1,10 @@
-package com.miningmark48.pearcelbot.util.music;
+package com.miningmark48.pearcelbot.util.features.music;
 
 import com.miningmark48.pearcelbot.commands.music.soundboard.AudioHandlerSoundboard;
 import com.miningmark48.pearcelbot.util.FormatUtil;
 import com.miningmark48.pearcelbot.util.FormatUtil.FormatType;
-import com.miningmark48.pearcelbot.util.Logger;
-import com.miningmark48.pearcelbot.util.music.handler.AudioHandler;
+import com.miningmark48.pearcelbot.util.LoggerUtil;
+import com.miningmark48.pearcelbot.util.features.music.handler.AudioHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -69,13 +69,13 @@ public class TrackScheduler extends AudioEventAdapter {
             try {
                 AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
             } catch (NullPointerException e) {
-                Logger.log(Logger.LogType.INFO, "No track available.");
+                LoggerUtil.log(LoggerUtil.LogType.INFO, "No track available.");
                 return false;
             }
             player.startTrack(track, false);
             return true;
         } catch (NullPointerException e){
-            Logger.log(Logger.LogType.INFO, "No track found next in queue!");
+            LoggerUtil.log(LoggerUtil.LogType.INFO, "No track found next in queue!");
             return false;
         }
     }

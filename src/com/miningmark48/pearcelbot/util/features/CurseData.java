@@ -1,5 +1,6 @@
-package com.miningmark48.pearcelbot.util;
+package com.miningmark48.pearcelbot.util.features;
 
+import com.miningmark48.pearcelbot.util.DataUtil;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.io.BufferedReader;
@@ -129,7 +130,7 @@ public class CurseData {
                 e.printStackTrace();
             }
 
-        this.downloads = Tools.sortByValue(this.downloads, true);
+        this.downloads = DataUtil.sortByValue(this.downloads, true);
     }
 
     public boolean exists() {

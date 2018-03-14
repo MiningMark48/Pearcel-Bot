@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.util.chatlog;
+package com.miningmark48.pearcelbot.util.features.chatlog;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

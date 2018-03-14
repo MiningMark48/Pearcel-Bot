@@ -1,4 +1,4 @@
-package com.miningmark48.pearcelbot.util.music;
+package com.miningmark48.pearcelbot.util.features.music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;

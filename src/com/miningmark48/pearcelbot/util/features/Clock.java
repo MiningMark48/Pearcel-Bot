@@ -1,4 +1,6 @@
-package com.miningmark48.pearcelbot.util;
+package com.miningmark48.pearcelbot.util.features;
+
+import com.miningmark48.pearcelbot.util.LoggerUtil;
 
 public class Clock {
 
@@ -10,7 +12,7 @@ public class Clock {
     public static void runClockUptime(){
         Thread thread = new Thread(() -> {
 
-            Logger.log(Logger.LogType.STATUS, "Uptime clock started!");
+            LoggerUtil.log(LoggerUtil.LogType.STATUS, "Uptime clock started!");
 
             uptimeSeconds = 0;
             uptimeMinutes = 0;
