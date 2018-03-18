@@ -288,19 +288,17 @@ public class AudioHandler {
     private static void connectVoiceChannel(AudioManager audioManager, User user) {
         if (!audioManager.isConnected() && !audioManager.isAttemptingToConnect()) {
             int i = 0;
-            int j = audioManager.getGuild().getVoiceChannels().size() - 1;
+            int j = audioManager.getGuild().getVoiceChannels().size();
 
             for (VoiceChannel voiceChannel : audioManager.getGuild().getVoiceChannels()) {
-                if (user != null && voiceChannel.getMembers().contains(user)) {
+                LoggerUtil.log(LoggerUtil.LogType.DEBUG, voiceChannel.getName());
+                if (user != null && voiceChannel.getMembers().stream().anyMatch(q -> q.equals(user))) {
                     audioManager.openAudioConnection(voiceChannel);
-                }else if (!voiceChannel.getMembers().isEmpty()) {
+                } else if (!voiceChannel.getMembers().isEmpty()) {
                     audioManager.openAudioConnection(voiceChannel);
-                }else
+                } else
                     if (i == j){
-                        for (VoiceChannel voiceChannel2 : audioManager.getGuild().getVoiceChannels()) {
-                            audioManager.openAudioConnection(voiceChannel2);
-                            break;
-                        }
+                        audioManager.getGuild().getVoiceChannels().stream().findFirst().ifPresent(audioManager::openAudioConnection);
                     }
                 i++;
             }
