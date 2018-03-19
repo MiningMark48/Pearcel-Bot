@@ -21,7 +21,7 @@ public class YoutubeSearchUtil {
         StringBuilder builder = new StringBuilder();
         String queryString;
 
-        Arrays.stream(query).forEach(q -> builder.append(q.replace(" ", "%20")));
+        Arrays.stream(query).forEach(q -> builder.append(q).append("%20"));
 
         if (type.equals(SearchType.REMIX)){
             builder.append("%20remix");

@@ -291,7 +291,6 @@ public class AudioHandler {
             int j = audioManager.getGuild().getVoiceChannels().size();
 
             for (VoiceChannel voiceChannel : audioManager.getGuild().getVoiceChannels()) {
-                LoggerUtil.log(LoggerUtil.LogType.DEBUG, voiceChannel.getName());
                 if (user != null && voiceChannel.getMembers().stream().anyMatch(q -> q.equals(user))) {
                     audioManager.openAudioConnection(voiceChannel);
                 } else if (!voiceChannel.getMembers().isEmpty()) {
