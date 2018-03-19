@@ -25,7 +25,7 @@ public class DataUtil {
     }
 
     /* Returns true if url is valid */
-    public static boolean isValid(String url)
+    public static boolean isValidURL(String url)
     {
         try {
             new URL(url).toURI();
@@ -34,10 +34,5 @@ public class DataUtil {
             return false;
         }
     }
-
-    public static String makeURL(String displayText, String url){
-        return "[" + displayText + "]" + "(" + url + ")";
-    }
-
 
 }

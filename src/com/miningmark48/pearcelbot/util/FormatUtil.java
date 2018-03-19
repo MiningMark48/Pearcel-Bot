@@ -1,7 +1,5 @@
 package com.miningmark48.pearcelbot.util;
 
-import javax.annotation.Nullable;
-
 public class FormatUtil {
 
     public static String formatText(FormatType type, String text){
@@ -38,6 +36,10 @@ public class FormatUtil {
         }
 
         return text;
+    }
+
+    public static String formatURL(String displayText, String url){
+        return "[" + displayText + "]" + "(" + url + ")";
     }
 
     public enum FormatType{

@@ -24,7 +24,7 @@ public class CommandPlay implements ICommand, ICommandInfo {
             return;
         }
         if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
-            if (DataUtil.isValid(args[0])) {
+            if (DataUtil.isValidURL(args[0])) {
                 AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
             } else {
                 String urlToPlay = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
