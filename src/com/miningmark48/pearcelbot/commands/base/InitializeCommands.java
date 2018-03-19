@@ -33,6 +33,7 @@ public class InitializeCommands {
         Main.commands.put("geoip", new CommandGeoIP());
         Main.commands.put("githubuser", new CommandGithubUser());
         Main.commands.put("guildinfo", new CommandGuildInfo());
+        Main.commands.put("help", new CommandHelp());
         Main.commands.put("kickvoice", new CommandKickVoice());
         Main.commands.put("listbots", new CommandListBots());
         Main.commands.put("listcommands", new CommandListCommands());
