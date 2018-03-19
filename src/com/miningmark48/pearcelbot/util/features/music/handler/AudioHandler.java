@@ -114,6 +114,13 @@ public class AudioHandler {
         channel.sendMessage("Stopped track and cleared the queue.").queue();
     }
 
+    public static void clearQueue(TextChannel channel){
+        GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
+        musicManager.scheduler.clearQueue();
+
+        channel.sendMessage("Cleared the queue.").queue();
+    }
+
     public static void getQueue(TextChannel channel){
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
         Queue<AudioTrack> queue = musicManager.scheduler.getQueue();

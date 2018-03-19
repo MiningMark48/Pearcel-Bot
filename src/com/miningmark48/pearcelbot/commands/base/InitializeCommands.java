@@ -82,6 +82,7 @@ public class InitializeCommands {
         Main.commands.put("restart", new CommandRestart());
         Main.commands.put("summon", new CommandSummon());
         Main.commands.put("voteskip", new CommandVoteSkip());
+        Main.commands.put("clear", new CommandClear());
 
         //Alias
 //        Main.commands.put("help", new CommandCmds());
