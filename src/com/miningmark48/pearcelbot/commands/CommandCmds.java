@@ -1,5 +1,6 @@
 package com.miningmark48.pearcelbot.commands;
 
+import com.google.common.collect.Lists;
 import com.miningmark48.pearcelbot.Main;
 import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
@@ -12,7 +13,12 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.requests.RestAction;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static javafx.scene.input.KeyCode.T;
 
 public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
 
@@ -70,49 +76,79 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
             }
         }
 
-        EmbedBuilder embedBuilderNormal = new EmbedBuilder();
-        EmbedBuilder embedBuilderPBC = new EmbedBuilder();
-        EmbedBuilder embedBuilderMusic = new EmbedBuilder();
-        EmbedBuilder embedBuilderOther = new EmbedBuilder();
-
-        embedBuilderNormal.setTitle("Normal Commands");
-        embedBuilderNormal.setColor(Color.decode("#a2f000"));
-        embedBuilderPBC.setTitle("PBC Commands");
-        embedBuilderPBC.setColor(Color.decode("#a2f000"));
-        embedBuilderMusic.setTitle("Music Commands");
-        embedBuilderMusic.setColor(Color.decode("#a2f000"));
-        embedBuilderOther.setTitle("Other Commands");
-        embedBuilderOther.setColor(Color.decode("#a2f000"));
+        ArrayList<ICommandInfo> commandsNormal = new ArrayList<>();
+        ArrayList<ICommandInfo> commandsPBC = new ArrayList<>();
+        ArrayList<ICommandInfo> commandsMusic = new ArrayList<>();
+        ArrayList<String> commandsOther = new ArrayList<>();
 
         Main.commands.forEach((key, value) -> {
             if (value instanceof ICommandInfo) {
                 ICommandInfo cmd = (ICommandInfo) value;
                 switch (cmd.getType()) {
                     default:
-                        embedBuilderOther.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        commandsOther.add(cmd.getName());
                         break;
                     case NORMAL:
-                        embedBuilderNormal.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        commandsNormal.add(cmd);
                         break;
                     case PBC:
-                        embedBuilderPBC.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        commandsPBC.add(cmd);
                         break;
                     case MUSIC:
-                        embedBuilderMusic.addField(cmd.getName(), cmd.getDesc() + "\nUSAGE: " + cmd.getUsage(), true);
+                        commandsMusic.add(cmd);
                         break;
                 }
             } else {
-                embedBuilderOther.addField(key, "Missing Description", true);
+                commandsOther.add(key);
             }
         });
 
+        int chunkSize = 15;
+        int msgDelay = 1000;
         privateChannel.queue(chan -> {
             chan.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"Commands:")).queue();
-            chan.sendMessage(embedBuilderNormal.build()).queueAfter(500, TimeUnit.MILLISECONDS);
-            chan.sendMessage(embedBuilderPBC.build()).queueAfter(1000, TimeUnit.MILLISECONDS);
-            chan.sendMessage(embedBuilderMusic.build()).queueAfter(1500, TimeUnit.MILLISECONDS);
-//            chan.sendMessage(embedBuilderOther.build()).queueAfter(2000, TimeUnit.MILLISECONDS);
+            List<List<ICommandInfo>> partitionNormal = Lists.partition(commandsNormal, chunkSize);
+            List<List<ICommandInfo>> partitionPBC = Lists.partition(commandsPBC, chunkSize);
+            List<List<ICommandInfo>> partitionMusic = Lists.partition(commandsMusic, chunkSize);
+            List<List<String>> partitionOther = Lists.partition(commandsOther, chunkSize);
+
+            partitionNormal.forEach(cmdChunk -> {
+                EmbedBuilder builder = getTemplateBuilder("Normal Commands", partitionNormal.indexOf(cmdChunk), partitionNormal.size());
+                cmdChunk.forEach(q -> addToEmbed(builder, q.getName(), q.getDesc(), q.getUsage()));
+                chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+            });
+            partitionPBC.forEach(cmdChunk -> {
+                EmbedBuilder builder = getTemplateBuilder("PBC Commands", partitionPBC.indexOf(cmdChunk), partitionPBC.size());
+                cmdChunk.forEach(q -> addToEmbed(builder, q.getName(), q.getDesc(), q.getUsage()));
+                chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+            });
+            partitionMusic.forEach(cmdChunk -> {
+                EmbedBuilder builder = getTemplateBuilder("Music Commands", partitionMusic.indexOf(cmdChunk), partitionMusic.size());
+                cmdChunk.forEach(q -> addToEmbed(builder, q.getName(), q.getDesc(), q.getUsage()));
+                chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+            });
+            partitionOther.forEach(cmdChunk -> {
+                EmbedBuilder builder = getTemplateBuilder("Other Commands", partitionOther.indexOf(cmdChunk), partitionOther.size());
+                cmdChunk.forEach(q -> addToEmbedNoDesc(builder, q));
+                chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+            });
         });
+    }
+
+    private static void addToEmbed(EmbedBuilder embed, String cmdName, String cmdDesc, String cmdUsage) {
+        embed.addField(cmdName, cmdDesc + "\nUSAGE: " + cmdUsage, false);
+    }
+
+    private static void addToEmbedNoDesc(EmbedBuilder embed, String cmdName) {
+        embed.addField(cmdName, "Missing Description!", false);
+    }
+
+    private static EmbedBuilder getTemplateBuilder(String title, int chunkNum, int chunkTotal) {
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setColor(Color.decode("#a2f000"));
+        builder.setTitle(FormatUtil.formatText(FormatUtil.FormatType.UNDERLINE, title));
+        builder.setFooter(chunkNum+1 + "/" + chunkTotal, null);
+        return builder;
     }
 
 }
