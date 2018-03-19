@@ -285,6 +285,10 @@ public class AudioHandler {
         }
     }
 
+    public static void moveVoice(AudioManager audioManager, VoiceChannel channel) {
+        audioManager.openAudioConnection(channel);
+    }
+
     private static void connectVoiceChannel(AudioManager audioManager, User user) {
         if (!audioManager.isConnected() && !audioManager.isAttemptingToConnect()) {
             int i = 0;

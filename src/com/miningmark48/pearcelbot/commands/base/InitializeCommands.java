@@ -79,6 +79,7 @@ public class InitializeCommands {
         Main.commands.put("shuffle", new CommandShuffle());
         Main.commands.put("lyrics", new CommandLyrics());
         Main.commands.put("restart", new CommandRestart());
+        Main.commands.put("summon", new CommandSummon());
         Main.commands.put("voteskip", new CommandVoteSkip());
 
         //Alias
