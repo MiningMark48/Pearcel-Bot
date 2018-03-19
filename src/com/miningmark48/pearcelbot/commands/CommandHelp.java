@@ -22,7 +22,6 @@ public class CommandHelp implements ICommand, ICommandInfo {
     public void action(String[] args, MessageReceivedEvent event) {
         if (args.length > 0) {
             if (Main.commands.entrySet().stream().anyMatch(q -> q.getKey().equalsIgnoreCase(args[0]))) {
-                LoggerUtil.log(LoggerUtil.LogType.DEBUG, "CALLED | " + args[0]);
                 ICommand command = (Main.commands.entrySet().stream().filter(q -> q.getKey().equalsIgnoreCase(args[0])).findFirst().get().getValue());
                 if (command instanceof ICommandInfo) {
                     ICommandInfo commandInfo = (ICommandInfo) command;
