@@ -18,7 +18,7 @@ public class CommandNumberToWords implements ICommand, ICommandInfo {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (args.length <= 0) {
-            event.getTextChannel().sendMessage("Error, missing args! " + usage).queue();
+            event.getTextChannel().sendMessage("Error, missing args! " + getUsage()).queue();
         } else {
             event.getTextChannel().sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD_UNDERLINE, args[0] + " as words: \n") + WordUtils.capitalize(NumWordUtil.convert(Long.valueOf(args[0])))).queue();
         }
