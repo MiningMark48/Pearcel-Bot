@@ -14,11 +14,8 @@ import net.dv8tion.jda.core.requests.RestAction;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static javafx.scene.input.KeyCode.T;
 
 public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
 

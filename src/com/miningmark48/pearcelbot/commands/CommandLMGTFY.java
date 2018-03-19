@@ -8,10 +8,6 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandLMGTFY implements ICommand, ICommandInfo {
 
-    public static final String desc = "Let me Google that for you.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "lmgtfy <arg>";
-    public static final String info = desc + " " + usage;
-
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return true;

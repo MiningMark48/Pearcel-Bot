@@ -11,10 +11,6 @@ import java.awt.*;
 
 public class CommandBotStats implements ICommand, ICommandInfo {
 
-    public static final String desc = "Returns bot stats.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "botstats";
-    public static final String info = desc + " " + usage;
-
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return true;

@@ -13,10 +13,6 @@ import java.awt.*;
 
 public class CommandBitcoin implements ICommand, ICommandInfo {
 
-    public static final String desc = "Get the [hourly] value of Bitcoin.";
-    public static final String usage = "USAGE: " + Reference.botCommandKey + "bitcoin";
-    public static final String info = desc + " " + usage;
-
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return true;
