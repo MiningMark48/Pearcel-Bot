@@ -7,6 +7,8 @@ import com.miningmark48.pearcelbot.reference.Reference;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.util.concurrent.TimeUnit;
+
 public class CommandPrune implements ICommand, ICommandInfo {
 
     @Override
@@ -26,6 +28,9 @@ public class CommandPrune implements ICommand, ICommandInfo {
                     channel.getHistory().retrievePast(pruneAmt + 1).queue(
                             messages -> channel.deleteMessages(messages).queue()
                     );
+                    channel.sendMessage("Deleted " + pruneAmt + " messages. ").queue(msg -> {
+                        msg.delete().queueAfter(2500, TimeUnit.MILLISECONDS);
+                    });
                 } catch (NumberFormatException e) {
                     event.getTextChannel().sendMessage("Error! That's not a number.").queue();
                 }
