@@ -51,8 +51,4 @@ public class CommandPing implements ICommand, ICommandPrivate, ICommandInfo {
         return CommandType.NORMAL;
     }
 
-    private DiscordMessage getMessage(String content) {
-        return new DiscordMessage("Alexa", content, "https://m.media-amazon.com/images/G/01/mobile-apps/dex/avs/docs/ux/branding/mark1._TTH_.png");
-    }
-
 }
