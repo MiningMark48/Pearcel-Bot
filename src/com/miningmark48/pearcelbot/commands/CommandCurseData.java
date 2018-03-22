@@ -13,6 +13,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
+import java.text.Normalizer;
 import java.text.NumberFormat;
 import java.util.Map;
 
@@ -52,55 +53,53 @@ public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo
                 return;
             }
 
-            MessageUtil.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])), isPrivate);
+            MessageUtil.sendMessageNoQueue(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])), isPrivate).queue(msg -> {
+                final CurseData data = new CurseData(args[0]);
+                final EmbedBuilder embed = new EmbedBuilder();
 
-            final CurseData data = new CurseData(args[0]);
-            final EmbedBuilder embed = new EmbedBuilder();
-
-            if (!data.exists()) {
-
-                MessageUtil.sendMessage(event, "No user could be found by the name of " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0]), isPrivate);
-                return;
-            }
-            else if (!data.hasProjects()) {
-
-                MessageUtil.sendMessage(event, "No projects found for " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0]), isPrivate);
-                return;
-            }
-
-            int addedProjects = 0;
-            long otherDLs = 0;
-
-            for (final Map.Entry<String, Long> set : data.getDownloads().entrySet()) {
-
-                if (addedProjects >= 10) {
-
-                    otherDLs += set.getValue();
-                    continue;
+                if (!data.exists()) {
+                    msg.editMessage("No user could be found by the name of " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])).queue();
+                    return;
+                }
+                else if (!data.hasProjects()) {
+                    msg.editMessage("No projects found for " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])).queue();
+                    return;
                 }
 
-                embed.addField(set.getKey(), NumberFormat.getInstance().format(set.getValue()) + " downloads" + DataUtil.SEPERATOR + "[URL](" + toCurseURL(set.getKey()) + ")", true);
-                addedProjects++;
-            }
+                int addedProjects = 0;
+                long otherDLs = 0;
 
-            embed.addBlankField(false);
-            embed.addField("Total Projects", String.valueOf(data.getProjectCount()), true);
-            embed.addField("Total Downloads", NumberFormat.getInstance().format(data.getTotalDownloads()), true);
+                for (final Map.Entry<String, Long> set : data.getDownloads().entrySet()) {
 
-            if (addedProjects < data.getProjectCount())
-                embed.addField("Other Projects - " + (data.getProjectCount() - addedProjects), NumberFormat.getInstance().format(otherDLs), true);
+                    if (addedProjects >= 10) {
 
-            embed.setColor(Color.decode("#f05422"));
-            embed.setFooter(String.format("Data provided by Curse, Requested by %s", event.getAuthor().getName()), null);
-            embed.setAuthor(StringUtils.capitalize(args[0]) + "'s Statistics", null, null);
+                        otherDLs += set.getValue();
+                        continue;
+                    }
 
-            if (data.hasAvatar()) {
-                embed.setThumbnail(data.getAvatar());
-            }else{
-                embed.setThumbnail("https://media-corp.cursecdn.com/attachments/0/201/logo4.png");
-            }
+                    embed.addField(set.getKey(), NumberFormat.getInstance().format(set.getValue()) + " downloads" + DataUtil.SEPERATOR + "[URL](" + toCurseURL(set.getKey()) + ")", true);
+                    addedProjects++;
+                }
 
-            MessageUtil.sendMessage(event, embed.build(), isPrivate);
+                embed.addBlankField(false);
+                embed.addField("Total Projects", String.valueOf(data.getProjectCount()), true);
+                embed.addField("Total Downloads", NumberFormat.getInstance().format(data.getTotalDownloads()), true);
+
+                if (addedProjects < data.getProjectCount())
+                    embed.addField("Other Projects - " + (data.getProjectCount() - addedProjects), NumberFormat.getInstance().format(otherDLs), true);
+
+                embed.setColor(Color.decode("#f05422"));
+                embed.setFooter(String.format("Data provided by Curse, Requested by %s", event.getAuthor().getName()), null);
+                embed.setAuthor(StringUtils.capitalize(args[0]) + "'s Statistics", null, null);
+
+                if (data.hasAvatar()) {
+                    embed.setThumbnail(data.getAvatar());
+                }else{
+                    embed.setThumbnail("https://media-corp.cursecdn.com/attachments/0/201/logo4.png");
+                }
+
+                msg.editMessage(embed.build()).queue();
+            });
 
         }
         else {
