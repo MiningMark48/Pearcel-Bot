@@ -20,7 +20,7 @@ public class CommandSay implements ICommand, ICommandInfo {
         if (event.getMember().getRoles().contains(Reference.botCommanderRole) || event.getGuild().getOwner() == event.getMember() || event.getAuthor().getId().equals(Reference.botOwner)){
             event.getMessage().delete().queue();
             event.getTextChannel().sendMessage(messageFinal).queue();
-        }else{
+        } else {
             event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.").queue();
         }
     }
@@ -28,6 +28,11 @@ public class CommandSay implements ICommand, ICommandInfo {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
         return;
+    }
+
+    @Override
+    public boolean isRestricted() {
+        return true;
     }
 
     @Override

@@ -18,26 +18,22 @@ public class CommandKickVoice implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (event.getMember().getRoles().toString().contains(Reference.botCommanderRole) || event.getGuild().getOwner() == event.getMember() || event.getAuthor().getId().equals(Reference.botOwner)) {
-            if (args.length == 0) {
-                event.getTextChannel().sendMessage("Missing args!").queue();
-            } else {
-                Guild guild = event.getGuild();
-                if (guild.getMembersByName(args[0], true).stream().findFirst().isPresent()) {
-                    Member member = guild.getMembersByName(args[0], true).stream().findFirst().get();
-                    User user = member.getUser();
-                    RestAction<PrivateChannel> privateChannel = user.openPrivateChannel();
-                    createVoice(guild);
-                    moveToVoice(guild, user);
-                    deleteVoice(guild);
-                    event.getTextChannel().sendMessage("Kicked " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, user.getName()) + " from voice.").queue();
-                    privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + event.getAuthor().getName() + ".").queue());
-                } else {
-                    event.getTextChannel().sendMessage("Error, user not found!").queue();
-                }
-            }
+        if (args.length == 0) {
+            event.getTextChannel().sendMessage("Missing args!").queue();
         } else {
-            event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.").queue();
+            Guild guild = event.getGuild();
+            if (guild.getMembersByName(args[0], true).stream().findFirst().isPresent()) {
+                Member member = guild.getMembersByName(args[0], true).stream().findFirst().get();
+                User user = member.getUser();
+                RestAction<PrivateChannel> privateChannel = user.openPrivateChannel();
+                createVoice(guild);
+                moveToVoice(guild, user);
+                deleteVoice(guild);
+                event.getTextChannel().sendMessage("Kicked " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, user.getName()) + " from voice.").queue();
+                privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + event.getAuthor().getName() + ".").queue());
+            } else {
+                event.getTextChannel().sendMessage("Error, user not found!").queue();
+            }
         }
         event.getMessage().delete().queue();
     }
@@ -45,6 +41,11 @@ public class CommandKickVoice implements ICommand, ICommandInfo {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
         return;
+    }
+
+    @Override
+    public boolean isRestricted() {
+        return true;
     }
 
     private static boolean createVoice(Guild guild) {

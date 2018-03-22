@@ -75,7 +75,15 @@ public class Main {
                         ((ICommandPrivate) commands.get(cmd.invoke)).actionPrivate(cmd.args, cmd.event);
                     }
                 } else {
-                    commands.get(cmd.invoke).action(cmd.args, cmd.event);
+                    if (commands.get(cmd.invoke).isRestricted()) {
+                        if (cmd.event.getMember().getRoles().stream().anyMatch(q-> q.getName().equalsIgnoreCase(Reference.botCommanderRole)) || cmd.event.getGuild().getOwner() == cmd.event.getMember() || cmd.event.getAuthor().getId().equals(Reference.botOwner)) {
+                            commands.get(cmd.invoke).action(cmd.args, cmd.event);
+                        } else {
+                            cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getName() + ", You do not have permission to run that command.").queue();
+                        }
+                    } else {
+                        commands.get(cmd.invoke).action(cmd.args, cmd.event);
+                    }
                 }
                 commands.get(cmd.invoke).executed(safe, cmd.event);
             } else {
