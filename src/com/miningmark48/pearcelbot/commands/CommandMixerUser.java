@@ -38,7 +38,7 @@ public class CommandMixerUser implements ICommand, ICommandPrivate, ICommandInfo
         JsonObject js;
 
         if (args.length <= 0){
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate);
+            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
         } else {
             try {
                 js = JSONParse.JSONParse("https://mixer.com/api/v1/channels/" + args[0]);
@@ -121,10 +121,10 @@ public class CommandMixerUser implements ICommand, ICommandPrivate, ICommandInfo
                     embedBuilder.addField("Bio", userObject.get("bio").getAsString(), false);
                 }
 
-                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
+                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             }catch (NullPointerException e){
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
+                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
                 e.printStackTrace();
             }
 

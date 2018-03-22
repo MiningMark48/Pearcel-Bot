@@ -40,7 +40,7 @@ public class CommandTwitchUser implements ICommand, ICommandPrivate, ICommandInf
         JsonObject js2;
 
         if (args.length <= 0){
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate);
+            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
         }else{
             try {
                 js = JSONParse.JSONParseTwitch("https://api.twitch.tv/kraken/channels/" + args[0] + "?callback=foo&client_id=7fr372mwgdks9l4zb0ba2z0najhh84");
@@ -83,10 +83,10 @@ public class CommandTwitchUser implements ICommand, ICommandPrivate, ICommandInf
                     embedBuilder.addField("Partnered?", js.get("partner").getAsBoolean() ? "Yes" : "No", true);
                 }
 
-                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
+                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             }catch (NullPointerException e){
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
+                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
             }
 
         }

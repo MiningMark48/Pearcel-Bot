@@ -46,13 +46,13 @@ public class Command8Ball implements ICommand, ICommandPrivate, ICommandInfo {
                     int num = rand.nextInt(responses.length);
                     builder.append(FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "\n");
                 }
-                MessageUtil.sendMessage(event, builder.build(), isPrivate);
+                MessageUtil.sendMessage(event, builder.build(), isPrivate).queue();
             } catch (NumberFormatException e) {
-                MessageUtil.sendMessage(event, "**Error:** *" + args[0] + "* is not a valid argument. Argument must be an int.", isPrivate);
+                MessageUtil.sendMessage(event, "**Error:** *" + args[0] + "* is not a valid argument. Argument must be an int.", isPrivate).queue();
             }
         } else {
             int num = rand.nextInt(responses.length);
-            MessageUtil.sendMessage(event, FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "", isPrivate);
+            MessageUtil.sendMessage(event, FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "", isPrivate).queue();
         }
     }
 

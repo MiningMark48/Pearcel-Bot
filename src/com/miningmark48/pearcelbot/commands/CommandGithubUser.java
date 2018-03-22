@@ -38,7 +38,7 @@ public class CommandGithubUser implements ICommand, ICommandPrivate, ICommandInf
         JsonObject js;
 
         if (args.length <= 0){
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate);
+            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
         } else {
             try {
                 js = JSONParse.JSONParse("https://api.github.com/users/" + args[0]);
@@ -79,10 +79,10 @@ public class CommandGithubUser implements ICommand, ICommandPrivate, ICommandInf
                     embedBuilder.addField("Joined", js.get("created_at").getAsString().substring(0, 10), true);
                 }
 
-               MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
+               MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             } catch (NullPointerException e) {
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate);
+                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
             }
 
         }

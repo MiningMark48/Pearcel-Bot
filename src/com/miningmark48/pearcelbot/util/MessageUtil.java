@@ -7,52 +7,28 @@ import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
 public class MessageUtil {
 
-    public static void sendMessage(MessageReceivedEvent event, String message, boolean isPrivate) {
-        if (!isPrivate) {
-            event.getTextChannel().sendMessage(message).queue();
-        } else {
-            event.getPrivateChannel().sendMessage(message).queue();
-        }
+    public static MessageAction sendMessage(MessageReceivedEvent event, String message, boolean isPrivate) {
+        return (isPrivate ? event.getPrivateChannel().sendMessage(message) : event.getTextChannel().sendMessage(message));
     }
 
-    public static void sendMessage(MessageReceivedEvent event, MessageEmbed message, boolean isPrivate) {
-        if (!isPrivate) {
-            event.getTextChannel().sendMessage(message).queue();
-        } else {
-            event.getPrivateChannel().sendMessage(message).queue();
-        }
+    public static MessageAction sendMessage(MessageReceivedEvent event, MessageEmbed message, boolean isPrivate) {
+        return (isPrivate ? event.getPrivateChannel().sendMessage(message) : event.getTextChannel().sendMessage(message));
     }
 
-    public static void sendMessage(MessageReceivedEvent event, Message message, boolean isPrivate) {
-        if (!isPrivate) {
-            event.getTextChannel().sendMessage(message).queue();
-        } else {
-            event.getPrivateChannel().sendMessage(message).queue();
-        }
+    public static MessageAction sendMessage(MessageReceivedEvent event, Message message, boolean isPrivate) {
+        return (isPrivate ? event.getPrivateChannel().sendMessage(message) : event.getTextChannel().sendMessage(message));
     }
 
-    public static MessageAction sendMessageNoQueue(MessageReceivedEvent event, String message, boolean isPrivate) {
-        if (!isPrivate) {
-            return event.getTextChannel().sendMessage(message);
-        } else {
-            return event.getPrivateChannel().sendMessage(message);
-        }
+    public static MessageAction sendMessage(MessageReceivedEvent event, String message) {
+        return sendMessage(event, message, false);
     }
 
-    public static MessageAction sendMessageNoQueue(MessageReceivedEvent event, MessageEmbed message, boolean isPrivate) {
-        if (!isPrivate) {
-            return event.getTextChannel().sendMessage(message);
-        } else {
-            return event.getPrivateChannel().sendMessage(message);
-        }
+    public static MessageAction sendMessage(MessageReceivedEvent event, MessageEmbed message) {
+        return sendMessage(event, message, false);
     }
 
-    public static MessageAction sendMessageNoQueue(MessageReceivedEvent event, Message message, boolean isPrivate) {
-        if (!isPrivate) {
-            return event.getTextChannel().sendMessage(message);
-        } else {
-            return event.getPrivateChannel().sendMessage(message);
-        }
+    public static MessageAction sendMessage(MessageReceivedEvent event, Message message) {
+        return sendMessage(event, message, false);
     }
 
 }

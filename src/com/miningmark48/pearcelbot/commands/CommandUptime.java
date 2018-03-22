@@ -59,7 +59,7 @@ public class CommandUptime implements ICommand, ICommandPrivate, ICommandInfo {
             builder.append("**" + seconds + "**" + (seconds == 1 ? " second." : " seconds."));
         }
 
-        MessageUtil.sendMessage(event, builder.build(), isPrivate);
+        MessageUtil.sendMessage(event, builder.build(), isPrivate).queue();
     }
 
     @Override

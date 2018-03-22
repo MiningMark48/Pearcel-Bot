@@ -13,7 +13,6 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
-import java.text.Normalizer;
 import java.text.NumberFormat;
 import java.util.Map;
 
@@ -49,11 +48,11 @@ public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo
 
             if (args[0].contains("@")) {
 
-                MessageUtil.sendMessage(event, "This command uses names registered on Curse, not Discord!", isPrivate);
+                MessageUtil.sendMessage(event, "This command uses names registered on Curse, not Discord!", isPrivate).queue();
                 return;
             }
 
-            MessageUtil.sendMessageNoQueue(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])), isPrivate).queue(msg -> {
+            MessageUtil.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])), isPrivate).queue(msg -> {
                 final CurseData data = new CurseData(args[0]);
                 final EmbedBuilder embed = new EmbedBuilder();
 
@@ -103,7 +102,7 @@ public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo
 
         }
         else {
-            MessageUtil.sendMessage(event, "You must specify the name of a user that is registered on Curse!", isPrivate);
+            MessageUtil.sendMessage(event, "You must specify the name of a user that is registered on Curse!", isPrivate).queue();
         }
     }
 

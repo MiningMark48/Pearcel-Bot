@@ -43,7 +43,7 @@ public class CommandSelfInfo implements ICommand, ICommandPrivate, ICommandInfo 
         embedBuilder.addField("Created On", event.getAuthor().getCreationTime().toString().substring(0, 10), true);
         embedBuilder.addField("Is Bot?", event.getAuthor().isBot() ? "Yes" : "No", true);
 
-        MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
+        MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
     }
 
     @Override

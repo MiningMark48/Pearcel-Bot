@@ -41,7 +41,7 @@ public class CommandYoutubeUser implements ICommand, ICommandPrivate, ICommandIn
         JsonObject js;
 
         if (args.length <= 0) {
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate);
+            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
         } else {
             try {
                 js = JSONParse.JSONParse("https://www.googleapis.com/youtube/v3/channels?&key=AIzaSyBnt38rBPV1WAZGx6imcMvp0GuuQU15YKE&part=statistics,brandingSettings&forUsername=" + args[0]);
@@ -86,10 +86,10 @@ public class CommandYoutubeUser implements ICommand, ICommandPrivate, ICommandIn
                     embedBuilder.addField("Description", jsonObject4.get("description").getAsString(), false);
                 }
 
-                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate);
+                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             } catch (NullPointerException | IndexOutOfBoundsException e) {
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data, channel may be to small for detection.", isPrivate);
+                MessageUtil.sendMessage(event, "Error: Could not retrieve user data, channel may be to small for detection.", isPrivate).queue();
             }
 
         }
