@@ -6,6 +6,7 @@ import com.miningmark48.pearcelbot.commands.base.CommandType;
 import com.miningmark48.pearcelbot.commands.base.ICommand;
 import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
 import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
+import com.miningmark48.pearcelbot.reference.Reference;
 import com.miningmark48.pearcelbot.util.FormatUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.PrivateChannel;
@@ -135,7 +136,7 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
     }
 
     private static void addToEmbed(EmbedBuilder embed, String cmdName, String cmdDesc, String cmdUsage) {
-        embed.addField(cmdName, cmdDesc + "\nUSAGE: " + cmdUsage, false);
+        embed.addField(cmdName, cmdDesc + "\nUSAGE: " + Reference.botCommandKey + cmdUsage, false);
     }
 
     private static void addToEmbedNoDesc(EmbedBuilder embed, String cmdName) {
