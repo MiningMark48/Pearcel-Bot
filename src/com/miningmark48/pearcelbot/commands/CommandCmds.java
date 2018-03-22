@@ -81,19 +81,21 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
         Main.commands.forEach((key, value) -> {
             if (value instanceof ICommandInfo) {
                 ICommandInfo cmd = (ICommandInfo) value;
-                switch (cmd.getType()) {
-                    default:
-                        commandsOther.add(cmd.getName());
-                        break;
-                    case NORMAL:
-                        commandsNormal.add(cmd);
-                        break;
-                    case PBC:
-                        commandsPBC.add(cmd);
-                        break;
-                    case MUSIC:
-                        commandsMusic.add(cmd);
-                        break;
+                if (cmd.getName().equalsIgnoreCase(key)) {
+                    switch (cmd.getType()) {
+                        default:
+                            commandsOther.add(cmd.getName());
+                            break;
+                        case NORMAL:
+                            commandsNormal.add(cmd);
+                            break;
+                        case PBC:
+                            commandsPBC.add(cmd);
+                            break;
+                        case MUSIC:
+                            commandsMusic.add(cmd);
+                            break;
+                    }
                 }
             } else {
                 commandsOther.add(key);

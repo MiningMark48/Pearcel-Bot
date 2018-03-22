@@ -85,13 +85,12 @@ public class InitializeCommands {
         registerCommand("clear", new CommandClear());
 
         //Alias
-//        registerCommand("help", new CommandCmds());
-//        registerCommand("addcmd", new CommandAddCommand());
-//        registerCommand("curseforge", new CommandCurseData());
-//        registerCommand("delcmd", new CommandDeleteCommand());
-//        registerCommand("listcmds", new CommandListCommands());
-//            //Music
-//        registerCommand("np", new CommandNowPlaying());
+        registerCommand("addcmd", new CommandAddCommand());
+        registerCommand("curseforge", new CommandCurseData());
+        registerCommand("delcmd", new CommandDeleteCommand());
+        registerCommand("listcmds", new CommandListCommands());
+            //Music
+        registerCommand("np", new CommandNowPlaying());
 //        registerCommand("sb", new CommandSoundboard());
 
         LoggerUtil.log(LoggerUtil.LogType.STATUS, Main.commands.size() + " Commands Initialized.");
