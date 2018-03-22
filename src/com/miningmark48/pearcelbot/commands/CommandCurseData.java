@@ -53,6 +53,7 @@ public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo
             }
 
             MessageUtil.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])), isPrivate).queue(msg -> {
+                MessageUtil.sendTyping(event, isPrivate).queue();
                 final CurseData data = new CurseData(args[0]);
                 final EmbedBuilder embed = new EmbedBuilder();
 
@@ -84,8 +85,7 @@ public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo
                 embed.addField("Total Projects", String.valueOf(data.getProjectCount()), true);
                 embed.addField("Total Downloads", NumberFormat.getInstance().format(data.getTotalDownloads()), true);
 
-                if (addedProjects < data.getProjectCount())
-                    embed.addField("Other Projects - " + (data.getProjectCount() - addedProjects), NumberFormat.getInstance().format(otherDLs), true);
+                if (addedProjects < data.getProjectCount()) embed.addField("Other Projects - " + (data.getProjectCount() - addedProjects), NumberFormat.getInstance().format(otherDLs), true);
 
                 embed.setColor(Color.decode("#f05422"));
                 embed.setFooter(String.format("Data provided by Curse, Requested by %s", event.getAuthor().getName()), null);
@@ -93,11 +93,12 @@ public class CommandCurseData implements ICommand, ICommandPrivate, ICommandInfo
 
                 if (data.hasAvatar()) {
                     embed.setThumbnail(data.getAvatar());
-                }else{
-                    embed.setThumbnail("https://media-corp.cursecdn.com/attachments/0/201/logo4.png");
+                } else {
+                    embed.setThumbnail("https://pbs.twimg.com/profile_images/725406699369058304/0mVMpCrb_400x400.jpg");
                 }
 
-                msg.editMessage(embed.build()).queue();
+                msg.delete().queue();
+                MessageUtil.sendMessage(event, embed.build(), isPrivate).queue();
             });
 
         }
