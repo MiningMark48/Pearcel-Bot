@@ -30,8 +30,6 @@ public class Main {
 
     public static HashMap<String, ICommand> commands = new HashMap<>();
 
-
-
     public static void main(String[] args) {
 
         if (!ConfigUtil.getConfigs()) {
@@ -95,7 +93,5 @@ public class Main {
     static void handleCustom(MessageReceivedEvent event){
         GetCommand.init(event);
     }
-
-
 
 }

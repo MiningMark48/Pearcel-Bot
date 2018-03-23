@@ -40,6 +40,7 @@ public class InitializeCommands {
         registerCommand("lmgtfy", new CommandLMGTFY());
         registerCommand("mixeruser", new CommandMixerUser());
         registerCommand("numtoword", new CommandNumberToWords());
+        registerCommand("pastebin", new CommandPastebin());
         registerCommand("patreon", new CommandPatreon());
         registerCommand("ping", new CommandPing());
         registerCommand("poll", new CommandPoll());
