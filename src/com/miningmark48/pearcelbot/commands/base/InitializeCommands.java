@@ -29,6 +29,7 @@ public class InitializeCommands {
         registerCommand("diceroll", new CommandDiceRoll());
         registerCommand("editcommand", new CommandEditCommand());
         registerCommand("emojieval", new CommandEmojiEval());
+        registerCommand("emojilist", new CommandEmojiList());
         registerCommand("fizzbuzz", new CommandFizzbuzz());
         registerCommand("geoip", new CommandGeoIP());
         registerCommand("githubuser", new CommandGithubUser());
