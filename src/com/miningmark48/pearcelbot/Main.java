@@ -21,6 +21,7 @@ import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Main {
@@ -58,7 +59,7 @@ public class Main {
 
     }
 
-    static void handleCommand(CmdParserUtil.CommandContainer cmd){
+    static void handleCommand(CmdParserUtil.CommandContainer cmd) throws IOException {
         if (commands.containsKey(cmd.invoke)) {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
 

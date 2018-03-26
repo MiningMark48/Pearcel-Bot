@@ -17,6 +17,8 @@ import net.dv8tion.jda.core.events.guild.voice.GuildVoiceLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.io.IOException;
+
 public class BotListener extends ListenerAdapter {
 
     public static String key = Reference.botCommandKey;
@@ -29,7 +31,11 @@ public class BotListener extends ListenerAdapter {
         }
 
         if(event.getMessage().getContentRaw().startsWith(Reference.botCommandKey) && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) {
-            Main.handleCommand(Main.parser.parse(event.getMessage().getContentRaw(), event));
+            try {
+                Main.handleCommand(Main.parser.parse(event.getMessage().getContentRaw(), event));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         if (event.getJDA().getSelfUser() != null && event.getMember() != null && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) {
