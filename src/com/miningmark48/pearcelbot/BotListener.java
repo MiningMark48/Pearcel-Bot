@@ -76,33 +76,29 @@ public class BotListener extends ListenerAdapter {
     @Override
     public void onGuildVoiceJoin(GuildVoiceJoinEvent event) {
 //        GuildJoinChat.joinedVoice(event);
-        if (event.getGuild().getAudioManager().isConnected() && event.getChannelJoined() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
-            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() > 1) {
-                if (AudioHandler.getGuildAudioPlayer(event.getGuild()).player.isPaused()) {
-                    AudioHandler.getGuildAudioPlayer(event.getGuild()).player.setPaused(false);
-                }
-            }
-        }
+//        if (event.getGuild().getAudioManager().isConnected() && event.getChannelJoined() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
+//            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() > 1) {
+//                if (AudioHandler.getGuildAudioPlayer(event.getGuild()).player.isPaused()) {
+//                    AudioHandler.getGuildAudioPlayer(event.getGuild()).player.setPaused(false);
+//                }
+//            }
+//        }
     }
 
     @Override
     public void onGuildVoiceLeave(GuildVoiceLeaveEvent event) {
-        if (event.getGuild().getAudioManager().isConnected() && event.getChannelLeft() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
-            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() <= 1) {
-                if (!AudioHandler.getGuildAudioPlayer(event.getGuild()).player.isPaused()) {
-                    AudioHandler.getGuildAudioPlayer(event.getGuild()).player.setPaused(true);
-                }
-            }
-        }
+//        if (event.getGuild().getAudioManager().isConnected() && event.getChannelLeft() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
+//            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() <= 1) {
+//                if (!AudioHandler.getGuildAudioPlayer(event.getGuild()).player.isPaused()) {
+//                    AudioHandler.getGuildAudioPlayer(event.getGuild()).player.setPaused(true);
+//                }
+//            }
+//        }
     }
 
-
-
     private static boolean isBlacklisted(String id) {
-
         JsonObject jsonObj = JSONParseFile.JSONParse(CommandARBlacklist.fileName);
         return jsonObj != null && jsonObj.getAsJsonArray("blacklist").contains(new JsonPrimitive(id));
-
     }
 
 }
