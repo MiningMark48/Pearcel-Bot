@@ -23,7 +23,7 @@ public class CommandPlaySearchRemix implements ICommand, ICommandInfo {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
-            String urlToPlay = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.REMIX);
+            String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.REMIX);
             if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
         } else {
             event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();

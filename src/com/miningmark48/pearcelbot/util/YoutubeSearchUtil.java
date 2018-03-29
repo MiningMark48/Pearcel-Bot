@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class YoutubeSearchUtil {
 
-    public static String searchYoutube(String[] query, MessageReceivedEvent event, SearchType type){
+    public static Object searchYoutube(String[] query, MessageReceivedEvent event, SearchType type){
         int resultNum = 0;
         Random random = new Random();
         JsonObject js;
@@ -36,6 +36,7 @@ public class YoutubeSearchUtil {
             try {
                 js = JSONParse.JSONParse(String.format("https://www.googleapis.com/youtube/v3/search?&key=AIzaSyBnt38rBPV1WAZGx6imcMvp0GuuQU15YKE&part=snippet&type=video&q=%s", queryString));
                 JsonElement js2 = js.get("items");
+                if (type.equals(SearchType.QUERY)) return js2;
                 if (type.equals(SearchType.RANDOM)){
                     JsonObject jsonObjectPageInfo = js.getAsJsonObject("pageInfo");
                     resultNum = random.nextInt(jsonObjectPageInfo.get("resultsPerPage").getAsInt());
@@ -62,7 +63,8 @@ public class YoutubeSearchUtil {
     public enum SearchType{
         NORMAL,
         RANDOM,
-        REMIX
+        REMIX,
+        QUERY
     }
 
 }

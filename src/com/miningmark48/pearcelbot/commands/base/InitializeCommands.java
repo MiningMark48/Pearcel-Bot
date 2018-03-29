@@ -59,6 +59,7 @@ public class InitializeCommands {
         registerCommand("translate", new CommandTranslate());
         registerCommand("twitchuser", new CommandTwitchUser());
         registerCommand("uptime", new CommandUptime());
+        registerCommand("youtubesearch", new CommandYouTubeSearch());
         registerCommand("youtubeuser", new CommandYoutubeUser());
 
         //Me only

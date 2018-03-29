@@ -19,7 +19,7 @@ public class CommandPlay implements ICommand, ICommandInfo {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (event.getMember() == null) { //Webhook support
-            String urlToPlay = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
+            String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
             if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             return;
         }
@@ -27,7 +27,7 @@ public class CommandPlay implements ICommand, ICommandInfo {
             if (DataUtil.isValidURL(args[0])) {
                 AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
             } else {
-                String urlToPlay = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
+                String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
                 if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             }
         } else {
