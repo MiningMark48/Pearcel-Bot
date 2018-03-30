@@ -31,6 +31,7 @@ public class CommandYouTubeSearch implements ICommand, ICommandInfo {
             builder.setTitle(FormatUtil.formatText(FormatUtil.FormatType.BOLD_UNDERLINE, "YouTube Search Results"));
             builder.setFooter("YouTube search performed by Google APIs", null);
             builder.setColor(Color.RED);
+            builder.setThumbnail("https://i.imgur.com/wGlpS4b.png");
 
             for (int i = 0; i <= 10 && i < ((JsonArray) searchObj).getAsJsonArray().size(); i++) {
                 JsonObject js = ((JsonArray) searchObj).getAsJsonArray().get(i).getAsJsonObject();
