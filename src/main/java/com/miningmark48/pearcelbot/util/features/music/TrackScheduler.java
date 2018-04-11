@@ -7,6 +7,7 @@ import com.miningmark48.pearcelbot.util.LoggerUtil;
 import com.miningmark48.pearcelbot.util.features.music.handler.AudioHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
+import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import net.dv8tion.jda.core.entities.Guild;
@@ -84,8 +85,9 @@ public class TrackScheduler extends AudioEventAdapter {
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
     // Only start the next track if the end reason is suitable for it (FINISHED or LOAD_FAILED)
         if (endReason.mayStartNext) {
-          nextTrack();
-          AudioHandler.resumeQuiet(AudioHandlerSoundboard.audio_guild);
+            nextTrack();
+            AudioHandler.trackUsers.remove(track);
+            AudioHandler.resumeQuiet(AudioHandlerSoundboard.audio_guild);
         }else{
 //            getGuildPlaying().getAudioManager().closeAudioConnection();
         }

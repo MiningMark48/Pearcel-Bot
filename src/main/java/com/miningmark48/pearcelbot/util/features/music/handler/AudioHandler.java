@@ -26,9 +26,9 @@ import java.util.Queue;
 @SuppressWarnings("Duplicates")
 public class AudioHandler {
 
+    public static Map<AudioTrack, User> trackUsers = new HashMap<>();
     public static AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
     private static Map<Long, GuildMusicManager> musicManagers =  new HashMap<>();
-    private static Map<AudioTrack, User> trackUsers = new HashMap<>();
 
     private static int default_volume = 15;
 
@@ -142,15 +142,16 @@ public class AudioHandler {
             embedBuilder.setColor(Color.decode("#a2f000"));
 
             AudioTrack currentTrack = musicManager.player.getPlayingTrack();
-            embedBuilder.addField("Currently Playing", "**[** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getDuration()) + " **]** " + currentTrack.getInfo().title + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author, currentTrack.getInfo().uri) + "\n" + "Added by " + trackUsers.get(currentTrack).getName(), false);
+            embedBuilder.addField("Currently Playing", "**[** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getDuration()) + " **]** " + currentTrack.getInfo().title + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author, currentTrack.getInfo().uri) + (trackUsers.get(currentTrack) != null ? (" - " + "*Added by " + trackUsers.get(currentTrack).getName() + "*") : ""), false);
             embedBuilder.addBlankField(false);
 
             int i = 1;
+            int queueList = 5;
             for (AudioTrack track : queue) {
-                if (i <= 10){
-                    embedBuilder.addField("(" + i + ") " + track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.formatURL(track.getInfo().author, track.getInfo().uri)) + "\n" + "Added by " + trackUsers.get(track).getName(), false);
+                if (i <= queueList){
+                    embedBuilder.addField("(" + i + ") " + track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + " - " + "*Added by " + trackUsers.get(track).getName() + "*\n" + FormatUtil.formatURL(track.getInfo().author, track.getInfo().uri)), false);
                 } else {
-                    int queueSize = queue.size() - 1;
+                    int queueSize = queue.size() - (queueList + 1);
                     if (queueSize != 0) embedBuilder.addField("Plus " + queueSize + " more.", "", false);
                     break;
                 }
