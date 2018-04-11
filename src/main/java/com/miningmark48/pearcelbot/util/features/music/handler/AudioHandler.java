@@ -28,6 +28,7 @@ public class AudioHandler {
 
     public static AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
     private static Map<Long, GuildMusicManager> musicManagers =  new HashMap<>();
+    private static Map<AudioTrack, User> trackUsers = new HashMap<>();
 
     private static int default_volume = 15;
 
@@ -58,7 +59,10 @@ public class AudioHandler {
 
                 if (isPlaylist){
                     channel.sendMessage("Added " + FormatUtil.formatText(FormatType.BOLD, String.valueOf(playlist.getTracks().size())) + " tracks to queue from playlist: " + playlist.getName()).queue();
-                    tracks.forEach(musicManager.scheduler::queue);
+                    tracks.forEach(q -> {
+                        musicManager.scheduler.queue(q);
+                        trackUsers.put(q, user);
+                    });
                     play(channel, channel.getGuild(), musicManager, firstTrack, user);
                 }else{
                     channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "Added to queue: ") + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
@@ -84,6 +88,7 @@ public class AudioHandler {
 
         try {
             musicManager.scheduler.queue(track);
+            trackUsers.put(track, user);
         }catch (FriendlyException e){
             channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "An error occurred while trying to play that track!")).queue();
         }
@@ -137,13 +142,13 @@ public class AudioHandler {
             embedBuilder.setColor(Color.decode("#a2f000"));
 
             AudioTrack currentTrack = musicManager.player.getPlayingTrack();
-            embedBuilder.addField("Currently Playing", "**[** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getDuration()) + " **]** " + currentTrack.getInfo().title + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author, currentTrack.getInfo().uri), false);
+            embedBuilder.addField("Currently Playing", "**[** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getDuration()) + " **]** " + currentTrack.getInfo().title + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author, currentTrack.getInfo().uri) + "\n" + "Added by " + trackUsers.get(currentTrack).getName(), false);
             embedBuilder.addBlankField(false);
 
             int i = 1;
             for (AudioTrack track : queue) {
                 if (i <= 10){
-                    embedBuilder.addField("(" + i + ") " + track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.formatURL(track.getInfo().author, track.getInfo().uri)), false);
+                    embedBuilder.addField("(" + i + ") " + track.getInfo().title, (MathUtil.getTimeFromLong(track.getDuration()) + "\n" + FormatUtil.formatURL(track.getInfo().author, track.getInfo().uri)) + "\n" + "Added by " + trackUsers.get(track).getName(), false);
                 } else {
                     int queueSize = queue.size() - 1;
                     if (queueSize != 0) embedBuilder.addField("Plus " + queueSize + " more.", "", false);
