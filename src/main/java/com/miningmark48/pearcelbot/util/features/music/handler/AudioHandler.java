@@ -247,12 +247,13 @@ public class AudioHandler {
     public static void nowPlaying(TextChannel channel){
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
         AudioTrack track = musicManager.player.getPlayingTrack();
+        AudioTrack currentTrack = musicManager.player.getPlayingTrack();
         if (track != null){
 //            channel.sendMessage("**Currently playing:** \n**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]** " + track.getInfo().title).queue();
             EmbedBuilder builder = new EmbedBuilder();
             builder.setTitle("\uD83C\uDFB5 " + FormatUtil.formatText(FormatType.UNDERLINE,"Currently Playing"));
             builder.setColor(Color.decode("#a2f000"));
-            builder.addField(track.getInfo().title, "**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]**", false);
+            builder.addField(track.getInfo().title, "**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]**" + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author,currentTrack.getInfo().uri), false);
             channel.sendMessage(builder.build()).queue();
         } else {
             channel.sendMessage("Nothing is currently playing!").queue();
