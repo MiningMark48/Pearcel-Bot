@@ -7,6 +7,7 @@ import javafx.scene.control.TextInputControl;
 import org.apache.commons.io.IOUtils;
 import sun.nio.ch.IOUtil;
 
+import javax.net.ssl.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,14 +16,29 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 
 public class JSONParse {
 
     public static JsonObject JSONParse(String sUrl){
 
         try {
+
+            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager(){
+                public X509Certificate[] getAcceptedIssuers(){return null;}
+                public void checkClientTrusted(X509Certificate[] certs, String authType){}
+                public void checkServerTrusted(X509Certificate[] certs, String authType){}
+            }};
+
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, trustAllCerts, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
             URL url = new URL(sUrl);
-            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection request = (HttpsURLConnection) url.openConnection();
             request.connect();
 
             JsonParser jp = new JsonParser();
@@ -31,9 +47,7 @@ public class JSONParse {
 
             return rootObj;
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (NoSuchAlgorithmException | IOException | KeyManagementException e) {
             e.printStackTrace();
         }
 

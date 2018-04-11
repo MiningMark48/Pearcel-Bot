@@ -57,6 +57,7 @@ public class InitializeCommands {
         registerCommand("tobinary", new CommandToBinary());
         registerCommand("toromannum", new CommandToRomanNum());
         registerCommand("translate", new CommandTranslate());
+        registerCommand("trivia", new CommandTrivia());
         registerCommand("twitchuser", new CommandTwitchUser());
         registerCommand("uptime", new CommandUptime());
         registerCommand("youtubesearch", new CommandYouTubeSearch());
