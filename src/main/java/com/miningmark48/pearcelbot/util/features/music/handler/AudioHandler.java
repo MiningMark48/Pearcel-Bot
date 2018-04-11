@@ -137,7 +137,7 @@ public class AudioHandler {
             embedBuilder.setColor(Color.decode("#a2f000"));
 
             AudioTrack currentTrack = musicManager.player.getPlayingTrack();
-            embedBuilder.addField("Currently Playing", "**[** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getDuration()) + " **]** " + currentTrack.getInfo().title, false);
+            embedBuilder.addField("Currently Playing", "**[** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(currentTrack.getDuration()) + " **]** " + currentTrack.getInfo().title + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author, currentTrack.getInfo().uri), false);
             embedBuilder.addBlankField(false);
 
             int i = 1;
