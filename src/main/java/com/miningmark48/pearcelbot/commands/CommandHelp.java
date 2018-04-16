@@ -54,7 +54,7 @@ public class CommandHelp implements ICommand, ICommandInfo {
 
     @Override
     public String getUsage() {
-        return "help <arg:string>";
+        return "help <arg:string-command_name>";
     }
 
     @Override
