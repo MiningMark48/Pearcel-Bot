@@ -114,17 +114,17 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
 
             partitionNormal.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("Normal Commands", partitionNormal.indexOf(cmdChunk), partitionNormal.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName(), q.getDesc(), q.getUsage()));
+                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
                 chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
             });
             partitionPBC.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("PBC Commands", partitionPBC.indexOf(cmdChunk), partitionPBC.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName(), q.getDesc(), q.getUsage()));
+                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
                 chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
             });
             partitionMusic.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("Music Commands", partitionMusic.indexOf(cmdChunk), partitionMusic.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName(), q.getDesc(), q.getUsage()));
+                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
                 chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
             });
             partitionOther.forEach(cmdChunk -> {
@@ -132,11 +132,12 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
                 cmdChunk.forEach(q -> addToEmbedNoDesc(builder, q));
                 chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
             });
+            chan.sendMessage("Use `" + Reference.botCommandKey + "help <command_name>` for command descriptions and usage.").queueAfter(msgDelay, TimeUnit.MILLISECONDS);
         });
     }
 
-    private static void addToEmbed(EmbedBuilder embed, String cmdName, String cmdDesc, String cmdUsage) {
-        embed.addField(cmdName, cmdDesc + "\nUSAGE: " + Reference.botCommandKey + cmdUsage, false);
+    private static void addToEmbed(EmbedBuilder embed, String cmdName) {
+        embed.addField(cmdName, "", true);
     }
 
     private static void addToEmbedNoDesc(EmbedBuilder embed, String cmdName) {
