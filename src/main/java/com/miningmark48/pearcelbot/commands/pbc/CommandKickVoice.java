@@ -23,14 +23,27 @@ public class CommandKickVoice implements ICommand, ICommandInfo {
         } else {
             Guild guild = event.getGuild();
             if (guild.getMembersByName(args[0], true).stream().findFirst().isPresent()) {
+
                 Member member = guild.getMembersByName(args[0], true).stream().findFirst().get();
                 User user = member.getUser();
                 RestAction<PrivateChannel> privateChannel = user.openPrivateChannel();
                 createVoice(guild);
                 moveToVoice(guild, user);
                 deleteVoice(guild);
-                event.getTextChannel().sendMessage("Kicked " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, user.getName()) + " from voice.").queue();
-                privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + event.getAuthor().getName() + ".").queue());
+
+                String reason = "";
+                for (int i = 2; i <= args.length; i++){
+                    reason = reason + args[i - 1] + " ";
+                    reason = reason.substring(0, 1).toUpperCase() + reason.substring(1);
+                }
+
+                if (reason.isEmpty()) {
+                    reason = "N/A";
+                }
+
+                event.getTextChannel().sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD, event.getAuthor().getName()) + " kicked " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, user.getName()) + " from voice for reason, `" + reason + "`.").queue();
+                String finalReason = reason;
+                privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, event.getAuthor().getName()) + " for reason, `" + finalReason + "`.").queue());
             } else {
                 event.getTextChannel().sendMessage("Error, user not found!").queue();
             }
@@ -88,7 +101,7 @@ public class CommandKickVoice implements ICommand, ICommandInfo {
 
     @Override
     public String getUsage() {
-        return "kickvoice <arg:string-username>";
+        return "kickvoice <arg:string-username> [arg:string-reason]";
     }
 
     @Override
