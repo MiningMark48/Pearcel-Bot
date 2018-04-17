@@ -103,7 +103,7 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
             }
         });
 
-        int chunkSize = 15;
+        int chunkSize = 50;
         int msgDelay = 1000;
         privateChannel.queue(chan -> {
             chan.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"Commands:")).queue();
@@ -120,19 +120,19 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
             partitionPBC.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("PBC Commands", partitionPBC.indexOf(cmdChunk), partitionPBC.size());
                 cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+                chan.sendMessage(builder.build()).queueAfter(msgDelay + 250, TimeUnit.MILLISECONDS);
             });
             partitionMusic.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("Music Commands", partitionMusic.indexOf(cmdChunk), partitionMusic.size());
                 cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+                chan.sendMessage(builder.build()).queueAfter(msgDelay + 500, TimeUnit.MILLISECONDS);
             });
             partitionOther.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("Other Commands", partitionOther.indexOf(cmdChunk), partitionOther.size());
                 cmdChunk.forEach(q -> addToEmbedNoDesc(builder, q));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+                chan.sendMessage(builder.build()).queueAfter(msgDelay + 750, TimeUnit.MILLISECONDS);
             });
-            chan.sendMessage("Use `" + Reference.botCommandKey + "help <command_name>` for command descriptions and usage.").queueAfter(msgDelay, TimeUnit.MILLISECONDS);
+            chan.sendMessage("Use `" + Reference.botCommandKey + "help <command_name>` for command descriptions and usage.").queueAfter(msgDelay + 1000, TimeUnit.MILLISECONDS);
         });
     }
 
