@@ -1,13 +1,13 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.tidalbot.commands;
 
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.commands.base.ICommandPrivate;
-import com.miningmark48.pearcelbot.util.features.CurseData;
-import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.MessageUtil;
-import com.miningmark48.pearcelbot.util.DataUtil;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.commands.base.ICommandPrivate;
+import com.miningmark48.tidalbot.util.features.CurseData;
+import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.DataUtil;
 import com.sun.xml.internal.ws.util.StringUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;

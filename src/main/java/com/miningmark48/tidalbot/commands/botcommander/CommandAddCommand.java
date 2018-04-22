@@ -1,4 +1,4 @@
-package com.miningmark48.tidalbot.commands.pbc;
+package com.miningmark48.tidalbot.commands.botcommander;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -7,7 +7,6 @@ import com.google.gson.stream.JsonWriter;
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
-import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 

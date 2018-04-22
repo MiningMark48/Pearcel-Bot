@@ -1,11 +1,11 @@
-package com.miningmark48.pearcelbot.commands.base;
+package com.miningmark48.tidalbot.commands.base;
 
-import com.miningmark48.pearcelbot.Main;
-import com.miningmark48.pearcelbot.commands.*;
-import com.miningmark48.pearcelbot.commands.music.*;
-import com.miningmark48.pearcelbot.commands.music.role_block.*;
-import com.miningmark48.pearcelbot.commands.pbc.*;
-import com.miningmark48.pearcelbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.Main;
+import com.miningmark48.tidalbot.commands.*;
+import com.miningmark48.tidalbot.commands.music.*;
+import com.miningmark48.tidalbot.commands.music.role_block.*;
+import com.miningmark48.tidalbot.commands.botcommander.*;
+import com.miningmark48.tidalbot.util.LoggerUtil;
 
 public class InitializeCommands {
 

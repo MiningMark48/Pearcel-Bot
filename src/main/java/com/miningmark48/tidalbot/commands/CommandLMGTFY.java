@@ -1,9 +1,9 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.tidalbot.commands;
 
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.reference.Reference;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandLMGTFY implements ICommand, ICommandInfo {

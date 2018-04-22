@@ -1,9 +1,9 @@
-package com.miningmark48.pearcelbot.commands.music;
+package com.miningmark48.tidalbot.commands.music;
 
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.util.features.music.LyricLookup;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.util.features.music.LyricLookup;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandLyrics implements ICommand, ICommandInfo {

@@ -1,20 +1,12 @@
-package com.miningmark48.pearcelbot.customcommands;
+package com.miningmark48.tidalbot.customcommands;
 
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.commands.pbc.CommandAddCommand;
-import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
+import com.miningmark48.tidalbot.commands.botcommander.CommandAddCommand;
+import com.miningmark48.tidalbot.reference.Reference;
+import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.sql.Time;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.time.temporal.TemporalAccessor;
-import java.time.zone.ZoneRulesException;
-import java.util.Date;
 import java.util.Random;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

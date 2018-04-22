@@ -1,7 +1,7 @@
-package com.miningmark48.pearcelbot.commands.music.soundboard;
+package com.miningmark48.tidalbot.commands.music.soundboard;
 
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.reference.Reference;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -14,7 +14,7 @@ public class CommandSoundboard implements ICommand {
     public static final String usage = "USAGE: " + Reference.botCommandKey + "soundboard <arg>";
     public static final String info = desc + " " + usage;
 
-    private static final String baseURL = "http://miningmark48.xyz/projects/pearcelbot/sfx/";
+    private static final String baseURL = "http://miningmark48.xyz/projects/tidalbot/sfx/";
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {

@@ -1,8 +1,8 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.tidalbot.commands;
 
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandSourceCode implements ICommand, ICommandInfo {
@@ -14,7 +14,7 @@ public class CommandSourceCode implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage("**Source code for Pearcel Bot:** _https://github.com/MiningMark48/Pearcel-Bot_").queue();
+        event.getTextChannel().sendMessage("**Source code for Tidal Bot:** _https://github.com/MiningMark48/Tidal-Bot_").queue();
     }
 
     @Override

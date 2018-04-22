@@ -1,9 +1,9 @@
-package com.miningmark48.pearcelbot.util.features.music;
+package com.miningmark48.tidalbot.util.features.music;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.LoggerUtil;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.jsoup.HttpStatusException;

@@ -1,12 +1,12 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.tidalbot.commands;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.reference.Reference;
-import com.miningmark48.pearcelbot.util.JSON.JSONParseFile;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.reference.Reference;
+import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 

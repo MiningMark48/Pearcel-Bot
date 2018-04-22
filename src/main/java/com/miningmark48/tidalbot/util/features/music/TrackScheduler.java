@@ -1,10 +1,10 @@
-package com.miningmark48.pearcelbot.util.features.music;
+package com.miningmark48.tidalbot.util.features.music;
 
-import com.miningmark48.pearcelbot.commands.music.soundboard.AudioHandlerSoundboard;
-import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.FormatUtil.FormatType;
-import com.miningmark48.pearcelbot.util.LoggerUtil;
-import com.miningmark48.pearcelbot.util.features.music.handler.AudioHandler;
+import com.miningmark48.tidalbot.commands.music.soundboard.AudioHandlerSoundboard;
+import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.FormatUtil.FormatType;
+import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;

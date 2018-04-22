@@ -1,15 +1,15 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.tidalbot.commands;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.util.FormatUtil;
-import com.miningmark48.pearcelbot.util.JSON.JSONParse;
-import com.miningmark48.pearcelbot.util.LoggerUtil;
-import com.miningmark48.pearcelbot.util.MessageUtil;
-import com.miningmark48.pearcelbot.util.NumWordUtil;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.JSON.JSONParse;
+import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.NumWordUtil;
 import com.vdurmont.emoji.EmojiParser;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Emote;
@@ -84,7 +84,7 @@ public class CommandTrivia implements ICommand, ICommandInfo {
 
                 String question = StringEscapeUtils.unescapeHtml4(obj.get("question").getAsString());
 
-                String iconURL = "http://miningmark48.xyz/projects/pearcelbot/res/img/huh.png";
+                String iconURL = "http://miningmark48.xyz/projects/tidalbot/res/img/huh.png";
                 EmbedBuilder embedBuilder = new EmbedBuilder();
                 embedBuilder.setColor(Color.blue);
                 embedBuilder.setThumbnail(iconURL);

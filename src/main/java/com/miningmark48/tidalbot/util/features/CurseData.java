@@ -1,6 +1,6 @@
-package com.miningmark48.pearcelbot.util.features;
+package com.miningmark48.tidalbot.util.features;
 
-import com.miningmark48.pearcelbot.util.DataUtil;
+import com.miningmark48.tidalbot.util.DataUtil;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.io.BufferedReader;

@@ -1,9 +1,9 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.tidalbot.commands;
 
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.reference.Reference;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -21,7 +21,7 @@ public class CommandBotStats implements ICommand, ICommandInfo {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.decode("#A2F000"));
-        embedBuilder.setAuthor(event.getJDA().getSelfUser().getName() + " Statistics", "http://www.miningmark48.xyz/pearcelbot", event.getJDA().getSelfUser().getAvatarUrl());
+        embedBuilder.setAuthor(event.getJDA().getSelfUser().getName() + " Statistics", "http://www.miningmark48.xyz/tidalbot", event.getJDA().getSelfUser().getAvatarUrl());
         embedBuilder.setThumbnail(event.getJDA().getSelfUser().getAvatarUrl());
 
         embedBuilder.addField("Connected Servers", String.valueOf(event.getJDA().getGuilds().size()), true);
@@ -30,7 +30,7 @@ public class CommandBotStats implements ICommand, ICommandInfo {
         embedBuilder.addField("Private Channels", String.valueOf(event.getJDA().getPrivateChannels().size()), true);
         embedBuilder.addField("Visible Users", String.valueOf(event.getJDA().getUsers().size()), true);
 
-        embedBuilder.setFooter("Pearcel Bot: A Discord bot by MiningMark48.", event.getAuthor().getAvatarUrl());
+        embedBuilder.setFooter("Tidal Bot: A Discord bot by MiningMark48.", event.getAuthor().getAvatarUrl());
         event.getTextChannel().sendMessage(embedBuilder.build()).queue();
 
     }

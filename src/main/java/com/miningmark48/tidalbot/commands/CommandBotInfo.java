@@ -1,15 +1,16 @@
-package com.miningmark48.pearcelbot.commands;
+package com.miningmark48.tidalbot.commands;
 
-import com.miningmark48.pearcelbot.commands.base.CommandType;
-import com.miningmark48.pearcelbot.commands.base.ICommand;
-import com.miningmark48.pearcelbot.commands.base.ICommandInfo;
-import com.miningmark48.pearcelbot.reference.Reference;
+import com.miningmark48.tidalbot.commands.base.CommandType;
+import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.reference.Reference;
 import com.sun.xml.internal.ws.util.StringUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDAInfo;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
+import java.sql.Ref;
 
 public class CommandBotInfo implements ICommand, ICommandInfo {
 
@@ -23,10 +24,10 @@ public class CommandBotInfo implements ICommand, ICommandInfo {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.decode("#A2F000"));
-        embedBuilder.setAuthor(event.getJDA().getSelfUser().getName() + " Information", "http://www.miningmark48.xyz/pearcelbot", event.getJDA().getSelfUser().getAvatarUrl());
+        embedBuilder.setAuthor(event.getJDA().getSelfUser().getName() + " Information", "http://www.miningmark48.xyz/tidalbot", event.getJDA().getSelfUser().getAvatarUrl());
         embedBuilder.setThumbnail(event.getJDA().getSelfUser().getAvatarUrl());
 
-        embedBuilder.addField("Name", event.getJDA().getSelfUser().getName(), true);
+        embedBuilder.addField("Name", Reference.botName, true);
         embedBuilder.addField("ID", event.getJDA().getSelfUser().getId(), true);
         embedBuilder.addField("Author", Reference.botAuthor, true);
         embedBuilder.addField("Version", "N/A", true);
@@ -42,7 +43,7 @@ public class CommandBotInfo implements ICommand, ICommandInfo {
 
         embedBuilder.addField("", "Report any issues or suggestions to MiningMark48#6817.", false);
 
-        embedBuilder.setFooter("Pearcel Bot: A Discord bot by MiningMark48.", event.getAuthor().getAvatarUrl());
+        embedBuilder.setFooter("Tidal Bot: A Discord bot by MiningMark48.", event.getAuthor().getAvatarUrl());
         event.getTextChannel().sendMessage(embedBuilder.build()).queue();
 
     }
