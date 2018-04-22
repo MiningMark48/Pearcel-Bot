@@ -260,6 +260,7 @@ public class AudioHandler {
             builder.setTitle("\uD83C\uDFB5 " + FormatUtil.formatText(FormatType.UNDERLINE,"Currently Playing"));
             builder.setColor(Color.decode("#a2f000"));
             builder.addField(track.getInfo().title, "**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]**" + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author,currentTrack.getInfo().uri), false);
+            builder.addField("Added by: ", trackUsers.get(track).getName(), false);
             channel.sendMessage(builder.build()).queue();
         } else {
             channel.sendMessage("Nothing is currently playing!").queue();
