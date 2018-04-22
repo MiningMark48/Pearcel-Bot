@@ -98,7 +98,7 @@ public class InitializeCommands {
         registerCommand("np", new CommandNowPlaying());
 //        registerCommand("sb", new CommandSoundboard());
 
-        LoggerUtil.log(LoggerUtil.LogType.STATUS, Main.commands.size() + " Commands Initialized.");
+        LoggerUtil.log(LoggerUtil.LogType.INFO, Main.commands.size() + " Commands Initialized.");
 
     }
     
