@@ -25,12 +25,12 @@ public class CommandGetDemServs implements ICommand, ICommandInfo {
             builder.append("```");
             for (Guild guild : event.getJDA().getGuilds()){
                 String guildName = guild.getName();
-                builder.append(guildName + "\n");
+                builder.append(guildName).append("\n");
             }
             builder.append("```");
             event.getAuthor().openPrivateChannel().queue(chan -> chan.sendMessage(builder.build()).queue());
         }else{
-            event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.");
+            event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.").queue();
         }
 
     }
