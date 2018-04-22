@@ -59,7 +59,7 @@ public class Main {
 
     }
 
-    static void handleCommand(CmdParserUtil.CommandContainer cmd) throws IOException {
+    static void handleCommand(CmdParserUtil.CommandContainer cmd) {
         if (commands.containsKey(cmd.invoke)) {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
 
