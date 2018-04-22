@@ -13,4 +13,4 @@ dependencies {
   runtime 'ch.qos.logback:logback-classic:1.1.8'
 }
 
-mainClassName = 'com.miningmark48.djpearcel.Main'
+mainClassName = 'com.miningmark48.tidalbot.Main'
