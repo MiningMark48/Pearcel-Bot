@@ -8,3 +8,7 @@ Tidal Bot is made in Java and uses the [Java Discord API](https://github.com/DV8
 - Music Bot with the ability to play and queue songs from SoundCloud and YouTube videos and even play live Twitch streams.
 - Chat Bot with the ability to communicate with you with a set of predefined messages.
 - and tons of commands.
+
+
+
+In the future, I plan to release Tidal Bot as a standalone bot that can be downloaded and hosted by users.
