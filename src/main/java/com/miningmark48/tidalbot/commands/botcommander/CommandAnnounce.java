@@ -3,7 +3,10 @@ package com.miningmark48.tidalbot.commands.botcommander;
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import java.awt.*;
 
 public class CommandAnnounce implements ICommand, ICommandInfo {
 
@@ -15,7 +18,14 @@ public class CommandAnnounce implements ICommand, ICommandInfo {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         String messageFinal = event.getMessage().getContentRaw().substring(10);
-        event.getTextChannel().sendMessage("**-----Announcement-----**\n" + messageFinal + "\n**----------------------------**").queue();
+
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle("Announcement");
+        builder.setColor(Color.decode("#2200FF"));
+        builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/exclamation_point.png");
+        builder.setDescription(messageFinal);
+
+        event.getTextChannel().sendMessage(builder.build()).queue();
         event.getMessage().delete().queue();
     }
 
