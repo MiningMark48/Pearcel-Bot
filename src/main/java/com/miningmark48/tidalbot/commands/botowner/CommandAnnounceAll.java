@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class CommandAnnounceAll implements ICommand, ICommandInfo {
 
-    private String[] annChans = {"announcements", "announcement", "general", "meta"};
+    private String[] annChans = {"announcements", "announcement", "general", "meta", "general-discussion", "information", "info"};
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
