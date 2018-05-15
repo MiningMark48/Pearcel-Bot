@@ -320,7 +320,7 @@ public class AudioHandler {
             AudioTrack track_to_remove = recentTrack;
             musicManager.scheduler.getQueue().remove(track_to_remove);
             recentTrack = null;
-            channel.sendMessage(String.format("%s %s to the queue.", FormatUtil.formatText(FormatType.BOLD,"Undone adding: "), track_to_remove.getInfo().title)).queue();
+            channel.sendMessage(String.format("%s %s to the queue.", FormatUtil.formatText(FormatType.BOLD,"Undone adding: "), FormatUtil.formatText(FormatType.ITALIC, track_to_remove.getInfo().title))).queue();
         } catch (Exception e){
             channel.sendMessage(FormatUtil.formatText(FormatType.BOLD,"Error: ") + e.getMessage()).queue();
         }
