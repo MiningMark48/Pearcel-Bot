@@ -1,4 +1,4 @@
-package com.miningmark48.tidalbot.commands;
+package com.miningmark48.tidalbot.commands.botowner;
 
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;

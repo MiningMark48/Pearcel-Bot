@@ -2,6 +2,8 @@ package com.miningmark48.tidalbot.commands.base;
 
 import com.miningmark48.tidalbot.Main;
 import com.miningmark48.tidalbot.commands.*;
+import com.miningmark48.tidalbot.commands.botowner.CommandAnnounceAll;
+import com.miningmark48.tidalbot.commands.botowner.CommandGetDemServs;
 import com.miningmark48.tidalbot.commands.music.*;
 import com.miningmark48.tidalbot.commands.music.role_block.*;
 import com.miningmark48.tidalbot.commands.botcommander.*;
@@ -65,6 +67,7 @@ public class InitializeCommands {
 
         //Me only
         registerCommand("getdemservs", new CommandGetDemServs());
+        registerCommand("announceall", new CommandAnnounceAll());
 
         //Music
         registerCommand("play", new CommandPlay());
