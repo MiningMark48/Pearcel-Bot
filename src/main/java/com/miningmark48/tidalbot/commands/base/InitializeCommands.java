@@ -86,6 +86,7 @@ public class InitializeCommands {
         registerCommand("lyrics", new CommandLyrics());
         registerCommand("restart", new CommandRestart());
         registerCommand("summon", new CommandSummon());
+        registerCommand("undo", new CommandUndo());
         registerCommand("voteskip", new CommandVoteSkip());
         registerCommand("clear", new CommandClear());
 

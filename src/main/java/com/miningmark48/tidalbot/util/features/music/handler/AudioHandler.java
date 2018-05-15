@@ -31,6 +31,7 @@ public class AudioHandler {
     private static Map<Long, GuildMusicManager> musicManagers =  new HashMap<>();
 
     private static int default_volume = 15;
+    private static AudioTrack recentTrack;
 
     public static Map<Guild, TextChannel> musicChannelRef = new HashMap<>();
 
@@ -89,6 +90,7 @@ public class AudioHandler {
         try {
             musicManager.scheduler.queue(track);
             trackUsers.put(track, user);
+            recentTrack = track;
         }catch (FriendlyException e){
             channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "An error occurred while trying to play that track!")).queue();
         }
@@ -266,8 +268,6 @@ public class AudioHandler {
             channel.sendMessage("Nothing is currently playing!").queue();
         }
 
-
-
     }
 
     public static void shuffle(TextChannel channel, String[] args){
@@ -306,6 +306,25 @@ public class AudioHandler {
             musicManager.scheduler.repeat(true);
             musicManager.scheduler.nextTrack();
         }
+    }
+
+    public static void undo(TextChannel channel){
+        GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
+
+        if (recentTrack == null || !musicManager.scheduler.getQueue().contains(recentTrack)) {
+            channel.sendMessage("No track to undo!").queue();
+            return;
+        }
+
+        try {
+            AudioTrack track_to_remove = recentTrack;
+            musicManager.scheduler.getQueue().remove(track_to_remove);
+            recentTrack = null;
+            channel.sendMessage(String.format("%s %s to the queue.", FormatUtil.formatText(FormatType.BOLD,"Undone adding: "), track_to_remove.getInfo().title)).queue();
+        } catch (Exception e){
+            channel.sendMessage(FormatUtil.formatText(FormatType.BOLD,"Error: ") + e.getMessage()).queue();
+        }
+
     }
 
     public static void moveVoice(AudioManager audioManager, VoiceChannel channel) {
