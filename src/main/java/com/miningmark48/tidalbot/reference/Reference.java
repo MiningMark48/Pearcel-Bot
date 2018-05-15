@@ -17,6 +17,10 @@ public class Reference {
     public static boolean doChatLog;
 
     private static int perms = 70351936;                                        //Perms Int (Discord Calc)
-    public static String joinLink = "https://discordapp.com/oauth2/authorize?&client_id="+ botClientID +"&scope=bot&permissions=" + String.valueOf(perms);
+    public static String joinLink;
+
+    public static void updateJoinLink() {
+        Reference.joinLink = "https://discordapp.com/oauth2/authorize?&client_id="+ Reference.botClientID +"&scope=bot&permissions=" + String.valueOf(perms);
+    }
 
 }

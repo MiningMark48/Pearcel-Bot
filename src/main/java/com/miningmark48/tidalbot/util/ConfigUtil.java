@@ -72,6 +72,8 @@ public class ConfigUtil {
 
                         Reference.doChatLog = jsonObjectOther.get("do chat log").getAsBoolean();
 
+                        Reference.updateJoinLink();
+
                     } else {
                         throw new NullPointerException();
                     }
