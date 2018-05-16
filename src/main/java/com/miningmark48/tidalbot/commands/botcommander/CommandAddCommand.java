@@ -65,7 +65,7 @@ public class CommandAddCommand implements ICommand, ICommandInfo {
                     newJson.addProperty(command, commandMessage);
                     event.getTextChannel().sendMessage("Successfully added the command **" + command + "** : " + commandMessage).queue();
                 }else{
-                    event.getTextChannel().sendMessage("**Error:** ICommand already exists!").queue();
+                    event.getTextChannel().sendMessage("**Error:** Command already exists!").queue();
                 }
                 bufferedWriter.write(jsonObj.toString());
             }
