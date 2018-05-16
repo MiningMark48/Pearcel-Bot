@@ -29,6 +29,7 @@ public class InitializeCommands {
         registerCommand("cursedata", new CommandCurseData());
         registerCommand("deletecommand", new CommandDeleteCommand());
         registerCommand("diceroll", new CommandDiceRoll());
+        registerCommand("disabledcommands", new CommandDisabledCommands());
         registerCommand("editcommand", new CommandEditCommand());
         registerCommand("emojieval", new CommandEmojiEval());
         registerCommand("emojilist", new CommandEmojiList());
@@ -57,6 +58,7 @@ public class InitializeCommands {
         registerCommand("slap", new CommandSlap());
         registerCommand("sourcecode", new CommandSourceCode());
         registerCommand("tobinary", new CommandToBinary());
+        registerCommand("togglecommand", new CommandToggleCommand());
         registerCommand("toromannum", new CommandToRomanNum());
         registerCommand("translate", new CommandTranslate());
         registerCommand("trivia", new CommandTrivia());

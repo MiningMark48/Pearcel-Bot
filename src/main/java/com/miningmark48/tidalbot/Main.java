@@ -1,8 +1,13 @@
 package com.miningmark48.tidalbot;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import com.miningmark48.tidalbot.commands.CommandARBlacklist;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandPrivate;
 import com.miningmark48.tidalbot.commands.base.InitializeCommands;
+import com.miningmark48.tidalbot.commands.botcommander.CommandToggleCommand;
 import com.miningmark48.tidalbot.commands.music.soundboard.AudioHandlerSoundboard;
 import com.miningmark48.tidalbot.customcommands.GetCommand;
 import com.miningmark48.tidalbot.messages.InitializeMessages;
@@ -10,6 +15,7 @@ import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.richpresence.PresenceClock;
 import com.miningmark48.tidalbot.util.CmdParserUtil;
 import com.miningmark48.tidalbot.util.ConfigUtil;
+import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import com.miningmark48.tidalbot.util.LoggerUtil;
 import com.miningmark48.tidalbot.util.features.Clock;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
@@ -21,7 +27,6 @@ import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 public class Main {
@@ -69,6 +74,12 @@ public class Main {
                         ((ICommandPrivate) commands.get(cmd.invoke)).actionPrivate(cmd.args, cmd.event);
                     }
                 } else {
+
+                    if (isCommandBlacklisted(cmd.invoke, cmd.event)) {
+                        cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getName() + ", That command has been disabled.").queue();
+                        return;
+                    }
+
                     if (commands.get(cmd.invoke).isRestricted()) {
                         if (cmd.event.getMember().getRoles().stream().anyMatch(q-> q.getName().equalsIgnoreCase(Reference.botCommanderRole)) || cmd.event.getGuild().getOwner() == cmd.event.getMember() || cmd.event.getAuthor().getId().equals(Reference.botOwner)) {
                             commands.get(cmd.invoke).action(cmd.args, cmd.event);
@@ -93,6 +104,26 @@ public class Main {
 
     static void handleCustom(MessageReceivedEvent event){
         GetCommand.init(event);
+    }
+
+    private static boolean isCommandBlacklisted(String command, MessageReceivedEvent event) {
+
+        JsonObject jsonObj = JSONParseFile.JSONParse(CommandToggleCommand.fileName);
+
+        if (jsonObj != null) {
+            if (jsonObj.getAsJsonObject("servers") != null) {
+                JsonObject servers = jsonObj.getAsJsonObject("servers");
+                if (servers.getAsJsonObject(event.getGuild().getId()) != null){
+                    JsonObject guild = servers.getAsJsonObject(event.getGuild().getId());
+                    if (guild.getAsJsonArray("commands") != null) {
+                        JsonArray commands = guild.getAsJsonArray("commands");
+                        return commands.contains(new JsonPrimitive(command));
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
 }
