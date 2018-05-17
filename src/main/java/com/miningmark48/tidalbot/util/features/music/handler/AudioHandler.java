@@ -207,7 +207,7 @@ public class AudioHandler {
 
             musicManager.scheduler.setQueue(deQueue);
 
-            channel.sendMessage(String.format("%s %s %s.", FormatUtil.formatText(FormatType.BOLD,"Playing "), track_to_remove.getInfo().title, FormatUtil.formatText(FormatType.BOLD, " next."))).queue();
+            channel.sendMessage(String.format("%s %s %s", FormatUtil.formatText(FormatType.BOLD,"Playing "), track_to_remove.getInfo().title, FormatUtil.formatText(FormatType.BOLD, " next."))).queue();
         }catch (NoSuchElementException e){
             channel.sendMessage(FormatUtil.formatText(FormatType.BOLD,"Track not found.")).queue();
         }
