@@ -25,12 +25,15 @@ public class DefaultEmbeds {
                 break;
             case DANGER:
                 builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/danger.png");
+                builder.setColor(Color.RED);
                 break;
             case INFO:
                 builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/info.png");
+                builder.setColor(Color.YELLOW);
                 break;
             case MUSIC:
                 builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/music.png");
+                builder.setColor(Color.BLUE);
                 break;
         }
 
@@ -40,7 +43,7 @@ public class DefaultEmbeds {
     private static EmbedBuilder getEmbed() {
         message.clear();
         message.setColor(Color.ORANGE);
-        message.setFooter("\uD83C\uDFB5 " + Reference.botName + " \uD83C\uDFB5", null);
+        message.setFooter("\uD83E\uDD16 " + Reference.botName + " \uD83E\uDD16", null);
         return message;
     }
 
