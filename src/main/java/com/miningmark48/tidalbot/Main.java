@@ -108,15 +108,14 @@ public class Main {
     }
 
     private static boolean isCommandBlacklisted(String command, MessageReceivedEvent event) {
-
-        JsonObject jsonObj = JSONParseFile.JSONParse(CommandToggleCommand.fileName);
-
         File file = new File(CommandToggleCommand.fileName);
 
         if (!file.exists()) {
             LoggerUtil.log(LoggerUtil.LogType.INFO, "Command blacklist file hasn't been created yet.");
             return false;
         }
+
+        JsonObject jsonObj = JSONParseFile.JSONParse(CommandToggleCommand.fileName);
 
         if (jsonObj != null) {
             if (jsonObj.getAsJsonObject("servers") != null) {
