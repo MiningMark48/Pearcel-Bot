@@ -35,6 +35,10 @@ public class DefaultEmbeds {
                 builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/music.png");
                 builder.setColor(Color.BLUE);
                 break;
+            case SUCCESS:
+                builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/success.png");
+                builder.setColor(Color.GREEN);
+                break;
         }
 
         channel.sendMessage(builder.build()).queue();
@@ -51,7 +55,8 @@ public class DefaultEmbeds {
         NONE,
         DANGER,
         INFO,
-        MUSIC
+        MUSIC,
+        SUCCESS
     }
 
 }
