@@ -27,6 +27,7 @@ import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class Main {
@@ -109,6 +110,13 @@ public class Main {
     private static boolean isCommandBlacklisted(String command, MessageReceivedEvent event) {
 
         JsonObject jsonObj = JSONParseFile.JSONParse(CommandToggleCommand.fileName);
+
+        File file = new File(CommandToggleCommand.fileName);
+
+        if (!file.exists()) {
+            LoggerUtil.log(LoggerUtil.LogType.INFO, "Command blacklist file hasn't been created yet.");
+            return false;
+        }
 
         if (jsonObj != null) {
             if (jsonObj.getAsJsonObject("servers") != null) {
