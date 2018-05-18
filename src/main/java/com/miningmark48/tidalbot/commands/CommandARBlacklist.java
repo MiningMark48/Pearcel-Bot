@@ -6,6 +6,7 @@ import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.reference.Reference;
+import com.miningmark48.tidalbot.util.DefaultEmbeds;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -82,11 +83,11 @@ public class CommandARBlacklist implements ICommand, ICommandInfo {
     }
 
     private static void successAdd(MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage(event.getAuthor().getAsMention() + " Successfully **added** you *(" + event.getAuthor().getId() + ")* to the AutoResponse blacklist.").queue();
+        DefaultEmbeds.sendMessage(event.getTextChannel(), "Successfully Added!", event.getAuthor().getAsMention() + " **added** to the auto-response blacklist.", DefaultEmbeds.EmbedType.SUCCESS);
     }
 
     private static void successRemove(MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage(event.getAuthor().getAsMention() + " Successfully **removed** you *(" + event.getAuthor().getId() + ")* from the AutoResponse blacklist.").queue();
+        DefaultEmbeds.sendMessage(event.getTextChannel(), "Successfully Removed!", event.getAuthor().getAsMention() + " **removed** from the auto-response blacklist.", DefaultEmbeds.EmbedType.SUCCESS);
     }
 
     @Override
