@@ -38,7 +38,10 @@ public class Main {
     public static HashMap<String, ICommand> commands = new HashMap<>();
 
     public static void main(String[] args) {
+        setupAndConnectBot();
+    }
 
+    public static void setupAndConnectBot() {
         if (!ConfigUtil.getConfigs()) {
             return;
         }
@@ -62,7 +65,6 @@ public class Main {
         AudioSourceManagers.registerLocalSource(AudioHandlerSoundboard.playerManager);
 
         InitializeCommands.init();
-
     }
 
     static void handleCommand(CmdParserUtil.CommandContainer cmd) {

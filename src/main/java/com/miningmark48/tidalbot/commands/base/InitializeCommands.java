@@ -4,6 +4,7 @@ import com.miningmark48.tidalbot.Main;
 import com.miningmark48.tidalbot.commands.*;
 import com.miningmark48.tidalbot.commands.botowner.CommandAnnounceAll;
 import com.miningmark48.tidalbot.commands.botowner.CommandGetDemServs;
+import com.miningmark48.tidalbot.commands.botowner.CommandRestartBot;
 import com.miningmark48.tidalbot.commands.music.*;
 import com.miningmark48.tidalbot.commands.music.role_block.*;
 import com.miningmark48.tidalbot.commands.botcommander.*;
@@ -67,9 +68,10 @@ public class InitializeCommands {
         registerCommand("youtubesearch", new CommandYouTubeSearch());
         registerCommand("youtubeuser", new CommandYoutubeUser());
 
-        //Me only
-        registerCommand("getdemservs", new CommandGetDemServs());
+        //Owner only
         registerCommand("announceall", new CommandAnnounceAll());
+        registerCommand("getdemservs", new CommandGetDemServs());
+        registerCommand("restartbot", new CommandRestartBot());
 
         //Music
         registerCommand("play", new CommandPlay());
