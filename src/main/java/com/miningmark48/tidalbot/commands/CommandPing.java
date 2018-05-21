@@ -4,7 +4,6 @@ import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.commands.base.ICommandPrivate;
-import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.time.temporal.ChronoUnit;

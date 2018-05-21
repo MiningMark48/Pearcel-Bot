@@ -3,7 +3,6 @@ package com.miningmark48.tidalbot;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.miningmark48.tidalbot.commands.CommandARBlacklist;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandPrivate;
 import com.miningmark48.tidalbot.commands.base.InitializeCommands;
