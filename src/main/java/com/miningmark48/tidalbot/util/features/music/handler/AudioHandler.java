@@ -261,7 +261,6 @@ public class AudioHandler {
         AudioTrack track = musicManager.player.getPlayingTrack();
         AudioTrack currentTrack = musicManager.player.getPlayingTrack();
         if (track != null) {
-            LoggerUtil.log(LoggerUtil.LogType.DEBUG, "NP");
 //            channel.sendMessage("**Currently playing:** \n**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]** " + track.getInfo().title).queue();
 
             EmbedBuilder builder = new EmbedBuilder();
