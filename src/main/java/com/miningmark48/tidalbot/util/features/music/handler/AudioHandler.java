@@ -260,13 +260,15 @@ public class AudioHandler {
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
         AudioTrack track = musicManager.player.getPlayingTrack();
         AudioTrack currentTrack = musicManager.player.getPlayingTrack();
-        if (track != null){
+        if (track != null) {
+            LoggerUtil.log(LoggerUtil.LogType.DEBUG, "NP");
 //            channel.sendMessage("**Currently playing:** \n**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]** " + track.getInfo().title).queue();
+
             EmbedBuilder builder = new EmbedBuilder();
             builder.setTitle("\uD83C\uDFB5 " + FormatUtil.formatText(FormatType.UNDERLINE,"Currently Playing"));
             builder.setColor(Color.decode("#a2f000"));
             builder.addField(track.getInfo().title, "**[** " + MathUtil.getTimeFromLongNoFormatShort(track.getPosition()) + " **/** " + MathUtil.getTimeFromLongNoFormatShort(track.getDuration()) + " **]**" + "\n" + FormatUtil.formatURL(currentTrack.getInfo().author,currentTrack.getInfo().uri), false);
-            builder.addField("Added by: ", trackUsers.get(track).getName(), false);
+            if (trackUsers.get(track) != null) builder.addField("Added by: ", trackUsers.get(track).getName(), false);
             channel.sendMessage(builder.build()).queue();
         } else {
             DefaultEmbeds.sendMessage(channel, "Nothing is currently playing", DefaultEmbeds.EmbedType.MUSIC);
