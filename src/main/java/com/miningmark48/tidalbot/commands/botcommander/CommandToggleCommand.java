@@ -30,7 +30,7 @@ public class CommandToggleCommand implements ICommand, ICommandInfo {
             return;
         }
 
-        if (!Main.commands.containsKey(args[0])) {
+        if (!Main.commands.containsKey(args[0]) || args[0].equalsIgnoreCase(this.getName())) {
             event.getTextChannel().sendMessage("That is not a valid command!").queue();
             return;
         }
