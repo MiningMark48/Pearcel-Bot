@@ -16,13 +16,8 @@ public class CommandSay implements ICommand, ICommandInfo {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         String messageFinal = event.getMessage().getContentRaw().substring(5);
-
-        if (event.getMember().getRoles().contains(Reference.botCommanderRole) || event.getGuild().getOwner() == event.getMember() || event.getAuthor().getId().equals(Reference.botOwner)){
-            event.getMessage().delete().queue();
-            event.getTextChannel().sendMessage(messageFinal).queue();
-        } else {
-            event.getTextChannel().sendMessage(event.getAuthor().getName() + ", You do not have permission to run that command.").queue();
-        }
+        event.getMessage().delete().queue();
+        event.getTextChannel().sendMessage(messageFinal).queue();
     }
 
     @Override

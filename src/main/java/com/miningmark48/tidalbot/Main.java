@@ -18,6 +18,7 @@ import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import com.miningmark48.tidalbot.util.LoggerUtil;
 import com.miningmark48.tidalbot.util.features.Clock;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -52,6 +53,8 @@ public class Main {
             PresenceClock.runClockGame(jda);
             Clock.runClockUptime();
 
+            ServerConfigHandler.setupConfig();
+
             LoggerUtil.log(LoggerUtil.LogType.STATUS, "Bot started!");
 
         } catch (Exception e) {
@@ -83,10 +86,10 @@ public class Main {
                     }
 
                     if (commands.get(cmd.invoke).isRestricted()) {
-                        if (cmd.event.getMember().getRoles().stream().anyMatch(q-> q.getName().equalsIgnoreCase(Reference.botCommanderRole)) || cmd.event.getGuild().getOwner() == cmd.event.getMember() || cmd.event.getAuthor().getId().equals(Reference.botOwner)) {
+                        if (ServerConfigHandler.isBotCommander(cmd.event, cmd.event.getAuthor().getId()) || cmd.event.getGuild().getOwner() == cmd.event.getMember() || cmd.event.getAuthor().getId().equals(Reference.botOwner)) {
                             commands.get(cmd.invoke).action(cmd.args, cmd.event);
                         } else {
-                            cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getName() + ", You do not have permission to run that command.").queue();
+                            cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getAsMention() + ", You do not have permission to run that command.").queue();
                         }
                     } else {
                         commands.get(cmd.invoke).action(cmd.args, cmd.event);

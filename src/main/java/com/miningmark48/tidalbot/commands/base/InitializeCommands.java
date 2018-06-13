@@ -22,6 +22,7 @@ public class InitializeCommands {
         registerCommand("announce", new CommandAnnounce());
         registerCommand("bark", new CommandBark());
 //        registerCommand("bitcoin", new CommandBitcoin());
+        registerCommand("botcommander", new CommandBotCommander());
         registerCommand("arblacklist", new CommandARBlacklist());
         registerCommand("botinfo", new CommandBotInfo());
         registerCommand("botstats", new CommandBotStats());
@@ -39,6 +40,7 @@ public class InitializeCommands {
         registerCommand("githubuser", new CommandGithubUser());
         registerCommand("guildinfo", new CommandGuildInfo());
         registerCommand("help", new CommandHelp());
+        registerCommand("listcommanders", new CommandListCommanders());
         registerCommand("kickvoice", new CommandKickVoice());
         registerCommand("listbots", new CommandListBots());
         registerCommand("listcommands", new CommandListCommands());
