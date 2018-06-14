@@ -1,14 +1,13 @@
-package com.miningmark48.tidalbot.commands.music.role_block;
+package com.miningmark48.tidalbot.commands.botcommander;
 
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.reference.Reference;
-import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandShuffle implements ICommand, ICommandInfo {
+public class CommandToggleAR implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -17,11 +16,8 @@ public class CommandShuffle implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
-            AudioHandler.shuffle(event.getTextChannel(), args);
-        } else {
-            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have been banned from using music commands.").queue();
-        }
+        ServerConfigHandler.toggleAR(event);
+        event.getTextChannel().sendMessage("Auto response turned **" + (ServerConfigHandler.isAREnabled(event) ? "on" : "off") + "**.").queue();
     }
 
     @Override
@@ -31,21 +27,26 @@ public class CommandShuffle implements ICommand, ICommandInfo {
 
     @Override
     public String getName() {
-        return "shuffle";
+        return "togglear";
     }
 
     @Override
     public String getDesc() {
-        return "Shuffle the current queue.";
+        return "Toggles " + Reference.botName + "'s Auto Response.";
     }
 
     @Override
     public String getUsage() {
-        return "shuffle [int]";
+        return "togglear";
     }
 
     @Override
     public CommandType getType() {
-        return CommandType.MUSIC;
+        return CommandType.PBC;
+    }
+
+    @Override
+    public boolean isRestricted() {
+        return true;
     }
 }

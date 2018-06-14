@@ -1,23 +1,18 @@
 package com.miningmark48.tidalbot;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import com.miningmark48.tidalbot.commands.CommandARBlacklist;
 import com.miningmark48.tidalbot.reference.Reference;
-import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
-import com.miningmark48.tidalbot.util.features.chatlog.ChatLog;
 import com.miningmark48.tidalbot.util.LoggerUtil;
-import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
+import com.miningmark48.tidalbot.util.features.chatlog.ChatLog;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-
-import java.io.IOException;
 
 public class BotListener extends ListenerAdapter {
 
@@ -35,8 +30,8 @@ public class BotListener extends ListenerAdapter {
         }
 
         if (event.getJDA().getSelfUser() != null && event.getMember() != null && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) {
-            if (!event.getMember().getEffectiveName().equalsIgnoreCase(event.getJDA().getSelfUser().getName()) && event.getGuild().getMember(event.getJDA().getSelfUser()).getRoles().toString().contains(Reference.botAutoResponseRole)) {
-                if (!isBlacklisted(event.getAuthor().getId())) {
+            if (!event.getMember().getEffectiveName().equalsIgnoreCase(event.getJDA().getSelfUser().getName()) && ServerConfigHandler.isAREnabled(event)) {
+                if (!ServerConfigHandler.isUserARBlacklisted(event, event.getAuthor().getId())) {
                     Main.handleMessage(event);
                 }
             }
@@ -90,11 +85,6 @@ public class BotListener extends ListenerAdapter {
 //                }
 //            }
 //        }
-    }
-
-    private static boolean isBlacklisted(String id) {
-        JsonObject jsonObj = JSONParseFile.JSONParse(CommandARBlacklist.fileName);
-        return jsonObj != null && jsonObj.getAsJsonArray("blacklist").contains(new JsonPrimitive(id));
     }
 
 }

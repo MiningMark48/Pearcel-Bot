@@ -40,6 +40,7 @@ public class InitializeCommands {
         registerCommand("githubuser", new CommandGithubUser());
         registerCommand("guildinfo", new CommandGuildInfo());
         registerCommand("help", new CommandHelp());
+        registerCommand("listbannedmusic", new CommandListBannedMusicUsers());
         registerCommand("listcommanders", new CommandListCommanders());
         registerCommand("kickvoice", new CommandKickVoice());
         registerCommand("listbots", new CommandListBots());
@@ -61,11 +62,14 @@ public class InitializeCommands {
         registerCommand("slap", new CommandSlap());
         registerCommand("sourcecode", new CommandSourceCode());
         registerCommand("tobinary", new CommandToBinary());
+        registerCommand("togglear", new CommandToggleAR());
         registerCommand("togglecommand", new CommandToggleCommand());
+        registerCommand("togglemusic", new CommandToggleMusicUser());
         registerCommand("toromannum", new CommandToRomanNum());
         registerCommand("translate", new CommandTranslate());
         registerCommand("trivia", new CommandTrivia());
         registerCommand("twitchuser", new CommandTwitchUser());
+        registerCommand("viewconfig", new CommandViewConfig());
         registerCommand("uptime", new CommandUptime());
         registerCommand("youtubesearch", new CommandYouTubeSearch());
         registerCommand("youtubeuser", new CommandYoutubeUser());

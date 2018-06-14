@@ -5,6 +5,7 @@ import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandResume implements ICommand, ICommandInfo {
@@ -20,10 +21,10 @@ public class CommandResume implements ICommand, ICommandInfo {
             AudioHandler.resume(event.getTextChannel());
             return;
         }
-        if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
+        if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
             AudioHandler.resume(event.getTextChannel());
         } else {
-            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
+            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have been banned from using music commands.").queue();
         }
     }
 

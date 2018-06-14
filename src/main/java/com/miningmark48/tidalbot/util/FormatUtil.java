@@ -55,4 +55,8 @@ public class FormatUtil {
         MULTILINE_CODE_BLOCK
     }
 
+    public static String removeNonNumeric(String string) {
+        return string.replaceAll("[^\\d]", "");
+    }
+
 }

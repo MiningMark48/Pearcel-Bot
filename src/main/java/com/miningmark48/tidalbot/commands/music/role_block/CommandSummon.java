@@ -5,6 +5,7 @@ import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -18,7 +19,7 @@ public class CommandSummon implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
+        if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
             event.getMessage().delete().queue();
             if (event.getGuild().getVoiceChannels().stream().anyMatch(q -> q.getMembers().stream().anyMatch(q2 -> q2.equals(event.getMember())))) {
                 VoiceChannel channel = event.getGuild().getVoiceChannels().stream().filter(q -> q.getMembers().stream().anyMatch(q2 -> q2.equals(event.getMember()))).findFirst().get();
@@ -33,7 +34,7 @@ public class CommandSummon implements ICommand, ICommandInfo {
             }
 
         } else {
-            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
+            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have been banned from using music commands.").queue();
         }
     }
 

@@ -7,6 +7,7 @@ import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.DataUtil;
 import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandPlay implements ICommand, ICommandInfo {
@@ -23,7 +24,7 @@ public class CommandPlay implements ICommand, ICommandInfo {
             if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             return;
         }
-        if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
+        if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
             if (DataUtil.isValidURL(args[0])) {
                 AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
             } else {
@@ -31,7 +32,7 @@ public class CommandPlay implements ICommand, ICommandInfo {
                 if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             }
         } else {
-            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
+            event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have been banned from using music commands.").queue();
         }
     }
 
