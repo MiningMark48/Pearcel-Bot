@@ -1,14 +1,13 @@
-package com.miningmark48.tidalbot.commands.botcommander;
+package com.miningmark48.tidalbot.commands.botcommander.configs;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CommandViewConfig implements ICommand, ICommandInfo {
+public class CommandToggleNPMessages implements ICommand, ICommandInfo {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -17,14 +16,8 @@ public class CommandViewConfig implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        StringBuilder builder = new StringBuilder();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonFinal = gson.toJson(ServerConfigHandler.getJson(event));
-        builder.append("**Current Server Config:**\n```Json\n");
-        builder.append(jsonFinal);
-        builder.append("\n```");
-        event.getMessage().delete().queue();
-        event.getTextChannel().sendMessage(builder.toString()).queue();
+        ServerConfigHandler.toggleNPMessages(event);
+        event.getTextChannel().sendMessage("Now playing messages turned **" + (ServerConfigHandler.areNPMessagesDisabled(event.getGuild().getId()) ? "off" : "on") + "**.").queue();
     }
 
     @Override
@@ -34,17 +27,17 @@ public class CommandViewConfig implements ICommand, ICommandInfo {
 
     @Override
     public String getName() {
-        return "viewconfig";
+        return "togglenpmessages";
     }
 
     @Override
     public String getDesc() {
-        return "Will show the current configuration file of the server.";
+        return "Toggles " + Reference.botName + "'s now playing messages when a track plays.";
     }
 
     @Override
     public String getUsage() {
-        return "viewconfig";
+        return "togglenpmessages";
     }
 
     @Override

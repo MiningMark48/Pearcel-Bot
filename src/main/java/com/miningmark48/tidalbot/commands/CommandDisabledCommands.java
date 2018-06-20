@@ -1,14 +1,11 @@
 package com.miningmark48.tidalbot.commands;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
-import com.miningmark48.tidalbot.commands.botcommander.CommandToggleCommand;
 import com.miningmark48.tidalbot.util.FormatUtil;
-import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CommandDisabledCommands implements ICommand, ICommandInfo {
@@ -20,26 +17,14 @@ public class CommandDisabledCommands implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        JsonObject jsonObj = JSONParseFile.JSONParse(CommandToggleCommand.fileName);
+        JsonArray commands = ServerConfigHandler.getBlacklistedCommands(event);
 
         StringBuilder builder = new StringBuilder();
         builder.append(FormatUtil.formatText(FormatUtil.FormatType.BOLD, "Currently Disabled Commands: ")).append(" \n");
 
         StringBuilder commandsBuilder = new StringBuilder();
 
-
-        if (jsonObj != null) {
-            if (jsonObj.getAsJsonObject("servers") != null) {
-                JsonObject servers = jsonObj.getAsJsonObject("servers");
-                if (servers.getAsJsonObject(event.getGuild().getId()) != null){
-                    JsonObject guild = servers.getAsJsonObject(event.getGuild().getId());
-                    if (guild.getAsJsonArray("commands") != null) {
-                        JsonArray commands = guild.getAsJsonArray("commands");
-                        commands.forEach(q -> commandsBuilder.append("`").append(q.getAsString()).append("` "));
-                    }
-                }
-            }
-        }
+        commands.forEach(q -> commandsBuilder.append("`").append(q.getAsString()).append("` "));
 
         if (commandsBuilder.toString().isEmpty()) {
             event.getTextChannel().sendMessage("No commands currently disabled.").queue();

@@ -2,7 +2,6 @@ package com.miningmark48.tidalbot.util.features.serverconfig;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonWriter;
-import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import com.miningmark48.tidalbot.util.LoggerUtil;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -10,16 +9,14 @@ import java.io.*;
 
 public class ServerConfigHandler {
 
-    public static String fileName = "server_configs.json";
-    private static BufferedWriter bufferedWriter = null;
-
+    //Setup Config
     public static void setupConfig() {
         try {
-            File file = new File(fileName);
+            File file = new File(JsonConfigHandler.fileName);
 
             if (!file.exists()) {
 
-                Writer writer = new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8");
+                Writer writer = new OutputStreamWriter(new FileOutputStream(JsonConfigHandler.fileName), "UTF-8");
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 JsonWriter jw = gson.newJsonWriter(writer);
 
@@ -42,265 +39,70 @@ public class ServerConfigHandler {
         }
     }
 
+    //Bot Commander
     public static void toggleBotCommander(MessageReceivedEvent event, String value) {
-        toggleOnArray(event, "bot_commanders", value);
+        JsonConfigHandler.toggleOnArray(event, "bot_commanders", value);
     }
 
     public static boolean isBotCommander(MessageReceivedEvent event, String value) {
-        return isInArray(event, "bot_commanders", value);
+        return JsonConfigHandler.isInArray(event, "bot_commanders", value);
     }
 
     public static JsonArray getBotCommanders(MessageReceivedEvent event) {
-        return getArray(event, "bot_commanders");
+        return JsonConfigHandler.getArray(event, "bot_commanders");
     }
 
+    //Ar Blacklist
     public static void toggleARBlacklistUser(MessageReceivedEvent event, String value) {
-        toggleOnArray(event, "ar_blacklist", value);
+        JsonConfigHandler.toggleOnArray(event, "ar_blacklist", value);
     }
 
     public static boolean isUserARBlacklisted(MessageReceivedEvent event, String value) {
-        return isInArray(event, "ar_blacklist", value);
+        return JsonConfigHandler.isInArray(event, "ar_blacklist", value);
     }
 
+    //AR
     public static void toggleAR(MessageReceivedEvent event) {
-        togglePropertyBoolean(event, "ar_enabled", !isAREnabled(event));
+        JsonConfigHandler.setPropertyBoolean(event, "ar_enabled", !isAREnabled(event));
     }
 
     public static boolean isAREnabled(MessageReceivedEvent event) {
-        return isPropertyBoolean(event, "ar_enabled");
+        return JsonConfigHandler.isPropertyBoolean(event, "ar_enabled");
     }
 
+    //Music Blacklist
     public static void toggleMusicUserBlacklist(MessageReceivedEvent event, String value) {
-        toggleOnArray(event, "music_blacklist", value);
+        JsonConfigHandler.toggleOnArray(event, "music_blacklist", value);
     }
 
     public static boolean isMusicBlacklisted(MessageReceivedEvent event, String value) {
-        return isInArray(event, "music_blacklist", value);
+        return JsonConfigHandler.isInArray(event, "music_blacklist", value);
     }
 
     public static JsonArray getBannedMusicUsers(MessageReceivedEvent event) {
-        return getArray(event, "music_blacklist");
+        return JsonConfigHandler.getArray(event, "music_blacklist");
     }
 
-    //Json Handling
-    public static JsonObject getJson(MessageReceivedEvent event) {
-        String guildID = event.getGuild().getId();
-
-        File file = new File(fileName);
-
-        if (!file.exists()) {
-            setupConfig();
-            return null;
-        }
-
-        try {
-            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
-            assert jsonObj != null;
-            JsonObject servs = jsonObj.getAsJsonObject("servers");
-            if (servs.getAsJsonObject(guildID) == null) {
-                return null;
-            }
-            return servs.getAsJsonObject(guildID);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    //Command Blacklist
+    public static void toggleCommandBlacklist(MessageReceivedEvent event, String value) {
+        JsonConfigHandler.toggleOnArray(event, "commands_blacklist", value);
     }
 
-    private static void setupGuild(JsonObject serversObject, String id, JsonObject jsonObject, String name) {
-        jsonObject.addProperty("__comment_GuildName", name);
-        serversObject.add(id, jsonObject);
+    public static boolean isCommandBlacklisted(MessageReceivedEvent event, String value) {
+        return JsonConfigHandler.isInArray(event, "commands_blacklist", value);
     }
 
-    private static void toggleOnArray(MessageReceivedEvent event, String arrayName, String value) {
-        String guildID = event.getGuild().getId();
-
-        File file = new File(fileName);
-
-        if (!file.exists()) {
-            setupConfig();
-        }
-
-        try {
-            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
-
-            Writer writer = new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8");
-            bufferedWriter = new BufferedWriter(writer);
-
-            assert jsonObj != null;
-            JsonObject servs = jsonObj.getAsJsonObject("servers");
-            if (servs.getAsJsonObject(guildID) == null) {
-                JsonObject tempObj = new JsonObject();
-                tempObj.add(arrayName, new JsonArray());
-//                servs.add(guildID, tempObj);
-                setupGuild(servs, guildID, tempObj, event.getGuild().getName());
-            }
-
-            JsonObject newObj = servs.getAsJsonObject(guildID);
-            if (newObj.getAsJsonArray(arrayName) == null) {
-                JsonArray tempArray = new JsonArray();
-                newObj.add(arrayName, tempArray);
-            }
-
-            JsonArray newJson = newObj.getAsJsonArray(arrayName);
-            if (!newJson.contains(new JsonPrimitive(value))) {
-                newJson.add(value);
-            } else {
-                newJson.remove(new JsonPrimitive(value));
-            }
-
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonFinal = gson.toJson(jsonObj);
-            bufferedWriter.write(jsonFinal);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bufferedWriter != null){
-                    bufferedWriter.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+    public static JsonArray getBlacklistedCommands(MessageReceivedEvent event) {
+        return JsonConfigHandler.getArray(event, "commands_blacklist");
     }
 
-    private static void togglePropertyBoolean(MessageReceivedEvent event, String key, boolean value) {
-        String guildID = event.getGuild().getId();
-
-        File file = new File(fileName);
-
-        if (!file.exists()) {
-            setupConfig();
-        }
-
-        try {
-            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
-
-            Writer writer = new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8");
-            bufferedWriter = new BufferedWriter(writer);
-
-            assert jsonObj != null;
-            JsonObject servs = jsonObj.getAsJsonObject("servers");
-            if (servs.getAsJsonObject(guildID) == null) {
-                JsonObject tempObj = new JsonObject();
-                tempObj.add(key, new JsonPrimitive(value));
-//                servs.add(guildID, tempObj);
-                setupGuild(servs, guildID, tempObj, event.getGuild().getName());
-            }
-
-            JsonObject newObj = servs.getAsJsonObject(guildID);
-            newObj.addProperty(key, value);
-
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonFinal = gson.toJson(jsonObj);
-            bufferedWriter.write(jsonFinal);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bufferedWriter != null){
-                    bufferedWriter.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+    //Music - nowplaying
+    public static void toggleNPMessages(MessageReceivedEvent event) {
+        JsonConfigHandler.setPropertyBoolean(event, "np_messages_disabled", !areNPMessagesDisabled(event.getGuild().getId()));
     }
 
-    private static JsonArray getArray(MessageReceivedEvent event, String arrayName) {
-        String guildID = event.getGuild().getId();
-
-        File file = new File(fileName);
-
-        if (!file.exists()) {
-            setupConfig();
-            return null;
-        }
-
-        try {
-            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
-            assert jsonObj != null;
-            JsonObject servs = jsonObj.getAsJsonObject("servers");
-            if (servs.getAsJsonObject(guildID) == null) {
-                return null;
-            }
-            JsonObject newObj = servs.getAsJsonObject(guildID);
-            if (newObj.getAsJsonArray(arrayName) == null) {
-                return null;
-            }
-            return newObj.getAsJsonArray(arrayName);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    private static boolean isInArray(MessageReceivedEvent event, String arrayName, String value) {
-        String guildID = event.getGuild().getId();
-
-        File file = new File(fileName);
-
-        if (!file.exists()) {
-            setupConfig();
-            return false;
-        }
-
-        try {
-            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
-            assert jsonObj != null;
-            JsonObject servs = jsonObj.getAsJsonObject("servers");
-            if (servs.getAsJsonObject(guildID) == null) {
-                return false;
-            }
-            JsonObject newObj = servs.getAsJsonObject(guildID);
-            JsonArray newJson = newObj.getAsJsonArray(arrayName);
-
-            if (newJson == null) {
-                return false;
-            }
-
-            if (newJson.contains(new JsonPrimitive(value))) {
-                return true;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-
-    }
-
-    private static boolean isPropertyBoolean(MessageReceivedEvent event, String key) {
-        String guildID = event.getGuild().getId();
-
-        File file = new File(fileName);
-
-        if (!file.exists()) {
-            setupConfig();
-            return false;
-        }
-
-        try {
-            JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
-            assert jsonObj != null;
-            JsonObject servs = jsonObj.getAsJsonObject("servers");
-            if (servs.getAsJsonObject(guildID) == null) return false;
-            JsonObject newObj = servs.getAsJsonObject(guildID);
-            if (newObj.get(key).isJsonNull()) return false;
-            return newObj.get(key).getAsBoolean();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-
+    public static boolean areNPMessagesDisabled(String id) {
+        return JsonConfigHandler.isPropertyBoolean(id, "np_messages_disabled");
     }
 
 }

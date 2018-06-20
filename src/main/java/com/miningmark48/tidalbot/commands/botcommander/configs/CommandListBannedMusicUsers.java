@@ -1,4 +1,4 @@
-package com.miningmark48.tidalbot.commands.botcommander;
+package com.miningmark48.tidalbot.commands.botcommander.configs;
 
 import com.google.gson.JsonArray;
 import com.miningmark48.tidalbot.commands.base.CommandType;

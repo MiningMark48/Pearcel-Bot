@@ -1,12 +1,8 @@
 package com.miningmark48.tidalbot;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandPrivate;
 import com.miningmark48.tidalbot.commands.base.InitializeCommands;
-import com.miningmark48.tidalbot.commands.botcommander.CommandToggleCommand;
 import com.miningmark48.tidalbot.commands.music.soundboard.AudioHandlerSoundboard;
 import com.miningmark48.tidalbot.customcommands.GetCommand;
 import com.miningmark48.tidalbot.messages.InitializeMessages;
@@ -14,7 +10,6 @@ import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.richpresence.PresenceClock;
 import com.miningmark48.tidalbot.util.CmdParserUtil;
 import com.miningmark48.tidalbot.util.ConfigUtil;
-import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import com.miningmark48.tidalbot.util.LoggerUtil;
 import com.miningmark48.tidalbot.util.features.Clock;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
@@ -26,9 +21,7 @@ import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import org.apache.logging.log4j.core.jmx.Server;
 
-import java.io.File;
 import java.util.HashMap;
 
 public class Main {
@@ -113,29 +106,7 @@ public class Main {
     }
 
     private static boolean isCommandBlacklisted(String command, MessageReceivedEvent event) {
-        File file = new File(CommandToggleCommand.fileName);
-
-        if (!file.exists()) {
-            LoggerUtil.log(LoggerUtil.LogType.INFO, "Command blacklist file hasn't been created yet.");
-            return false;
-        }
-
-        JsonObject jsonObj = JSONParseFile.JSONParse(CommandToggleCommand.fileName);
-
-        if (jsonObj != null) {
-            if (jsonObj.getAsJsonObject("servers") != null) {
-                JsonObject servers = jsonObj.getAsJsonObject("servers");
-                if (servers.getAsJsonObject(event.getGuild().getId()) != null){
-                    JsonObject guild = servers.getAsJsonObject(event.getGuild().getId());
-                    if (guild.getAsJsonArray("commands") != null) {
-                        JsonArray commands = guild.getAsJsonArray("commands");
-                        return commands.contains(new JsonPrimitive(command));
-                    }
-                }
-            }
-        }
-
-        return false;
+        return ServerConfigHandler.isCommandBlacklisted(event, command);
     }
 
 }

@@ -5,6 +5,7 @@ import com.miningmark48.tidalbot.util.FormatUtil;
 import com.miningmark48.tidalbot.util.FormatUtil.FormatType;
 import com.miningmark48.tidalbot.util.LoggerUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
@@ -68,7 +69,7 @@ public class TrackScheduler extends AudioEventAdapter {
                 }
             }
             try {
-                AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
+                if (!ServerConfigHandler.areNPMessagesDisabled(getGuildPlaying().getId())) AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
             } catch (NullPointerException e) {
                 LoggerUtil.log(LoggerUtil.LogType.INFO, "No track available.");
                 return false;

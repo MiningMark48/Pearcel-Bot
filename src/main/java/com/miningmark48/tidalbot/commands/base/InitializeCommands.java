@@ -2,6 +2,7 @@ package com.miningmark48.tidalbot.commands.base;
 
 import com.miningmark48.tidalbot.Main;
 import com.miningmark48.tidalbot.commands.*;
+import com.miningmark48.tidalbot.commands.botcommander.configs.*;
 import com.miningmark48.tidalbot.commands.botowner.CommandAnnounceAll;
 import com.miningmark48.tidalbot.commands.botowner.CommandGetDemServs;
 import com.miningmark48.tidalbot.commands.botowner.CommandRestartBot;
@@ -65,6 +66,7 @@ public class InitializeCommands {
         registerCommand("togglear", new CommandToggleAR());
         registerCommand("togglecommand", new CommandToggleCommand());
         registerCommand("togglemusic", new CommandToggleMusicUser());
+        registerCommand("togglenpmessages", new CommandToggleNPMessages());
         registerCommand("toromannum", new CommandToRomanNum());
         registerCommand("translate", new CommandTranslate());
         registerCommand("trivia", new CommandTrivia());
