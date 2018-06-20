@@ -61,6 +61,10 @@ public class ServerConfigHandler {
         return JsonConfigHandler.isInArray(event, "ar_blacklist", value);
     }
 
+    public static JsonArray getBlacklistedARUsers(MessageReceivedEvent event) {
+        return JsonConfigHandler.getArray(event, "ar_blacklist");
+    }
+
     //AR
     public static void toggleAR(MessageReceivedEvent event) {
         JsonConfigHandler.setPropertyBoolean(event, "ar_enabled", !isAREnabled(event));

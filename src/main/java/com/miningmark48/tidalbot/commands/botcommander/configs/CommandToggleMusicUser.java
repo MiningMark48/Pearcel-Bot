@@ -27,7 +27,7 @@ public class CommandToggleMusicUser implements ICommand, ICommandInfo {
         if (event.getGuild().getMembers().stream().anyMatch(q -> q.getUser().getId().equalsIgnoreCase(userID))) {
             Member member = event.getGuild().getMembers().stream().filter(q -> q.getUser().getId().equalsIgnoreCase(userID)).findFirst().get();
             ServerConfigHandler.toggleMusicUserBlacklist(event, member.getUser().getId());
-            event.getTextChannel().sendMessage(event.getAuthor().getAsMention() + ", **" + (ServerConfigHandler.isBotCommander(event, event.getAuthor().getId()) ? "added" : "removed") + "** *" + member.getUser().getName() + "* to the banned music users list.").queue();
+            event.getTextChannel().sendMessage(event.getAuthor().getAsMention() + ", **" + (ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId()) ? "removed" : "added") + "** *" + member.getUser().getName() + "* to the banned music users list.").queue();
         } else {
             event.getTextChannel().sendMessage("Could not find user!").queue();
         }
