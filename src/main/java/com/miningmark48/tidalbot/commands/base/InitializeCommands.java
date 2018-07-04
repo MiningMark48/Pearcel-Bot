@@ -85,6 +85,7 @@ public class InitializeCommands {
 
         //Music
         registerCommand("play", new CommandPlay());
+        registerCommand("playspotify", new CommandPlaySpotify());
         registerCommand("pplay", new CommandPlayPlaylist());
         registerCommand("splay", new CommandPlaySearch());
         registerCommand("splayrand", new CommandPlaySearchRand());

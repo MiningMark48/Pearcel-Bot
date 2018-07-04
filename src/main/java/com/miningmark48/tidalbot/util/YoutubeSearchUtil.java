@@ -6,11 +6,18 @@ import com.miningmark48.tidalbot.util.FormatUtil.FormatType;
 import com.miningmark48.tidalbot.util.JSON.JSONParse;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Random;
 
 public class YoutubeSearchUtil {
+
+    public static Object searchYoutube(String query, MessageReceivedEvent event, SearchType type) {
+        String newQuery = FormatUtil.removeNonAlphanumeric(query).replace(" ", "%20");
+        String[] queryArray = {"", newQuery};
+        return searchYoutube(queryArray, event, type);
+    }
 
     public static Object searchYoutube(String[] query, MessageReceivedEvent event, SearchType type){
         int resultNum = 0;

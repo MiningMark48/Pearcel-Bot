@@ -59,4 +59,8 @@ public class FormatUtil {
         return string.replaceAll("[^\\d]", "");
     }
 
+    public static String removeNonAlphanumeric(String string) {
+        return string.replaceAll("[^A-Za-z0-9 ]", "");
+    }
+
 }
