@@ -68,9 +68,9 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
         RestAction<PrivateChannel> privateChannel = event.getAuthor().openPrivateChannel();
         if (!isPrivate) {
             if (event.getAuthor() == null) {
-                event.getTextChannel().sendMessage("Sending you a list of commands now.").queue();
+                event.getTextChannel().sendMessage("Sending you a list of commands now. Optionally, visit <https://tw.miningmark48.xyz/projects/tidalbot/>.").queue();
             } else {
-                event.getTextChannel().sendMessage("**" + event.getAuthor().getAsMention() + "**, Sending you a list of commands now.").queue();
+                event.getTextChannel().sendMessage("**" + event.getAuthor().getAsMention() + "**, Sending you a list of commands now. Optionally, visit <https://tw.miningmark48.xyz/projects/tidalbot/>.").queue();
             }
         }
 
