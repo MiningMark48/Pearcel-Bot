@@ -5,6 +5,7 @@ import com.miningmark48.tidalbot.commands.*;
 import com.miningmark48.tidalbot.commands.botcommander.configs.*;
 import com.miningmark48.tidalbot.commands.botowner.CommandAnnounceAll;
 import com.miningmark48.tidalbot.commands.botowner.CommandGetDemServs;
+import com.miningmark48.tidalbot.commands.botowner.CommandLeave;
 import com.miningmark48.tidalbot.commands.botowner.CommandRestartBot;
 import com.miningmark48.tidalbot.commands.music.*;
 import com.miningmark48.tidalbot.commands.music.role_block.*;
@@ -79,6 +80,7 @@ public class InitializeCommands {
         //Owner only
         registerCommand("announceall", new CommandAnnounceAll());
         registerCommand("getdemservs", new CommandGetDemServs());
+        registerCommand("leave", new CommandLeave());
         registerCommand("restartbot", new CommandRestartBot());
 
         //Music
