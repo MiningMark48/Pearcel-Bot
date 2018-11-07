@@ -25,9 +25,7 @@ import sun.rmi.runtime.Log;
 
 import java.awt.*;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ConcurrentModificationException;
+import java.util.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -51,7 +49,29 @@ public class CommandTrivia implements ICommand, ICommandInfo {
             MessageUtil.sendMessage(event, "Missing Argument!\n\n**Usage:** `" + getUsage() + "`").queue();
         } else {
 
-            switch (args[0]) {
+            String difficulty;
+            if (args[0].equalsIgnoreCase("random")) {
+                Random rand = new Random();
+                int num = rand.nextInt(2);
+                switch (num) {
+                    default:
+                    case 0:
+                        difficulty = "easy";
+                        break;
+                    case 1:
+                        difficulty = "medium";
+                        break;
+                    case 2:
+                        difficulty = "hard";
+                        break;
+                }
+            } else {
+                difficulty = args[0];
+            }
+
+            LoggerUtil.log(LoggerUtil.LogType.DEBUG, difficulty);
+
+            switch (difficulty) {
                 default:
                 case "easy":
                     timeToAnswer = 15;
@@ -84,7 +104,7 @@ public class CommandTrivia implements ICommand, ICommandInfo {
 
                 String question = StringEscapeUtils.unescapeHtml4(obj.get("question").getAsString());
 
-                String iconURL = "http://miningmark48.xyz/projects/tidalbot/res/img/huh.png";
+                String iconURL = "http://tw.miningmark48.xyz/img/icons/success.png";
                 EmbedBuilder embedBuilder = new EmbedBuilder();
                 embedBuilder.setColor(Color.blue);
                 embedBuilder.setThumbnail(iconURL);
@@ -164,7 +184,7 @@ public class CommandTrivia implements ICommand, ICommandInfo {
 
     @Override
     public String getUsage() {
-        return "trivia <easy|medium|hard> [int:seconds]";
+        return "trivia <easy|medium|hard|random> [int:seconds]";
     }
 
     @Override
