@@ -1,12 +1,17 @@
 package com.miningmark48.tidalbot.commands.base;
 
 import com.miningmark48.tidalbot.Main;
-import com.miningmark48.tidalbot.commands.*;
 import com.miningmark48.tidalbot.commands.botcommander.configs.*;
 import com.miningmark48.tidalbot.commands.botowner.CommandAnnounceAll;
 import com.miningmark48.tidalbot.commands.botowner.CommandGetDemServs;
 import com.miningmark48.tidalbot.commands.botowner.CommandLeave;
 import com.miningmark48.tidalbot.commands.botowner.CommandRestartBot;
+import com.miningmark48.tidalbot.commands.botregular.*;
+import com.miningmark48.tidalbot.commands.botregular.Command8Ball;
+import com.miningmark48.tidalbot.commands.botregular.CommandCmds;
+import com.miningmark48.tidalbot.commands.botregular.CommandServerInvite;
+import com.miningmark48.tidalbot.commands.botregular.CommandSourceCode;
+import com.miningmark48.tidalbot.commands.botregular.CommandARBlacklist;
 import com.miningmark48.tidalbot.commands.music.*;
 import com.miningmark48.tidalbot.commands.music.role_block.*;
 import com.miningmark48.tidalbot.commands.botcommander.*;
