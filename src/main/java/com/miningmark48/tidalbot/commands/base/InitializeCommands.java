@@ -77,8 +77,9 @@ public class InitializeCommands {
         registerCommand("translate", new CommandTranslate());
         registerCommand("trivia", new CommandTrivia());
         registerCommand("twitchuser", new CommandTwitchUser());
-        registerCommand("viewconfig", new CommandViewConfig());
         registerCommand("uptime", new CommandUptime());
+        registerCommand("viewconfig", new CommandViewConfig());
+        registerCommand("whois", new CommandWhoIs());
         registerCommand("youtubesearch", new CommandYouTubeSearch());
         registerCommand("youtubeuser", new CommandYoutubeUser());
 

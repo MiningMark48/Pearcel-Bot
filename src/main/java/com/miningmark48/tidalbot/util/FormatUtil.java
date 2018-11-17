@@ -1,6 +1,10 @@
 package com.miningmark48.tidalbot.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class FormatUtil {
+
+    private static String defaultStr = "--";
 
     public static String formatText(FormatType type, String text){
         switch (type){
@@ -61,6 +65,10 @@ public class FormatUtil {
 
     public static String removeNonAlphanumeric(String string) {
         return string.replaceAll("[^A-Za-z0-9 ]", "");
+    }
+
+    public static String getDefaultString(String string) {
+        return StringUtils.defaultString(string, defaultStr);
     }
 
 }
