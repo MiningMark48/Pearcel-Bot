@@ -4,6 +4,7 @@ import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.reference.Reference;
+import com.miningmark48.tidalbot.util.MessageUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -17,6 +18,12 @@ public class CommandPlayNext implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+
+        if (args.length == 0) {
+            event.getTextChannel().sendMessage("Missing args! \n**Usage: **" + getUsage()).queue();
+            return;
+        }
+
         if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
             AudioHandler.playNext(event.getTextChannel(), args);
         } else {

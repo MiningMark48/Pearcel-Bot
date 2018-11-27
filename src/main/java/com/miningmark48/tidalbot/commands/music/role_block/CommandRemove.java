@@ -17,6 +17,12 @@ public class CommandRemove implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+
+        if (args.length == 0) {
+            event.getTextChannel().sendMessage("Missing args! \n**Usage: **" + getUsage()).queue();
+            return;
+        }
+
         if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
             AudioHandler.remove(event.getTextChannel(), args);
         } else {
@@ -41,7 +47,7 @@ public class CommandRemove implements ICommand, ICommandInfo {
 
     @Override
     public String getUsage() {
-        return "remove <arg:string>";
+        return "remove <keyword - in queue>";
     }
 
     @Override

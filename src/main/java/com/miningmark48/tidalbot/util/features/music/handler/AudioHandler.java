@@ -18,6 +18,7 @@ import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.managers.AudioManager;
+import org.apache.commons.lang3.StringUtils;
 
 import java.awt.*;
 import java.util.*;
@@ -287,7 +288,7 @@ public class AudioHandler {
         }
         if (!musicManager.scheduler.getQueue().isEmpty()){
             channel.sendMessage("Playlist was shuffled " + NumWordUtil.convert(i) + " " + (i == 1 ? "time" : "times") + ".").queue();
-            DefaultEmbeds.sendMessage(channel, "Queue Shuffled " + NumWordUtil.convert(i) + " " + (i == 1 ? "Time" : "Times"), DefaultEmbeds.EmbedType.MUSIC);
+            DefaultEmbeds.sendMessage(channel, "Queue Shuffled " + StringUtils.capitalize(NumWordUtil.convert(i)) + " " + (i == 1 ? "Time" : "Times"), DefaultEmbeds.EmbedType.MUSIC);
         } else {
             DefaultEmbeds.sendMessage(channel, "Queue is empty!", DefaultEmbeds.EmbedType.MUSIC);
         }
