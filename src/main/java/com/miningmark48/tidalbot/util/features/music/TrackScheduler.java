@@ -1,6 +1,7 @@
 package com.miningmark48.tidalbot.util.features.music;
 
 import com.miningmark48.tidalbot.commands.music.soundboard.AudioHandlerSoundboard;
+import com.miningmark48.tidalbot.util.DefaultEmbeds;
 import com.miningmark48.tidalbot.util.FormatUtil;
 import com.miningmark48.tidalbot.util.FormatUtil.FormatType;
 import com.miningmark48.tidalbot.util.LoggerUtil;
@@ -69,7 +70,10 @@ public class TrackScheduler extends AudioEventAdapter {
                 }
             }
             try {
-                if (!ServerConfigHandler.areNPMessagesDisabled(getGuildPlaying().getId())) AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
+                if (!ServerConfigHandler.areNPMessagesDisabled(getGuildPlaying().getId())){
+//                    AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
+                    DefaultEmbeds.sendMessage(AudioHandler.musicChannelRef.get(getGuildPlaying()), "Now Playing", track.getInfo().title + "", DefaultEmbeds.EmbedType.MUSIC);
+                }
             } catch (NullPointerException e) {
                 LoggerUtil.log(LoggerUtil.LogType.INFO, "No track available.");
                 return false;
