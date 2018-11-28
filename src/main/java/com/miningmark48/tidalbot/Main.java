@@ -9,6 +9,7 @@ import com.miningmark48.tidalbot.messages.InitializeMessages;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.richpresence.PresenceClock;
 import com.miningmark48.tidalbot.util.CmdParserUtil;
+import com.miningmark48.tidalbot.util.CommandUtil;
 import com.miningmark48.tidalbot.util.ConfigUtil;
 import com.miningmark48.tidalbot.util.LoggerUtil;
 import com.miningmark48.tidalbot.util.features.Clock;
@@ -61,6 +62,9 @@ public class Main {
         AudioSourceManagers.registerLocalSource(AudioHandlerSoundboard.playerManager);
 
         InitializeCommands.init();
+
+        CommandUtil.createCommandFile();
+
     }
 
     static void handleCommand(CmdParserUtil.CommandContainer cmd) {
