@@ -1,16 +1,12 @@
 package com.miningmark48.tidalbot.commands.botcommander.configs;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
-import com.miningmark48.tidalbot.util.features.serverconfig.JsonConfigHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CommandViewConfig implements ICommand, ICommandInfo {
@@ -101,7 +97,7 @@ public class CommandViewConfig implements ICommand, ICommandInfo {
 
     @Override
     public CommandType getType() {
-        return CommandType.PBC;
+        return CommandType.BC;
     }
 
     @Override

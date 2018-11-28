@@ -90,7 +90,7 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
                         case NORMAL:
                             commandsNormal.add(cmd);
                             break;
-                        case PBC:
+                        case BC:
                             commandsPBC.add(cmd);
                             break;
                         case MUSIC:
@@ -118,7 +118,7 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
                 chan.sendMessage(builder.build()).queueAfter(msgDelay, TimeUnit.MILLISECONDS);
             });
             partitionPBC.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("PBC Commands", partitionPBC.indexOf(cmdChunk), partitionPBC.size());
+                EmbedBuilder builder = getTemplateBuilder("BC Commands", partitionPBC.indexOf(cmdChunk), partitionPBC.size());
                 cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
                 chan.sendMessage(builder.build()).queueAfter(msgDelay + 250, TimeUnit.MILLISECONDS);
             });

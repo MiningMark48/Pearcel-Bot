@@ -81,6 +81,6 @@ public class CommandDeleteCommand implements ICommand, ICommandInfo {
 
     @Override
     public CommandType getType() {
-        return CommandType.PBC;
+        return CommandType.BC;
     }
 }

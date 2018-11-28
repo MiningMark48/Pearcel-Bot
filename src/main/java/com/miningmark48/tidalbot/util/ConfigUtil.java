@@ -35,7 +35,7 @@ public class ConfigUtil {
 
                 jw.name("roles");
                 jw.beginObject();
-                jw.name("commander").value("PBC");
+                jw.name("commander").value("BC");
                 jw.name("autoresponse").value("PBAR");
                 jw.name("nomusic").value("PB-NoMusic");
                 jw.endObject();

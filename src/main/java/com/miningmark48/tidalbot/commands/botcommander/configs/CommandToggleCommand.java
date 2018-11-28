@@ -7,8 +7,6 @@ import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.io.BufferedWriter;
-
 public class CommandToggleCommand implements ICommand, ICommandInfo {
 
     @Override
@@ -56,7 +54,7 @@ public class CommandToggleCommand implements ICommand, ICommandInfo {
 
     @Override
     public CommandType getType() {
-        return CommandType.PBC;
+        return CommandType.BC;
     }
 
     @Override
