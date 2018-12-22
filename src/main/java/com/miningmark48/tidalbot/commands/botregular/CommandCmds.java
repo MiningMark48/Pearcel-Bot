@@ -77,6 +77,7 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
         ArrayList<ICommandInfo> commandsNormal = new ArrayList<>();
         ArrayList<ICommandInfo> commandsPBC = new ArrayList<>();
         ArrayList<ICommandInfo> commandsMusic = new ArrayList<>();
+        ArrayList<ICommandInfo> commandsOwner = new ArrayList<>();
         ArrayList<String> commandsOther = new ArrayList<>();
 
         Main.commands.forEach((key, value) -> {
@@ -96,6 +97,8 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
                         case MUSIC:
                             commandsMusic.add(cmd);
                             break;
+                        case OWNER:
+                            commandsOwner.add(cmd);
                     }
                 }
             } else {
@@ -110,6 +113,7 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
             List<List<ICommandInfo>> partitionNormal = Lists.partition(commandsNormal, chunkSize);
             List<List<ICommandInfo>> partitionPBC = Lists.partition(commandsPBC, chunkSize);
             List<List<ICommandInfo>> partitionMusic = Lists.partition(commandsMusic, chunkSize);
+            List<List<ICommandInfo>> partitionOwner = Lists.partition(commandsOwner, chunkSize);
             List<List<String>> partitionOther = Lists.partition(commandsOther, chunkSize);
 
             partitionNormal.forEach(cmdChunk -> {
@@ -124,6 +128,11 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
             });
             partitionMusic.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("Music Commands", partitionMusic.indexOf(cmdChunk), partitionMusic.size());
+                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
+                chan.sendMessage(builder.build()).queueAfter(msgDelay + 500, TimeUnit.MILLISECONDS);
+            });
+            partitionOwner.forEach(cmdChunk -> {
+                EmbedBuilder builder = getTemplateBuilder("Owner Commands", partitionOwner.indexOf(cmdChunk), partitionMusic.size());
                 cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
                 chan.sendMessage(builder.build()).queueAfter(msgDelay + 500, TimeUnit.MILLISECONDS);
             });
