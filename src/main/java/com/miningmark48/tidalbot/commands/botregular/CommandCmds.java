@@ -131,11 +131,11 @@ public class CommandCmds implements ICommand, ICommandPrivate, ICommandInfo {
                 cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
                 chan.sendMessage(builder.build()).queueAfter(msgDelay + 500, TimeUnit.MILLISECONDS);
             });
-            partitionOwner.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("Owner Commands", partitionOwner.indexOf(cmdChunk), partitionMusic.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay + 500, TimeUnit.MILLISECONDS);
-            });
+//            partitionOwner.forEach(cmdChunk -> {
+//                EmbedBuilder builder = getTemplateBuilder("Owner Commands", partitionOwner.indexOf(cmdChunk), partitionMusic.size());
+//                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
+//                chan.sendMessage(builder.build()).queueAfter(msgDelay + 500, TimeUnit.MILLISECONDS);
+//            });
             partitionOther.forEach(cmdChunk -> {
                 EmbedBuilder builder = getTemplateBuilder("Other Commands", partitionOther.indexOf(cmdChunk), partitionOther.size());
                 cmdChunk.forEach(q -> addToEmbedNoDesc(builder, q));
