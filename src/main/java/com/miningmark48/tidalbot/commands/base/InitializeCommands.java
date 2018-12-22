@@ -119,6 +119,7 @@ public class InitializeCommands {
         registerCommand("curseforge", new CommandCurseData());
         registerCommand("delcmd", new CommandDeleteCommand());
         registerCommand("listcmds", new CommandListCommands());
+        registerCommand("snap", new CommandPrune());
             //Music
         registerCommand("np", new CommandNowPlaying());
 //        registerCommand("sb", new CommandSoundboard());
