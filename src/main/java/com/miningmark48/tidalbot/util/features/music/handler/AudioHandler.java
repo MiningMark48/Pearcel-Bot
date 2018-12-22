@@ -144,7 +144,7 @@ public class AudioHandler {
             }
 
             embedBuilder.setTitle("Current Queue (" + queue.size() + ") [" + (MathUtil.getTimeFromLong(queueTime) + "]:\n"));
-            embedBuilder.setThumbnail("http://www.icons101.com/icon_png/size_512/id_78717/Music.png");
+            embedBuilder.setThumbnail("http://tw.miningmark48.xyz/img/icons/music.png");
             embedBuilder.setFooter("Provided by " + Reference.botName + ". Made by MiningMark48.", "http://miningmark48.xyz/img/logo/logo.png");
             embedBuilder.setColor(Color.decode("#a2f000"));
 
@@ -167,8 +167,8 @@ public class AudioHandler {
             }
             channel.sendMessage(embedBuilder.build()).queue();
 
-        }else {
-            channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "No songs currently in queue!")).queue();
+        } else {
+            DefaultEmbeds.sendMessage(channel, "Queue is Empty", DefaultEmbeds.EmbedType.MUSIC);
         }
 
     }
