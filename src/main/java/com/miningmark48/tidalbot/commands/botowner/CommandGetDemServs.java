@@ -58,6 +58,6 @@ public class CommandGetDemServs implements ICommand, ICommandInfo {
 
     @Override
     public CommandType getType() {
-        return CommandType.NORMAL;
+        return CommandType.OWNER;
     }
 }

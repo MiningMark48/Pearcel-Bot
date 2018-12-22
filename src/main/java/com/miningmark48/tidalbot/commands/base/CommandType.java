@@ -4,6 +4,7 @@ public enum CommandType {
 
     NORMAL,
     BC,
-    MUSIC
+    MUSIC,
+    OWNER
 
 }

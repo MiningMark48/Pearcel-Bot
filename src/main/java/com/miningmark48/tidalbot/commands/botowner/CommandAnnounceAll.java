@@ -77,6 +77,6 @@ public class CommandAnnounceAll implements ICommand, ICommandInfo {
 
     @Override
     public CommandType getType() {
-        return CommandType.NORMAL;
+        return CommandType.OWNER;
     }
 }

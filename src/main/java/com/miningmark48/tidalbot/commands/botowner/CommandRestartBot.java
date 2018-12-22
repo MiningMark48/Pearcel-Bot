@@ -51,6 +51,6 @@ public class CommandRestartBot implements ICommand, ICommandInfo {
 
     @Override
     public CommandType getType() {
-        return CommandType.NORMAL;
+        return CommandType.OWNER;
     }
 }
