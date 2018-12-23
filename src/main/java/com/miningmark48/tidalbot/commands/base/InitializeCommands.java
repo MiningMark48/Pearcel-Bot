@@ -27,7 +27,6 @@ public class InitializeCommands {
         registerCommand("8ball", new Command8Ball());
         registerCommand("addcommand", new CommandAddCommand());
         registerCommand("announce", new CommandAnnounce());
-        registerCommand("bark", new CommandBark());
 //        registerCommand("bitcoin", new CommandBitcoin());
         registerCommand("botcommander", new CommandBotCommander());
         registerCommand("arblacklist", new CommandARBlacklist());
@@ -42,7 +41,6 @@ public class InitializeCommands {
         registerCommand("editcommand", new CommandEditCommand());
         registerCommand("emojieval", new CommandEmojiEval());
         registerCommand("emojilist", new CommandEmojiList());
-        registerCommand("fizzbuzz", new CommandFizzbuzz());
         registerCommand("geoip", new CommandGeoIP());
         registerCommand("githubuser", new CommandGithubUser());
         registerCommand("guildinfo", new CommandGuildInfo());
@@ -54,9 +52,7 @@ public class InitializeCommands {
         registerCommand("listcommands", new CommandListCommands());
         registerCommand("lmgtfy", new CommandLMGTFY());
         registerCommand("mixeruser", new CommandMixerUser());
-        registerCommand("numtoword", new CommandNumberToWords());
         registerCommand("pastebin", new CommandPastebin());
-        registerCommand("patreon", new CommandPatreon());
         registerCommand("ping", new CommandPing());
         registerCommand("poll", new CommandPoll());
         registerCommand("prune", new CommandPrune());
@@ -68,7 +64,6 @@ public class InitializeCommands {
         registerCommand("serverinvite", new CommandServerInvite());
         registerCommand("slap", new CommandSlap());
         registerCommand("sourcecode", new CommandSourceCode());
-        registerCommand("tobinary", new CommandToBinary());
         registerCommand("togglear", new CommandToggleAR());
         registerCommand("togglecommand", new CommandToggleCommand());
         registerCommand("togglemusic", new CommandToggleMusicUser());
