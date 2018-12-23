@@ -19,7 +19,7 @@ public class CommandQRCreate implements ICommand, ICommandInfo {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        String baseApiURL = "http://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&bgcolor=36393e&color=a2f000&data=";
+        String baseApiURL = "http://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&bgcolor=ffffff&color=000000&data=";
         StringBuilder builder = new StringBuilder();
 
         if (args.length > 0) {
