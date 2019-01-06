@@ -3,12 +3,10 @@ package com.miningmark48.tidalbot.util.features;
 import com.miningmark48.tidalbot.util.DataUtil;
 import org.apache.commons.lang3.text.WordUtils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +52,7 @@ public class CurseData {
 
         while (!foundDuplicatePage) {
 
-            try (InputStream stream = new URL(baseURL + page).openStream()) {
+            try (InputStream stream = getConnection(new URL(baseURL + page).openConnection()).getInputStream()) {
 
                 final BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
@@ -108,7 +106,7 @@ public class CurseData {
 
         // downloads
         for (final String projectUrl : this.projectURLs)
-            try (InputStream stream = new URL(projectUrl).openStream()) {
+            try (InputStream stream = getConnection(new URL(projectUrl).openConnection()).getInputStream()) {
 
                 final BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
                 boolean foundDownloads = false;
@@ -181,5 +179,10 @@ public class CurseData {
     public long getTotalDownloads() {
 
         return this.totalDownloads;
+    }
+
+    private URLConnection getConnection(URLConnection connection) {
+        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+        return connection;
     }
 }
