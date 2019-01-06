@@ -120,6 +120,7 @@ public class AudioHandler {
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
         musicManager.player.stopTrack();
         musicManager.scheduler.clearQueue();
+        musicManager.scheduler.repeatDisable();
         leaveVoiceChannel(channel.getGuild().getAudioManager());
 
         DefaultEmbeds.sendMessage(channel, "Stopped track and cleared the queue.", DefaultEmbeds.EmbedType.MUSIC);

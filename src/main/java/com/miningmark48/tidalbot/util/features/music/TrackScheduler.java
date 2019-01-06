@@ -127,6 +127,10 @@ public class TrackScheduler extends AudioEventAdapter {
         return RepeatStatus.TURNED_OFF;
     }
 
+    public void repeatDisable() {
+        isRepeat = false;
+    }
+
     public Guild getGuildPlaying() {
         return guildPlaying;
     }
