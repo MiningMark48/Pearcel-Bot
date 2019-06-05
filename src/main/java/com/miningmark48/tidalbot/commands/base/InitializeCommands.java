@@ -111,9 +111,14 @@ public class InitializeCommands {
 
         //Alias
         registerCommand("addcmd", new CommandAddCommand());
+        registerCommand("commands", new CommandCmds());
         registerCommand("curseforge", new CommandCurseData());
+        registerCommand("customcommands", new CommandListCommands());
         registerCommand("delcmd", new CommandDeleteCommand());
+        registerCommand("flipcoin", new CommandCoinFlip());
         registerCommand("listcmds", new CommandListCommands());
+        registerCommand("rolldice", new CommandDiceRoll());
+        registerCommand("rolldie", new CommandDiceRoll());
         registerCommand("snap", new CommandPrune());
             //Music
         registerCommand("np", new CommandNowPlaying());
