@@ -37,8 +37,8 @@ public class CommandBotInfo implements ICommand, ICommandInfo {
         embedBuilder.addField("Created On", event.getJDA().getSelfUser().getCreationTime().toString().substring(0, 10), true);
         embedBuilder.addField("Command Key", Reference.botCommandKey, true);
         embedBuilder.addField("Custom Command Key", Reference.botCommandCustomKey, true);
-        embedBuilder.addField("Commander Role", Reference.botCommanderRole, true);
-        embedBuilder.addField("Auto Response Role", Reference.botAutoResponseRole, true);
+//        embedBuilder.addField("Commander Role", Reference.botCommanderRole, true);
+//        embedBuilder.addField("Auto Response Role", Reference.botAutoResponseRole, true);
         embedBuilder.addField("Verified?", event.getJDA().getSelfUser().isVerified() ? "Yes" : "No", true);
 
         embedBuilder.addField("", "Report any issues or suggestions to MiningMark48#6817.", false);
