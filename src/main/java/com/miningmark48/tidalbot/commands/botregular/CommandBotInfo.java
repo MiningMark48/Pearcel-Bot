@@ -30,10 +30,10 @@ public class CommandBotInfo implements ICommand, ICommandInfo {
         embedBuilder.addField("Name", Reference.botName, true);
         embedBuilder.addField("ID", event.getJDA().getSelfUser().getId(), true);
         embedBuilder.addField("Author", Reference.botAuthor, true);
-        embedBuilder.addField("Version", "N/A", true);
+//        embedBuilder.addField("Version", "N/A", true);
         embedBuilder.addField("Library", "JDA - " + JDAInfo.VERSION, true);
         embedBuilder.addField("Current Game", event.getJDA().getPresence().getGame().getName(), true);
-        embedBuilder.addField("Status", StringUtils.capitalize(event.getJDA().getPresence().getStatus().name().toLowerCase()), true);
+//        embedBuilder.addField("Status", StringUtils.capitalize(event.getJDA().getPresence().getStatus().name().toLowerCase()), true);
         embedBuilder.addField("Created On", event.getJDA().getSelfUser().getCreationTime().toString().substring(0, 10), true);
         embedBuilder.addField("Command Key", Reference.botCommandKey, true);
         embedBuilder.addField("Custom Command Key", Reference.botCommandCustomKey, true);
