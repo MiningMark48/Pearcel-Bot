@@ -41,7 +41,6 @@ public class InitializeCommands {
         registerCommand("editcommand", new CommandEditCommand());
         registerCommand("emojieval", new CommandEmojiEval());
         registerCommand("emojilist", new CommandEmojiList());
-        registerCommand("geoip", new CommandGeoIP());
         registerCommand("githubuser", new CommandGithubUser());
         registerCommand("guildinfo", new CommandGuildInfo());
         registerCommand("help", new CommandHelp());
