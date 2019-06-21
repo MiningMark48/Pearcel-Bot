@@ -1,6 +1,7 @@
 package com.miningmark48.tidalbot.commands.regular;
 
 import com.google.common.collect.Lists;
+import com.google.gson.JsonArray;
 import com.miningmark48.tidalbot.Main;
 import com.miningmark48.tidalbot.base.CommandType;
 import com.miningmark48.tidalbot.base.ICommand;
@@ -123,54 +124,58 @@ public class CommandCmds implements ICommand, ICommandPrivate {
 
             int delay = 250;
             partitionNormal.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("Normal Commands", partitionNormal.indexOf(cmdChunk), partitionNormal.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay + delay, TimeUnit.MILLISECONDS);
+                StringBuilder builder = new StringBuilder();
+                builder.append(getStart("Normal Commands"));
+                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
+                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
+                chan.sendMessage(builder).queueAfter(msgDelay + delay, TimeUnit.MILLISECONDS);
             });
             partitionManager.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("Manager Commands", partitionManager.indexOf(cmdChunk), partitionManager.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay + delay * 2, TimeUnit.MILLISECONDS);
+                StringBuilder builder = new StringBuilder();
+                builder.append(getStart("Manager Commands"));
+                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
+                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
+                chan.sendMessage(builder).queueAfter(msgDelay + delay * 2, TimeUnit.MILLISECONDS);
             });
             partitionAdmin.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("Administrator Commands", partitionAdmin.indexOf(cmdChunk), partitionAdmin.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay + delay * 3, TimeUnit.MILLISECONDS);
+                StringBuilder builder = new StringBuilder();
+                builder.append(getStart("Adminstrator Commands"));
+                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
+                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
+                chan.sendMessage(builder).queueAfter(msgDelay + delay * 3, TimeUnit.MILLISECONDS);
             });
             partitionOwner.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("Server Owner Commands", partitionOwner.indexOf(cmdChunk), partitionOwner.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay + delay * 4, TimeUnit.MILLISECONDS);
+                StringBuilder builder = new StringBuilder();
+                builder.append(getStart("Server Owner Commands"));
+                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
+                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
+                chan.sendMessage(builder).queueAfter(msgDelay + delay * 4, TimeUnit.MILLISECONDS);
             });
             partitionMusic.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("Music Commands", partitionMusic.indexOf(cmdChunk), partitionMusic.size());
-                cmdChunk.forEach(q -> addToEmbed(builder, q.getName()));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay + delay * 5, TimeUnit.MILLISECONDS);
+                StringBuilder builder = new StringBuilder();
+                builder.append(getStart("Music Commands"));
+                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
+                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
+                chan.sendMessage(builder).queueAfter(msgDelay + delay * 5, TimeUnit.MILLISECONDS);
             });
             partitionOther.forEach(cmdChunk -> {
-                EmbedBuilder builder = getTemplateBuilder("Other Commands", partitionOther.indexOf(cmdChunk), partitionOther.size());
-                cmdChunk.forEach(q -> addToEmbedNoDesc(builder, q));
-                chan.sendMessage(builder.build()).queueAfter(msgDelay + delay * 6, TimeUnit.MILLISECONDS);
+                StringBuilder builder = new StringBuilder();
+                builder.append(getStart("Other Commands"));
+                cmdChunk.forEach(q -> builder.append(q).append("\n"));
+                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
+                chan.sendMessage(builder).queueAfter(msgDelay + delay * 6, TimeUnit.MILLISECONDS);
             });
 
-            chan.sendMessage("Use `" + Reference.botCommandKey + "help <command_name>` for command descriptions and usage.").queueAfter(msgDelay + 1000, TimeUnit.MILLISECONDS);
+            chan.sendMessage("Use `" + Reference.botCommandKey + "help <command_name>` for command descriptions and usage.").queueAfter(msgDelay + delay * 7, TimeUnit.MILLISECONDS);
         });
     }
 
-    private static void addToEmbed(EmbedBuilder embed, String cmdName) {
-        embed.addField(cmdName, "", true);
+    private static String getStart(String title) {
+        return "**" + title + "** \n```";
     }
 
-    private static void addToEmbedNoDesc(EmbedBuilder embed, String cmdName) {
-        embed.addField(cmdName, "Missing Description!", false);
-    }
-
-    private static EmbedBuilder getTemplateBuilder(String title, int chunkNum, int chunkTotal) {
-        EmbedBuilder builder = new EmbedBuilder();
-        builder.setColor(Color.decode("#a2f000"));
-        builder.setTitle(FormatUtil.formatText(FormatUtil.FormatType.UNDERLINE, title));
-        builder.setFooter(chunkNum+1 + "/" + chunkTotal, null);
-        return builder;
+    private static String getEnd(int chunkNum, int chunkTotal) {
+        return "``` \n" + chunkNum + "/" + chunkTotal;
     }
 
 }

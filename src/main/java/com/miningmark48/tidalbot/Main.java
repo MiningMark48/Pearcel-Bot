@@ -110,7 +110,7 @@ public class Main {
                     }
 
                     cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getAsMention() + ", sorry, but you do not have permission to run that command. If you believe this is a mistake, contact a server admin.");
-                    
+
                 }
                 commands.get(cmd.invoke).executed(safe, cmd.event);
             } else {
