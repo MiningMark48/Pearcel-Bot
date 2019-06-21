@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.commands.music.role_block;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
+import com.miningmark48.tidalbot.util.UtilYoutubeSearch;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.entities.Member;
@@ -30,7 +30,7 @@ public class CommandPlaySpotify implements ICommand {
                     }
 
                     String trackQuery = member.getActivities().get(0).asRichPresence().getDetails() + " by " + member.getActivities().get(0).asRichPresence().getState();
-                    String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(trackQuery, event, YoutubeSearchUtil.SearchType.NORMAL);
+                    String urlToPlay = (String) UtilYoutubeSearch.searchYoutube(trackQuery, event, UtilYoutubeSearch.SearchType.NORMAL);
                     if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
 
                 } catch (Exception e) {

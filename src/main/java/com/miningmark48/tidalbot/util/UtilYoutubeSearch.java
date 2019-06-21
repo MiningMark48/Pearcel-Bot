@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import java.util.Arrays;
 import java.util.Random;
 
-public class YoutubeSearchUtil {
+public class UtilYoutubeSearch {
 
     public static Object searchYoutube(String query, MessageReceivedEvent event, SearchType type) {
         String newQuery = UtilFormat.removeNonAlphanumeric(query).replace(" ", "%20");

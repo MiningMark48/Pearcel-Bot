@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.util.UtilFormat;
-import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
+import com.miningmark48.tidalbot.util.UtilYoutubeSearch;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -23,7 +23,7 @@ public class CommandYouTubeSearch implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event){
-        Object searchObj = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.QUERY);
+        Object searchObj = UtilYoutubeSearch.searchYoutube(args, event, UtilYoutubeSearch.SearchType.QUERY);
         if (searchObj instanceof JsonArray) {
             EmbedBuilder builder = new EmbedBuilder();
             builder.setTitle(UtilFormat.formatText(UtilFormat.FormatType.BOLD_UNDERLINE, "YouTube Search Results"));

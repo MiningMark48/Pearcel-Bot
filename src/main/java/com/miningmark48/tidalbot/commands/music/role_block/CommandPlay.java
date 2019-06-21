@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.commands.music.role_block;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.util.UtilData;
-import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
+import com.miningmark48.tidalbot.util.UtilYoutubeSearch;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -18,7 +18,7 @@ public class CommandPlay implements ICommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (event.getMember() == null) { //Webhook support
-            String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
+            String urlToPlay = (String) UtilYoutubeSearch.searchYoutube(args, event, UtilYoutubeSearch.SearchType.NORMAL);
             if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             return;
         }
@@ -26,7 +26,7 @@ public class CommandPlay implements ICommand {
             if (UtilData.isValidURL(args[0])) {
                 AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
             } else {
-                String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);
+                String urlToPlay = (String) UtilYoutubeSearch.searchYoutube(args, event, UtilYoutubeSearch.SearchType.NORMAL);
                 if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
             }
         } else {
