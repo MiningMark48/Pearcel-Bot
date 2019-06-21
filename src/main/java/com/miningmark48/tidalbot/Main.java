@@ -1,10 +1,8 @@
 package com.miningmark48.tidalbot;
 
-import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.base.InitializeCommands;
-import com.miningmark48.tidalbot.commands.music.soundboard.AudioHandlerSoundboard;
 import com.miningmark48.tidalbot.commands.custom.GetCommand;
 import com.miningmark48.tidalbot.messages.InitializeMessages;
 import com.miningmark48.tidalbot.reference.Reference;
@@ -21,7 +19,10 @@ import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
-import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.HashMap;
@@ -60,8 +61,8 @@ public class Main {
 
         AudioSourceManagers.registerRemoteSources(AudioHandler.playerManager);
         AudioSourceManagers.registerLocalSource(AudioHandler.playerManager);
-        AudioSourceManagers.registerRemoteSources(AudioHandlerSoundboard.playerManager);
-        AudioSourceManagers.registerLocalSource(AudioHandlerSoundboard.playerManager);
+//        AudioSourceManagers.registerRemoteSources(AudioHandlerSoundboard.playerManager);
+//        AudioSourceManagers.registerLocalSource(AudioHandlerSoundboard.playerManager);
 
         InitializeCommands.init();
 
@@ -109,16 +110,7 @@ public class Main {
                     }
 
                     cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getAsMention() + ", sorry, but you do not have permission to run that command. If you believe this is a mistake, contact a server admin.");
-
-//                    if (commands.get(cmd.invoke).getPermissionRequired() == EnumRestrictions.ADMIN) {
-//                        if (ServerConfigHandler.isBotCommander(cmd.event, cmd.event.getAuthor().getId()) || cmd.event.getGuild().getOwner() == cmd.event.getMember() || cmd.event.getAuthor().getId().equals(Reference.botOwner)) {
-//                            commands.get(cmd.invoke).action(cmd.args, cmd.event);
-//                        } else {
-//                            cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getAsMention() + ", You do not have permission to run that command.").queue();
-//                        }
-//                    } else {
-//                        commands.get(cmd.invoke).action(cmd.args, cmd.event);
-//                    }
+                    
                 }
                 commands.get(cmd.invoke).executed(safe, cmd.event);
             } else {
