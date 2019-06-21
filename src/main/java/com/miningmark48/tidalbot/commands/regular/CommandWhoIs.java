@@ -4,6 +4,7 @@ import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.UtilMessage;
+import com.miningmark48.tidalbot.util.UtilUserSelection;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -11,6 +12,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.awt.*;
+import java.util.Objects;
 
 public class CommandWhoIs implements ICommand {
 
@@ -19,6 +21,7 @@ public class CommandWhoIs implements ICommand {
         return true;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
@@ -29,17 +32,13 @@ public class CommandWhoIs implements ICommand {
             return;
         }
 
-        String username = String.join(" ", args);
-
         Guild guild = event.getGuild();
-        Member member = guild.getMembersByName(username, true).stream().findFirst().orElse(guild.getMemberById(UtilFormat.removeNonNumeric(username)));
 
-        if (member == null) {
-            event.getTextChannel().sendMessage("**Error:** User not found.").queue();
+        User user = UtilUserSelection.getUserByAny(guild, args[0], event.getMessage());
+        if (user == null) {
+            event.getTextChannel().sendMessage("Error, user not found!").queue();
             return;
         }
-
-        User user = member.getUser();
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.decode("#7289da"));
@@ -47,7 +46,7 @@ public class CommandWhoIs implements ICommand {
         embedBuilder.setThumbnail(user.getAvatarUrl());
 
         embedBuilder.addField("Name", UtilFormat.getDefaultString(user.getName()), true);
-        embedBuilder.addField("Nickname", UtilFormat.getDefaultString(member.getNickname()), true);
+        embedBuilder.addField("Nickname", UtilFormat.getDefaultString(Objects.requireNonNull(guild.getMember(user)).getNickname()), true);
         embedBuilder.addField("ID", UtilFormat.getDefaultString(user.getId()), true);
         embedBuilder.addField("Created On", UtilFormat.getDefaultString(user.getTimeCreated().toString().substring(0, 10)), true);
         embedBuilder.addField("Is Bot?", user.isBot() ? "Yes" : "No", true);

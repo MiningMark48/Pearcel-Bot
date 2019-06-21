@@ -3,6 +3,8 @@ package com.miningmark48.tidalbot.commands.commander;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.util.UtilFormat;
+import com.miningmark48.tidalbot.util.UtilLogger;
+import com.miningmark48.tidalbot.util.UtilUserSelection;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -15,37 +17,38 @@ public class CommandKickVoice implements ICommand {
         return true;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (args.length == 0) {
             event.getTextChannel().sendMessage("Missing args!").queue();
         } else {
             Guild guild = event.getGuild();
-            if (guild.getMembersByName(args[0], true).stream().findFirst().isPresent()) {
 
-                Member member = guild.getMembersByName(args[0], true).stream().findFirst().get();
-                User user = member.getUser();
-                RestAction<PrivateChannel> privateChannel = user.openPrivateChannel();
-                createVoice(guild);
-                moveToVoice(guild, user);
-                deleteVoice(guild);
-
-                String reason = "";
-                for (int i = 2; i <= args.length; i++){
-                    reason = reason + args[i - 1] + " ";
-                    reason = reason.substring(0, 1).toUpperCase() + reason.substring(1);
-                }
-
-                if (reason.isEmpty()) {
-                    reason = "N/A";
-                }
-
-                event.getTextChannel().sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD, event.getAuthor().getName()) + " kicked " + UtilFormat.formatText(UtilFormat.FormatType.BOLD, user.getName()) + " from voice for reason, `" + reason + "`.").queue();
-                String finalReason = reason;
-                privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + UtilFormat.formatText(UtilFormat.FormatType.BOLD, event.getAuthor().getName()) + " for reason, `" + finalReason + "`.").queue());
-            } else {
+            User user = UtilUserSelection.getUserByAny(guild, args[0], event.getMessage());
+            if (user == null) {
                 event.getTextChannel().sendMessage("Error, user not found!").queue();
+                return;
             }
+
+            RestAction<PrivateChannel> privateChannel = user.openPrivateChannel();
+            createVoice(guild);
+            moveToVoice(guild, user);
+            deleteVoice(guild);
+
+            String reason = "";
+            for (int i = 2; i <= args.length; i++){
+                reason = reason + args[i - 1] + " ";
+                reason = reason.substring(0, 1).toUpperCase() + reason.substring(1);
+            }
+
+            if (reason.isEmpty()) {
+                reason = "N/A";
+            }
+
+            event.getTextChannel().sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD, event.getAuthor().getAsMention()) + " kicked " + UtilFormat.formatText(UtilFormat.FormatType.BOLD, user.getAsMention()) + " from voice for reason, `" + reason + "`.").queue();
+            String finalReason = reason;
+            privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel in " + guild.getName() + " by " + UtilFormat.formatText(UtilFormat.FormatType.BOLD, event.getAuthor().getName()) + " for reason, `" + finalReason + "`.").queue());
         }
         event.getMessage().delete().queue();
     }
