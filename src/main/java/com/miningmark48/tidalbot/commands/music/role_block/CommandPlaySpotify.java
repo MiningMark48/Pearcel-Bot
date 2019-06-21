@@ -1,17 +1,14 @@
 package com.miningmark48.tidalbot.commands.music.role_block;
 
-import com.miningmark48.tidalbot.commands.base.CommandType;
-import com.miningmark48.tidalbot.commands.base.ICommand;
-import com.miningmark48.tidalbot.commands.base.ICommandInfo;
-import com.miningmark48.tidalbot.util.DataUtil;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.base.EnumRestrictions;
+import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class CommandPlaySpotify implements ICommand, ICommandInfo {
+public class CommandPlaySpotify implements ICommand {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -69,7 +66,12 @@ public class CommandPlaySpotify implements ICommand, ICommandInfo {
     }
 
     @Override
-    public CommandType getType() {
-        return CommandType.MUSIC;
+    public EnumRestrictions getPermissionRequired() {
+        return EnumRestrictions.REGULAR;
+    }
+
+    @Override
+    public boolean isMusic() {
+        return true;
     }
 }

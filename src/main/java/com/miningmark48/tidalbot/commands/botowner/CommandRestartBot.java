@@ -1,17 +1,12 @@
 package com.miningmark48.tidalbot.commands.botowner;
 
 import com.miningmark48.tidalbot.Main;
-import com.miningmark48.tidalbot.commands.base.CommandType;
-import com.miningmark48.tidalbot.commands.base.ICommand;
-import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.base.EnumRestrictions;
+import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.reference.Reference;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.awt.*;
-
-public class CommandRestartBot implements ICommand, ICommandInfo {
+public class CommandRestartBot implements ICommand {
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -50,7 +45,7 @@ public class CommandRestartBot implements ICommand, ICommandInfo {
     }
 
     @Override
-    public CommandType getType() {
-        return CommandType.OWNER;
+    public EnumRestrictions getPermissionRequired() {
+        return EnumRestrictions.BOT_OWNER;
     }
 }

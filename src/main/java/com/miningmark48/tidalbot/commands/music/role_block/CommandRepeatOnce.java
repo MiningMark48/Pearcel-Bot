@@ -1,14 +1,13 @@
 package com.miningmark48.tidalbot.commands.music.role_block;
 
-import com.miningmark48.tidalbot.commands.base.CommandType;
-import com.miningmark48.tidalbot.commands.base.ICommand;
-import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.base.EnumRestrictions;
+import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class CommandRepeatOnce implements ICommand, ICommandInfo {
+public class CommandRepeatOnce implements ICommand {
 
     public static final String desc = "Repeat currently playing track once. Run again to disable.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "repeatonce";
@@ -49,7 +48,12 @@ public class CommandRepeatOnce implements ICommand, ICommandInfo {
     }
 
     @Override
-    public CommandType getType() {
-        return CommandType.MUSIC;
+    public EnumRestrictions getPermissionRequired() {
+        return EnumRestrictions.REGULAR;
+    }
+
+    @Override
+    public boolean isMusic() {
+        return true;
     }
 }

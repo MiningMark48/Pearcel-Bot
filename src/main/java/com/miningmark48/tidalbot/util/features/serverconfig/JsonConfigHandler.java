@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.io.*;
 
+@SuppressWarnings("Duplicates")
 public class JsonConfigHandler {
 
     public static String fileName = "server_configs.json";

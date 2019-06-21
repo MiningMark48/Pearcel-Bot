@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
 import com.miningmark48.tidalbot.Main;
-import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.base.ICommand;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
@@ -27,15 +27,15 @@ public class CommandUtil {
 
                 Main.commands.forEach((key, value) -> {
 
-                    if (value instanceof ICommandInfo) {
-                        ICommandInfo cmd = (ICommandInfo) value;
+                    if (value != null) {
+                        ICommand cmd = value;
                         if (cmd.getName().equalsIgnoreCase(key)) {
                             try {
                                 jw.beginObject();
-                                jw.name("name").value(((ICommandInfo) value).getName());
-                                jw.name("type").value(StringUtils.capitalize(((ICommandInfo) value).getType().toString().toLowerCase()));
-                                jw.name("usage").value(((ICommandInfo) value).getUsage());
-                                jw.name("action").value(StringUtils.capitalize(((ICommandInfo) value).getDesc()));
+                                jw.name("name").value(value.getName());
+                                jw.name("type").value(StringUtils.capitalize(value.getPermissionRequired().toString().toLowerCase()));
+                                jw.name("usage").value(value.getUsage());
+                                jw.name("action").value(StringUtils.capitalize(value.getDesc()));
                                 jw.endObject();
                             } catch (IOException e) {
                                 e.printStackTrace();

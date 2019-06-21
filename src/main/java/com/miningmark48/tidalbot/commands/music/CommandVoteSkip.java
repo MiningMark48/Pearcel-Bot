@@ -1,8 +1,7 @@
 package com.miningmark48.tidalbot.commands.music;
 
-import com.miningmark48.tidalbot.commands.base.CommandType;
-import com.miningmark48.tidalbot.commands.base.ICommand;
-import com.miningmark48.tidalbot.commands.base.ICommandInfo;
+import com.miningmark48.tidalbot.base.EnumRestrictions;
+import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.FormatUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
@@ -10,7 +9,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
 
-public class CommandVoteSkip implements ICommand, ICommandInfo {
+public class CommandVoteSkip implements ICommand {
 
     public static final String desc = "Vote to skip a track.";
     public static final String usage = "USAGE: " + Reference.botCommandKey + "voteskip";
@@ -61,7 +60,12 @@ public class CommandVoteSkip implements ICommand, ICommandInfo {
     }
 
     @Override
-    public CommandType getType() {
-        return CommandType.MUSIC;
+    public EnumRestrictions getPermissionRequired() {
+        return EnumRestrictions.REGULAR;
+    }
+
+    @Override
+    public boolean isMusic() {
+        return true;
     }
 }

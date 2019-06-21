@@ -9,6 +9,7 @@ import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 
 import java.io.*;
 
+@SuppressWarnings("Duplicates")
 public class ConfigUtil {
 
     public static boolean getConfigs() {
@@ -35,7 +36,7 @@ public class ConfigUtil {
 
                 jw.name("roles");
                 jw.beginObject();
-                jw.name("commander").value("BC");
+                jw.name("commander").value("OPERATOR");
                 jw.name("autoresponse").value("PBAR");
                 jw.name("nomusic").value("PB-NoMusic");
                 jw.endObject();

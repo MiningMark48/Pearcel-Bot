@@ -1,6 +1,5 @@
 package com.miningmark48.tidalbot.messages;
 
-import com.miningmark48.tidalbot.reference.Reference;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 

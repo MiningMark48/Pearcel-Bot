@@ -1,6 +1,7 @@
 package com.miningmark48.tidalbot.commands.music.soundboard;
 
-import com.miningmark48.tidalbot.commands.base.ICommand;
+import com.miningmark48.tidalbot.base.EnumRestrictions;
+import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.reference.Reference;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -106,6 +107,26 @@ public class CommandSoundboard implements ICommand {
     @Override
     public void executed(boolean success, MessageReceivedEvent event) {
         return;
+    }
+
+    @Override
+    public String getName() {
+        return "";
+    }
+
+    @Override
+    public String getDesc() {
+        return "";
+    }
+
+    @Override
+    public String getUsage() {
+        return "";
+    }
+
+    @Override
+    public EnumRestrictions getPermissionRequired() {
+        return EnumRestrictions.REGULAR;
     }
 
 }
