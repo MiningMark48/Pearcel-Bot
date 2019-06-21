@@ -34,13 +34,6 @@ public class ConfigUtil {
                 jw.name("client id").value("bot.id");
                 jw.endObject();
 
-                jw.name("roles");
-                jw.beginObject();
-                jw.name("commander").value("OPERATOR");
-                jw.name("autoresponse").value("PBAR");
-                jw.name("nomusic").value("PB-NoMusic");
-                jw.endObject();
-
                 jw.name("other");
                 jw.beginObject();
                 jw.name("do chat log").value(true);
@@ -66,10 +59,6 @@ public class ConfigUtil {
                         Reference.botCommandKey = jsonObjectBot.get("key").getAsString();
                         Reference.botCommandCustomKey = Reference.botCommandKey + Reference.botCommandKey;
                         Reference.botClientID = jsonObjectBot.get("client id").getAsString();
-
-                        Reference.botCommanderRole = jsonObjectRoles.get("commander").getAsString();
-                        Reference.botAutoResponseRole = jsonObjectRoles.get("autoresponse").getAsString();
-                        Reference.botNoMusicRole = jsonObjectRoles.get("nomusic").getAsString();
 
                         Reference.doChatLog = jsonObjectOther.get("do chat log").getAsBoolean();
 

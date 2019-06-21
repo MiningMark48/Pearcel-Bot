@@ -3,6 +3,7 @@ package com.miningmark48.tidalbot.commands.music.soundboard;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.reference.Reference;
+import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -25,7 +26,7 @@ public class CommandSoundboard implements ICommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if (args.length > 0) {
-            if (!event.getMember().getRoles().toString().contains(Reference.botNoMusicRole)) {
+            if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
                 switch (args[0].toLowerCase()) {
                     case "airhorn":
                         AudioHandlerSoundboard.loadAndPlay(event.getTextChannel(), event.getAuthor(), baseURL + "airhorn.mp3", false);
@@ -77,7 +78,7 @@ public class CommandSoundboard implements ICommand {
                 }
                 event.getMessage().delete().queue();
             } else {
-                event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command. If you think this is a mistake, ask an admin why you have the `" + Reference.botNoMusicRole + "` role.").queue();
+                event.getTextChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + ", but you do not have permission to use that command.").queue();
             }
         } else  {
             EmbedBuilder builder = new EmbedBuilder();

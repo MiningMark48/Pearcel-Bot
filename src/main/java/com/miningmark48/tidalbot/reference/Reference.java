@@ -10,9 +10,6 @@ public class Reference {
     public static String botName;
     public static String botCommandKey;
     public static String botCommandCustomKey;
-    public static String botCommanderRole;
-    public static String botAutoResponseRole;
-    public static String botNoMusicRole;
     public static String botClientID;
     public static boolean doChatLog;
 

@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class CommandViewConfig implements ICommand {
 
-    private static String[] types = {"bot_commanders", "banned_music", "ar_blacklist"};
+    private static String[] types = {"banned_music", "ar_blacklist"};
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -29,9 +29,6 @@ public class CommandViewConfig implements ICommand {
             default:
                 sendArgsMessage(event);
                 break;
-            case "bot_commanders":
-                sendBCMessage(event);
-                break;
             case "banned_music":
                 sendBMMessage(event);
                 break;
@@ -46,10 +43,6 @@ public class CommandViewConfig implements ICommand {
         StringBuilder builder = new StringBuilder();
         Arrays.stream(types).forEach(q -> builder.append(q).append("\n"));
         event.getTextChannel().sendMessage("Invalid args! Please specify a type. Available types: \n```" + builder.toString() + "```").queue();
-    }
-
-    private static void sendBCMessage(MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage(listBuilder(event, ServerConfigHandler.getBotCommanders(event), "Current Bot Commanders:")).queue();
     }
 
     private static void sendBMMessage(MessageReceivedEvent event) {

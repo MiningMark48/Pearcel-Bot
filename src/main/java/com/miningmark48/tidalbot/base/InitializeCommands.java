@@ -54,7 +54,6 @@ public class InitializeCommands {
         registerCommand("poll", new CommandPoll());
         registerCommand("prune", new CommandPrune());
         registerCommand("qrcodecreate", new CommandQRCreate());
-        registerCommand("roles", new CommandRoles());
         registerCommand("rps", new CommandRPS());
         registerCommand("say", new CommandSay());
         registerCommand("selfinfo", new CommandSelfInfo());
