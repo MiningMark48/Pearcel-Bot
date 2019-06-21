@@ -28,7 +28,7 @@ public class CommandToggleMusicUser implements ICommand {
             return;
         }
         ServerConfigHandler.toggleMusicUserBlacklist(event, user.getId());
-        event.getTextChannel().sendMessage(event.getAuthor().getAsMention() + ", **" + (ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId()) ? "removed" : "added") + "** *" + user.getName() + "* to the banned music users list.").queue();
+        event.getTextChannel().sendMessage(event.getAuthor().getAsMention() + ", **" + (ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId()) ? "removed" : "added") + "** *" + user.getName() + "* " + (ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId()) ? "from" : "to") + " the banned music users list.").queue();
     }
 
     @Override
