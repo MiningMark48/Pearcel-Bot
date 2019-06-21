@@ -13,7 +13,7 @@ import java.io.*;
 public class ConfigUtil {
 
     public static boolean getConfigs() {
-        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Getting configs...");
+        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Fetching configuration settings...");
 
         try {
             String configFile = "config.json";
@@ -43,7 +43,7 @@ public class ConfigUtil {
 
                 writer.close();
 
-                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Config file was created and must be filled in, stopping bot.");
+                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Configuration file was created and must be filled in, stopping bot.");
                 return false;
             } else {
 
@@ -51,7 +51,6 @@ public class ConfigUtil {
                     JsonObject jsonObject = JSONParseFile.JSONParse(configFile);
                     if (jsonObject != null) {
                         JsonObject jsonObjectBot = jsonObject.getAsJsonObject("bot");
-                        JsonObject jsonObjectRoles = jsonObject.getAsJsonObject("roles");
                         JsonObject jsonObjectOther = jsonObject.getAsJsonObject("other");
 
                         Reference.botName = jsonObjectBot.get("botname").getAsString();
@@ -69,15 +68,16 @@ public class ConfigUtil {
                     }
 
                 } catch (NullPointerException e) {
-                    LoggerUtil.log(LoggerUtil.LogType.FATAL, "Configs were unable to be loaded, stopping bot.");
+                    LoggerUtil.log(LoggerUtil.LogType.FATAL, "Configuration settings were unable to be loaded, stopping bot.");
                     e.printStackTrace();
                     return false;
                 }
 
-                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Configs were loaded, continuing.");
+                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Configuration settings were loaded, continuing.");
                 return true;
             }
         } catch (IOException e) {
+            LoggerUtil.log(LoggerUtil.LogType.FATAL, "An error has occurred.");
             e.printStackTrace();
             return false;
         }
