@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.commands.regular;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.DefaultEmbeds;
+import com.miningmark48.tidalbot.util.UtilDefaultEmbeds;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -27,7 +27,7 @@ public class CommandPoll implements ICommand {
     public void action(String[] args, MessageReceivedEvent event) {
         event.getMessage().delete().queue();
         if (args.length == 0) {
-            DefaultEmbeds.sendMessage(event.getTextChannel(), "Missing Arguments!", "Usage: " + getUsage() + "\n\n" + getExample(), DefaultEmbeds.EmbedType.INFO);
+            UtilDefaultEmbeds.sendMessage(event.getTextChannel(), "Missing Arguments!", "Usage: " + getUsage() + "\n\n" + getExample(), UtilDefaultEmbeds.EmbedType.INFO);
             return;
         }
 

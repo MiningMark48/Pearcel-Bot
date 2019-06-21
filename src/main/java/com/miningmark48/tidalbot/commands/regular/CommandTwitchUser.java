@@ -5,7 +5,7 @@ import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.util.JSON.JSONParse;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -39,7 +39,7 @@ public class CommandTwitchUser implements ICommand, ICommandPrivate {
         JsonObject js2;
 
         if (args.length <= 0){
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
+            UtilMessage.sendMessage(event, "Missing Argument!", isPrivate).queue();
         }else{
             try {
                 js = JSONParse.JSONParseTwitch("https://api.twitch.tv/kraken/channels/" + args[0] + "?callback=foo&client_id=7fr372mwgdks9l4zb0ba2z0najhh84");
@@ -82,10 +82,10 @@ public class CommandTwitchUser implements ICommand, ICommandPrivate {
                     embedBuilder.addField("Partnered?", js.get("partner").getAsBoolean() ? "Yes" : "No", true);
                 }
 
-                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
+                UtilMessage.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             }catch (NullPointerException e){
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
+                UtilMessage.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
             }
 
         }

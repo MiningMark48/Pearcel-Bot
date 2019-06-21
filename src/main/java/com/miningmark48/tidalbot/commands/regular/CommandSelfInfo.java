@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.commands.regular;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -42,7 +42,7 @@ public class CommandSelfInfo implements ICommand, ICommandPrivate {
         embedBuilder.addField("Created On", event.getAuthor().getTimeCreated().toString().substring(0, 10), true);
         embedBuilder.addField("Is Bot?", event.getAuthor().isBot() ? "Yes" : "No", true);
 
-        MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
+        UtilMessage.sendMessage(event, embedBuilder.build(), isPrivate).queue();
     }
 
     @Override

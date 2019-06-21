@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.util;
 
 import java.text.DecimalFormat;
 
-public class NumWordUtil {
+public class UtilNumWord {
 
     private static final String[] tensNames = {
         "",

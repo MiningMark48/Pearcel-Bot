@@ -1,12 +1,11 @@
 package com.miningmark48.tidalbot.commands.regular;
 
 import com.google.gson.JsonObject;
-import com.miningmark48.tidalbot.base.CommandType;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.util.JSON.JSONParse;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -38,7 +37,7 @@ public class CommandMixerUser implements ICommand, ICommandPrivate {
         JsonObject js;
 
         if (args.length <= 0){
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
+            UtilMessage.sendMessage(event, "Missing Argument!", isPrivate).queue();
         } else {
             try {
                 js = JSONParse.JSONParse("https://mixer.com/api/v1/channels/" + args[0]);
@@ -121,10 +120,10 @@ public class CommandMixerUser implements ICommand, ICommandPrivate {
                     embedBuilder.addField("Bio", userObject.get("bio").getAsString(), false);
                 }
 
-                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
+                UtilMessage.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             }catch (NullPointerException e){
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
+                UtilMessage.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
                 e.printStackTrace();
             }
 

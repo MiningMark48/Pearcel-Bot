@@ -1,6 +1,6 @@
 package com.miningmark48.tidalbot.util.features;
 
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
 
 public class Clock {
 
@@ -12,7 +12,7 @@ public class Clock {
     public static void runClockUptime(){
         Thread thread = new Thread(() -> {
 
-            LoggerUtil.log(LoggerUtil.LogType.STATUS, "Uptime clock started!");
+            UtilLogger.log(UtilLogger.LogType.STATUS, "Uptime clock started!");
 
             uptimeSeconds = 0;
             uptimeMinutes = 0;

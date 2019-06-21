@@ -2,12 +2,11 @@ package com.miningmark48.tidalbot.commands.regular;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.miningmark48.tidalbot.base.CommandType;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.util.JSON.JSONParse;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -41,7 +40,7 @@ public class CommandYoutubeUser implements ICommand, ICommandPrivate {
         JsonObject js;
 
         if (args.length <= 0) {
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
+            UtilMessage.sendMessage(event, "Missing Argument!", isPrivate).queue();
         } else {
             try {
                 js = JSONParse.JSONParse("https://www.googleapis.com/youtube/v3/channels?&key=AIzaSyBnt38rBPV1WAZGx6imcMvp0GuuQU15YKE&part=statistics,brandingSettings&forUsername=" + args[0]);
@@ -86,10 +85,10 @@ public class CommandYoutubeUser implements ICommand, ICommandPrivate {
                     embedBuilder.addField("Description", jsonObject4.get("description").getAsString(), false);
                 }
 
-                MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
+                UtilMessage.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             } catch (NullPointerException | IndexOutOfBoundsException e) {
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data, channel may be to small for detection.", isPrivate).queue();
+                UtilMessage.sendMessage(event, "Error: Could not retrieve user data, channel may be to small for detection.", isPrivate).queue();
             }
 
         }

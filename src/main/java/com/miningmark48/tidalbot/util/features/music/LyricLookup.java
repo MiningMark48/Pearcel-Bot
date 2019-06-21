@@ -2,8 +2,8 @@ package com.miningmark48.tidalbot.util.features.music;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-import com.miningmark48.tidalbot.util.FormatUtil;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import org.jsoup.HttpStatusException;
@@ -51,11 +51,11 @@ public class LyricLookup {
         String artist = split[0];
         String title = split[1];
 
-        LoggerUtil.log(LoggerUtil.LogType.DEBUG, "Artist: " + artist);
-        LoggerUtil.log(LoggerUtil.LogType.DEBUG, "Title: " + title);
+        UtilLogger.log(UtilLogger.LogType.DEBUG, "Artist: " + artist);
+        UtilLogger.log(UtilLogger.LogType.DEBUG, "Title: " + title);
 
         try {
-            channel.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,String.format("Lyrics for %s - %s:\n\n", artist.toUpperCase(), title.toUpperCase()))).queue();
+            channel.sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD,String.format("Lyrics for %s - %s:\n\n", artist.toUpperCase(), title.toUpperCase()))).queue();
 
             List lyrics = getSongLyrics(artist, title);
             StringBuilder lyricStringBuilder = new StringBuilder();
@@ -70,10 +70,10 @@ public class LyricLookup {
                 channel.sendMessage(messageBuilder.build()).queue();
             }
 
-            channel.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"Lyrics powered by SongLyrics.com")).queue();
+            channel.sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD,"Lyrics powered by SongLyrics.com")).queue();
 
         } catch (IOException | NullPointerException e) {
-            channel.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"ERROR:") + " Lyrics not found.").queue();
+            channel.sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD,"ERROR:") + " Lyrics not found.").queue();
         }
 
     }

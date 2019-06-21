@@ -1,6 +1,6 @@
 package com.miningmark48.tidalbot.commands.music.soundboard;
 
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import com.miningmark48.tidalbot.util.features.music.GuildMusicManager;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
@@ -68,7 +68,7 @@ public class AudioHandlerSoundboard {
 
             @Override
             public void loadFailed(FriendlyException exception) {
-                LoggerUtil.log(LoggerUtil.LogType.FATAL, "Could not play track!");
+                UtilLogger.log(UtilLogger.LogType.FATAL, "Could not play track!");
                 exception.printStackTrace();
             }
         });

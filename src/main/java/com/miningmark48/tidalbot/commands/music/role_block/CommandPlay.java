@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.commands.music.role_block;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.DataUtil;
+import com.miningmark48.tidalbot.util.UtilData;
 import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
@@ -23,7 +23,7 @@ public class CommandPlay implements ICommand {
             return;
         }
         if (!ServerConfigHandler.isMusicBlacklisted(event, event.getAuthor().getId())) {
-            if (DataUtil.isValidURL(args[0])) {
+            if (UtilData.isValidURL(args[0])) {
                 AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), args[0], false);
             } else {
                 String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.NORMAL);

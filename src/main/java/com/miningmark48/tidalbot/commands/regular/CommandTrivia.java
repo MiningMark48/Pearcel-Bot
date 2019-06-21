@@ -4,11 +4,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.JSON.JSONParse;
-import com.miningmark48.tidalbot.util.LoggerUtil;
-import com.miningmark48.tidalbot.util.MessageUtil;
-import com.miningmark48.tidalbot.util.NumWordUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
+import com.miningmark48.tidalbot.util.UtilMessage;
+import com.miningmark48.tidalbot.util.UtilNumWord;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -37,7 +37,7 @@ public class CommandTrivia implements ICommand {
         JsonObject js;
 
         if (args.length <= 0){
-            MessageUtil.sendMessage(event, "Missing Argument!\n\n**Usage:** `" + getUsage() + "`").queue();
+            UtilMessage.sendMessage(event, "Missing Argument!\n\n**Usage:** `" + getUsage() + "`").queue();
         } else {
 
             String difficulty;
@@ -60,7 +60,7 @@ public class CommandTrivia implements ICommand {
                 difficulty = args[0];
             }
 
-            LoggerUtil.log(LoggerUtil.LogType.DEBUG, difficulty);
+            UtilLogger.log(UtilLogger.LogType.DEBUG, difficulty);
 
             switch (difficulty) {
                 default:
@@ -100,17 +100,17 @@ public class CommandTrivia implements ICommand {
                 embedBuilder.setColor(Color.blue);
                 embedBuilder.setThumbnail(iconURL);
                 embedBuilder.setFooter("Trivia!", iconURL);
-                embedBuilder.setTitle("\u2754" + FormatUtil.formatText(FormatUtil.FormatType.UNDERLINE, question));
+                embedBuilder.setTitle("\u2754" + UtilFormat.formatText(UtilFormat.FormatType.UNDERLINE, question));
 
 
-                answers.forEach(q -> embedBuilder.addField("", FormatUtil.formatText(FormatUtil.FormatType.BOLD, getChoice(answers, q) + ") ") + StringEscapeUtils.unescapeHtml4(q), false));
+                answers.forEach(q -> embedBuilder.addField("", UtilFormat.formatText(UtilFormat.FormatType.BOLD, getChoice(answers, q) + ") ") + StringEscapeUtils.unescapeHtml4(q), false));
 
                 embedBuilder.addBlankField(false);
                 embedBuilder.addField("Category", obj.get("category").getAsString(), true);
                 embedBuilder.addField("Difficulty", StringUtils.capitalize(obj.get("difficulty").getAsString()), true);
                 embedBuilder.addField("Time", timeToAnswer + " second" + (timeToAnswer != 1 ? "s" : ""), true);
 
-                MessageUtil.sendMessage(event, embedBuilder.build()).queue(msg -> MessageUtil.sendMessage(event, "You have " + NumWordUtil.convert(timeToAnswer) + " seconds to answer!").queue(msg2 -> {
+                UtilMessage.sendMessage(event, embedBuilder.build()).queue(msg -> UtilMessage.sendMessage(event, "You have " + UtilNumWord.convert(timeToAnswer) + " seconds to answer!").queue(msg2 -> {
                     msg2.addReaction("\uD83C\uDDE6").queue();
                     msg2.addReaction("\uD83C\uDDE7").queue();
                     msg2.addReaction("\uD83C\uDDE8").queue();
@@ -136,7 +136,7 @@ public class CommandTrivia implements ICommand {
                                 if (users.size() > 0) {
                                     StringBuilder builder = new StringBuilder();
                                     users.forEach(q -> builder.append(q.getName()).append(users.indexOf(q) + 1 != users.size() ? ", " : ""));
-                                    MessageUtil.sendMessage(event, "\u2705 " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, "Winner" + (users.size() != 1 ? "s" : "") + ": ") + builder.toString()).queue();
+                                    UtilMessage.sendMessage(event, "\u2705 " + UtilFormat.formatText(UtilFormat.FormatType.BOLD, "Winner" + (users.size() != 1 ? "s" : "") + ": ") + builder.toString()).queue();
                                 } else {
                                     nobodyMessage(event);
                                 }
@@ -151,7 +151,7 @@ public class CommandTrivia implements ICommand {
                 }));
 
             } catch (NullPointerException e) {
-                MessageUtil.sendMessage(event, "Error!").queue();
+                UtilMessage.sendMessage(event, "Error!").queue();
                 e.printStackTrace();
             }
 
@@ -198,7 +198,7 @@ public class CommandTrivia implements ICommand {
     }
 
     private static void nobodyMessage(MessageReceivedEvent event) {
-        MessageUtil.sendMessage(event, "\u274C Nobody got that question correct!").queue();
+        UtilMessage.sendMessage(event, "\u274C Nobody got that question correct!").queue();
     }
 
 }

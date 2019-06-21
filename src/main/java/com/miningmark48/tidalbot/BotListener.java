@@ -1,7 +1,7 @@
 package com.miningmark48.tidalbot;
 
 import com.miningmark48.tidalbot.reference.Reference;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import com.miningmark48.tidalbot.util.features.chatlog.ChatLog;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.JDA;
@@ -61,7 +61,7 @@ public class BotListener extends ListenerAdapter {
     @Override
     public void onReady(ReadyEvent event){
         //event.getJDA().getAccountManager().update();
-        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Logged in as: " + event.getJDA().getSelfUser().getName());
+        UtilLogger.log(UtilLogger.LogType.STATUS, "Logged in as: " + event.getJDA().getSelfUser().getName());
     }
 
     @Override

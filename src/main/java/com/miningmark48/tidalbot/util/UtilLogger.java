@@ -1,6 +1,6 @@
 package com.miningmark48.tidalbot.util;
 
-public class LoggerUtil {
+public class UtilLogger {
 
     public static void log(String par1, String message){
         System.out.printf("[%s] %s\n", par1.toUpperCase(), message);

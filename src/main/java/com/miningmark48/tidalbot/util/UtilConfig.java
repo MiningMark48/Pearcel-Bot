@@ -10,10 +10,10 @@ import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import java.io.*;
 
 @SuppressWarnings("Duplicates")
-public class ConfigUtil {
+public class UtilConfig {
 
     public static boolean getConfigs() {
-        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Fetching configuration settings...");
+        UtilLogger.log(UtilLogger.LogType.STATUS, "Fetching configuration settings...");
 
         try {
             String configFile = "config.json";
@@ -43,7 +43,7 @@ public class ConfigUtil {
 
                 writer.close();
 
-                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Configuration file was created and must be filled in, stopping bot.");
+                UtilLogger.log(UtilLogger.LogType.STATUS, "Configuration file was created and must be filled in, stopping bot.");
                 return false;
             } else {
 
@@ -68,16 +68,16 @@ public class ConfigUtil {
                     }
 
                 } catch (NullPointerException e) {
-                    LoggerUtil.log(LoggerUtil.LogType.FATAL, "Configuration settings were unable to be loaded, stopping bot.");
+                    UtilLogger.log(UtilLogger.LogType.FATAL, "Configuration settings were unable to be loaded, stopping bot.");
                     e.printStackTrace();
                     return false;
                 }
 
-                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Configuration settings were loaded, continuing.");
+                UtilLogger.log(UtilLogger.LogType.STATUS, "Configuration settings were loaded, continuing.");
                 return true;
             }
         } catch (IOException e) {
-            LoggerUtil.log(LoggerUtil.LogType.FATAL, "An error has occurred.");
+            UtilLogger.log(UtilLogger.LogType.FATAL, "An error has occurred.");
             e.printStackTrace();
             return false;
         }

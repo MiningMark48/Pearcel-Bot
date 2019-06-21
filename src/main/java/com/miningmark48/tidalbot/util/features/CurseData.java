@@ -1,6 +1,6 @@
 package com.miningmark48.tidalbot.util.features;
 
-import com.miningmark48.tidalbot.util.DataUtil;
+import com.miningmark48.tidalbot.util.UtilData;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.io.*;
@@ -128,7 +128,7 @@ public class CurseData {
                 e.printStackTrace();
             }
 
-        this.downloads = DataUtil.sortByValue(this.downloads, true);
+        this.downloads = UtilData.sortByValue(this.downloads, true);
     }
 
     public boolean exists() {

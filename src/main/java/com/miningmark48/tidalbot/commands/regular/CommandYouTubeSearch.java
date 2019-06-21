@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -26,7 +26,7 @@ public class CommandYouTubeSearch implements ICommand {
         Object searchObj = YoutubeSearchUtil.searchYoutube(args, event, YoutubeSearchUtil.SearchType.QUERY);
         if (searchObj instanceof JsonArray) {
             EmbedBuilder builder = new EmbedBuilder();
-            builder.setTitle(FormatUtil.formatText(FormatUtil.FormatType.BOLD_UNDERLINE, "YouTube Search Results"));
+            builder.setTitle(UtilFormat.formatText(UtilFormat.FormatType.BOLD_UNDERLINE, "YouTube Search Results"));
             builder.setFooter("YouTube search performed by Google APIs", null);
             builder.setColor(Color.RED);
             builder.setThumbnail("https://i.imgur.com/wGlpS4b.png");
@@ -34,7 +34,7 @@ public class CommandYouTubeSearch implements ICommand {
             for (int i = 0; i <= 10 && i < ((JsonArray) searchObj).getAsJsonArray().size(); i++) {
                 JsonObject js = ((JsonArray) searchObj).getAsJsonArray().get(i).getAsJsonObject();
                 JsonObject snippet = js.get("snippet").getAsJsonObject();
-                builder.addField(snippet.get("title").getAsString(),FormatUtil.formatURL("Video", baseVideoURL + js.get("id").getAsJsonObject().get("videoId").getAsString()) + " by " + FormatUtil.formatURL(snippet.get("channelTitle").getAsString(), baseChannelURL + snippet.get("channelId").getAsString()), false);
+                builder.addField(snippet.get("title").getAsString(), UtilFormat.formatURL("Video", baseVideoURL + js.get("id").getAsJsonObject().get("videoId").getAsString()) + " by " + UtilFormat.formatURL(snippet.get("channelTitle").getAsString(), baseChannelURL + snippet.get("channelId").getAsString()), false);
             }
 
             event.getTextChannel().sendMessage(builder.build()).queue();

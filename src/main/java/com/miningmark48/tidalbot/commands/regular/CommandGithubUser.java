@@ -5,7 +5,7 @@ import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.util.JSON.JSONParse;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -37,7 +37,7 @@ public class CommandGithubUser implements ICommand, ICommandPrivate {
         JsonObject js;
 
         if (args.length <= 0){
-            MessageUtil.sendMessage(event, "Missing Argument!", isPrivate).queue();
+            UtilMessage.sendMessage(event, "Missing Argument!", isPrivate).queue();
         } else {
             try {
                 js = JSONParse.JSONParse("https://api.github.com/users/" + args[0]);
@@ -78,10 +78,10 @@ public class CommandGithubUser implements ICommand, ICommandPrivate {
                     embedBuilder.addField("Joined", js.get("created_at").getAsString().substring(0, 10), true);
                 }
 
-               MessageUtil.sendMessage(event, embedBuilder.build(), isPrivate).queue();
+               UtilMessage.sendMessage(event, embedBuilder.build(), isPrivate).queue();
 
             } catch (NullPointerException e) {
-                MessageUtil.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
+                UtilMessage.sendMessage(event, "Error: Could not retrieve user data.", isPrivate).queue();
             }
 
         }

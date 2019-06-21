@@ -15,7 +15,7 @@ import com.miningmark48.tidalbot.commands.regular.CommandARBlacklist;
 import com.miningmark48.tidalbot.commands.music.*;
 import com.miningmark48.tidalbot.commands.music.role_block.*;
 import com.miningmark48.tidalbot.commands.commander.*;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
 
 public class InitializeCommands {
 
@@ -120,7 +120,7 @@ public class InitializeCommands {
         registerCommand("np", new CommandNowPlaying());
 //        registerCommand("sb", new CommandSoundboard());
 
-        LoggerUtil.log(LoggerUtil.LogType.INFO, Main.commands.size() + " Commands Initialized.");
+        UtilLogger.log(UtilLogger.LogType.INFO, Main.commands.size() + " Commands Initialized.");
 
     }
     

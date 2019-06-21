@@ -3,9 +3,9 @@ package com.miningmark48.tidalbot.commands.regular;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
-import com.miningmark48.tidalbot.util.DataUtil;
-import com.miningmark48.tidalbot.util.FormatUtil;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilData;
+import com.miningmark48.tidalbot.util.UtilFormat;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import com.miningmark48.tidalbot.util.features.CurseData;
 import com.sun.xml.internal.ws.util.StringUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -47,21 +47,21 @@ public class CommandCurseData implements ICommand, ICommandPrivate {
 
             if (args[0].contains("@")) {
 
-                MessageUtil.sendMessage(event, "This command uses names registered on Curse, not Discord!", isPrivate).queue();
+                UtilMessage.sendMessage(event, "This command uses names registered on Curse, not Discord!", isPrivate).queue();
                 return;
             }
 
-            MessageUtil.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])), isPrivate).queue(msg -> {
-                MessageUtil.sendTyping(event, isPrivate).queue();
+            UtilMessage.sendMessage(event, String.format("\uD83D\uDD50 Fetching statistics for %s.", UtilFormat.formatText(UtilFormat.FormatType.ITALIC, args[0])), isPrivate).queue(msg -> {
+                UtilMessage.sendTyping(event, isPrivate).queue();
                 final CurseData data = new CurseData(args[0]);
                 final EmbedBuilder embed = new EmbedBuilder();
 
                 if (!data.exists()) {
-                    msg.editMessage("No user could be found by the name of " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])).queue();
+                    msg.editMessage("No user could be found by the name of " + UtilFormat.formatText(UtilFormat.FormatType.ITALIC, args[0])).queue();
                     return;
                 }
                 else if (!data.hasProjects()) {
-                    msg.editMessage("No projects found for " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, args[0])).queue();
+                    msg.editMessage("No projects found for " + UtilFormat.formatText(UtilFormat.FormatType.ITALIC, args[0])).queue();
                     return;
                 }
 
@@ -76,7 +76,7 @@ public class CommandCurseData implements ICommand, ICommandPrivate {
                         continue;
                     }
 
-                    embed.addField(set.getKey(), NumberFormat.getInstance().format(set.getValue()) + " downloads" + DataUtil.SEPERATOR + "[URL](" + toCurseURL(set.getKey()) + ")", true);
+                    embed.addField(set.getKey(), NumberFormat.getInstance().format(set.getValue()) + " downloads" + UtilData.SEPERATOR + "[URL](" + toCurseURL(set.getKey()) + ")", true);
                     addedProjects++;
                 }
 
@@ -97,12 +97,12 @@ public class CommandCurseData implements ICommand, ICommandPrivate {
                 }
 
                 msg.delete().queue();
-                MessageUtil.sendMessage(event, embed.build(), isPrivate).queue();
+                UtilMessage.sendMessage(event, embed.build(), isPrivate).queue();
             });
 
         }
         else {
-            MessageUtil.sendMessage(event, "You must specify the name of a user that is registered on Curse!", isPrivate).queue();
+            UtilMessage.sendMessage(event, "You must specify the name of a user that is registered on Curse!", isPrivate).queue();
         }
     }
 

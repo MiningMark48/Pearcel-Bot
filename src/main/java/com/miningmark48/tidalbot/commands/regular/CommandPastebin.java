@@ -2,8 +2,8 @@ package com.miningmark48.tidalbot.commands.regular;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -24,7 +24,7 @@ public class CommandPastebin implements ICommand {
         if (args.length > 0) {
             String sUrl = "https://pastebin.com/raw/" + args[0];
             try {
-                MessageUtil.sendTyping(event).queue();
+                UtilMessage.sendTyping(event).queue();
                 URL url = new URL(sUrl);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
                 MessageBuilder builder = new MessageBuilder();
@@ -35,15 +35,15 @@ public class CommandPastebin implements ICommand {
                 }
                 reader.close();
 
-                builder.append("\n").append(FormatUtil.formatText(FormatUtil.FormatType.BOLD_ITALIC, sUrl + " \n"));
+                builder.append("\n").append(UtilFormat.formatText(UtilFormat.FormatType.BOLD_ITALIC, sUrl + " \n"));
 
-                MessageUtil.sendMessage(event, builder.build()).queue();
+                UtilMessage.sendMessage(event, builder.build()).queue();
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            MessageUtil.sendMessage(event, "Missing args! Please supply Pastebin code!").queue();
+            UtilMessage.sendMessage(event, "Missing args! Please supply Pastebin code!").queue();
         }
     }
 

@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.commands.music;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.reference.Reference;
-import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -29,7 +29,7 @@ public class CommandVoteSkip implements ICommand {
         if (!usersVoted.contains(event.getAuthor().getId())) {
             voteSkipAmt++;
             usersVoted.add(event.getAuthor().getId());
-            event.getTextChannel().sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"[" + voteSkipAmt + "/" + voteSkipAmtNeeded + "]") + " Voted to skip currently playing track.").queue();
+            event.getTextChannel().sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD,"[" + voteSkipAmt + "/" + voteSkipAmtNeeded + "]") + " Voted to skip currently playing track.").queue();
             if (voteSkipAmt == voteSkipAmtNeeded) {
                 event.getTextChannel().sendMessage("Max votes received, skipped currently playing track.").queue();
                 AudioHandler.skipTrack(event.getTextChannel());

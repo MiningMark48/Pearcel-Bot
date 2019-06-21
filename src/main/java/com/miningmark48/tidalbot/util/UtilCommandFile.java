@@ -9,10 +9,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 
-public class CommandUtil {
+public class UtilCommandFile {
 
     public static void createCommandFile() {
-        LoggerUtil.log(LoggerUtil.LogType.STATUS, "Creating command file...");
+        UtilLogger.log(UtilLogger.LogType.STATUS, "Creating command file...");
 
         try {
             String configFile = "commands.json";
@@ -48,19 +48,19 @@ public class CommandUtil {
 
                 writer.close();
 
-                LoggerUtil.log(LoggerUtil.LogType.STATUS, "Commands file was created.");
+                UtilLogger.log(UtilLogger.LogType.STATUS, "Commands file was created.");
             } else {
 
                 try {
 
                     file.delete();
 
-                    LoggerUtil.log(LoggerUtil.LogType.STATUS, "Found existing command file, overwriting...");
+                    UtilLogger.log(UtilLogger.LogType.STATUS, "Found existing command file, overwriting...");
 
                     createCommandFile();
 
                 } catch (NullPointerException e) {
-                    LoggerUtil.log(LoggerUtil.LogType.FATAL, "An issue has occurred.");
+                    UtilLogger.log(UtilLogger.LogType.FATAL, "An issue has occurred.");
                     e.printStackTrace();
                 }
 

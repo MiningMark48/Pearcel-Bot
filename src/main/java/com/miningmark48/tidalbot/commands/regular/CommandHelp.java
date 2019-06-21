@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.commands.regular;
 import com.miningmark48.tidalbot.Main;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -26,7 +26,7 @@ public class CommandHelp implements ICommand {
                     EmbedBuilder builder = new EmbedBuilder();
                     builder.setColor(Color.decode("#a2f000"));
                     builder.setAuthor(commandInfo.getName());
-                    builder.setDescription((commandInfo.getDesc() + "\n\n" + FormatUtil.formatText(FormatUtil.FormatType.BOLD, "USAGE: ")+ commandInfo.getUsage()));
+                    builder.setDescription((commandInfo.getDesc() + "\n\n" + UtilFormat.formatText(UtilFormat.FormatType.BOLD, "USAGE: ")+ commandInfo.getUsage()));
                     event.getTextChannel().sendMessage(builder.build()).queue();
                 }
             }

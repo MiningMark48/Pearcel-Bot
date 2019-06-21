@@ -2,8 +2,8 @@ package com.miningmark48.tidalbot.commands.regular;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -22,7 +22,7 @@ public class CommandWhoIs implements ICommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
-        MessageUtil.sendTyping(event);
+        UtilMessage.sendTyping(event);
 
         if (args.length <= 0) {
             event.getTextChannel().sendMessage("Missing args! \n\n**Usage:** `" + getUsage() + "`").queue();
@@ -32,7 +32,7 @@ public class CommandWhoIs implements ICommand {
         String username = String.join(" ", args);
 
         Guild guild = event.getGuild();
-        Member member = guild.getMembersByName(username, true).stream().findFirst().orElse(guild.getMemberById(FormatUtil.removeNonNumeric(username)));
+        Member member = guild.getMembersByName(username, true).stream().findFirst().orElse(guild.getMemberById(UtilFormat.removeNonNumeric(username)));
 
         if (member == null) {
             event.getTextChannel().sendMessage("**Error:** User not found.").queue();
@@ -43,13 +43,13 @@ public class CommandWhoIs implements ICommand {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.decode("#7289da"));
-        embedBuilder.setAuthor(FormatUtil.getDefaultString(user.getName()), null, user.getAvatarUrl());
+        embedBuilder.setAuthor(UtilFormat.getDefaultString(user.getName()), null, user.getAvatarUrl());
         embedBuilder.setThumbnail(user.getAvatarUrl());
 
-        embedBuilder.addField("Name", FormatUtil.getDefaultString(user.getName()), true);
-        embedBuilder.addField("Nickname", FormatUtil.getDefaultString(member.getNickname()), true);
-        embedBuilder.addField("ID", FormatUtil.getDefaultString(user.getId()), true);
-        embedBuilder.addField("Created On", FormatUtil.getDefaultString(user.getTimeCreated().toString().substring(0, 10)), true);
+        embedBuilder.addField("Name", UtilFormat.getDefaultString(user.getName()), true);
+        embedBuilder.addField("Nickname", UtilFormat.getDefaultString(member.getNickname()), true);
+        embedBuilder.addField("ID", UtilFormat.getDefaultString(user.getId()), true);
+        embedBuilder.addField("Created On", UtilFormat.getDefaultString(user.getTimeCreated().toString().substring(0, 10)), true);
         embedBuilder.addField("Is Bot?", user.isBot() ? "Yes" : "No", true);
 
         event.getTextChannel().sendMessage(embedBuilder.build()).queue();

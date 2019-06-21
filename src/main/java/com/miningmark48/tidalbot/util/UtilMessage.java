@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.RestAction;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
-public class MessageUtil {
+public class UtilMessage {
 
     public static MessageAction sendMessage(MessageReceivedEvent event, String message, boolean isPrivate) {
         return (isPrivate ? event.getPrivateChannel().sendMessage(message) : event.getTextChannel().sendMessage(message));

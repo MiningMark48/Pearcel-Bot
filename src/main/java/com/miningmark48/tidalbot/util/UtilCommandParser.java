@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
 
-public class CmdParserUtil {
+public class UtilCommandParser {
 
     public CommandContainer parse(String rw, MessageReceivedEvent event){
         ArrayList<String> split = new ArrayList<String>();

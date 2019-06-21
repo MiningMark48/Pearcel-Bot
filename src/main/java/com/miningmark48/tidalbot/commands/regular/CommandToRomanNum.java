@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.commands.regular;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.TreeMap;
@@ -49,7 +49,7 @@ public class CommandToRomanNum implements ICommand {
                     }
                 }catch (StackOverflowError e){
                     event.getTextChannel().sendMessage("Error!").queue();
-                    LoggerUtil.log(LoggerUtil.LogType.FATAL, e.toString());
+                    UtilLogger.log(UtilLogger.LogType.FATAL, e.toString());
                 }
 
             }else{

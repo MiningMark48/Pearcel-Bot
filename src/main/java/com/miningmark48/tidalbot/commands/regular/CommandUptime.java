@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.commands.regular;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import com.miningmark48.tidalbot.util.features.Clock;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -58,7 +58,7 @@ public class CommandUptime implements ICommand, ICommandPrivate {
             builder.append("**" + seconds + "**" + (seconds == 1 ? " second." : " seconds."));
         }
 
-        MessageUtil.sendMessage(event, builder.build(), isPrivate).queue();
+        UtilMessage.sendMessage(event, builder.build(), isPrivate).queue();
     }
 
     @Override

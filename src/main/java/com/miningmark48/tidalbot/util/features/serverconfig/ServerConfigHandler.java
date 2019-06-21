@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.util.features.serverconfig;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonWriter;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.io.*;
@@ -31,7 +31,7 @@ public class ServerConfigHandler {
 
                 writer.close();
 
-                LoggerUtil.log(LoggerUtil.LogType.INFO, "Server config file created.");
+                UtilLogger.log(UtilLogger.LogType.INFO, "Server config file created.");
 
             }
         } catch (Exception e) {

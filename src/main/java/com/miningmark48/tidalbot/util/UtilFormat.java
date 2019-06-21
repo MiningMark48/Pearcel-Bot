@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.util;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class FormatUtil {
+public class UtilFormat {
 
     private static String defaultStr = "--";
 

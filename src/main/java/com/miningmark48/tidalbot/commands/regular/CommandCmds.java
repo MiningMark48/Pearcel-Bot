@@ -1,19 +1,15 @@
 package com.miningmark48.tidalbot.commands.regular;
 
 import com.google.common.collect.Lists;
-import com.google.gson.JsonArray;
 import com.miningmark48.tidalbot.Main;
-import com.miningmark48.tidalbot.base.CommandType;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.reference.Reference;
-import com.miningmark48.tidalbot.util.FormatUtil;
-import net.dv8tion.jda.api.EmbedBuilder;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.RestAction;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -114,7 +110,7 @@ public class CommandCmds implements ICommand, ICommandPrivate {
         int chunkSize = 50;
         int msgDelay = 1000;
         privateChannel.queue(chan -> {
-            chan.sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD,"Commands:")).queue();
+            chan.sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD,"Commands:")).queue();
             List<List<ICommand>> partitionNormal = Lists.partition(commandsRegular, chunkSize);
             List<List<ICommand>> partitionManager = Lists.partition(commandsManager, chunkSize);
             List<List<ICommand>> partitionAdmin = Lists.partition(commandsAdmin, chunkSize);

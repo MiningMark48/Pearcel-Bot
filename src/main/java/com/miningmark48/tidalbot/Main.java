@@ -7,10 +7,10 @@ import com.miningmark48.tidalbot.commands.custom.GetCommand;
 import com.miningmark48.tidalbot.messages.InitializeMessages;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.richpresence.PresenceClock;
-import com.miningmark48.tidalbot.util.CmdParserUtil;
-import com.miningmark48.tidalbot.util.CommandUtil;
-import com.miningmark48.tidalbot.util.ConfigUtil;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilCommandParser;
+import com.miningmark48.tidalbot.util.UtilCommandFile;
+import com.miningmark48.tidalbot.util.UtilConfig;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import com.miningmark48.tidalbot.util.features.Clock;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
@@ -31,7 +31,7 @@ import java.util.Objects;
 public class Main {
 
     public static JDA jda;
-    static final CmdParserUtil parser = new CmdParserUtil();
+    static final UtilCommandParser parser = new UtilCommandParser();
 
     public static HashMap<String, ICommand> commands = new HashMap<>();
 
@@ -40,7 +40,7 @@ public class Main {
     }
 
     public static void setupAndConnectBot() {
-        if (!ConfigUtil.getConfigs()) {
+        if (!UtilConfig.getConfigs()) {
             return;
         }
 
@@ -53,7 +53,7 @@ public class Main {
 
             ServerConfigHandler.setupConfig();
 
-            LoggerUtil.log(LoggerUtil.LogType.STATUS, "Bot started!");
+            UtilLogger.log(UtilLogger.LogType.STATUS, "Bot started!");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,11 +66,11 @@ public class Main {
 
         InitializeCommands.init();
 
-        CommandUtil.createCommandFile();
+        UtilCommandFile.createCommandFile();
 
     }
 
-    static void handleCommand(CmdParserUtil.CommandContainer cmd) {
+    static void handleCommand(UtilCommandParser.CommandContainer cmd) {
         if (commands.containsKey(cmd.invoke)) {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
 

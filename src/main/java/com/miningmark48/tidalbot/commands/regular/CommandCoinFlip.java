@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.commands.regular;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.Random;
@@ -16,7 +16,7 @@ public class CommandCoinFlip implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        LoggerUtil.log(LoggerUtil.LogType.INFO, "FLIP");
+        UtilLogger.log(UtilLogger.LogType.INFO, "FLIP");
         Random rand = new Random();
         int num;
 

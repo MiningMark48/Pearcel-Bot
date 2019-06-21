@@ -1,15 +1,12 @@
 package com.miningmark48.tidalbot.util.features.music;
 
 import com.miningmark48.tidalbot.commands.music.soundboard.AudioHandlerSoundboard;
-import com.miningmark48.tidalbot.util.DefaultEmbeds;
-import com.miningmark48.tidalbot.util.FormatUtil;
-import com.miningmark48.tidalbot.util.FormatUtil.FormatType;
-import com.miningmark48.tidalbot.util.LoggerUtil;
+import com.miningmark48.tidalbot.util.UtilDefaultEmbeds;
+import com.miningmark48.tidalbot.util.UtilLogger;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
-import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import net.dv8tion.jda.api.entities.Guild;
@@ -71,17 +68,17 @@ public class TrackScheduler extends AudioEventAdapter {
             }
             try {
                 if (!ServerConfigHandler.areNPMessagesDisabled(getGuildPlaying().getId())){
-//                    AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", FormatUtil.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
-                    DefaultEmbeds.sendMessage(AudioHandler.musicChannelRef.get(getGuildPlaying()), "Now Playing", track.getInfo().title + "", DefaultEmbeds.EmbedType.MUSIC);
+//                    AudioHandler.musicChannelRef.get(getGuildPlaying()).sendMessage(String.format("%s %s", UtilFormat.formatText(FormatType.BOLD,"Now Playing: "), track.getInfo().title)).queue();
+                    UtilDefaultEmbeds.sendMessage(AudioHandler.musicChannelRef.get(getGuildPlaying()), "Now Playing", track.getInfo().title + "", UtilDefaultEmbeds.EmbedType.MUSIC);
                 }
             } catch (NullPointerException e) {
-                LoggerUtil.log(LoggerUtil.LogType.INFO, "No track available.");
+                UtilLogger.log(UtilLogger.LogType.INFO, "No track available.");
                 return false;
             }
             player.startTrack(track, false);
             return true;
         } catch (NullPointerException e){
-            LoggerUtil.log(LoggerUtil.LogType.INFO, "No track found next in queue!");
+            UtilLogger.log(UtilLogger.LogType.INFO, "No track found next in queue!");
             return false;
         }
     }

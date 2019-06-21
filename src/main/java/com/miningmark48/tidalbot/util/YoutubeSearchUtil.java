@@ -2,11 +2,10 @@ package com.miningmark48.tidalbot.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.miningmark48.tidalbot.util.FormatUtil.FormatType;
+import com.miningmark48.tidalbot.util.UtilFormat.FormatType;
 import com.miningmark48.tidalbot.util.JSON.JSONParse;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -14,7 +13,7 @@ import java.util.Random;
 public class YoutubeSearchUtil {
 
     public static Object searchYoutube(String query, MessageReceivedEvent event, SearchType type) {
-        String newQuery = FormatUtil.removeNonAlphanumeric(query).replace(" ", "%20");
+        String newQuery = UtilFormat.removeNonAlphanumeric(query).replace(" ", "%20");
         String[] queryArray = {"", newQuery};
         return searchYoutube(queryArray, event, type);
     }
@@ -52,13 +51,13 @@ public class YoutubeSearchUtil {
                 JsonObject jsonObjectID = jsonObject.get("id").getAsJsonObject();
 //                JsonObject jsonObjectSnippet = jsonObject.get("snippet").getAsJsonObject();
 
-                channel.sendMessage("\uD83D\uDD0D" + FormatUtil.formatText(FormatType.ITALIC,"Searching...")).queue();
+                channel.sendMessage("\uD83D\uDD0D" + UtilFormat.formatText(FormatType.ITALIC,"Searching...")).queue();
 
                 return url + jsonObjectID.get("videoId").getAsString();
 
             } catch (NullPointerException | IndexOutOfBoundsException e){
-                channel.sendMessage(FormatUtil.formatText(FormatType.BOLD, "Error: ") + "Could not retrieve data!").queue();
-                LoggerUtil.log(LoggerUtil.LogType.WARN, "Query: -- " + queryString + " --");
+                channel.sendMessage(UtilFormat.formatText(FormatType.BOLD, "Error: ") + "Could not retrieve data!").queue();
+                UtilLogger.log(UtilLogger.LogType.WARN, "Query: -- " + queryString + " --");
                 e.printStackTrace();
             }
         }

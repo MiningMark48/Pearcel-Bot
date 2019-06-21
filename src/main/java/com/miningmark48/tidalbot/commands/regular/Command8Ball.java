@@ -3,8 +3,8 @@ package com.miningmark48.tidalbot.commands.regular;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
-import com.miningmark48.tidalbot.util.FormatUtil;
-import com.miningmark48.tidalbot.util.MessageUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
+import com.miningmark48.tidalbot.util.UtilMessage;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -39,19 +39,19 @@ public class Command8Ball implements ICommand, ICommandPrivate {
         if (!isPrivate) event.getMessage().delete().queue();
         if (args.length != 0) {
             MessageBuilder builder = new MessageBuilder();
-            builder.append(FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");
+            builder.append(UtilFormat.formatText(UtilFormat.FormatType.BOLD, "The Magic 8 Ball says...") + "\n");
             try {
                 for (int i = 0; i <= Integer.valueOf(args[0]) && i <= 25; i++) {
                     int num = rand.nextInt(responses.length);
-                    builder.append(FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "\n");
+                    builder.append(UtilFormat.formatText(UtilFormat.FormatType.ITALIC, responses[num]) + "\n");
                 }
-                MessageUtil.sendMessage(event, builder.build(), isPrivate).queue();
+                UtilMessage.sendMessage(event, builder.build(), isPrivate).queue();
             } catch (NumberFormatException e) {
-                MessageUtil.sendMessage(event, "**Error:** *" + args[0] + "* is not a valid argument. Argument must be an int.", isPrivate).queue();
+                UtilMessage.sendMessage(event, "**Error:** *" + args[0] + "* is not a valid argument. Argument must be an int.", isPrivate).queue();
             }
         } else {
             int num = rand.nextInt(responses.length);
-            MessageUtil.sendMessage(event, FormatUtil.formatText(FormatUtil.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + FormatUtil.formatText(FormatUtil.FormatType.ITALIC, responses[num]) + "", isPrivate).queue();
+            UtilMessage.sendMessage(event, UtilFormat.formatText(UtilFormat.FormatType.BOLD, "The Magic 8 Ball says...") + " \n " + UtilFormat.formatText(UtilFormat.FormatType.ITALIC, responses[num]) + "", isPrivate).queue();
         }
     }
 

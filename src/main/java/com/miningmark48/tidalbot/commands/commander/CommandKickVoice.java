@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.commands.commander;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -40,9 +40,9 @@ public class CommandKickVoice implements ICommand {
                     reason = "N/A";
                 }
 
-                event.getTextChannel().sendMessage(FormatUtil.formatText(FormatUtil.FormatType.BOLD, event.getAuthor().getName()) + " kicked " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, user.getName()) + " from voice for reason, `" + reason + "`.").queue();
+                event.getTextChannel().sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD, event.getAuthor().getName()) + " kicked " + UtilFormat.formatText(UtilFormat.FormatType.BOLD, user.getName()) + " from voice for reason, `" + reason + "`.").queue();
                 String finalReason = reason;
-                privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + FormatUtil.formatText(FormatUtil.FormatType.BOLD, event.getAuthor().getName()) + " for reason, `" + finalReason + "`.").queue());
+                privateChannel.queue(chan -> chan.sendMessage("You have been kicked from the voice channel by " + UtilFormat.formatText(UtilFormat.FormatType.BOLD, event.getAuthor().getName()) + " for reason, `" + finalReason + "`.").queue());
             } else {
                 event.getTextChannel().sendMessage("Error, user not found!").queue();
             }

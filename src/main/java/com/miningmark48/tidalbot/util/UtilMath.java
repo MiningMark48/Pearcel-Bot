@@ -1,6 +1,6 @@
 package com.miningmark48.tidalbot.util;
 
-public class MathUtil {
+public class UtilMath {
 
     public static String getTimeFromLong(Long ms){
         long secs = (ms / 1000) % 60 ;

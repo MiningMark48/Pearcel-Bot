@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.commands.regular;
 import com.google.gson.JsonArray;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -19,7 +19,7 @@ public class CommandDisabledCommands implements ICommand {
         JsonArray commands = ServerConfigHandler.getBlacklistedCommands(event);
 
         StringBuilder builder = new StringBuilder();
-        builder.append(FormatUtil.formatText(FormatUtil.FormatType.BOLD, "Currently Disabled Commands: ")).append(" \n");
+        builder.append(UtilFormat.formatText(UtilFormat.FormatType.BOLD, "Currently Disabled Commands: ")).append(" \n");
 
         StringBuilder commandsBuilder = new StringBuilder();
 

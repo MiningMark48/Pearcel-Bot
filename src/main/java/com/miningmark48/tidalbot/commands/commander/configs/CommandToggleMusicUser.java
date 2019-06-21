@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.commands.commander.configs;
 
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
-import com.miningmark48.tidalbot.util.FormatUtil;
+import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -21,7 +21,7 @@ public class CommandToggleMusicUser implements ICommand {
             return;
         }
 
-        String userID = FormatUtil.removeNonNumeric(args[0]);
+        String userID = UtilFormat.removeNonNumeric(args[0]);
 
         if (event.getGuild().getMembers().stream().anyMatch(q -> q.getUser().getId().equalsIgnoreCase(userID))) {
             Member member = event.getGuild().getMembers().stream().filter(q -> q.getUser().getId().equalsIgnoreCase(userID)).findFirst().get();
