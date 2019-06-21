@@ -2,10 +2,10 @@ package com.miningmark48.tidalbot.messages;
 
 import com.google.gson.JsonObject;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceJoinEvent;
 
 import java.util.List;
 import java.util.Random;

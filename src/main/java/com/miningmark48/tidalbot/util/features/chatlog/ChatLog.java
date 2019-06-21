@@ -1,7 +1,7 @@
 package com.miningmark48.tidalbot.util.features.chatlog;
 
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,7 +18,7 @@ public class ChatLog {
 
     public static void ChatLog(MessageReceivedEvent event){
 
-        ZonedDateTime dt = event.getMessage().getCreationTime().atZoneSameInstant(ZoneId.of("America/New_York")); //Uses New York Time Zone (EST)
+        ZonedDateTime dt = event.getMessage().getTimeCreated().atZoneSameInstant(ZoneId.of("America/New_York")); //Uses New York Time Zone (EST)
         String time = dt.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
         String guild = event.getGuild().getName();
         String channel = event.getTextChannel().getName();

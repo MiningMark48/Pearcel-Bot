@@ -11,13 +11,13 @@ import com.miningmark48.tidalbot.util.LoggerUtil;
 import com.miningmark48.tidalbot.util.MessageUtil;
 import com.miningmark48.tidalbot.util.NumWordUtil;
 import com.vdurmont.emoji.EmojiParser;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Emote;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageReaction;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.requests.restaction.pagination.ReactionPaginationAction;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Emote;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageReaction;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.requests.restaction.pagination.ReactionPaginationAction;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.helper.StringUtil;
@@ -125,7 +125,7 @@ public class CommandTrivia implements ICommand, ICommandInfo {
                     msg2.addReaction("\uD83C\uDDE8").queue();
                     msg2.addReaction("\uD83C\uDDE9").queue();
                     msg2.editMessage("The correct answer was `" + getChoice(answers, obj.get("correct_answer").getAsString()) + ") " + StringEscapeUtils.unescapeHtml4(obj.get("correct_answer").getAsString()) + "`. ").queueAfter(timeToAnswer, TimeUnit.SECONDS, query -> {
-                        List<User> users = query.getReactions().get(answers.indexOf(obj.get("correct_answer").getAsString())).getUsers().complete().stream().filter(u -> !u.isBot()).collect(Collectors.toList());
+                        List<User> users = query.getReactions().get(answers.indexOf(obj.get("correct_answer").getAsString())).retrieveUsers().complete().stream().filter(u -> !u.isBot()).collect(Collectors.toList());
 //                        ArrayList<User> others = new ArrayList<>();
 //                        for (int i = 0; i <= 3 && i != answers.indexOf(obj.get("correct_answer").getAsString()); i++) {
 //                            query.getReactions().get(i).getUsers().forEach(q -> {

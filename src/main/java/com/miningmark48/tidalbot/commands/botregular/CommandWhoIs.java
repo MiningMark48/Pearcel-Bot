@@ -5,11 +5,11 @@ import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.util.FormatUtil;
 import com.miningmark48.tidalbot.util.MessageUtil;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
@@ -50,7 +50,7 @@ public class CommandWhoIs implements ICommand, ICommandInfo {
         embedBuilder.addField("Name", FormatUtil.getDefaultString(user.getName()), true);
         embedBuilder.addField("Nickname", FormatUtil.getDefaultString(member.getNickname()), true);
         embedBuilder.addField("ID", FormatUtil.getDefaultString(user.getId()), true);
-        embedBuilder.addField("Created On", FormatUtil.getDefaultString(user.getCreationTime().toString().substring(0, 10)), true);
+        embedBuilder.addField("Created On", FormatUtil.getDefaultString(user.getTimeCreated().toString().substring(0, 10)), true);
         embedBuilder.addField("Is Bot?", user.isBot() ? "Yes" : "No", true);
 
         event.getTextChannel().sendMessage(embedBuilder.build()).queue();

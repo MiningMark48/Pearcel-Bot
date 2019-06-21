@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.util.features.chatlog;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class JSONChatLog {
 

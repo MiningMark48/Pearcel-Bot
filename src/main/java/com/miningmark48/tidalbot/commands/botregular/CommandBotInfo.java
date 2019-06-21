@@ -5,9 +5,9 @@ import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.sun.xml.internal.ws.util.StringUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDAInfo;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDAInfo;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 import java.sql.Ref;
@@ -32,9 +32,9 @@ public class CommandBotInfo implements ICommand, ICommandInfo {
         embedBuilder.addField("Author", Reference.botAuthor, true);
 //        embedBuilder.addField("Version", "N/A", true);
         embedBuilder.addField("Library", "JDA - " + JDAInfo.VERSION, true);
-        embedBuilder.addField("Current Game", event.getJDA().getPresence().getGame().getName(), true);
+        embedBuilder.addField("Current Game", event.getJDA().getPresence().getActivity().getName(), true);
 //        embedBuilder.addField("Status", StringUtils.capitalize(event.getJDA().getPresence().getStatus().name().toLowerCase()), true);
-        embedBuilder.addField("Created On", event.getJDA().getSelfUser().getCreationTime().toString().substring(0, 10), true);
+        embedBuilder.addField("Created On", event.getJDA().getSelfUser().getTimeCreated().toString().substring(0, 10), true);
         embedBuilder.addField("Command Key", Reference.botCommandKey, true);
         embedBuilder.addField("Custom Command Key", Reference.botCommandCustomKey, true);
 //        embedBuilder.addField("Commander Role", Reference.botCommanderRole, true);

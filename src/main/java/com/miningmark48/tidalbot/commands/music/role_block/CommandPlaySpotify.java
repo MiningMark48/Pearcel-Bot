@@ -8,8 +8,8 @@ import com.miningmark48.tidalbot.util.LoggerUtil;
 import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class CommandPlaySpotify implements ICommand, ICommandInfo {
 
@@ -27,12 +27,12 @@ public class CommandPlaySpotify implements ICommand, ICommandInfo {
                 try {
                     Member member = event.getGuild().getMembersByName(args[0], true).stream().findFirst().get();
 
-                    if (!member.getGame().asRichPresence().getApplicationId().equalsIgnoreCase("0")) {
+                    if (!member.getActivities().get(0).asRichPresence().getApplicationId().equalsIgnoreCase("0")) {
                         event.getTextChannel().sendMessage("Error! That user may not be listening to Spotify!").queue();
                         return;
                     }
 
-                    String trackQuery = member.getGame().asRichPresence().getDetails() + " by " + member.getGame().asRichPresence().getState();
+                    String trackQuery = member.getActivities().get(0).asRichPresence().getDetails() + " by " + member.getActivities().get(0).asRichPresence().getState();
                     String urlToPlay = (String) YoutubeSearchUtil.searchYoutube(trackQuery, event, YoutubeSearchUtil.SearchType.NORMAL);
                     if (urlToPlay != null) AudioHandler.loadAndPlay(event.getTextChannel(), event.getAuthor(), urlToPlay, false);
 

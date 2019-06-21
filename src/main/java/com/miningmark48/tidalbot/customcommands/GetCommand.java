@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import com.miningmark48.tidalbot.commands.botcommander.CommandAddCommand;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -42,8 +42,8 @@ public class GetCommand {
         commandResponse = commandResponse.replace("{channel}", event.getTextChannel().getName());
         commandResponse = commandResponse.replace("{client_id}", Reference.botClientID);
         commandResponse = commandResponse.replace("{command_key}", Reference.botCommandCustomKey);
-        commandResponse = commandResponse.replace("{current_game}", event.getJDA().getPresence().getGame().getName());
-        commandResponse = commandResponse.replace("{game}", event.getJDA().getPresence().getGame().getName());
+        commandResponse = commandResponse.replace("{current_game}", event.getJDA().getPresence().getActivity().getName());
+        commandResponse = commandResponse.replace("{game}", event.getJDA().getPresence().getActivity().getName());
         commandResponse = commandResponse.replace("{guild}", event.getGuild().getName());
         commandResponse = commandResponse.replace("{key}", Reference.botCommandCustomKey);
         commandResponse = commandResponse.replace("{owner}", event.getGuild().getOwner().getUser().getName());

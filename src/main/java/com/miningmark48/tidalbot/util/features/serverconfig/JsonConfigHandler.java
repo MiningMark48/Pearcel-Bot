@@ -2,7 +2,7 @@ package com.miningmark48.tidalbot.util.features.serverconfig;
 
 import com.google.gson.*;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.io.*;
 

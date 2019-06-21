@@ -16,12 +16,12 @@ import com.miningmark48.tidalbot.util.features.Clock;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.HashMap;
 
@@ -42,9 +42,9 @@ public class Main {
         }
 
         try {
-            jda = new JDABuilder(AccountType.BOT).addEventListener(new BotListener()).setToken(Reference.botToken).buildBlocking();
+            jda = new JDABuilder(AccountType.BOT).addEventListeners(new BotListener()).setToken(Reference.botToken).build().awaitReady();
             jda.setAutoReconnect(true);
-            jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, String.format("Do %scmds", Reference.botCommandKey)));
+            jda.getPresence().setActivity(Activity.of(Activity.ActivityType.DEFAULT, String.format("Do %scmds", Reference.botCommandKey)));
             PresenceClock.runClockGame(jda);
             Clock.runClockUptime();
 

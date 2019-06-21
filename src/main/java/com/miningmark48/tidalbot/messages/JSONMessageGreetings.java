@@ -3,7 +3,7 @@ package com.miningmark48.tidalbot.messages;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
-import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.api.entities.Message;
 
 import java.util.Random;
 

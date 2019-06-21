@@ -7,7 +7,7 @@ import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.YoutubeSearchUtil;
 import com.miningmark48.tidalbot.util.features.music.handler.AudioHandler;
 import com.miningmark48.tidalbot.util.features.serverconfig.ServerConfigHandler;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class CommandPlaySearchRemix implements ICommand, ICommandInfo {
 

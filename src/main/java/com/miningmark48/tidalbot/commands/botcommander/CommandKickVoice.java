@@ -4,9 +4,9 @@ import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.util.FormatUtil;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.requests.RestAction;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.requests.RestAction;
 
 public class CommandKickVoice implements ICommand, ICommandInfo {
 
@@ -62,7 +62,7 @@ public class CommandKickVoice implements ICommand, ICommandInfo {
 
     private static boolean createVoice(Guild guild) {
         try {
-            guild.getController().createVoiceChannel("temp-kick").complete();
+            guild.createVoiceChannel("temp-kick").complete();
             return true;
         } catch (Exception e) {
             return false;
@@ -81,7 +81,7 @@ public class CommandKickVoice implements ICommand, ICommandInfo {
     private static boolean moveToVoice(Guild guild, User user) {
         try {
             VoiceChannel channel = guild.getVoiceChannelsByName("temp-kick", true).stream().findFirst().get();
-            guild.getController().moveVoiceMember(guild.getMember(user), channel).complete();
+            guild.moveVoiceMember(guild.getMember(user), channel).complete();
             return true;
         } catch (Exception e) {
             return false;

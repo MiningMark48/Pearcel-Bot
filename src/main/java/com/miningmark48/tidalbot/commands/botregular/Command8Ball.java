@@ -6,8 +6,8 @@ import com.miningmark48.tidalbot.commands.base.ICommandInfo;
 import com.miningmark48.tidalbot.commands.base.ICommandPrivate;
 import com.miningmark48.tidalbot.util.FormatUtil;
 import com.miningmark48.tidalbot.util.MessageUtil;
-import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.MessageBuilder;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 

@@ -3,8 +3,8 @@ package com.miningmark48.tidalbot.commands.botregular;
 import com.miningmark48.tidalbot.commands.base.CommandType;
 import com.miningmark48.tidalbot.commands.base.ICommand;
 import com.miningmark48.tidalbot.commands.base.ICommandInfo;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
@@ -25,7 +25,7 @@ public class CommandGuildInfo implements ICommand, ICommandInfo {
         embedBuilder.addField("Name", event.getGuild().getName(), true);
         embedBuilder.addField("ID", event.getGuild().getId(), true);
         embedBuilder.addField("Owner", event.getGuild().getOwner().getEffectiveName(), true);
-        embedBuilder.addField("Created On", event.getGuild().getCreationTime().toString().substring(0, 10), true);
+        embedBuilder.addField("Created On", event.getGuild().getTimeCreated().toString().substring(0, 10), true);
         embedBuilder.addField("Users Joined", Integer.valueOf(event.getGuild().getMembers().size()).toString(), true);
         embedBuilder.addField("Emote Amount", Integer.valueOf(event.getGuild().getEmotes().size()).toString(), true);
         embedBuilder.addField("Verified?", event.getGuild().checkVerification() ? "Yes" : "No", true);

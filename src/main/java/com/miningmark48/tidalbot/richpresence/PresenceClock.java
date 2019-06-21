@@ -1,7 +1,7 @@
 package com.miningmark48.tidalbot.richpresence;
 
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.Activity;
 
 import java.util.Random;
 
@@ -31,15 +31,15 @@ public class PresenceClock {
                     default:
                     case 0:
                         randPresence = rand.nextInt(PresenceReference.playingPresence.length - 1);
-                        jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, PresenceReference.playingPresence[randPresence]));
+                        jda.getPresence().setActivity(Activity.of(Activity.ActivityType.DEFAULT, PresenceReference.playingPresence[randPresence]));
                         break;
                     case 1:
                         randPresence = rand.nextInt(PresenceReference.listeningPresence.length - 1);
-                        jda.getPresence().setGame(Game.of(Game.GameType.LISTENING, PresenceReference.listeningPresence[randPresence]));
+                        jda.getPresence().setActivity(Activity.of(Activity.ActivityType.LISTENING, PresenceReference.listeningPresence[randPresence]));
                         break;
                     case 2:
                         randPresence = rand.nextInt(PresenceReference.watchingPresence.length - 1);
-                        jda.getPresence().setGame(Game.of(Game.GameType.WATCHING, PresenceReference.watchingPresence[randPresence]));
+                        jda.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, PresenceReference.watchingPresence[randPresence]));
                         break;
                 }
 
