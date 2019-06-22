@@ -6,6 +6,9 @@ import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,17 +41,22 @@ public class GetCommand {
     }
 
     private static String aliasReplace(String commandResponse, MessageReceivedEvent event){
-        commandResponse = commandResponse.replace("{bot}", event.getJDA().getSelfUser().getName());
-        commandResponse = commandResponse.replace("{channel}", event.getTextChannel().getName());
-        commandResponse = commandResponse.replace("{client_id}", Reference.botClientID);
-        commandResponse = commandResponse.replace("{command_key}", Reference.botCommandCustomKey);
-        commandResponse = commandResponse.replace("{current_game}", event.getJDA().getPresence().getActivity().getName());
-        commandResponse = commandResponse.replace("{game}", event.getJDA().getPresence().getActivity().getName());
-        commandResponse = commandResponse.replace("{guild}", event.getGuild().getName());
-        commandResponse = commandResponse.replace("{key}", Reference.botCommandCustomKey);
-        commandResponse = commandResponse.replace("{botowner}", event.getGuild().getOwner().getUser().getName());
-        commandResponse = commandResponse.replace("{server}", event.getGuild().getName());
-        commandResponse = commandResponse.replace("{status}", event.getJDA().getPresence().getStatus().getKey());
+        HashMap<String, String> aliases = new HashMap<>();
+
+        aliases.put("bot", event.getJDA().getSelfUser().getName());
+        aliases.put("channel", event.getTextChannel().getName());
+        aliases.put("channel_topic", event.getTextChannel().getTopic());
+        aliases.put("client_id", Reference.botClientID);
+        aliases.put("command_key", Reference.botCommandKey);
+        aliases.put("custom_command_key", Reference.botCommandCustomKey);
+        aliases.put("activity", Objects.requireNonNull(event.getJDA().getPresence().getActivity()).getName());
+        aliases.put("guild", event.getGuild().getName());
+        aliases.put("guild_owner", Objects.requireNonNull(event.getGuild().getOwner()).getUser().getName());
+        aliases.put("status", event.getJDA().getPresence().getStatus().getKey());
+
+        for (Map.Entry<String, String> entry : aliases.entrySet()) {
+            commandResponse = commandResponse.replace(String.format("{%s}", entry.getKey()), entry.getValue());
+        }
 
         commandResponse = aliasRand(commandResponse);
 
@@ -56,6 +64,7 @@ public class GetCommand {
 
     }
 
+    @SuppressWarnings("Duplicates")
     private static String aliasRand(String message){
         Random rand = new Random();
         Pattern regex = Pattern.compile("\\{(rand:)(.*[0-9])}");
