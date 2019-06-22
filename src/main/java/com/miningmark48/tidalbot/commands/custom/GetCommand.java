@@ -1,7 +1,6 @@
 package com.miningmark48.tidalbot.commands.custom;
 
 import com.google.gson.JsonObject;
-import com.miningmark48.tidalbot.commands.commander.CommandAddCommand;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;

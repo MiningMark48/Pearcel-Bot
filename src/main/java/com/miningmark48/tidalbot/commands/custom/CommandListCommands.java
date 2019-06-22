@@ -1,4 +1,4 @@
-package com.miningmark48.tidalbot.commands.regular;
+package com.miningmark48.tidalbot.commands.custom;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

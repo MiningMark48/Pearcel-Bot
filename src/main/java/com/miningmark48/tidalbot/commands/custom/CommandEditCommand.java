@@ -1,9 +1,7 @@
-package com.miningmark48.tidalbot.commands.commander;
+package com.miningmark48.tidalbot.commands.custom;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonWriter;
+import com.miningmark48.tidalbot.base.CommandType;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.util.JSON.JSONParseFile;
@@ -11,7 +9,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.io.*;
 
-public class CommandAddCommand implements ICommand {
+public class CommandEditCommand implements ICommand {
 
     public static String fileName = "custom_commands.json";
 
@@ -34,37 +32,22 @@ public class CommandAddCommand implements ICommand {
                 commandMessage = commandMessage.substring(0, 1).toUpperCase() + commandMessage.substring(1);
             }
         }
+
         try{
             File file = new File(fileName);
             if(!file.exists()) {
-                Writer writer = new OutputStreamWriter(new FileOutputStream(fileName) , "UTF-8");
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                JsonWriter jw = gson.newJsonWriter(writer);
-                jw.beginObject();
-                jw.name(event.getGuild().getId());
-                jw.beginObject();
-                jw.name("_comment_serverName_").value(event.getGuild().getName());
-                jw.name(command).value(commandMessage);
-                jw.endObject();
-                jw.endObject();
-                writer.close();
-                event.getTextChannel().sendMessage("Successfully added the command **" + command + "** : " + commandMessage).queue();
+                event.getTextChannel().sendMessage("ERROR").queue();
             }else{
                 JsonObject jsonObj = JSONParseFile.JSONParse(fileName);
                 Writer writer = new OutputStreamWriter(new FileOutputStream(fileName) , "UTF-8");
                 bufferedWriter = new BufferedWriter(writer);
-                if(!jsonObj.has(event.getGuild().getId())) {
-                    JsonObject toAdd = new JsonObject();
-                    toAdd.addProperty("_comment_serverName_", event.getGuild().getName());
-                    jsonObj.add(event.getGuild().getId(), toAdd);
-                }
                 JsonObject newJson = jsonObj.getAsJsonObject(event.getGuild().getId());
-
-                if(newJson.get(command) == null) {
+                if(newJson.get(command) != null) {
+                    newJson.remove(command);
                     newJson.addProperty(command, commandMessage);
-                    event.getTextChannel().sendMessage("Successfully added the command **" + command + "** : " + commandMessage).queue();
+                    event.getTextChannel().sendMessage("Edited the command **" + command + "** to: " + commandMessage).queue();
                 }else{
-                    event.getTextChannel().sendMessage("**Error:** Command already exists!").queue();
+                    event.getTextChannel().sendMessage("**Error:** Command does not exist!").queue();
                 }
                 bufferedWriter.write(jsonObj.toString());
             }
@@ -87,22 +70,22 @@ public class CommandAddCommand implements ICommand {
     }
 
     @Override
-    public EnumRestrictions getPermissionRequired() {
-        return EnumRestrictions.MANAGER;
-    }
-
-    @Override
     public String getName() {
-        return "addcommand";
+        return "editcommand";
     }
 
     @Override
     public String getDesc() {
-        return "Add a custom command for your server.";
+        return "Edit a custom command that was previously added.";
     }
 
     @Override
     public String getUsage() {
-        return "addcommand <arg:string-command name> <arg:string-message>";
+        return "editcommand <arg:string-command name> <arg:string-message>";
+    }
+
+    @Override
+    public EnumRestrictions getPermissionRequired() {
+        return EnumRestrictions.MANAGER;
     }
 }
