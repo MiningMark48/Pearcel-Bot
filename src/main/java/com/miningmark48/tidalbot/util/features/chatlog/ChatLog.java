@@ -14,9 +14,9 @@ import java.time.format.FormatStyle;
 
 public class ChatLog {
 
-    public static String fileName = "chatlog//log.txt";
+    private static String fileName = "chatlog//log.txt";
 
-    public static void ChatLog(MessageReceivedEvent event){
+    public ChatLog(MessageReceivedEvent event){
 
         ZonedDateTime dt = event.getMessage().getTimeCreated().atZoneSameInstant(ZoneId.of("America/New_York")); //Uses New York Time Zone (EST)
         String time = dt.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
