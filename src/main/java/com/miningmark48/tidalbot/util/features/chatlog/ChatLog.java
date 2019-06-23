@@ -16,7 +16,7 @@ public class ChatLog {
 
     private static String fileName = "chatlog//log.txt";
 
-    public ChatLog(MessageReceivedEvent event){
+    public static void ChatLog(MessageReceivedEvent event){
 
         ZonedDateTime dt = event.getMessage().getTimeCreated().atZoneSameInstant(ZoneId.of("America/New_York")); //Uses New York Time Zone (EST)
         String time = dt.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
