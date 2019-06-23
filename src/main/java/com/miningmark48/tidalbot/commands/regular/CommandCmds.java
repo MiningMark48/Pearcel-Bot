@@ -9,12 +9,13 @@ import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.UtilData;
 import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.UtilLogger;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.RestAction;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CommandCmds implements ICommand, ICommandPrivate {
@@ -56,26 +57,20 @@ public class CommandCmds implements ICommand, ICommandPrivate {
     }
 
     private static void getCmds(MessageReceivedEvent event, boolean isPrivate) {
-        if (event.getAuthor() == null) {
-            return;
-        }
+        event.getAuthor();
 
         RestAction<PrivateChannel> privateChannel = event.getAuthor().openPrivateChannel();
         if (!isPrivate) {
-            if (event.getAuthor() == null) {
-                event.getTextChannel().sendMessage("Sending you a list of commands now. Optionally, visit <https://miningmark48.github.io/tidalwave/projects/tidalbot/>.").queue();
-            } else {
-                event.getTextChannel().sendMessage("**" + event.getAuthor().getAsMention() + "**, Sending you a list of commands now. Optionally, visit <https://miningmark48.github.io/tidalwave/projects/tidalbot/>.").queue();
-            }
+            event.getAuthor();
+            event.getTextChannel().sendMessage("**" + event.getAuthor().getAsMention() + "**, Sending you a list of commands now. Optionally, visit <https://miningmark48.github.io/tidalwave/projects/tidalbot/>.").queue();
         }
 
         ArrayList<ICommand> commands = new ArrayList<>();
 
         Main.commands.forEach((key, value) -> {
             if (value != null) {
-                ICommand cmd = value;
-                if (cmd.getName().equalsIgnoreCase(key)) {
-                    commands.add(cmd);
+                if (value.getName().equalsIgnoreCase(key)) {
+                    commands.add(value);
                 }
             }
         });
