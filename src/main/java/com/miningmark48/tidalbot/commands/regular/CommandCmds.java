@@ -9,6 +9,8 @@ import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.util.UtilData;
 import com.miningmark48.tidalbot.util.UtilFormat;
 import com.miningmark48.tidalbot.util.UtilLogger;
+import com.miningmark48.tidalbot.util.comparators.ComparatorCommandName;
+import com.miningmark48.tidalbot.util.comparators.ComparatorCommandType;
 import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.RestAction;
@@ -102,23 +104,5 @@ public class CommandCmds implements ICommand, ICommandPrivate {
         });
     }
 
-
-}
-
-class ComparatorCommandType implements Comparator<ICommand> {
-
-    @Override
-    public int compare(ICommand a, ICommand b) {
-        return a.getPermissionRequired().getName().compareToIgnoreCase(b.getPermissionRequired().getName());
-    }
-
-}
-
-class ComparatorCommandName implements Comparator<ICommand> {
-
-    @Override
-    public int compare(ICommand a, ICommand b) {
-        return a.getName().compareToIgnoreCase(b.getName());
-    }
 
 }

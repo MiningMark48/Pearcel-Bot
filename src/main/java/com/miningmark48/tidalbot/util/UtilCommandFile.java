@@ -5,9 +5,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
 import com.miningmark48.tidalbot.Main;
 import com.miningmark48.tidalbot.base.ICommand;
+import com.miningmark48.tidalbot.util.comparators.ComparatorCommandName;
+import com.miningmark48.tidalbot.util.comparators.ComparatorCommandType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class UtilCommandFile {
 
@@ -25,21 +28,24 @@ public class UtilCommandFile {
 
                 jw.beginArray();
 
-                Main.commands.forEach((key, value) -> {
+                ArrayList<ICommand> commands = new ArrayList<>();
 
-                    if (value != null) {
-                        ICommand cmd = value;
-                        if (cmd.getName().equalsIgnoreCase(key)) {
-                            try {
-                                jw.beginObject();
-                                jw.name("name").value(value.getName());
-                                jw.name("type").value(StringUtils.capitalize(value.getPermissionRequired().toString().toLowerCase()));
-                                jw.name("usage").value(value.getUsage());
-                                jw.name("action").value(StringUtils.capitalize(value.getDesc()));
-                                jw.endObject();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                Main.commands.forEach((key, value) -> commands.add(value));
+
+                commands.sort(new ComparatorCommandName());
+                commands.sort(new ComparatorCommandType());
+
+                commands.forEach(cmd -> {
+                    if (cmd != null) {
+                        try {
+                            jw.beginObject();
+                            jw.name("name").value(cmd.getName());
+                            jw.name("type").value(StringUtils.capitalize(cmd.getPermissionRequired().getName()));
+                            jw.name("usage").value(cmd.getUsage());
+                            jw.name("action").value(StringUtils.capitalize(cmd.getDesc()));
+                            jw.endObject();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
                 });
