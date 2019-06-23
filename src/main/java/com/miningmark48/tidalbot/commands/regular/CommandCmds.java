@@ -2,16 +2,19 @@ package com.miningmark48.tidalbot.commands.regular;
 
 import com.google.common.collect.Lists;
 import com.miningmark48.tidalbot.Main;
+import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.reference.Reference;
+import com.miningmark48.tidalbot.util.UtilData;
 import com.miningmark48.tidalbot.util.UtilFormat;
+import com.miningmark48.tidalbot.util.UtilLogger;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.RestAction;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class CommandCmds implements ICommand, ICommandPrivate {
@@ -33,6 +36,7 @@ public class CommandCmds implements ICommand, ICommandPrivate {
 
     @Override
     public void actionPrivate(String[] args, MessageReceivedEvent event) {
+        UtilLogger.log(UtilLogger.LogType.INFO, "CALLED");
         getCmds(event, true);
     }
 
@@ -65,113 +69,61 @@ public class CommandCmds implements ICommand, ICommandPrivate {
             }
         }
 
-        ArrayList<ICommand> commandsRegular = new ArrayList<>();
-        ArrayList<ICommand> commandsManager = new ArrayList<>();
-        ArrayList<ICommand> commandsAdmin = new ArrayList<>();
-        ArrayList<ICommand> commandsOwner = new ArrayList<>();
-        ArrayList<ICommand> commandsBotOwner = new ArrayList<>();
-        ArrayList<ICommand> commandsMusic = new ArrayList<>();
-        ArrayList<String> commandsOther = new ArrayList<>();
+        ArrayList<ICommand> commands = new ArrayList<>();
 
         Main.commands.forEach((key, value) -> {
             if (value != null) {
                 ICommand cmd = value;
                 if (cmd.getName().equalsIgnoreCase(key)) {
-                    if (cmd.isMusic()) {
-                        commandsMusic.add(cmd);
-                        return;
-                    }
-                    switch (cmd.getPermissionRequired()) {
-                        default:
-                            commandsOther.add(cmd.getName());
-                            break;
-                        case REGULAR:
-                            commandsRegular.add(cmd);
-                            break;
-                        case MANAGER:
-                            commandsManager.add(cmd);
-                            break;
-                        case ADMIN:
-                            commandsAdmin.add(cmd);
-                            break;
-                        case OWNER:
-                            commandsOwner.add(cmd);
-                            break;
-                        case BOT_OWNER:
-                            commandsBotOwner.add(cmd);
-                            break;
-                    }
+                    commands.add(cmd);
                 }
-            } else {
-                commandsOther.add(key);
             }
         });
 
-        int chunkSize = 50;
+        int chunkSize = 15;
         int msgDelay = 1000;
         privateChannel.queue(chan -> {
+            //Sort everything
+            commands.sort(new ComparatorCommandName());
+            commands.sort(new ComparatorCommandType());
+
+            List<List<ICommand>> cmdPartition = Lists.partition(commands, chunkSize);
+
             chan.sendMessage(UtilFormat.formatText(UtilFormat.FormatType.BOLD,"Commands:")).queue();
-            List<List<ICommand>> partitionNormal = Lists.partition(commandsRegular, chunkSize);
-            List<List<ICommand>> partitionManager = Lists.partition(commandsManager, chunkSize);
-            List<List<ICommand>> partitionAdmin = Lists.partition(commandsAdmin, chunkSize);
-            List<List<ICommand>> partitionOwner = Lists.partition(commandsOwner, chunkSize);
-            List<List<ICommand>> partitionMusic = Lists.partition(commandsMusic, chunkSize);
-            List<List<String>> partitionOther = Lists.partition(commandsOther, chunkSize);
+            cmdPartition.forEach(cmdChunk -> {
+                //Sort partitions
+                cmdChunk.sort(new ComparatorCommandName());
+                cmdChunk.sort(new ComparatorCommandType());
 
-            int delay = 250;
-            partitionNormal.forEach(cmdChunk -> {
                 StringBuilder builder = new StringBuilder();
-                builder.append(getStart("Normal Commands"));
-                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
-                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
-                chan.sendMessage(builder).queueAfter(msgDelay + delay, TimeUnit.MILLISECONDS);
-            });
-            partitionManager.forEach(cmdChunk -> {
-                StringBuilder builder = new StringBuilder();
-                builder.append(getStart("Manager Commands"));
-                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
-                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
-                chan.sendMessage(builder).queueAfter(msgDelay + delay * 2, TimeUnit.MILLISECONDS);
-            });
-            partitionAdmin.forEach(cmdChunk -> {
-                StringBuilder builder = new StringBuilder();
-                builder.append(getStart("Adminstrator Commands"));
-                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
-                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
-                chan.sendMessage(builder).queueAfter(msgDelay + delay * 3, TimeUnit.MILLISECONDS);
-            });
-            partitionOwner.forEach(cmdChunk -> {
-                StringBuilder builder = new StringBuilder();
-                builder.append(getStart("Server Owner Commands"));
-                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
-                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
-                chan.sendMessage(builder).queueAfter(msgDelay + delay * 4, TimeUnit.MILLISECONDS);
-            });
-            partitionMusic.forEach(cmdChunk -> {
-                StringBuilder builder = new StringBuilder();
-                builder.append(getStart("Music Commands"));
-                cmdChunk.forEach(q -> builder.append(q.getName()).append(" - ").append(q.getDesc()).append("\n"));
-                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
-                chan.sendMessage(builder).queueAfter(msgDelay + delay * 5, TimeUnit.MILLISECONDS);
-            });
-            partitionOther.forEach(cmdChunk -> {
-                StringBuilder builder = new StringBuilder();
-                builder.append(getStart("Other Commands"));
-                cmdChunk.forEach(q -> builder.append(q).append("\n"));
-                builder.append(getEnd(partitionManager.indexOf(cmdChunk), partitionManager.size()));
-                chan.sendMessage(builder).queueAfter(msgDelay + delay * 6, TimeUnit.MILLISECONDS);
+                builder.append("```");
+                cmdChunk.forEach(q -> builder.append(String.format("[%s] %s - %s (Usage: %s)", q.getPermissionRequired().getName().toUpperCase(), Reference.botCommandKey + q.getName(), q.getDesc(), q.getUsage())).append(q.getPermissionRequired().equals(EnumRestrictions.SPECIFIC) ? String.format(" - PERMS: %s\n", UtilData.toPermCSV(q.getPermissions())) : "\n"));
+                builder.append(String.format("``` **[**%s**/**%s**]**\n\n", cmdPartition.indexOf(cmdChunk) + 1, cmdPartition.size()));
+                chan.sendMessage(builder).queueAfter(msgDelay + 500 * cmdPartition.indexOf(cmdChunk), TimeUnit.MILLISECONDS);
             });
 
-            chan.sendMessage("Use `" + Reference.botCommandKey + "help <command_name>` for command descriptions and usage.").queueAfter(msgDelay + delay * 7, TimeUnit.MILLISECONDS);
+            chan.sendMessage("Use `" + Reference.botCommandKey + "help <command_name>` for help with a specific command.").queueAfter(msgDelay + 500 * (cmdPartition.size() + 1), TimeUnit.MILLISECONDS);
+            chan.sendMessage("Optionally, visit <https://miningmark48.github.io/tidalwave/projects/tidalbot/> for a list of commands.").queueAfter(msgDelay + 500 * (cmdPartition.size() + 2), TimeUnit.MILLISECONDS);
         });
     }
 
-    private static String getStart(String title) {
-        return "**" + title + "** \n```";
+
+}
+
+class ComparatorCommandType implements Comparator<ICommand> {
+
+    @Override
+    public int compare(ICommand a, ICommand b) {
+        return a.getPermissionRequired().getName().compareToIgnoreCase(b.getPermissionRequired().getName());
     }
 
-    private static String getEnd(int chunkNum, int chunkTotal) {
-        return "``` \n" + chunkNum + "/" + chunkTotal;
+}
+
+class ComparatorCommandName implements Comparator<ICommand> {
+
+    @Override
+    public int compare(ICommand a, ICommand b) {
+        return a.getName().compareToIgnoreCase(b.getName());
     }
 
 }

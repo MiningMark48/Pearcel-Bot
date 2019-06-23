@@ -2,6 +2,7 @@ package com.miningmark48.tidalbot.util;
 
 import com.google.common.collect.Lists;
 import com.sun.istack.internal.Nullable;
+import net.dv8tion.jda.api.Permission;
 
 import java.net.URL;
 import java.util.*;
@@ -33,6 +34,18 @@ public class UtilData {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static String toPermCSV(Permission[] data) {
+        String result = "";
+        if (data.length > 0) {
+            StringBuilder builder = new StringBuilder();
+            for (Permission query : data) {
+                builder.append(query.getName()).append(",");
+            }
+            result = builder.deleteCharAt(builder.length() - 1).toString();
+        }
+        return result;
     }
 
 }

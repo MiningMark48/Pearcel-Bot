@@ -75,7 +75,7 @@ public class Main {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
 
             if (safe){
-                if (cmd.event.getChannelType() == ChannelType.PRIVATE) {
+                if (cmd.event.getChannelType().equals(ChannelType.PRIVATE)) {
                     if (commands.get(cmd.invoke) instanceof ICommandPrivate) {
                         ((ICommandPrivate) commands.get(cmd.invoke)).actionPrivate(cmd.args, cmd.event);
                     }
