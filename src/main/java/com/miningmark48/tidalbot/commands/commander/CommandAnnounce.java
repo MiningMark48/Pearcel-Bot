@@ -1,6 +1,5 @@
 package com.miningmark48.tidalbot.commands.commander;
 
-import com.miningmark48.tidalbot.base.CommandType;
 import com.miningmark48.tidalbot.base.EnumRestrictions;
 import com.miningmark48.tidalbot.base.ICommand;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -22,8 +21,8 @@ public class CommandAnnounce implements ICommand {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTitle("Announcement");
         builder.setColor(Color.decode("#2200FF"));
-        builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/exclamation_point.png");
         builder.setDescription(messageFinal);
+        builder.setFooter(String.format("Announcement made by %s", event.getAuthor().getName()));
 
         event.getTextChannel().sendMessage(builder.build()).queue();
         event.getMessage().delete().queue();
