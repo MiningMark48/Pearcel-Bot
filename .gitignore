@@ -18,3 +18,7 @@ out
 *.iml
 *.json
 *.txt
+
+# Floobits
+*.floo
+*.flooignore
