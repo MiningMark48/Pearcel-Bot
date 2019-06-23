@@ -18,25 +18,26 @@ public class UtilDefaultEmbeds {
         EmbedBuilder builder = getEmbed();
         builder.setTitle(message);
         builder.setDescription(description);
+        String baseLink = "https://miningmark48.github.io/img/projects/tidalbot/icons/";
 
         switch (type) {
             default:
             case NONE:
                 break;
             case DANGER:
-                builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/danger.png");
+                builder.setThumbnail(baseLink + "danger.png");
                 builder.setColor(Color.RED);
                 break;
             case INFO:
-                builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/info.png");
+                builder.setThumbnail(baseLink + "info.png");
                 builder.setColor(Color.YELLOW);
                 break;
             case MUSIC:
-                builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/music.png");
+                builder.setThumbnail(baseLink + "music.png");
                 builder.setColor(Color.BLUE);
                 break;
             case SUCCESS:
-                builder.setThumbnail("http://tw.miningmark48.xyz/img/icons/success.png");
+                builder.setThumbnail(baseLink + "success.png");
                 builder.setColor(Color.GREEN);
                 break;
         }
