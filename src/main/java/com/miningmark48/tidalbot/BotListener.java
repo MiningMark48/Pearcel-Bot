@@ -13,13 +13,12 @@ import net.dv8tion.jda.api.events.guild.voice.GuildVoiceJoinEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceLeaveEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 public class BotListener extends ListenerAdapter {
 
-    public static String key = Reference.botCommandKey;
-
     @Override
-    public void onMessageReceived(MessageReceivedEvent event){
+    public void onMessageReceived(@NotNull MessageReceivedEvent event){
 
         if (event.getJDA().getStatus() == JDA.Status.ATTEMPTING_TO_RECONNECT || event.getJDA().getStatus() == JDA.Status.CONNECTING_TO_WEBSOCKET){
             return;
@@ -29,7 +28,8 @@ public class BotListener extends ListenerAdapter {
             Main.handleCommand(Main.parser.parse(event.getMessage().getContentRaw(), event));
         }
 
-        if (event.getJDA().getSelfUser() != null && event.getMember() != null && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) {
+        event.getJDA().getSelfUser();
+        if (event.getMember() != null && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) {
             if (!event.getMember().getEffectiveName().equalsIgnoreCase(event.getJDA().getSelfUser().getName()) && ServerConfigHandler.isAREnabled(event)) {
                 if (!ServerConfigHandler.isUserARBlacklisted(event, event.getAuthor().getId())) {
                     Main.handleMessage(event);
@@ -48,7 +48,7 @@ public class BotListener extends ListenerAdapter {
     }
 
     @Override
-    public void onGuildMemberJoin(GuildMemberJoinEvent event){
+    public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event){
 
         TextChannel tc = event.getGuild().getTextChannels().stream().filter(textChannel -> textChannel.getName().equalsIgnoreCase("welcome")).findFirst().orElse(null);
 
@@ -59,13 +59,13 @@ public class BotListener extends ListenerAdapter {
     }
 
     @Override
-    public void onReady(ReadyEvent event){
+    public void onReady(@NotNull ReadyEvent event){
         //event.getJDA().getAccountManager().update();
         UtilLogger.log(UtilLogger.LogType.STATUS, "Logged in as: " + event.getJDA().getSelfUser().getName());
     }
 
     @Override
-    public void onGuildVoiceJoin(GuildVoiceJoinEvent event) {
+    public void onGuildVoiceJoin(@NotNull GuildVoiceJoinEvent event) {
 //        GuildJoinChat.joinedVoice(event);
 //        if (event.getGuild().getAudioManager().isConnected() && event.getChannelJoined() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
 //            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() > 1) {
@@ -77,7 +77,7 @@ public class BotListener extends ListenerAdapter {
     }
 
     @Override
-    public void onGuildVoiceLeave(GuildVoiceLeaveEvent event) {
+    public void onGuildVoiceLeave(@NotNull GuildVoiceLeaveEvent event) {
 //        if (event.getGuild().getAudioManager().isConnected() && event.getChannelLeft() == event.getGuild().getAudioManager().getConnectedChannel() && event.getMember().getUser() != Main.jda.getSelfUser()) {
 //            if (event.getGuild().getAudioManager().getConnectedChannel().getMembers().size() <= 1) {
 //                if (!AudioHandler.getGuildAudioPlayer(event.getGuild()).player.isPaused()) {
