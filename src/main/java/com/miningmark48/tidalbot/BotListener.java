@@ -28,15 +28,6 @@ public class BotListener extends ListenerAdapter {
             Main.handleCommand(Main.parser.parse(event.getMessage().getContentRaw(), event));
         }
 
-        event.getJDA().getSelfUser();
-        if (event.getMember() != null && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) {
-            if (!event.getMember().getEffectiveName().equalsIgnoreCase(event.getJDA().getSelfUser().getName()) && ServerConfigHandler.isAREnabled(event)) {
-                if (!ServerConfigHandler.isUserARBlacklisted(event, event.getAuthor().getId())) {
-                    Main.handleMessage(event);
-                }
-            }
-        }
-
         if (event.getMessage().getContentRaw().startsWith(Reference.botCommandCustomKey) && !event.getMessage().getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) {
             Main.handleCustom(event);
         }

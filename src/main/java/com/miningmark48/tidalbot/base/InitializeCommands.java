@@ -15,7 +15,6 @@ import com.miningmark48.tidalbot.commands.regular.Command8Ball;
 import com.miningmark48.tidalbot.commands.regular.CommandCmds;
 import com.miningmark48.tidalbot.commands.regular.CommandServerInvite;
 import com.miningmark48.tidalbot.commands.regular.CommandSourceCode;
-import com.miningmark48.tidalbot.commands.regular.CommandARBlacklist;
 import com.miningmark48.tidalbot.commands.music.*;
 import com.miningmark48.tidalbot.commands.music.role_block.*;
 import com.miningmark48.tidalbot.commands.commander.*;
@@ -32,7 +31,6 @@ public class InitializeCommands {
         registerCommand("addcommand", new CommandAddCommand());
         registerCommand("announce", new CommandAnnounce());
 //        registerCommand("bitcoin", new CommandBitcoin());
-        registerCommand("arblacklist", new CommandARBlacklist());
         registerCommand("botinfo", new CommandBotInfo());
         registerCommand("botstats", new CommandBotStats());
         registerCommand("cmds", new CommandCmds());
@@ -64,7 +62,6 @@ public class InitializeCommands {
         registerCommand("serverinvite", new CommandServerInvite());
         registerCommand("slap", new CommandSlap());
         registerCommand("sourcecode", new CommandSourceCode());
-        registerCommand("togglear", new CommandToggleAR());
         registerCommand("togglecommand", new CommandToggleCommand());
         registerCommand("togglemusic", new CommandToggleMusicUser());
         registerCommand("togglenpmessages", new CommandToggleNPMessages());

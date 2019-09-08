@@ -52,28 +52,6 @@ public class ServerConfigHandler {
         return JsonConfigHandler.getArray(event, "bot_commanders");
     }
 
-    //Ar Blacklist
-    public static void toggleARBlacklistUser(MessageReceivedEvent event, String value) {
-        JsonConfigHandler.toggleOnArray(event, "ar_blacklist", value);
-    }
-
-    public static boolean isUserARBlacklisted(MessageReceivedEvent event, String value) {
-        return JsonConfigHandler.isInArray(event, "ar_blacklist", value);
-    }
-
-    public static JsonArray getBlacklistedARUsers(MessageReceivedEvent event) {
-        return JsonConfigHandler.getArray(event, "ar_blacklist");
-    }
-
-    //AR
-    public static void toggleAR(MessageReceivedEvent event) {
-        JsonConfigHandler.setPropertyBoolean(event, "ar_enabled", !isAREnabled(event));
-    }
-
-    public static boolean isAREnabled(MessageReceivedEvent event) {
-        return JsonConfigHandler.isPropertyBoolean(event, "ar_enabled");
-    }
-
     //Music Blacklist
     public static void toggleMusicUserBlacklist(MessageReceivedEvent event, String value) {
         JsonConfigHandler.toggleOnArray(event, "music_blacklist", value);

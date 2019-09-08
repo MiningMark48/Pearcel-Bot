@@ -4,7 +4,6 @@ import com.miningmark48.tidalbot.base.ICommand;
 import com.miningmark48.tidalbot.base.ICommandPrivate;
 import com.miningmark48.tidalbot.base.InitializeCommands;
 import com.miningmark48.tidalbot.commands.custom.GetCommand;
-import com.miningmark48.tidalbot.messages.InitializeMessages;
 import com.miningmark48.tidalbot.reference.Reference;
 import com.miningmark48.tidalbot.richpresence.PresenceClock;
 import com.miningmark48.tidalbot.util.UtilCommandParser;
@@ -109,7 +108,7 @@ public class Main {
                             break;
                     }
 
-                    cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getAsMention() + ", sorry, but you do not have permission to run that command. If you believe this is a mistake, contact a server admin.");
+                    cmd.event.getTextChannel().sendMessage(cmd.event.getAuthor().getAsMention() + ", sorry, but you do not have permission to run that command. If you believe this is a mistake, contact a server admin.").queue();
 
                 }
                 commands.get(cmd.invoke).executed(safe, cmd.event);
@@ -118,10 +117,6 @@ public class Main {
             }
 
         }
-    }
-
-    static void handleMessage(MessageReceivedEvent event){
-        InitializeMessages.init(event);
     }
 
     static void handleCustom(MessageReceivedEvent event){

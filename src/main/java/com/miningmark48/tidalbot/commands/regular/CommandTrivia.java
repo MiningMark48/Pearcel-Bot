@@ -117,22 +117,22 @@ public class CommandTrivia implements ICommand {
                     msg2.addReaction("\uD83C\uDDE9").queue();
                     msg2.editMessage("The correct answer was `" + getChoice(answers, obj.get("correct_answer").getAsString()) + ") " + StringEscapeUtils.unescapeHtml4(obj.get("correct_answer").getAsString()) + "`. ").queueAfter(timeToAnswer, TimeUnit.SECONDS, query -> {
                         List<User> users = query.getReactions().get(answers.indexOf(obj.get("correct_answer").getAsString())).retrieveUsers().complete().stream().filter(u -> !u.isBot()).collect(Collectors.toList());
-//                        ArrayList<User> others = new ArrayList<>();
-//                        for (int i = 0; i <= 3 && i != answers.indexOf(obj.get("correct_answer").getAsString()); i++) {
-//                            query.getReactions().get(i).getUsers().forEach(q -> {
-//                                if (!others.contains(q) && !q.isBot()) others.add(q);
-//                            });
-//                        }
-                        query.clearReactions().queue();
+                        ArrayList<User> others = new ArrayList<>();
+                        for (int i = 0; i <= 3 && i != answers.indexOf(obj.get("correct_answer").getAsString()); i++) {
+                            query.getReactions().get(i).retrieveUsers().forEach(q -> {
+                                if (!others.contains(q) && !q.isBot()) others.add(q);
+                            });
+                        }
+                        query.getReactions().clear();
+//                        query.clearReactions();
                         try {
-                            if (users != null) {
-//                                if (users.size() > 0) {
-//                                    users.forEach(q -> {
-//                                        if (others.contains(q)) {
-//                                            users.remove(q);
-//                                        }
-//                                    });
-//                                }
+                            if (!users.isEmpty()) {
+                                users.size();
+                                users.forEach(q -> {
+                                    if (others.contains(q)) {
+                                        users.remove(q);
+                                    }
+                                });
                                 if (users.size() > 0) {
                                     StringBuilder builder = new StringBuilder();
                                     users.forEach(q -> builder.append(q.getName()).append(users.indexOf(q) + 1 != users.size() ? ", " : ""));

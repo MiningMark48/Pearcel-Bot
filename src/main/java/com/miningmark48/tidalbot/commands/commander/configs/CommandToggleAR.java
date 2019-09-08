@@ -15,8 +15,8 @@ public class CommandToggleAR implements ICommand {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        ServerConfigHandler.toggleAR(event);
-        event.getTextChannel().sendMessage("Auto response turned **" + (ServerConfigHandler.isAREnabled(event) ? "on" : "off") + "**.").queue();
+//        ServerConfigHandler.toggleAR(event);
+//        event.getTextChannel().sendMessage("Auto response turned **" + (ServerConfigHandler.isAREnabled(event) ? "on" : "off") + "**.").queue();
     }
 
     @Override

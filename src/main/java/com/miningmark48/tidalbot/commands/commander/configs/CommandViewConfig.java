@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class CommandViewConfig implements ICommand {
 
-    private static String[] types = {"banned_music", "ar_blacklist"};
+    private static String[] types = {"banned_music"};
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -32,9 +32,6 @@ public class CommandViewConfig implements ICommand {
             case "banned_music":
                 sendBMMessage(event);
                 break;
-            case "ar_blacklist":
-                sendARMessage(event);
-                break;
         }
 
     }
@@ -47,10 +44,6 @@ public class CommandViewConfig implements ICommand {
 
     private static void sendBMMessage(MessageReceivedEvent event) {
         event.getTextChannel().sendMessage(listBuilder(event, ServerConfigHandler.getBannedMusicUsers(event), "Current Banned Music Users:")).queue();
-    }
-
-    private static void sendARMessage(MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage(listBuilder(event, ServerConfigHandler.getBlacklistedARUsers(event), "Current Blacklisted AR Users:")).queue();
     }
 
     private static String idToName(MessageReceivedEvent event, String id) {
