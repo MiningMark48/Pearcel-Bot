@@ -32,7 +32,7 @@ public class AudioHandler {
     public static AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
     private static Map<Long, GuildMusicManager> musicManagers =  new HashMap<>();
 
-    private static int default_volume = 15;
+    private static int default_volume = 25;
     private static AudioTrack recentTrack;
 
     public static Map<Guild, TextChannel> musicChannelRef = new HashMap<>();
